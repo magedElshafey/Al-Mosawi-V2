@@ -1,0 +1,142 @@
+/* shamel font */
+@font-face {
+  font-family: "FF Shamel Family Sans One";
+  src: url("../src/fonts/shamel/FF\ Shamel\ Family\ Sans\ One\ Book.ttf")
+      format("truetype"),
+    url("../src/fonts/shamel/alfont_com_AlFont_com_FFShamelFamily-SansOneBook-1.ttf")
+      format("truetype");
+}
+/* tohama font */
+@font-face {
+  font-family: Tahoma;
+  src: url("./fonts/tahoma/103-Tahoma.ttf") format("truetype");
+}
+.tahoma {
+  font-family: Tahoma !important;
+}
+/* roboto regular */
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype"),
+    url("./fonts/Roboto/Roboto-Thin.ttf") format("truetype"),
+    url("./fonts/Roboto/Roboto-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.roboto {
+  font-family: "Roboto";
+}
+/* font sizes */
+.fs {
+  font-size: 10px;
+}
+.fs2 {
+  font-size: 14px;
+}
+.fs18 {
+  font-size: 18px;
+}
+.fs20 {
+  font-size: 20px;
+}
+.fs22 {
+  font-size: 22px !important;
+}
+.fs24 {
+  font-size: 24px;
+}
+.fs26 {
+  font-size: 26px;
+}
+.fs28 {
+  font-size: 28px;
+}
+.fs30 {
+  font-size: 30px;
+}
+.fs36 {
+  font-size: 36px;
+}
+.fs42 {
+  font-size: 42px;
+}
+.fs48 {
+  font-size: 48px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "FF Shamel Family Sans One";
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "FF Shamel Family Sans One", Tahoma sans-serif, sans-serif;
+  text-transform: capitalize;
+}
+html {
+  font-family: "FF Shamel Family Sans One";
+}
+/* global variables */
+:root {
+  --backgroundColor: #00032b;
+  --darkGreen: #0ab46e;
+  --whiteGreen: #35e79e;
+  --gradientBackground: #003684;
+}
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+ul {
+  list-style-type: none;
+}
+
+.green {
+  color: var(--darkGreen);
+}
+.whiteGreen {
+  color: var(--whiteGreen);
+}
+.red {
+  color: #ff1e1e;
+}
+.lh {
+  line-height: 2;
+}
+.pr {
+  padding-right: 80px;
+}
+.pointer {
+  cursor: pointer;
+}
+.dark {
+  color: #00311c;
+}
+.inp,
+.area {
+  width: 100%;
+  border: 1px solid #afafaf;
+
+  padding: 7px 15px;
+}
+.inp {
+  height: 40px;
+}
+.inp::placeholder {
+  font-weight: bold;
+  color: #5d5d5d;
+  font-size: 18px;
+}
+.area {
+  height: 220px;
+}
+.inp:focus,
+.area:focus {
+  outline: none;
+}
+.mt200 {
+  margin-top: 180px;
+}

@@ -1,0 +1,17 @@
+.inpContainer {
+  position: relative;
+}
+.btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 120px;
+  background-color: #003684;
+  padding: 7px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}

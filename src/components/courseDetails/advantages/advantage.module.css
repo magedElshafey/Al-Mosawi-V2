@@ -1,0 +1,22 @@
+.mainImg {
+  width: 100%;
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.contentContainer {
+  position: absolute;
+  top: 90px;
+  width: 80%;
+  right: 50px;
+  padding: 7px 15px;
+
+  background-color: white;
+  border-radius: 23px;
+  z-index: 5;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  -ms-border-radius: 23px;
+  -o-border-radius: 23px;
+}

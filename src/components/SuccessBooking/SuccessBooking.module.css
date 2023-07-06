@@ -1,0 +1,32 @@
+.successContainer {
+  background-color: #e2fff3;
+  padding: 22px;
+
+  margin: 20px auto !important;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  gap: 11px;
+  padding: 7px;
+  background-color: #003684;
+  height: 53px;
+  border: none;
+  width: 205px;
+  font-size: 20px;
+  border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+}
+.text {
+  font-size: 36px;
+}
+@media screen and (max-width: 767px) {
+  .text {
+    font-size: 26px;
+  }
+}

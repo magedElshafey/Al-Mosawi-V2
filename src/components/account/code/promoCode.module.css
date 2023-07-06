@@ -1,0 +1,21 @@
+.mainContainer {
+  border: 1px solid #dcdcdc;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 80%;
+  background-color: #F5F9FF;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.mainImg {
+  width: 40px;
+  height: 30px;
+  object-fit: contain;
+}
+.promoCodeContainer {
+  background-color: #003684;
+  padding: 8px 15px;
+  height: 70px;
+}

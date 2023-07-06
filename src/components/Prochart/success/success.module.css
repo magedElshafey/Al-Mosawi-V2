@@ -1,0 +1,75 @@
+.textContainer {
+  background-color: #e8fff3;
+  box-shadow: 1px 5px 9px #0000001a;
+  border: 1px solid #ffffff;
+  border-radius: 37px;
+  width: 90%;
+  margin: 35px auto !important;
+  height: 200px;
+}
+.client {
+  position: relative;
+}
+.client:before {
+  content: "";
+  position: absolute;
+  top: -54px;
+  left: -40px;
+  width: 4px;
+  background-color: var(--darkGreen);
+  height: 100px;
+
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+.client:after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -90px;
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-right: 25px solid var(--darkGreen);
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+}
+.span {
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--darkGreen);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.active {
+  background-color: var(--whiteGreen);
+}
+
+.mobOne {
+  height: 500px;
+  width: 427px;
+}
+.mobTwo {
+  width: 313px;
+  height: 400px;
+}
+.mobOne,
+.mobTwo {
+  object-fit: contain;
+}
+.text30 {
+  font-size: 30px;
+}
+.text28 {
+  font-size: 28px;
+}

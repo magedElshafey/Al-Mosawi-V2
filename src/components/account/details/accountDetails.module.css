@@ -1,0 +1,28 @@
+.mainContainer {
+  box-shadow: 0px 17px 20px #00000012;
+  border: 1px solid #dcdcdc;
+  border-radius: 22px;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  -ms-border-radius: 22px;
+  -o-border-radius: 22px;
+}
+.name,
+.customerService {
+  color: #003684 !important;
+  font-weight: bold;
+}
+.desc {
+  font-size: 13px;
+}
+.btn {
+  padding: 16px;
+  background-color: #003684;
+  border-radius: 26px;
+  border: none;
+  width: fit-content;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
+}

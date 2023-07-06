@@ -1,0 +1,21 @@
+.title {
+  text-transform: uppercase;
+  color: var(--whiteGreen) !important;
+}
+
+.bigTitle {
+  font-size: 65px;
+}
+@media screen and (max-width: 767px) {
+  .bigTitle {
+    font-size: 35px;
+  }
+}
+.smallTitle {
+  font-size: 27px;
+}
+@media screen and (max-width: 767px) {
+  .smallTitle {
+    font-size: 25px;
+  }
+}

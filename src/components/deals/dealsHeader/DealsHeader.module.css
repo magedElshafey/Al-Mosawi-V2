@@ -1,0 +1,13 @@
+.mainContainer {
+  border-bottom: 1px solid gray;
+  height: 130px;
+}
+.border::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: -18px;
+  width: 1px;
+  height: calc(100% + 10px);
+  background-color: gray;
+}

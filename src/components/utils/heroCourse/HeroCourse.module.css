@@ -1,0 +1,93 @@
+.mainContainer {
+  width: 100vw;
+  position: relative;
+  height: 100vh;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+}
+.challengeImg {
+  border-radius: 28px;
+  height: 362px;
+  width: 80%;
+  margin: 15px 0;
+  object-fit: cover;
+}
+.desc2 {
+  font-size: 14px;
+}
+.priceContainer {
+  background-color: #020748;
+  border-radius: 19px;
+  height: 440px;
+  position: fixed !important;
+  top: 100px;
+
+  padding: 11px;
+  z-index: 99;
+  left: 20px;
+}
+.offerContainer {
+  width: fit-content;
+  margin: auto;
+}
+.offer {
+  position: absolute;
+  bottom: -10px;
+  left: -15px;
+  font-size: 14px;
+  color: red;
+  text-decoration: line-through;
+}
+.buyBtn,
+.cartBtn {
+  width: 100%;
+  margin: auto;
+  height: 50px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 21px;
+  -webkit-border-radius: 21px;
+  -moz-border-radius: 21px;
+  -ms-border-radius: 21px;
+  -o-border-radius: 21px;
+}
+.buyBtn {
+  background: linear-gradient(to right, #1eca83, #0ea564);
+  border: none;
+  justify-content: space-between;
+}
+.cartBtn {
+  background-color: #020748;
+  border: 1px solid white;
+  justify-content: center;
+  gap: 10px;
+}
+.origineal {
+  font-size: 15px;
+}
+.disabled {
+  opacity: 0.4 !important;
+}
+.text36 {
+  font-size: 36px;
+}
+@media screen and (max-width: 650px) {
+  .text36 {
+    font-size: 24px;
+  }
+}

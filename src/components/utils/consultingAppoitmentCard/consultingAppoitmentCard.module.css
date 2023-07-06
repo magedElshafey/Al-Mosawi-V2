@@ -1,0 +1,36 @@
+.mainDiv {
+  background-color: #e2fff3;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.seconBtn {
+  background-color: #003684;
+  border: none;
+  display: flex;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  width: 205px;
+  font-size: 20px;
+  font-weight: none;
+  border-radius: 22px;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  -ms-border-radius: 22px;
+  -o-border-radius: 22px;
+}
+@media screen and (max-width: 767px) {
+  .seconBtn {
+    width: 180px;
+    padding: 7px;
+  }
+}
+.disapled {
+  opacity: 0.5;
+}

@@ -1,0 +1,16 @@
+.intro {
+  font-size: 36px;
+}
+@media screen and (max-width: 676px) {
+  .intro {
+    font-size: 20px;
+  }
+}
+.desc {
+  width: 75%;
+}
+@media screen and (max-width: 767px) {
+  .desc {
+    width: 100%;
+  }
+}

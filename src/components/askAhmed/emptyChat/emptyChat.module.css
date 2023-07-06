@@ -1,0 +1,8 @@
+.write {
+  font-size: 36px;
+}
+@media screen and (max-width: 767px) {
+  .write {
+    font-size: 26px;
+  }
+}

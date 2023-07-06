@@ -1,0 +1,30 @@
+.box {
+  z-index: 8;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.box:focus {
+  outline: none;
+}
+.btn {
+  background-color: #003684;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  border: none;
+  width: 180px;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
+}

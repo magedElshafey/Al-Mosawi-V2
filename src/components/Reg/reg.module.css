@@ -1,0 +1,86 @@
+.radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+.radio:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: #003684;
+  border-radius: 50%;
+}
+
+.condition {
+  color: #003684;
+}
+.checkBox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  /* Create a custom checkbox */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.checkBox:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-color: #003684;
+  border-radius: 2px;
+}
+.haveAccount {
+  color: #afafaf;
+}
+.reg {
+  color: #003684;
+}
+.text20 {
+  font-size: 18px;
+}
+@media screen and (max-width: 767px) {
+  .text20 {
+    font-size: 16px;
+  }
+}
+.btn {
+  width: 50%;
+  padding: 11px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  color: white;
+  background-color: #003684;
+  border-radius: 28px;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  -ms-border-radius: 28px;
+  -o-border-radius: 28px;
+}

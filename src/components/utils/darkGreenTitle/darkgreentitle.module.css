@@ -1,0 +1,11 @@
+.title {
+  font-size: 40px;
+  color: var(--darkGreen);
+  text-transform: uppercase;
+  font-weight: 1000 !important;
+}
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,58 @@
+.mainContainer {
+  padding: 16px;
+  box-shadow: 0px 8px 6px #00000029;
+  position: relative;
+  opacity: 0.7;
+  width: 100%;
+
+ 
+  background: linear-gradient(
+    to right,
+    #061d71 10%,
+    #061e72 20%,
+    #091068 35%,
+    #1b55a7 100%
+  );
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
+  color: white;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  border: none;
+  background-color: #1b55a7;
+  padding: 11px;
+  height: 40px;
+  border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+}
+.arrowContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  box-shadow: 0px 8px 6px #00000029;
+  height: 100%;
+
+  border-radius: 0 16px 16px 0;
+  -webkit-border-radius: 0 16px 16px 0;
+  -moz-border-radius: 0 16px 16px 0;
+  -ms-border-radius: 0 16px 16px 0;
+  -o-border-radius: 0 16px 16px 0;
+}
+.red {
+  background-color: #ff1e1e;
+}
+.green {
+  background-color: #0ab46e;
+}

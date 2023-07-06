@@ -1,0 +1,11 @@
+.title {
+  color: var(--gradientBackground);
+}
+
+.mainImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  height: 330px;
+}

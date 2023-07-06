@@ -1,0 +1,23 @@
+.mainContainer {
+  border: 1px solid red;
+}
+.btn {
+  width: 100%;
+  padding: 9px;
+  color: white;
+  border: none;
+  background-color: rgb(226, 12, 12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+.beniftsContainer {
+  border-bottom: 1px solid #afafaf;
+}
+.others {
+  border-top: 1px solid #afafaf;
+}
+.border {
+  border: 1px solid #ddd;
+}

@@ -1,0 +1,14 @@
+.mainContainer {
+  border-right: 1px solid #dcdcdc;
+  border-radius: 22px;
+}
+@media screen and (max-width : 800px) {
+  .mainContainer {
+    border-right: none;
+  }
+}
+.icon {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}

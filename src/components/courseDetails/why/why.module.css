@@ -1,0 +1,26 @@
+.questionContainer {
+  border-bottom: 1px solid #c8c8c8;
+}
+.active {
+  color: var(--darkGreen);
+  width: fit-content;
+  position: relative;
+}
+.active:before {
+  content: "";
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--darkGreen);
+}
+.text {
+  font-size: 24px;
+  width: 75%;
+}
+@media screen and (max-width: 767px) {
+  .text {
+    width: 100%;
+  }
+}

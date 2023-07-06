@@ -1,0 +1,45 @@
+.answerContainer .msgsContainer {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.msgsContainer {
+  border: 1px solid #d9e9ff;
+}
+.answerContainer {
+  border: 1px solid #0ab46e;
+  background-color: #e8fff3;
+}
+.btn {
+  height: 60px;
+  padding: 28px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #003684;
+  border: none;
+  text-align: left;
+  width: 150px;
+  font-size: 24px;
+  border-radius: 28px;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  -ms-border-radius: 28px;
+  -o-border-radius: 28px;
+}
+.avatar {
+  width: 49px;
+  height: 49px;
+  object-fit: cover;
+}
+.text {
+  font-size: 36px;
+}
+@media screen and (max-width: 767px) {
+  .text {
+    font-size: 26px;
+  }
+}

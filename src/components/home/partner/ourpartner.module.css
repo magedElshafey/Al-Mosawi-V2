@@ -1,0 +1,20 @@
+.img {
+  width: 250px;
+
+  object-fit: contain;
+  height: 220px;
+}
+.official {
+  color: #00311c !important ;
+}
+.sponser {
+  color: var(--darkGreen);
+}
+.partner {
+  font-size: 37px;
+}
+@media screen and (max-width : 767px) {
+  .partner {
+     font-size: 22px;
+  }
+}

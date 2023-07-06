@@ -1,0 +1,49 @@
+.viewsBtn {
+  padding: 11px;
+  height: 46px;
+  width: 178px;
+  border: none;
+  color: white;
+  display: flex;
+  font-size: 14px !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: #003684;
+  border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+}
+.mainCaontainer {
+  border-bottom: 1px solid #dcdcdc;
+  box-shadow: 0px 6px 5px #00000012;
+}
+.mainImg {
+  width: 60px;
+  height: 56px;
+  object-fit: cover;
+
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.box {
+  width: 21px;
+  height: 8px;
+  background-color: var(--darkGreen);
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.eyeIcon {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+}

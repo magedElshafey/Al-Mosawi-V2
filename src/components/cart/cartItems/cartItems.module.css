@@ -1,0 +1,34 @@
+.mainContainer {
+  border: 1px solid #dcdcdc;
+  box-shadow: 0px 17px 20px #00000012;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+.card {
+  box-shadow: 0px 6px 5px #00000012;
+  border-bottom: 1px solid #dcdcdc;
+  border-radius: 13px;
+}
+.img {
+  width: 60px;
+  height: 56px;
+  object-fit: cover;
+
+  border-radius: 8px;
+}
+.deleteIcon {
+  width: 23px;
+  height: 26px;
+  object-fit: cover;
+}
+.textTitle {
+  font-size: 18px;
+}
+@media screen and (max-width: 767px) {
+  .textTitle {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,13 @@
+.mainContainer {
+  width: 100vw;
+  /* height: 60px !important; */
+  display: flex;
+  align-items: center;
+
+  background-color: #003684;
+}
+/* @media screen and (max-width: 767px) {
+  .mainContainer {
+    height: 180px !important;
+  }
+} */

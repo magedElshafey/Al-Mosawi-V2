@@ -1,0 +1,20 @@
+.btn {
+  padding: 7px 15px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  height: 40px;
+  border: 1px solid #9f9f9f;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.btn.active {
+  background-color: #003684;
+  color: white;
+  font-weight: bold;
+}

@@ -1,0 +1,19 @@
+.mainCaontainer {
+  border-bottom: 1px solid #dcdcdc;
+  box-shadow: 0px 6px 5px #00000012;
+}
+.mainImg {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+}
+.timer {
+  width: 13px;
+  height: 13px;
+  object-fit: cover;
+}

@@ -1,0 +1,8 @@
+<svg id="Component_12_25" data-name="Component 12 – 25" xmlns="http://www.w3.org/2000/svg" width="240" height="71" viewBox="0 0 240 71">
+  <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(167)" fill="none" stroke="#fff" stroke-width="5">
+    <ellipse cx="36.5" cy="35.5" rx="36.5" ry="35.5" stroke="none"/>
+    <ellipse cx="36.5" cy="35.5" rx="34" ry="33" fill="none"/>
+  </g>
+  <path id="play-video-movie-film-svgrepo-com" d="M6.549,23.847A2.227,2.227,0,0,1,4.322,21.62V4.151A2.227,2.227,0,0,1,7.789,2.3l13.023,8.734a2.227,2.227,0,0,1,0,3.7L7.789,23.469h0A2.221,2.221,0,0,1,6.549,23.847Zm.75-1.109ZM6.552,3.682a.493.493,0,0,0-.223.056.459.459,0,0,0-.248.413V21.62a.467.467,0,0,0,.728.388l13.024-8.734a.464.464,0,0,0,.207-.389.455.455,0,0,0-.207-.387L6.809,3.763a.457.457,0,0,0-.257-.081Z" transform="translate(194.356 20.691)" fill="#fff" stroke="#fff" stroke-width="2"/>
+  <text id="شاهدها_الأن" data-name="شاهدها الأن" transform="translate(137 39)" fill="#fff" font-size="24" font-family="FFShamelFamily-SansOneBook, FF Shamel Family Sans One"><tspan x="-136" y="0">شاهدها الأن</tspan></text>
+</svg>

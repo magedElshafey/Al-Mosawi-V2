@@ -1,0 +1,32 @@
+.desc {
+  color: #5D5D5D;
+}
+.btn {
+  border: none;
+  padding: 7px 15px;
+  height: 45px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+}
+.google {
+  background-color: #f6f5f5 !important;
+}
+.apple {
+  color: white;
+  background-color: #111;
+}
+.text28 {
+  font-size: 28px;
+}
+@media screen and (max-width : 767px) {
+  .text28 {
+    font-size: 20px;
+  }
+}

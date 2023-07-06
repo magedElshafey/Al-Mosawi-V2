@@ -1,0 +1,17 @@
+.btn {
+  width: 100%;
+  background-color: #003684;
+  height: 40px;
+  padding: 7px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  border: none;
+  border-radius: 28px;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  -ms-border-radius: 28px;
+  -o-border-radius: 28px;
+}

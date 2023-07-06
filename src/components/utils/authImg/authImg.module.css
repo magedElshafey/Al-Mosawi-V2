@@ -1,0 +1,69 @@
+.imgContainer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.mainImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right bottom,
+    rgba(0, 3, 43, 0.8) 20%,
+    rgba(19, 0, 90, 0.8) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  width: 143px;
+  height: 106px;
+  object-fit: cover;
+}
+.icon {
+  color: #acbcd8;
+}
+.box {
+  padding: 11px;
+  background-color: rgba(19, 0, 90, 1);
+  border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+}
+.desc2 {
+  color: #acbcd8 !important;
+}
+.text36 {
+  font-size: 36px;
+}
+@media screen and (max-width: 767px) {
+  .text36 {
+    font-size: 22px;
+  }
+}
+.text24 {
+  font-size: 24px;
+}
+@media screen and (max-width: 767px) {
+  .text24 {
+    font-size: 20px;
+  }
+}
+.text20 {
+  font-size: 20px;
+}
+@media screen and (max-width: 767px) {
+  .text20 {
+    font-size: 16px;
+  }
+}

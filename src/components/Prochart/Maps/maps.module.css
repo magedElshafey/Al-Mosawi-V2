@@ -1,0 +1,12 @@
+.main {
+  border: 1px solid #c8c8c8;
+  border-radius: 29px;
+}
+.text {
+  font-size: 36px;
+}
+@media screen and (max-width: 662px) {
+  .text {
+    font-size: 24px;
+  }
+}
