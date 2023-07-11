@@ -61,6 +61,7 @@ import Cart from "./pages/Cart.js";
 import RecommendationHistory from "./pages/RecommendationHistory.js";
 import ForgetPassword from "./pages/ForgetPassword.js";
 import NewPassword from "./pages/NewPassword.js";
+import MAX from "./pages/MAX.js";
 const App = () => {
   // handle direction
   useEffect(() => {
@@ -254,6 +255,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/new-password" element={<NewPassword />} />
+      </Routes>
+      <Routes>
+        <Route path="/max" element={<MAX />} />
       </Routes>
       <Footer aboutUs={aboutUs} social={social} />
     </Router>

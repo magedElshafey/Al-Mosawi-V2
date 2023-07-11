@@ -1,0 +1,41 @@
+.mainContainer {
+  background: linear-gradient(to bottom right, #f4f7fc 20%, #cddaf1 100%);
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+}
+.mainContainer:hover {
+  border: 8px solid #0049b1;
+}
+.pro {
+  color: #003684;
+}
+.title {
+  position: relative;
+  top: 3px;
+}
+.icon {
+  color: var(--darkGreen);
+}
+.check {
+  width: 13px;
+  height: 12px;
+  object-fit: cover;
+}
+.btn {
+  border: none;
+  background-color: #003684;
+  border-radius: 28px;
+  width: 234px;
+  -webkit-border-radius: 28px;
+  -moz-border-radius: 28px;
+  -ms-border-radius: 28px;
+  -o-border-radius: 28px;
+}

@@ -1,0 +1,12 @@
+.titleContainer {
+  position: relative;
+}
+.titleContainer::before {
+  content: "";
+  width: 2px;
+  height: 80%;
+  background-color: rgb(214, 211, 211);
+  position: absolute;
+  right: -10px;
+  top: 0;
+}

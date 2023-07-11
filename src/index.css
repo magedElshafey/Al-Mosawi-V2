@@ -36,38 +36,96 @@
 .fs18 {
   font-size: 18px;
 }
+@media screen and (max-width: 767px) {
+  .fs18 {
+    font-size: 14px;
+  }
+}
 .fs20 {
   font-size: 20px;
+}
+@media screen and (max-width: 767px) {
+  .fs20 {
+    font-size: 16px;
+  }
 }
 .fs22 {
   font-size: 22px !important;
 }
+@media screen and (max-width: 767px) {
+  .fs22 {
+    font-size: 16px;
+  }
+}
 .fs24 {
   font-size: 24px;
+}
+@media screen and (max-width: 767px) {
+  .fs24 {
+    font-size: 18px;
+  }
 }
 .fs26 {
   font-size: 26px;
 }
+@media screen and (max-width: 767px) {
+  .fs26 {
+    font-size: 20px;
+  }
+}
 .fs28 {
   font-size: 28px;
+}
+@media screen and (max-width: 767px) {
+  .fs28 {
+    font-size: 20px;
+  }
 }
 .fs30 {
   font-size: 30px;
 }
+@media screen and (max-width: 767px) {
+  .fs30 {
+    font-size: 22px;
+  }
+}
 .fs36 {
   font-size: 36px;
+}
+@media screen and (max-width: 767px) {
+  .fs36 {
+    font-size: 28px;
+  }
 }
 .fs42 {
   font-size: 42px;
 }
+@media screen and (max-width: 767px) {
+  .fs42 {
+    font-size: 34px;
+  }
+}
 .fs48 {
   font-size: 48px;
 }
+@media screen and (max-width: 767px) {
+  .fs48 {
+    font-size: 40px;
+  }
+}
 
+.fs52 {
+  font-size: 52px;
+}
+@media screen and (max-width: 767px) {
+  .fs52 {
+    font-size: 46px;
+  }
+}
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   font-family: "FF Shamel Family Sans One";
 }
 
