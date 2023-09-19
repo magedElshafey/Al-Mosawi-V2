@@ -1,19 +1,29 @@
 import React from "react";
 import style from "./contactus.module.css";
-import { BsFillTelephoneFill, BsEnvelopePaper } from "react-icons/bs";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import contact from "../../../assets/contact.svg";
+import { useTranslation } from "react-i18next";
 const ContactUs = () => {
+  const [t] = useTranslation();
   return (
     <div
-      className={`my-3 mx-auto p-3 ${style.mainContainer} d-flex flex-column align-items-center justify-content-center gap-2`}
+      className={`mx-auto p-3 ${style.mainContainer} d-flex flex-column align-items-center justify-content-center gap-1`}
     >
-      <p className="fs30 fw-bold text-white m-0 p-0">تواصل معنا</p>
-      <p className="fw-bold m-0 p-0 whiteGreen fs36">لتقديم المساعدة </p>
-      <div className="d-flex align-items-center gap-3 whiteGreen fw-bold fs-4">
-        <p className="mx-0 mb-0 mt-1 p-0 fs36">25281720</p>
-        <BsFillTelephoneFill className="fs36" />
+      <p className="shamel fs22 fw-bold text-white m-0 p-0">
+        {t("contact us")}
+      </p>
+      <p className="fw-bold m-0 p-0 whiteGreen shamel fs22">{t("help")}</p>
+      <div className="d-flex align-items-center gap-2 whiteGreen fw-bold ">
+        <p className="mx-0 mb-0 mt-1 p-0 shamel fs28">25281720</p>
+        <BsFillTelephoneFill className="shamel fs28" />
       </div>
       <div className="d-flex justify-content-center">
-        <BsEnvelopePaper className={style.paperIcon} size={50} />
+        <img
+          loading="lazy"
+          alt="contact/icon"
+          className={style.contactImg}
+          src={contact}
+        />
       </div>
     </div>
   );

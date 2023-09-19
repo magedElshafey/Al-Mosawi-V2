@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import style from "./forget.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import {
+  MdOutlineArrowBackIosNew,
+  MdOutlineArrowBackIos,
+} from "react-icons/md";
 
+import { useTranslation } from "react-i18next";
 const ForgetDetails = () => {
+  const [t] = useTranslation();
   const naviagte = useNavigate();
   const [email, setEmail] = useState("");
   const handleClick = () => {
@@ -14,27 +19,23 @@ const ForgetDetails = () => {
     }
   };
   return (
-    <div className="container mt-5 pt-5">
+    <div className="pt-3 pt-md-5 mt-5 container">
       <div
         className={`pb-3 mb-4 ${style.titleContainer} d-flex justify-content-between align-items-center`}
       >
-        <p className={` fw-bold m-0 p-0 ${style.text30}`}>
-          استعادة كلمة المرور
-        </p>
+        <p className={` fw-bold m-0 p-0 shamel fs22`}>{t("resetPass")}</p>
         <div
           onClick={() => naviagte(-1)}
-          className="fs20 d-none d-md-block pointer d-flex align-items-center gap-2"
+          className=" book  d-none d-md-block pointer d-flex align-items-center gap-2"
         >
-          <MdOutlineArrowBackIosNew />
-          <span className="mt-1">العودة</span>
+          <span className="mt-1">{t("back")}</span>
+          <MdOutlineArrowBackIosNew className="fs18" />
         </div>
       </div>
-      <p className={`mx-0 mt-0 mb-3 roboto ${style.text22}`}>
-        يرجى كتابة بريدك الالكتروني لإستعادة كلمة المرور الجديدة
-      </p>
-      <div className="mb-5">
-        <label htmlFor="email" className="d-block mb-1 fw-bold roboto fs-5">
-          البريد الالكترونى
+      <p className={`mx-0 mt-0 mb-2`}>{t("typeMail")}</p>
+      <div className="my-4">
+        <label htmlFor="email" className="d-block mb-1 fw-bold shamel fs18">
+          {t("emailTwo")}
         </label>
         <input
           value={email}
@@ -44,18 +45,17 @@ const ForgetDetails = () => {
           placeholder="examel@example.com"
         />
       </div>
-      <button onClick={handleClick} className={`mb-5 ${style.btn}`}>
-        <MdOutlineArrowBackIosNew size={20} />
-        <span className="mt-1">ارسال</span>
+      <button onClick={handleClick} className={`book mb-3 ${style.btn}`}>
+        <MdOutlineArrowBackIos />
+        <span>{t("send")} </span>
       </button>
-      <div className="d-flex flex-column flex-md-row gap-1 justify-content-center align-items-center">
-        <span
-          className={`ms-2 text-center text-black-50 tahoma  ${style.text22}`}
-        >
-          ليس لديك حساب ؟
+
+      <div className="d-flex  gap-1  align-items-center">
+        <span className={`ms-2 text-center text-black-50 tahoma `}>
+          {t("havAccount")}
         </span>
-        <Link to="/reg" className={` tahoma ${style.text22} ${style.reg}`}>
-          انشاء حساب جديد
+        <Link to="/reg" className={` tahoma  ${style.reg}`}>
+          {t("createAccount")}
         </Link>
       </div>
     </div>

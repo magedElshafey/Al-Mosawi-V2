@@ -2,9 +2,9 @@ import React from "react";
 import style from "./mt4.module.css";
 const MT4 = ({ img }) => {
   return (
-    <div className=" mb-5">
+    <div className=" py-3">
       <div className="row ">
-        <div className={`col-12 col-md-9 ${style.imgContainer}`}>
+        <div className={`col-12  ${style.imgContainer}`}>
           <img
             loading="lazy"
             alt="mt4/img"

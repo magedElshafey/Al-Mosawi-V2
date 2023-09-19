@@ -1,20 +1,23 @@
 import React from "react";
 import style from "./LoginForm.module.css";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 const LoginForm = () => {
+  const [t] = useTranslation();
+  const navigate = useNavigate();
   return (
-    <div className="container-fluid py-5">
-      <div className="mb-3">
-        <label htmlFor="email" className="d-block fw-bold mb-1 fs20">
-          البريد الإلكتروني
+    <div className="py-3 container">
+      <div className="mb-4">
+        <label htmlFor="email" className="d-block fw-bold mb-1 shamel ">
+          {t("emailTwo")}
         </label>
         <input className={`inp ${style.inpWidth}`} type="email" id="email" />
       </div>
-      <div className="mb-3">
-        <label htmlFor="password" className="d-block fw-bold mb-1 fs20">
-          كلمة المرور
+      <div className="mb-4">
+        <label htmlFor="password" className="d-block fw-bold mb-1 shamel">
+          {t("pass")}
         </label>
         <input
           className={`inp ${style.inpWidth}`}
@@ -23,7 +26,7 @@ const LoginForm = () => {
         />
       </div>
       <div
-        className={`mt-5  mb-3 d-flex flex-column flex-md-row gap-5 `}
+        className={`mb-4 align-items-center  mb-3 d-flex gap-5 `}
       >
         <div>
           <input
@@ -31,21 +34,32 @@ const LoginForm = () => {
             id="rem"
             className={`p-0 my-0 mx-2  ${style.checkBox}`}
           />
-          <label htmlFor="rem" className={`mb-1 fw-bold ${style.text20}`}>
-            تذكرني
+          <label htmlFor="rem" className={` fw-bold  shamel `}>
+            {t("remember")}
           </label>
         </div>
-        <Link to="/forget" className={`fw-bold ${style.text20} ${style.links}`}>
-          استعادة كلمة المرور
+        <Link to="/forget" className={`fw-bold shamel  ${style.links}`}>
+          {t("resetPass")}
         </Link>
       </div>
-      <button className= {style.btn}>
-        <MdOutlineArrowBackIosNew size = {20} /> 
-        <span className="text-white mt-1">دخول</span>
+      <button
+        onClick={() => navigate("/forex-account/details")}
+        className={`book mb-3 ${style.btn}`}
+      >
+        <MdOutlineArrowBackIos size={20} />
+        <span>دخول</span>
       </button>
-      <p className="text-center my-3 mx-0 p-0 fw-bold">
-        <span className={style.haveAccount}> ليس لديك حساب ؟</span>{" "}
-        <span className={style.reg}> انشاء حساب</span>
+
+      <p className=" my-2 mx-0 p-0 fw-bold">
+        <span className={`tahoma fs2 ${style.haveAccount}`}>
+          {t("havAccount")}
+        </span>{" "}
+        <span
+          onClick={() => navigate("/reg")}
+          className={`tahoma pointer fs2 ${style.reg}`}
+        >
+          {t("createAccount")}
+        </span>
       </p>
     </div>
   );

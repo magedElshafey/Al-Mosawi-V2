@@ -3,27 +3,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 26px;
-  height: 90px;
-  width: 80%;
+
+  padding: 8px;
+  height: 50px;
+  width: 80% !important;
   background: linear-gradient(to bottom right, #0ea564, #13005a);
-  border-radius: 22px;
-  -webkit-border-radius: 22px;
-  -moz-border-radius: 22px;
-  -ms-border-radius: 22px;
-  -o-border-radius: 22px;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+@media screen and (max-width: 767px) {
+  .btn {
+    width: 100% !important;
+  }
 }
 .img {
   width: 54px;
-  height: 63px;
-  object-fit: cover;
-}
-.downloadText {
-  font-size: 26px;
-}
-@media screen and (max-width: 767px) {
-  .downloadText {
-    font-size: 18px;
-  }
+  height: 33px;
+  object-fit: contain;
 }

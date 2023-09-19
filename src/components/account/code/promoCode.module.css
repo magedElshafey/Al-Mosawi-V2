@@ -3,7 +3,7 @@
   border-radius: 15px;
   overflow: hidden;
   width: 80%;
-  background-color: #F5F9FF;
+  background-color: #f5f9ff;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
@@ -17,5 +17,6 @@
 .promoCodeContainer {
   background-color: #003684;
   padding: 8px 15px;
-  height: 70px;
+  height: 50px;
+  letter-spacing: 3px;
 }

@@ -19,12 +19,12 @@ const Account = ({ accountDetails, monthlyWithdraw }) => {
       />
       <Header />
       <div className="container py-5">
-        <div className="row">
-          <div className="col-12  mb-5 mb-md-0 col-md-7">
+        <div className="row gap-5">
+          <div className="col-12  col-md-7">
             <AccountDetails accountDetails={accountDetails} />
             <Withdraw monthlyWithdraw={monthlyWithdraw} />
           </div>
-          <div className="col-12 mb-5 mb-md-0 col-md-5 ">
+          <div className="col-12   col-md-4 mx-auto">
             <DownloadPlane />
             <PromoCode />
             <ContactUs />

@@ -1,53 +1,39 @@
 .titleContainer {
-  border-bottom: 1px solid #0000004f;
-}
-.btn {
-  padding: 11px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  color: white;
-  background-color: #003684;
-  border: none;
-  width: 50%;
-  border-radius: 22px;
-  -webkit-border-radius: 22px;
-  -moz-border-radius: 22px;
-  -ms-border-radius: 22px;
-  -o-border-radius: 22px;
-}
-@media screen and (max-width: 767px) {
-  .btn {
-    width: 100%;
-  }
+  border-bottom: 1px solid #707070;
 }
 .reg {
   font-weight: bold;
   color: #003684 !important ;
   text-align: center;
 }
-.text30 {
-  font-size: 30px;
-}
-@media screen and (max-width: 767px) {
-  .text30 {
-    font-size: 18px;
-  }
-}
-.text22 {
-  font-size: 22px;
-}
-@media screen and (max-width: 767px) {
-  .text22 {
-    font-size: 16px;
-  }
-}
+
 .inpWidth {
-  width: 50%;
+  width: 50% !important;
 }
 @media screen and (max-width: 767px) {
   .inpWidth {
-    width: 100%;
+    width: 100% !important;
+  }
+}
+.btn {
+  width: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px;
+  background-color: #003684;
+  border-radius: 26px;
+  color: white;
+  border: none;
+  width: fit-content;
+  -webkit-border-radius: 26px;
+  -moz-border-radius: 26px;
+  -ms-border-radius: 26px;
+  -o-border-radius: 26px;
+}
+@media screen and (max-width: 767px) {
+  .btn {
+    width: 100% !important;
   }
 }

@@ -1,7 +1,8 @@
 .mainContainer {
   border: 1px solid #c8c8c8;
   border-radius: 25px;
-  width: 75%;
+  width: 60%;
+  background-color: #f4f7fc;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;

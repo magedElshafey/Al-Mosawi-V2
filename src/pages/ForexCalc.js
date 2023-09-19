@@ -15,7 +15,7 @@ const ForexCalc = () => {
         desc="اجعل عملية تداولك أسهل عبر استخدام آلاتنا الحاسبة الرائعة. مما يوفر عليك الوقت الذي ستحتاجه للتركيز على اتخاذ قرارات التداول"
       />
       <Header/>
-      <div className="container py-5">
+      <div className="container py-3">
         <div className="row justify-content-center">
           <ForexCalcDetails />
         </div>

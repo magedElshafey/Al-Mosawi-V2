@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32.883" height="23.018" viewBox="0 0 32.883 23.018">
+  <g id="menu-svgrepo-com" transform="translate(-2 -5)">
+    <path id="secondary" d="M33.239,14.288H3.644a1.644,1.644,0,0,1,0-3.288H33.239a1.644,1.644,0,0,1,0,3.288Z" transform="translate(0 3.865)" fill="#0ea564"/>
+    <path id="primary" d="M33.239,28.018H13.509a1.644,1.644,0,0,1,0-3.288h19.73a1.644,1.644,0,0,1,0,3.288ZM23.374,8.288H3.644A1.644,1.644,0,0,1,3.644,5h19.73a1.644,1.644,0,0,1,0,3.288Z" fill="#fff"/>
+  </g>
+</svg>

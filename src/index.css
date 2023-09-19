@@ -1,37 +1,13 @@
-/* shamel font */
-@font-face {
-  font-family: "FF Shamel Family Sans One";
-  src: url("../src/fonts/shamel/FF\ Shamel\ Family\ Sans\ One\ Book.ttf")
-      format("truetype"),
-    url("../src/fonts/shamel/alfont_com_AlFont_com_FFShamelFamily-SansOneBook-1.ttf")
-      format("truetype");
-}
-/* tohama font */
-@font-face {
-  font-family: Tahoma;
-  src: url("./fonts/tahoma/103-Tahoma.ttf") format("truetype");
-}
-.tahoma {
-  font-family: Tahoma !important;
-}
-/* roboto regular */
-@font-face {
-  font-family: "Roboto";
-  src: url("./fonts/Roboto/Roboto-Regular.ttf") format("truetype"),
-    url("./fonts/Roboto/Roboto-Thin.ttf") format("truetype"),
-    url("./fonts/Roboto/Roboto-Medium.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
-.roboto {
-  font-family: "Roboto";
-}
+
 /* font sizes */
 .fs {
   font-size: 10px;
 }
 .fs2 {
   font-size: 14px;
+}
+.fs15 {
+  font-size: 15px;
 }
 .fs18 {
   font-size: 18px;
@@ -102,7 +78,7 @@
 }
 @media screen and (max-width: 767px) {
   .fs42 {
-    font-size: 34px;
+    font-size: 26px;
   }
 }
 .fs48 {
@@ -122,20 +98,28 @@
     font-size: 46px;
   }
 }
+.fs60 {
+  font-size: 60px;
+}
+@media screen and (max-width: 767px) {
+  .fs60 {
+    font-size: 50px;
+  }
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box !important;
-  font-family: "FF Shamel Family Sans One";
 }
 
 body {
   overflow-x: hidden;
-  font-family: "FF Shamel Family Sans One", Tahoma sans-serif, sans-serif;
-  text-transform: capitalize;
+  font-family:  Helvetica !important;
+  text-transform: capitalize !important;
 }
 html {
-  font-family: "FF Shamel Family Sans One";
+  text-transform: capitalize !important;
+  font-family:  Helvetica !important;
 }
 /* global variables */
 :root {
@@ -151,7 +135,7 @@ a {
 ul {
   list-style-type: none;
 }
-
+/* utility classes */
 .green {
   color: var(--darkGreen);
 }
@@ -166,6 +150,19 @@ ul {
 }
 .pr {
   padding-right: 80px;
+}
+@media screen and (max-width: 650px) {
+  .pr {
+    padding-right: 20px;
+  }
+}
+.pl {
+  padding-left: 80px;
+}
+@media screen and (max-width: 650px) {
+  .pl {
+    padding-right: 20px;
+  }
 }
 .pointer {
   cursor: pointer;
@@ -186,7 +183,7 @@ ul {
 .inp::placeholder {
   font-weight: bold;
   color: #5d5d5d;
-  font-size: 18px;
+  font-size: 12px;
 }
 .area {
   height: 220px;
@@ -196,5 +193,82 @@ ul {
   outline: none;
 }
 .mt200 {
-  margin-top: 180px;
+  margin-top: 200px;
+}
+.mt80 {
+  margin-top: 70px;
+}
+.mt100 {
+  margin-top: 130px;
+}
+.mt101 {
+  margin-top: 130px;
+}
+@media screen and (max-width: 767px) {
+  .mt101 {
+    margin-top: 30px;
+  }
+}
+.mt300 {
+  margin-top: 150px;
+}
+.gap10 {
+  gap: 65px;
+}
+.mainInfo {
+  box-shadow: 0px 17px 20px #00000012;
+  border: 1px solid #dcdcdc;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+/* .swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  width: 50%;
+}
+
+.swiper-pagination-bullet {
+  background-color: red;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--darkGreen) !important;
+} */
+/*  {
+  width: 50%;
+}
+
+.swiper-pagination-bullet {
+  background-color: red;
+  opacity: 1;
+}
+
+ */
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  margin-top: 25px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--whiteGreen) !important;
+}
+.error {
+  font-size: 13px;
+  color: red;
 }

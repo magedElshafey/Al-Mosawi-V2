@@ -1,3 +1,11 @@
+.firstContainer {
+  border: 1px solid #dbdbdb;
+}
+@media screen and (max-width: 700px) {
+  .firstContainer {
+    border: none;
+  }
+}
 .socialContainer {
   transition: 0.4s;
   -webkit-transition: 0.4s;
@@ -23,4 +31,52 @@
 .copyLink {
   font-size: 12px;
   color: #00311c !important ;
+}
+.bg {
+  background-color: #f5f5f5;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.border {
+  position: relative;
+}
+.border::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+
+  background-color: #f5f5f5;
+
+  height: 2px;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+.rtlStyle::before {
+  width: 110%;
+  right: 135px;
+}
+.ltrStyle::before {
+  width: 250%;
+  left: 60px;
+}
+
+@media screen and (max-width: 767px) {
+  .border::before {
+    display: none;
+  }
+}
+.socialMediaIcons {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.phoneImg {
+  width: 23px !important;
+  height: 23px !important;
+  object-fit: cover !important;
 }

@@ -1,16 +1,51 @@
 import React from "react";
 import style from "./video.module.css";
 import videoPlayer from "../../../assets/video.png";
-import GreentTitle from "../../utils/greenTitle/GreentTitle";
 import { MdArrowBackIosNew } from "react-icons/md";
-const Video = () => {
+import { useTranslation } from "react-i18next";
+const Video = ({ data }) => {
+  const [t] = useTranslation();
   return (
-    <div className={`${style.mainDiv}`}>
+    <div className={style.app}>
+      <div className={style.videoBackground}>
+        <iframe
+          width="100%"
+          height="100%"
+          src={data.videoLink}
+          title="YouTube Video"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className={`w-100 ${style.text}`}>
+        <div className="w-100 row juistify-content-center align-items-center">
+          <div className="col-12 col-md-10 mb-3 mb-md-0">
+            <div dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }} />
+            <div
+              className="mt-5"
+              dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Video;
+/**
+ *   <div
+      style={{ backgroundImage: `url(${data.videoLink})` }}
+      className={`${style.mainDiv} pb-4`}
+    >
+     
+    </div>
+ */
+/*
+   <div className={`${style.mainDiv}`}>
       <div className={` w-100 ${style.text}`}>
         <div className="row justify-content-center gap-3 gap-md-5 w-100 align-items-center ">
           <div className="mb-3 mb-md-0 col-12 col-md-8 ">
             <p className="m-0 p-0 fw-bold fs-4 fs-md-1">
-              احصل على نتائج هائلة لتداولاتك
             </p>
 
             <p
@@ -37,28 +72,13 @@ const Video = () => {
               واستفيد من الفرص القوية و المتميزة
             </p>
 
-            <button
-              className={`mt-5  d-flex align-items-center  gap-2 text-white ${style.btn}`}
-            >
-              <div className={`p-2 ${style.arrowContainer}`}>
-                <MdArrowBackIosNew size={20} />
-              </div>
-              <span> اعرف اكثر</span>
-            </button>
+           
           </div>
 
           <div className="col-12 col-md-3 justify-content-center">
-            <img
-              alt="videoPlayerImg"
-              src={videoPlayer}
-              loading="lazy"
-              className={`pointer ${style.playerImg} `}
-            />
+           
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-export default Video;
+*/

@@ -31,14 +31,16 @@
 .btn {
   border: none;
   background-color: transparent;
-
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 7px 15px;
-  height: 60px;
-  line-height: 60;
+  align-items: center !important;
+  padding: 15px;
+
   border-radius: 20px 20px 0px 0px;
+  -webkit-border-radius: 20px 20px 0px 0px;
+  -moz-border-radius: 20px 20px 0px 0px;
+  -ms-border-radius: 20px 20px 0px 0px;
+  -o-border-radius: 20px 20px 0px 0px;
 }
 .btn.active {
   background-color: white;
@@ -65,4 +67,7 @@
     left: 30px;
     font-size: 40px;
   }
+}
+.desc {
+  opacity: 0.8;
 }

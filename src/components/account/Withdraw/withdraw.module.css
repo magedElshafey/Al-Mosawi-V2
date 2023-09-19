@@ -12,8 +12,8 @@
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #03e986, #089759);
-  width: 122px;
-  height: 122px;
+  width: 120px !important;
+  height: 120px !important;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -22,14 +22,21 @@
 }
 @media screen and (max-width: 767px) {
   .imgContainer {
-    width: 100px;
-    height: 100px;
+    width: 50px !important;
+    height: 50px !important;
   }
 }
 .mainImg {
-  width: 64px;
-  height: 64px;
+  width: 84px;
+  height: 84px;
   object-fit: cover;
+}
+@media screen and (max-width: 767px) {
+  .mainImg {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
 }
 .title {
   font-size: 36px;
@@ -37,5 +44,13 @@
 @media screen and (max-width: 767px) {
   .title {
     font-size: 24px;
+  }
+}
+.width {
+  width: 70% !important;
+}
+@media screen and (max-width: 767px) {
+  .width {
+    width: 100% !important;
   }
 }

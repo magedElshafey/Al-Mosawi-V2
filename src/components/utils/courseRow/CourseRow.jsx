@@ -1,11 +1,13 @@
 import React from "react";
 import style from "./courseRow.module.css";
+import { useTranslation } from "react-i18next";
 
 import eyeIcon from "../../../assets/eye.png";
 const CourseRow = ({ item, newCount }) => {
+  const [t] = useTranslation();
   return (
     <div
-      className={`d-flex justify-content-between flex-wrap gap-3 align-items-center ${style.mainCaontainer} py-3`}
+      className={`d-flex justify-content-between flex-wrap gap-1 align-items-center ${style.mainCaontainer} p-2 mb-4`}
     >
       <div className="d-flex align-items-center gap-3">
         <img
@@ -14,17 +16,17 @@ const CourseRow = ({ item, newCount }) => {
           className={style.mainImg}
           src={item.img}
         />
-        <p className="fs18 fw-bold m-0 p-0">{item.title}</p>
+        <p className="fw-bold m-0 p-0 shamel">{item.title}</p>
       </div>
 
-      <button className={style.viewsBtn}>
+      <button className={`book ${style.viewsBtn}`}>
         <img
           alt="eye/icon"
           loading="lazy"
           src={eyeIcon}
           className={style.eyeIcon}
         />
-        <p className="mx-0 mb-0 mt-1 p-0">{item.btnText}</p>
+        <p className="mx-0 mb-0 mt-1 p-0">{t("continue")}</p>
       </button>
     </div>
   );

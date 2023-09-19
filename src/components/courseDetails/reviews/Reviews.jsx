@@ -1,8 +1,12 @@
 import React from "react";
 import style from "./reviews.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslation } from "react-i18next";
+import { BsArrowRightCircle } from "react-icons/bs";
+import coma from "../../../assets/coma.svg";
 import "swiper/css";
 const Reviews = ({ data }) => {
+  const [t] = useTranslation();
   const swiperOptions = {
     loop: true,
     centeredSlides: false,
@@ -17,10 +21,10 @@ const Reviews = ({ data }) => {
     },
     breakpoints: {
       500: {
-        slidesPerView: 1,
+        slidesPerView: 2,
       },
       768: {
-        slidesPerView: 1,
+        slidesPerView: 2,
       },
       900: {
         slidesPerView: 2,
@@ -31,31 +35,47 @@ const Reviews = ({ data }) => {
     },
   };
   return (
-    <div className="py-4">
-      <div className="row position-relative">
-        <div className="col-12 col-md-10">
-          <p className="mb-5 mx-0 p-0 green fs-4 fw-bold">
-            أراء الحاصلين علي الدورة
-          </p>
+    <div className="py-3  mt-3 ">
+      <div className="">
+        <div>
+          <p className="mb-3 mx-0 p-0 green fs26 shamel fw-bold">{t("rev")}</p>
           <div className="row justify-content-center">
-            <Swiper className="col-12" {...swiperOptions}>
+            <Swiper
+            
+              className="col-12 position-relative px-5 px-md-4"
+              {...swiperOptions}
+            >
               {data.map((item, index) => (
-                <SwiperSlide key={index} className="d-flex flex-column  gap-3">
-                  <div className="d-flex align-items-center gap-3">
-                    <img
-                      loading="lazy"
-                      alt="person/img"
-                      src={item.img}
-                      className={style.avImg}
-                    />
-                    <div className="d-flex flex-column align-items-center gap-2">
-                      <p className="m-0 p-0 fw-bold">{item.name}</p>
-                      <p className="m-0 p-0 ">{item.jobTitle}</p>
+                <SwiperSlide key={index}>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-flex align-items-center gap-2">
+                      <img
+                        loading="lazy"
+                        alt="person/img"
+                        src={item.img}
+                        className={style.avImg}
+                      />
+                      <div className="d-flex justify-content-between align-items-center">
+                        <div className="d-flex flex-column align-items-center gap-1">
+                          <p className="m-0 p-0 fw-bold shamel fs16">
+                            {item.name}
+                          </p>
+                          <p className="m-0 p-0 ">{item.jobTitle}</p>
+                        </div>
+                        <img
+                          alt="comma"
+                          src={coma}
+                          loading="lazy"
+                          className={style.coma}
+                        />
+                      </div>
                     </div>
                   </div>
+
                   <p className="lh p-0 m-0">{item.opinion}</p>
                 </SwiperSlide>
               ))}
+              <BsArrowRightCircle className={style.arrow} size={20} />
             </Swiper>
           </div>
         </div>

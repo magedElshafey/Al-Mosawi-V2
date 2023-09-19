@@ -20,6 +20,12 @@
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
 }
+@media screen and (max-width: 600px) {
+  .btn {
+    margin: 25px auto;
+    height: 60px;
+  }
+}
 .btn:hover {
   background-color: #0d53b8;
 }

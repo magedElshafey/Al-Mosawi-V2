@@ -1,28 +1,34 @@
 .mainContainer {
   width: 320px;
+  border-radius: 18px;
   position: relative;
   z-index: 8888 !important;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
 }
 .mainContainer:before {
   content: "";
   position: absolute;
   bottom: -80px;
+
   left: 0;
   width: 100%;
-  height: 75%;
-  transition: 0.45s;
   background-color: #003684;
   border-radius: 18px;
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   -ms-border-radius: 18px;
   -o-border-radius: 18px;
-  -webkit-transition: 0.45s;
-  -moz-transition: 0.45s;
-  -ms-transition: 0.45s;
-  -o-transition: 0.45s;
 }
-.mainContainer:hover::before {
+.mainContainer:first-of-type::before {
+  height: 50%;
+}
+.mainContainer:nth-of-type(2)::before {
+  height: 75%;
+}
+.mainContainer:nth-of-type(3)::before {
   height: calc(100% + 90px);
 }
 .secondContainer {
@@ -41,13 +47,11 @@
   -o-border-radius: 18px;
 }
 .cardName {
-  position: absolute;
   left: 0;
+  position: absolute;
   color: #dedede;
-  font-size: 45px;
-  font-weight: bolder;
-  letter-spacing: 20px;
-  bottom: 100px;
+  letter-spacing: 10px;
+  bottom: 80px;
   transform: rotate(270deg);
   -webkit-transform: rotate(270deg);
   -moz-transform: rotate(270deg);
@@ -59,6 +63,10 @@
   -ms-transition: 0.4s;
   -o-transition: 0.4s;
 }
+.mainContainer:nth-of-type(2) .cardName {
+  left: -50px !important;
+}
+
 .mainContainer:hover .cardName {
   color: #003684;
 }
@@ -67,7 +75,7 @@
 }
 .title {
   position: relative;
-  top: 3px;
+  top: 2px;
 }
 .intro {
   color: #2d2d2d !important;

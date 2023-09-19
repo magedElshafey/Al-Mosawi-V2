@@ -1,15 +1,17 @@
 import React, { useRef } from "react";
 import style from "./upload.module.css";
 import uploadIcon from "../../../../assets/upload-to-cloud.svg";
+import { useTranslation } from "react-i18next";
 const Upload = ({ label, action, id }) => {
+  const [t] = useTranslation();
   const inputRef = useRef(null);
   const handleButtonClic = (e) => {
     e.preventDefault();
     inputRef.current.click();
   };
   return (
-    <div className="my-3">
-      <label className="d-block mb-1 fs-4 fw-bold" htmlFor={id}>
+    <div className="my-2">
+      <label className="d-block shamel  fw-bold" htmlFor={id}>
         {label}
       </label>
       <input
@@ -21,13 +23,10 @@ const Upload = ({ label, action, id }) => {
       />
       <button onClick={handleButtonClic} className={style.custom}>
         <img alt="upload / img" src={uploadIcon} loading="lazy" />
-        <p className={`fs-4 fw-bold m-0 p-0 ${style.title}`}>
-          سحب وإفلات الملف هنا
+        <p className={`shamel fs2 fw-bold m-0 p-0 ${style.title}`}>
+          {t("drag")}
         </p>
-        <p className="m-0 p-0 lh">
-          للحصول على أفضل النتائج؛ يجب أن يكون حجم الصورة 960 × 540، 2 ميغابايت
-          كحدّ أقصى
-        </p>
+        <p className="m-0 p-0 tahoma fs ">{t("best")}</p>
       </button>
     </div>
   );

@@ -11,19 +11,18 @@
   background-color: #003684;
   border: none;
   display: flex;
-  padding: 3px;
+  padding: 7px;
   justify-content: center;
   align-items: center;
   gap: 4px;
   color: white;
   width: 205px;
-  font-size: 20px;
   font-weight: none;
-  border-radius: 22px;
-  -webkit-border-radius: 22px;
-  -moz-border-radius: 22px;
-  -ms-border-radius: 22px;
-  -o-border-radius: 22px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
 @media screen and (max-width: 767px) {
   .seconBtn {

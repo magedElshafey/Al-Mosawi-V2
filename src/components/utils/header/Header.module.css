@@ -1,15 +1,23 @@
-.headerContainer {
-  border-bottom: 1px solid #cccc;
-}
-.link {
-  font-weight: 1000;
-  font-size: 13px;
-  transition: 0.4s;
-  -webkit-transition: 0.4s;
-  -moz-transition: 0.4s;
-  -ms-transition: 0.4s;
-  -o-transition: 0.4s;
+.mainDiv {
+  background-color: #f4f7fc;
   position: relative;
+  overflow: hidden;
+}
+/* .headerContainer {
+  width: 100%;
+  white-space: nowrap;
+  animation: scrollHeader 20s linear infinite;
+  border-bottom: 1px solid #cccc;
+} */
+
+.link {
+  font-size: 13px;
+  display: inline-block !important;
+  text-align: center;
+  padding: 14px !important;
+  margin: 0 15px !important;
+  text-decoration: none;
+  font-family: "FF Shamel Family";
 }
 .link:hover {
   color: #003684 !important;
@@ -17,6 +25,7 @@
 .active {
   color: #003684 !important;
   position: relative;
+  font-family: "Shamel";
 }
 .active::before {
   content: "";
@@ -26,4 +35,11 @@
   height: 3px;
   background-color: #003684;
   width: 100%;
+}
+.menu {
+  text-align: center;
+  padding: 15px;
+
+  overflow: auto;
+  white-space: nowrap;
 }

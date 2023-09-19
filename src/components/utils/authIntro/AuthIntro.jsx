@@ -4,12 +4,12 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 const AuthIntro = ({ title, desc }) => {
   return (
-    <div className="container pt-5 mt-5">
-      <p className={`mx-2 my-2 fw-bold  p-0 ${style.text28}`}>{title}</p>
-      {desc ? (
-        <p className={`fs18 roboto mx-2 p-0 ${style.desc}`}>{desc}</p>
-      ) : null}
-      <div className="w-100 w-md-50   d-flex flex-wrap  align-items-center gap-4">
+    <div className={`pt-3 pt-md-5 mt-0 mt-md-5 container`}>
+      <p className={`mt-2 mb-4 fw-bold  p-0 fs22 shamel`}>{title}</p>
+      {desc ? <p className={`p-0 ${style.desc}`}>{desc}</p> : null}
+      <div
+        className={`pb-3  d-flex flex-wrap  align-items-center gap-4  ${style.mainDiv}`}
+      >
         <button className={`${style.btn} ${style.google}`}>
           <FcGoogle size={30} />
         </button>

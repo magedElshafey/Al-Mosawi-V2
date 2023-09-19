@@ -1,10 +1,10 @@
 import React from "react";
-import HeroDeals from "../components/utils/herobox/HeroBox";
+import HeroBox from "../components/utils/herobox/HeroBox";
 
 const Deals = () => {
   return (
     <div>
-      <HeroDeals isRecommendations={false} isVideo={false} />
+      <HeroBox isRecommendations={false} isVideo={false} isHistory={false} />
     </div>
   );
 };

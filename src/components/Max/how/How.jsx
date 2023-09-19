@@ -18,13 +18,13 @@ const How = () => {
     }
   };
   return (
-    <div className="py-5">
+    <div className="py-5 container">
       {how.map((item, index) => (
         <div
-          className={`mb-4  p-3 ${style.mainContainer} d-flex align-items-center justify-content-between`}
+          className={`mb-4 col-12 col-md-6  p-3 ${style.mainContainer} d-flex align-items-center justify-content-between`}
           key={index}
         >
-          <p className="fw-bold fs30 green m-0 p-0">{item.title}</p>
+          <p className="fw-bold fs24 shamel green m-0 p-0">{item.title}</p>
           {activeId === index && showDetails ? (
             <MdKeyboardArrowUp
               onClick={() => {
@@ -32,7 +32,7 @@ const How = () => {
                 handleHideDetails(index);
               }}
               className="pointer"
-              size={40}
+              size={30}
             />
           ) : (
             <MdOutlineKeyboardArrowDown
@@ -41,7 +41,7 @@ const How = () => {
                 handleShowDetails(index);
               }}
               className="pointer"
-              size={40}
+              size={30}
             />
           )}
         </div>

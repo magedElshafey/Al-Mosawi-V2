@@ -1,3 +1,6 @@
+.mainDiv {
+  background-color: #ffffff;
+}
 .mainContainer {
   background: linear-gradient(to bottom right, #f4f7fc 20%, #cddaf1 100%);
   border-radius: 25px;
@@ -27,7 +30,7 @@
 .check {
   width: 13px;
   height: 12px;
-  object-fit: cover;
+  object-fit: contain;
 }
 .btn {
   border: none;

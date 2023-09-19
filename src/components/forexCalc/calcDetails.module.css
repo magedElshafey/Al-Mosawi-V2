@@ -1,16 +1,12 @@
-.mainContainer {
-  border: 1px solid red;
-}
 .btn {
   width: 100%;
-  padding: 9px;
+  padding: 7px 15px;
   color: white;
   border: none;
-  background-color: rgb(226, 12, 12);
+  background-color: #003684;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
 }
 .beniftsContainer {
   border-bottom: 1px solid #afafaf;

@@ -1,22 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthImg from "../components/utils/authImg/AuthImg";
 import AuthIntro from "../components/utils/authIntro/AuthIntro";
 import RegForm from "../components/Reg/RegForm";
-import style from "../components/login/LoginForm.module.css";
+import { useTranslation } from "react-i18next";
+import RegModal from "../components/Reg/regmodal/RegModal";
 const Regester = () => {
+  const [t] = useTranslation();
+  const [showModal, setShowModal] = useState(false);
   return (
-    <div className="d-flex mb-5 align-items-centerjustify-content-between">
-      <div className={`${style.content}`}>
-        <AuthIntro
-          title="انشاء حساب جديد"
-          desc="يمكنك التسجيل عبر المنصات التالية او ملىء استمارة التسجيل"
-        />
-        <RegForm />
+    <>
+      <div className="d-none d-md-block">
+        <div className="row">
+          <div className="col-6">
+            <div className="container">
+              <AuthIntro title={t("reg")} desc={t("canReg")} />
+              <RegForm setShowModal={setShowModal} />
+            </div>
+          </div>
+          <div className="col-6">
+            <AuthImg showWelcome={true} desc="" desc2="" />
+          </div>
+        </div>
       </div>
-      <div className={style.content}>
-        <AuthImg showWelcome={true} desc="" desc2="" />
+      <div className="d-md-none">
+        <div className="row m-0 p-0">
+          <div className="col-12 mb-3  m-0 p-0">
+            <AuthImg showWelcome={true} desc="" desc2="" />
+          </div>
+          <div className="col-12">
+            <AuthIntro title={t("reg")} desc={t("canReg")} />
+            <RegForm setShowModal={setShowModal} />
+          </div>
+        </div>
       </div>
-    </div>
+      <RegModal setShowModal={setShowModal} showModal={showModal} />
+    </>
   );
 };
 

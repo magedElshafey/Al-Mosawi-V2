@@ -16,8 +16,8 @@ const Courses = ({ expertCourses, newCourses }) => {
       />
       <Header />
       <div className="container">
-        <div className="row py-4 gap-5">
-          <div className="col-12 col-md-7">
+        <div className="row py-3 ">
+          <div className="col-12 col-md-8">
             <AllCoursers expertCourses={expertCourses} />
           </div>
           <div className="col-12 col-md-4">

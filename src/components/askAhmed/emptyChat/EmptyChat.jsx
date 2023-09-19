@@ -4,11 +4,12 @@ import BigBtn from "../../utils/bigBtn/BigBtn";
 import avatr from "../../../assets/avatar.png";
 import ahmedAv from "../../../assets/a7medAv.png";
 import { toast } from "react-hot-toast";
-import style from "./emptyChat.module.css"
+import style from "../chat/chat.module.css";
+import { useTranslation } from "react-i18next";
 const EmptyChat = ({ details, appointment }) => {
   const [msg, setMsg] = useState("");
   const [allMsgs, setAllMesgs] = useState([]);
-
+  const [t] = useTranslation();
   const handleSendMsg = () => {
     if (msg) {
       setAllMesgs(allMsgs.push(msg));
@@ -30,23 +31,23 @@ const EmptyChat = ({ details, appointment }) => {
   };
   return (
     <div className="row">
-      <div className="col-12 col-md-7 mb-3 mb-md-0">
-        <h3 className={`fw-bolder fs36 mb-3 ${style.write}`}>
-          أكتب سؤالك و ابدأ المحادثة
-        </h3>
-        <p className="roboto fs22 mx-0 mt-0 mb-3 p-0">
-          يمكن ارسال سؤالك و سوف تتلقي الرد هنا بالمحادثة
-        </p>
+      <div
+        className={`col-12 px-4 py-5 col-md-7 mb-3 mb-md-0 ${style.mainContainer}`}
+      >
+        <h3 className={`fw-bolder  mb-2 shamel fs28`}>{t("writeQuestion")}</h3>
+        <p className="mx-0 mt-0 mb-5 p-0">{t("questionDesc")}</p>
         <div className="mb-3">
-          <label htmlFor="msg" className="fs24 d-block mb-1 fw-bolder">
-            اكتب سؤالك
+          <label htmlFor="msg" className="shamel fs18 d-block mb-1 fw-bolder">
+            {t("yourQuestion")}
           </label>
           <textarea
             onChange={(e) => setMsg(e.target.value)}
             className="area"
           ></textarea>
         </div>
-        <BigBtn action={handleSendMsg} text="ارسال الان" />
+        <div className="pb-4">
+          <BigBtn action={handleSendMsg} text={t("sendNow")} />
+        </div>
       </div>
       <div className="col-12 col-md-5 mb-3 mb-md-0">
         <ContactDetails details={details} appointment={appointment} />

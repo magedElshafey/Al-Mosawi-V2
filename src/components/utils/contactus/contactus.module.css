@@ -5,15 +5,17 @@
     rgba(19, 0, 90, 0.85)
   );
   min-width: 200px;
-  max-width: 80%;
+  height: 220px;
+  max-width: 90%;
   text-align: center;
-
-  border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
 }
-.paperIcon {
-  color: #acbcd8;
+.contactImg {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }

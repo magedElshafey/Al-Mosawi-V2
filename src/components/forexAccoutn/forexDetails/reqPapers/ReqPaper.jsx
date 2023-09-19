@@ -1,15 +1,16 @@
 import React from "react";
-import DarkGreenTitle from "../../../utils/darkGreenTitle/DarkGreenTitle";
+
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 const ReqPaper = ({ data }) => {
   return (
-    <div className="my-5">
-      <DarkGreenTitle title={data.title} />
+    <div>
+      <p className="pt-4  mx-0 p-0 green fw-bolder shamel fs20">{data.title}</p>
+
       {data.details.map((item, index) => (
-        <div key={index} className="d-flex align-items-center gap-1 my-4">
+        <div key={index} className="d-flex align-items-center gap-1 my-2">
           <BsFillArrowLeftCircleFill size={20} className="green" />
-          <p className="fw-bold m-0 p-0">{item}</p>
+          <p className=" m-0 p-0">{item}</p>
         </div>
       ))}
     </div>

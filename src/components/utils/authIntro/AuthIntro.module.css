@@ -1,5 +1,8 @@
+.mainDiv {
+  border-bottom:  1px solid #afafaf;
+}
 .desc {
-  color: #5D5D5D;
+  color: #5d5d5d;
 }
 .btn {
   border: none;
@@ -25,7 +28,7 @@
 .text28 {
   font-size: 28px;
 }
-@media screen and (max-width : 767px) {
+@media screen and (max-width: 767px) {
   .text28 {
     font-size: 20px;
   }

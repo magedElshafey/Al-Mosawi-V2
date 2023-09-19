@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import style from "./courses.module.css";
-import DarkGreenTitle from "../../utils/darkGreenTitle/DarkGreenTitle";
 import MainBtn from "../../utils/mainBtn/MainBtn";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const Courses = ({ courses }) => {
+  const [t] = useTranslation();
   const navigate = useNavigate();
   const [hoverd, setHoverd] = useState(false);
   const [boxId, setBoxId] = useState(null);
@@ -16,12 +17,15 @@ const Courses = ({ courses }) => {
     setBoxId(null);
   };
   return (
-    <div className="container py-5">
+    <div className="py-5 container">
       <div className="text-center text-md-end">
-        <DarkGreenTitle title={courses.title} />
+        <p className="mx-0 mt-0 mb-1 green fw-bolder fs36 shamel">
+          {courses.title}
+        </p>
+        <p className="p-0 mx-0  mt-0 fw-bolder fs24 shamel">{courses.desc}</p>
       </div>
-      <p className="p-0 mx-0 my-3 fw-bold fs-4">{courses.desc}</p>
-      <div className="mt-5 pt-5 row justify-content-center gap-4">
+
+      <div className="mt-3 row justify-content-center gap-5 pt-0 mt-md-5 pt-md-5">
         {courses.levels.map((level, index) => (
           <div
             style={{
@@ -30,9 +34,8 @@ const Courses = ({ courses }) => {
             key={index}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
-            className={`text-center text-md-end col-12 col-md-5 col-lg-3 ${style.mainContainer} py-4 px-2 position-relative`}
+            className={`text-center col-10 col-md-3 text-md-end ${style.mainContainer} ${style.transform} py-4 px-2 position-relative`}
           >
-            {/* bg img*/}
             <img
               alt="bg/img"
               src={level.bgImg}
@@ -47,14 +50,16 @@ const Courses = ({ courses }) => {
                 hoverd && boxId === index ? level.hoverdImg : level.defaultImg
               }
             />
-            <p className="p-0 mt-2 mb-4">{level.level}</p>
-            <p className={`p-0 mb-4 fw-bolder w-100 ${style.title}`}>
+            <p className="p-0 mt-2 mb-4 fs18">{level.level}</p>
+            <p
+              className={`p-0 mb-3 fw-bolder shamel fs18 w-100 ${style.title}`}
+            >
               {level.title}
             </p>
-            <div className="d-flex justify-content-center justify-content-md-end">
+            <div className="d-flex justify-content-center justify-content-md-start">
               <MainBtn
                 action={() => navigate(`${level.path}`)}
-                text="اعرف اكثر"
+                text={t("learnBtn")}
               />
             </div>
           </div>
@@ -66,5 +71,8 @@ const Courses = ({ courses }) => {
 
 export default Courses;
 /*
-     <div className=""></div>
+     <div className="py-5 container">
+      
+ 
+    </div>
 */

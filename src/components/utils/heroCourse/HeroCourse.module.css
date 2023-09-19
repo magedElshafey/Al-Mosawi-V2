@@ -1,44 +1,66 @@
 .mainContainer {
+  background-image: url("../../../assets/hero.png");
+  background-size: cover;
   width: 100vw;
+
   position: relative;
-  height: 100vh;
+  display: flex;
+  height: auto;
+  align-items: center;
 }
 
-.heroImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.overlay {
-  width: 100%;
-  height: 100%;
+.mainContainer::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
 }
+
 .challengeImg {
-  border-radius: 28px;
-  height: 362px;
-  width: 80%;
-  margin: 15px 0;
-  object-fit: cover;
+  height: 300px;
+
+  position: relative;
+  left: 25px;
+  object-fit: contain;
+}
+@media screen and (max-width: 767px) {
+  .challengeImg {
+    width: 100%;
+    text-align: center;
+    left: 0;
+    margin: auto !important;
+    border-radius: 18px !important;
+    -webkit-border-radius: 18px !important;
+    -moz-border-radius: 18px !important;
+    -ms-border-radius: 18px !important;
+    -o-border-radius: 18px !important;
+  }
 }
 .desc2 {
-  font-size: 14px;
+  opacity: 0.7;
 }
 .priceContainer {
   background-color: #020748;
   border-radius: 19px;
-  height: 440px;
-  position: fixed !important;
-  top: 100px;
+  height: 360px;
 
+  width: 250px !important;
+  font-size: 10px !important;
   padding: 11px;
   z-index: 99;
-  left: 20px;
+}
+.fixedRight {
+  position: fixed !important;
+  top: 120px;
+  left: 60px;
+}
+.fixedLeft {
+  position: fixed !important;
+  top: 120px;
+  right: 60px;
 }
 .offerContainer {
   width: fit-content;
@@ -56,8 +78,8 @@
 .cartBtn {
   width: 100%;
   margin: auto;
-  height: 50px;
-  padding: 5px 12px;
+  height: auto;
+  padding: 7px 15px;
   display: flex;
   align-items: center;
   border-radius: 21px;
@@ -83,11 +105,7 @@
 .disabled {
   opacity: 0.4 !important;
 }
-.text36 {
-  font-size: 36px;
-}
-@media screen and (max-width: 650px) {
-  .text36 {
-    font-size: 24px;
-  }
+
+.intro {
+  opacity: 0.7;
 }

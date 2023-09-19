@@ -1,47 +1,56 @@
 import React from "react";
-import { forexAccDetails } from "../../../fakers/data.js";
+import { userProchart } from "../../../fakers/data.js";
 import ServicesCard from "../serviceCard/ServicesCard";
 import style from "./services.module.css";
-
+import tickmillLogo from "../../../assets/Tickmill_logo_red&grey@2x.png";
 import PdfBtn from "../../utils/pdfBtn/PdfBtn.jsx";
 import RecommendationHistoryCard from "../../utils/recommendationHistoryCard/RecommendationHistoryCard.jsx";
+import { useTranslation } from "react-i18next";
 const Services = ({ isProchart }) => {
+  const [t] = useTranslation();
   return (
     <div>
       {!isProchart && (
-        <p className="mt-5 mx-0 p-0 mb-3 fw-bold fs-4 text-center text-white">
-          الوصول السريع لعملاء tickmill
-        </p>
+        <div className="d-flex align-items-center  gap-2 mb-3">
+          <p className="fw-bolder shamel fs24 text-white mx-0 mt-1 mb-0 p-0">
+            {t("quick")}
+          </p>
+          <img
+            src={tickmillLogo}
+            alt="tickmill/logo"
+            className={style.tickmillLogo}
+            loading="lazy"
+          />
+        </div>
       )}
       {isProchart && (
-        <div className="mt-5">
+        <div className="my-5">
           <div className="d-flex justify-content-between align-items-center flex-wrap gap-4">
             <div>
               <p
-                className={`d-inline-block m-0 p-0  fw-bolder  text-white ${style.text}`}
+                className={`d-inline-block m-0 p-0  fw-bolder  text-white fs24 shamel`}
               >
-                لوحة تحكم
+                {t("control ")}
               </p>
               <h3
-                className={`d-inline-block my-0 mx-2 whiteGreen p-0  fw-bolder  ${style.text}`}
+                className={`d-inline-block shamel my-0 mx-2 whiteGreen p-0  fw-bolder   fs24`}
               >
-                البروشارت
+                {t("prochart")}
               </h3>
               <h3
-                className={`d-inline-block my-0 mx-2 whiteGreen p-0  fw-bolder  ${style.text}`}
+                className={`shamel d-inline-block my-0 mx-2 whiteGreen p-0  fw-bolder   fs24`}
               >
                 / prochart
               </h3>
             </div>
-            <PdfBtn text="تحميل خطة ادارة راس المال" />
+            <PdfBtn text={t("downloadPlan")} />
           </div>
           <RecommendationHistoryCard />
         </div>
       )}
-      <div className="d-flex align-items-center gap-5 flex-wrap justify-content-center mt-5 ">
-        {forexAccDetails.map((item, index) => (
-          <ServicesCard key={index} data={item} />
-        ))}
+      <div className="row gap-3 ">
+        <ServicesCard data={userProchart} />
+       
       </div>
     </div>
   );

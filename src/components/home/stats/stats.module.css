@@ -1,13 +1,25 @@
 .mainContainer {
   width: 100vw;
-  /* height: 60px !important; */
   display: flex;
   align-items: center;
-
   background-color: #003684;
+  position: relative;
+  overflow: hidden;
 }
-/* @media screen and (max-width: 767px) {
-  .mainContainer {
-    height: 180px !important;
+@media screen and (max-width: 767px) {
+  .statContainer {
+    width: 100%;
+    white-space: nowrap;
+    animation: scrollHeader 20s linear infinite;
   }
-} */
+}
+@keyframes scrollHeader {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      -100%
+    ); /* Translate by the full width to create a continuous effect */
+  }
+}

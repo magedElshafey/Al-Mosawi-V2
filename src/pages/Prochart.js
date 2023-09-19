@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import secondImg from "../assets/prochartImg.png";
 import img from "../assets/hero.png";
 import Hero from "../components/utils/hero/Hero";
@@ -10,6 +10,18 @@ import Management from "../components/Prochart/managment/Management";
 import TextContent from "../components/Prochart/textContent/TextContent";
 import PackageModal from "../components/Prochart/package/PackageModal";
 const Prochart = () => {
+  const sectionRef = useRef(null);
+  const scrollToNextSection = () => {
+    // Get the next section's offsetTop
+    const nextSection = sectionRef.current.nextElementSibling;
+    const offsetTop = nextSection.offsetTop;
+
+    // Scroll to the next section smoothly
+    window.scrollTo({
+      top: offsetTop,
+      behavior: "smooth",
+    });
+  };
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = () => {
     setShowModal(true);
@@ -20,6 +32,7 @@ const Prochart = () => {
   return (
     <div>
       <Hero
+        onClick={scrollToNextSection}
         pageName="prochart"
         img={img}
         isBigHero={true}
@@ -36,12 +49,16 @@ const Prochart = () => {
         action={handleShowModal}
       />
       <div className="container">
-        <Advantage data={whatOffer} />
+        <Advantage data={whatOffer} main={sectionRef} />
         <Maps action={handleShowModal} showModal={showModal} data={quota} />
         <Success />
-        <Management action={handleShowModal} />
+        <Management />
         <TextContent />
-        <PackageModal action={handleCloseModal} showModal={showModal} />
+        <PackageModal
+          action={handleCloseModal}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
       </div>
     </div>
   );

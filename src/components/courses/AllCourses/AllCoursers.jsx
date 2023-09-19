@@ -3,7 +3,7 @@ import ExpertsLevel from "./expertsLevel/ExpertsLevel";
 import SoloCourses from "./soloCourses/SoloCourses";
 const AllCoursers = ({ expertCourses }) => {
   return (
-    <div>
+    <div className="mainInfo p-3">
       <ExpertsLevel expertCourses={expertCourses} />
       <SoloCourses expertCourses={expertCourses} />
     </div>

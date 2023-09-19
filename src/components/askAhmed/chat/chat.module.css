@@ -1,3 +1,16 @@
+.mainContainer {
+  border: 1px solid #dcdcdc;
+  box-shadow: 0px 17px 20px #00000012;
+  border-radius: 18px;
+  height: 500px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+.border {
+  border-bottom: 1px solid #dcdcdc;
+}
 .answerContainer .msgsContainer {
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -7,39 +20,39 @@
 }
 .msgsContainer {
   border: 1px solid #d9e9ff;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
 }
 .answerContainer {
   border: 1px solid #0ab46e;
   background-color: #e8fff3;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
 }
-.btn {
-  height: 60px;
-  padding: 28px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #003684;
-  border: none;
-  text-align: left;
-  width: 150px;
-  font-size: 24px;
-  border-radius: 28px;
-  -webkit-border-radius: 28px;
-  -moz-border-radius: 28px;
-  -ms-border-radius: 28px;
-  -o-border-radius: 28px;
-}
+
 .avatar {
   width: 49px;
   height: 49px;
   object-fit: cover;
 }
-.text {
-  font-size: 36px;
+.input {
+  border: none;
+  padding: 7px 15px;
+  width: 100%;
+  background-color: #f4f7fc !important;
+  border-radius: 25px;
+  caret-color: var(--whiteGreen);
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
 }
-@media screen and (max-width: 767px) {
-  .text {
-    font-size: 26px;
-  }
+.input:focus {
+  outline: none;
 }

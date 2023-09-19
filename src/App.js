@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Aos from "aos";
+import { useTranslation } from "react-i18next";
 import {
   BrowserRouter as Router,
   Route,
@@ -62,11 +63,48 @@ import RecommendationHistory from "./pages/RecommendationHistory.js";
 import ForgetPassword from "./pages/ForgetPassword.js";
 import NewPassword from "./pages/NewPassword.js";
 import MAX from "./pages/MAX.js";
+import FixedBtn from "./components/utils/fixedBtn/FixedBtn.jsx";
+import { QueryClientProvider, QueryClient, useQuery } from "react-query";
+
 const App = () => {
-  // handle direction
+  const [fixedContainer, setFixedContainer] = useState(false);
   useEffect(() => {
-    document.getElementsByTagName("body")[0].style.direction = "rtl";
+    function handleScroll() {
+      const footer = document.querySelector(".footer");
+      const priceContainer = document.querySelector(".price-container");
+
+      if (footer && priceContainer) {
+        const footerTop = footer.getBoundingClientRect().top;
+        const containerTop = priceContainer.getBoundingClientRect().top;
+
+        if (containerTop < footerTop) {
+          setFixedContainer(true);
+        } else {
+          setFixedContainer(false);
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+  const queryClient = new QueryClient();
+  // handle price box on course details page
+
+  const [t, i18n] = useTranslation();
+  // handle language
+  useEffect(() => {
+    document.documentElement.setAttribute("lang", i18n.language);
+    if (i18n.language === "ar") {
+      document.getElementsByTagName("body")[0].style.direction = "rtl";
+    } else {
+      document.getElementsByTagName("body")[0].style.direction = "ltr";
+      document.getElementsByTagName("body")[0].style.fontFamily = "Montserrat";
+    }
+  }, [i18n.language]);
   // handle animation effect
   useEffect(() => {
     Aos.init({
@@ -82,185 +120,191 @@ const App = () => {
     }, [pathname]);
     return null;
   }
-  // handle rendering hero title before render the title .
+  // git settings data
 
   return (
-    <Router>
-      <ScrollToTopAfterChangePage />
-      <Meta />
-      <Nav />
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              slider={slider}
-              tadwal={tadwal}
-              weOffer={weOffer}
-              courses={courses}
-            />
-          }
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/reg" element={<Regester />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/forget" element={<ForgetPassword />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/about"
-          element={
-            <About
-              aboutCompany={aboutCompany}
-              heroAbout={heroAbout}
-              team={team}
-              aboutAhmed={aboutAhmed}
-            />
-          }
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/contact"
-          element={
-            <Contact
-              heroContact={heroContact}
-              details={details}
-              appointment={appointment}
-            />
-          }
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/blogs" element={<Blogs blogs={blogs} />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/blogs/:id" element={<Blog blogs={blogs} />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/forex-account" element={<ForexAccount />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/forex-account/details"
-          element={<ForexAccountDetails />}
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/prochart" element={<Prochart />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/courses"
-          element={
-            <Courses expertCourses={expertCourses} newCourses={newCourses} />
-          }
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/course/:id" element={<CourseDetails />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/account"
-          element={
-            <Account
-              accountDetails={accountDetails}
-              monthlyWithdraw={monthlyWithdraw}
-            />
-          }
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/user/prochart" element={<UserProchart />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/deals" element={<Deals />} />
-      </Routes>
-      <Routes>
-        <Route
-          path="/recommendations"
-          element={<Recommendations data={recommendations} />}
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/prochart/video" element={<ProchartVideo />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/forex-calc" element={<ForexCalc />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/consulting"
-          element={
-            <Consulting
-              nextAppointments={nextAppointments}
-              canclledAppointments={canclledAppointments}
-            />
-          }
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/booking"
-          element={<Booking chooseAppointment={chooseAppointment} />}
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/booking/success" element={<SuccessBooking />} />
-      </Routes>
-      {/*donea*/}
-      <Routes>
-        <Route
-          path="/ask"
-          element={<Ask details={details} appointment={appointment} />}
-        />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-      {/*done*/}
-      <Routes>
-        <Route
-          path="/recommendation-details"
-          element={<RecommendationHistory data={recommendationDetails} />}
-        />
-      </Routes>
-      <Routes>
-        <Route path="/new-password" element={<NewPassword />} />
-      </Routes>
-      <Routes>
-        <Route path="/max" element={<MAX />} />
-      </Routes>
-      <Footer aboutUs={aboutUs} social={social} />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <ScrollToTopAfterChangePage />
+        <Meta />
+        <Nav />
+        <FixedBtn />
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                slider={slider}
+                tadwal={tadwal}
+                weOffer={weOffer}
+                courses={courses}
+              />
+            }
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/reg" element={<Regester />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/forget" element={<ForgetPassword />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/about"
+            element={
+              <About
+                aboutCompany={aboutCompany}
+                heroAbout={heroAbout}
+                team={team}
+                aboutAhmed={aboutAhmed}
+              />
+            }
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/contact"
+            element={
+              <Contact
+                heroContact={heroContact}
+                details={details}
+                appointment={appointment}
+              />
+            }
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/blogs" element={<Blogs blogs={blogs} />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/blogs/:id" element={<Blog blogs={blogs} />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/forex-account" element={<ForexAccount />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/forex-account/details"
+            element={<ForexAccountDetails />}
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/prochart" element={<Prochart />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/courses"
+            element={
+              <Courses expertCourses={expertCourses} newCourses={newCourses} />
+            }
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/course/:id"
+            element={<CourseDetails fixedContainer={fixedContainer} />}
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/account"
+            element={
+              <Account
+                accountDetails={accountDetails}
+                monthlyWithdraw={monthlyWithdraw}
+              />
+            }
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/user/prochart" element={<UserProchart />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/deals" element={<Deals />} />
+        </Routes>
+        <Routes>
+          <Route
+            path="/recommendations"
+            element={<Recommendations data={recommendations} />}
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/prochart/video" element={<ProchartVideo />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/forex-calc" element={<ForexCalc />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/consulting"
+            element={
+              <Consulting
+                nextAppointments={nextAppointments}
+                canclledAppointments={canclledAppointments}
+              />
+            }
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/booking"
+            element={<Booking chooseAppointment={chooseAppointment} />}
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/booking/success" element={<SuccessBooking />} />
+        </Routes>
+        {/*donea*/}
+        <Routes>
+          <Route
+            path="/ask"
+            element={<Ask details={details} appointment={appointment} />}
+          />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        {/*done*/}
+        <Routes>
+          <Route
+            path="/recommendation-details"
+            element={<RecommendationHistory data={recommendationDetails} />}
+          />
+        </Routes>
+        <Routes>
+          <Route path="/new-password" element={<NewPassword />} />
+        </Routes>
+        <Routes>
+          <Route path="/account/:test" element={<MAX />} />
+        </Routes>
+        <Footer aboutUs={aboutUs} social={social} />
+      </Router>
+    </QueryClientProvider>
   );
 };
 

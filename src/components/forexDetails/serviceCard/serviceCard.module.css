@@ -1,7 +1,6 @@
 .mainCard {
   position: relative;
-  width: 250px;
-  height: 90px;
+  width: 290px;
   background: linear-gradient(
     to right bottom,
     #003684 30%,
@@ -9,21 +8,31 @@
     #061e72 60%,
     #091068 100%
   );
-
   box-shadow: 0px 8px 6px #00000029;
-  padding: 16px;
-  height: 154px;
-  width: 250px;
+  padding: 8px;
+  height: 124px;
   color: white;
   border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 28%;
   text-align: center;
   -webkit-border-radius: 16px;
   -moz-border-radius: 16px;
   -ms-border-radius: 16px;
   -o-border-radius: 16px;
+}
+@media screen and (max-width: 992px) {
+  .mainCard {
+    width: 49%;
+  }
+}
+@media screen and (max-width: 772px) {
+  .mainCard {
+    width: 40%;
+    height: 70px;
+  }
 }
 .iconContainer {
   width: 73px;
@@ -44,6 +53,14 @@
   -ms-transition: 0.4s;
   -o-transition: 0.4s;
 }
+@media screen and (max-width: 767px) {
+  .iconContainer {
+    width: 33px;
+    height: 33px;
+    top: -20px;
+    right: 0;
+  }
+}
 .title {
   transition: 0.4s;
 }
@@ -59,6 +76,12 @@
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+@media screen and (max-width: 767px) {
+  .icon {
+    width: 33px;
+    height: 33px;
+  }
 }
 .mainCard:hover .iconContainer {
   transform: translateY(-15px);

@@ -57,7 +57,7 @@ import wall from "../assets/wall.png";
 // course details
 import challenger from "../assets/challenger.png";
 import mt4 from "../assets/mt4-devices.png";
-import advantage from "../assets/advantagerOfCourse.png";
+import advantage from "../assets/advan.png";
 import firstImg from "../assets/firstImg.png";
 import secondImg from "../assets/secondImg.png";
 import thirdImg from "../assets/thirdImg.png";
@@ -73,6 +73,10 @@ import graduated from "../assets/graduated.png";
 import arrow from "../assets/arrow.svg";
 import top from "../assets/top.svg";
 import book from "../assets/book.svg";
+// prochart
+import mob from "../assets/mob.png";
+import mob2 from "../assets/mob-01.png";
+import mob3 from "../assets/mob-02.png";
 export const slider = [
   {
     title: "حسابات",
@@ -142,24 +146,29 @@ export const slider = [
 ];
 export const social = [
   {
-    img: face,
-    path: "www.facebook.com",
-  },
-  {
-    img: insta,
-    path: "www.instagram.com",
-  },
-  {
     img: youtube,
     path: "www.youtube.com",
   },
   {
+    img: insta,
+    path: "www.instagram.com",
+    color: "#e1306c",
+  },
+  {
     img: linkedin,
     path: "www.google.com",
+    color: "#0a66c2",
   },
+  {
+    img: face,
+    path: "www.facebook.com",
+    color: "#1877f2",
+  },
+
   {
     img: twitter,
     path: "www.google.com",
+    color: "#1da1f2",
   },
 ];
 export const aboutUs = [
@@ -248,6 +257,7 @@ export const courses = {
 
       Y_space: "-20px",
       path: `/course/3`,
+      big: false,
     },
     {
       id: 2,
@@ -258,6 +268,7 @@ export const courses = {
       hoverdImg: personHover,
       Y_space: "-50px",
       path: `/course/2`,
+      big: false,
     },
     {
       id: 1,
@@ -268,6 +279,7 @@ export const courses = {
       hoverdImg: pyramidsHover,
       Y_space: "-100px",
       path: `/course/1`,
+      big: true,
     },
   ],
 };
@@ -451,8 +463,8 @@ export const header = [
   },
   {
     id: 6,
-    title: "قسم البورشورات",
-    path: "/borshor",
+    title: "قسم البروشارت",
+    path: "/user/prochart",
   },
   {
     id: 7,
@@ -877,6 +889,7 @@ export const courseOne = [
     id: 1,
     title: "دورة أساسيات التداول",
     img: null,
+
     details: [
       "ما هو الفوركس",
       "ما هو السبريد",
@@ -1292,11 +1305,13 @@ export const forexAccDetails = [
     id: 1,
     title: "حاسبة الفوركس",
     img: graduated,
+    path: "/forex-calc",
   },
   {
     id: 2,
     title: "المدونة",
     img: arrow,
+    path: "/blogs",
   },
   {
     id: 3,
@@ -1307,16 +1322,57 @@ export const forexAccDetails = [
     id: 4,
     title: "الدورات التعليمية ",
     img: book,
+    path: "/courses",
   },
   {
     id: 5,
-    title: "قسم البورشورات",
+    title: "قسم البروشارت",
     img: graduated,
+    path: "/user/prochart",
   },
   {
     id: 6,
     title: "الإستشارات",
     img: book,
+    path: "/consulting",
+  },
+];
+export const userProchart = [
+  {
+    id: 1,
+    title: "تحليلات و توصيات",
+    img: graduated,
+    path: "/recommendations",
+  },
+  {
+    id: 2,
+    title: "فيديو البروشارت",
+    img: arrow,
+    path: "/prochart/video",
+  },
+  {
+    id: 3,
+    title: "التعلم",
+    img: top,
+    path: "/courses",
+  },
+  {
+    id: 4,
+    title: "التحليل الاقتصادي",
+    img: book,
+    path: "/blogs",
+  },
+  {
+    id: 5,
+    title: "حاسبة الفوركس",
+    img: graduated,
+    path: "/forex-calc",
+  },
+  {
+    id: 6,
+    title: "الإستشارات",
+    img: book,
+    path: "/consulting",
   },
 ];
 export const blogsFilter = [
@@ -1338,10 +1394,6 @@ export const blogsFilter = [
   },
   {
     id: 5,
-    title: "اسم القسم",
-  },
-  {
-    id: 6,
     title: "اسم القسم",
   },
 ];
@@ -1681,14 +1733,6 @@ export const chooseAppointment = [
 ];
 export const recommendationDetails = [
   {
-    currency: "BTC",
-    date: "4/7/1998",
-    type: "بيع",
-    state: "منتهية",
-    number: 25.6,
-    btnText: "عرض الصفقة",
-  },
-  {
     currency: "ETH",
     date: "4/7/1998",
     type: "شراء",
@@ -1760,6 +1804,7 @@ export const maxCards = [
     maximum: "1 : 500",
     minmumm: 0.0,
     commissions: "صفر",
+    height: "40%",
   },
   {
     id: 2,
@@ -1771,6 +1816,7 @@ export const maxCards = [
     maximum: "1 : 500",
     minmumm: 0.0,
     commissions: "صفر",
+    height: "70%",
   },
   {
     id: 3,
@@ -1782,6 +1828,7 @@ export const maxCards = [
     maximum: "1 : 500",
     minmumm: 0.0,
     commissions: "صفر",
+    height: "100%",
   },
 ];
 export const proCards = [
@@ -1875,5 +1922,46 @@ export const how = [
   {
     title: "تراخيص الشركة",
     details: ["أي كلام", "أي كلام", "أي كلام", "أي كلام", "أي كلام"],
+  },
+];
+export const successSlider = [
+  {
+    static: {
+      title: "النجاح في التداول",
+      desc: "يبدأ مع اختيارك",
+      desc2: "لصفقات ناجحة",
+      desc3: "صفقات متميزة حققناها ... لا تتردد بالاطلاع عليها",
+    },
+    slides: {
+      title: "صفقات العملاء",
+      desc: "  إذا كنت من محبي التداول على العملات مثل الدولار واليورو شاهد النقاط التي حققناها في هذه الصفقة",
+      img: mob,
+    },
+  },
+  {
+    static: {
+      title: "النجاح في التداول",
+      desc: "يبدأ مع اختيارك",
+      desc2: "لصفقات ناجحة",
+      desc3: "صفقات متميزة حققناها ... لا تتردد بالاطلاع عليها",
+    },
+    slides: {
+      title: "صفقات ",
+      desc: "  إذا كنت من محبي التداول على العملات مثل الدولار واليورو شاهد النقاط التي حققناها في هذه الصفقة",
+      img: mob2,
+    },
+  },
+  {
+    static: {
+      title: "النجاح في التداول",
+      desc: "يبدأ مع اختيارك",
+      desc2: "لصفقات ناجحة",
+      desc3: "صفقات متميزة حققناها ... لا تتردد بالاطلاع عليها",
+    },
+    slides: {
+      title: "تيست",
+      desc: "  إذا كنت من محبي التداول على العملات مثل الدولار واليورو شاهد النقاط التي حققناها في هذه الصفقة",
+      img: mob3,
+    },
   },
 ];

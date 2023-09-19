@@ -16,11 +16,11 @@ const ForexAccount = () => {
         img={img}
       />
       <div className="container py-5">
-        <div className="row">
-          <div className="col-12 col-md-6 mb-4 mb-md-0">
+        <div className="row gap-5">
+          <div className="col-12 col-md-7 ">
             <ForexForm />
           </div>
-          <div className="col-12 col-md-6 mb-4 mb-md-0">
+          <div className="col-12 col-md-4 ">
             <ForexDetails />
           </div>
         </div>

@@ -1,6 +1,6 @@
 .mainContainer {
   border-bottom: 1px solid gray;
-  height: 130px;
+  /* height: 130px; */
 }
 .border::before {
   content: "";

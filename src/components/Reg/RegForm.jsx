@@ -1,46 +1,74 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./reg.module.css";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
-const RegForm = () => {
+import { useTranslation } from "react-i18next";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+const RegForm = ({ setShowModal }) => {
+  const [t] = useTranslation();
+  const navigate = useNavigate();
+  const [fullName, setFullName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [mobileError, setMobileError] = useState("");
+  const handleNameChange = (e) => {
+    const inputText = e.target.value;
+
+    if (/\d/.test(inputText)) {
+      setNameError("Number are not allowed");
+    } else {
+      setNameError("");
+
+      setFullName(inputText);
+    }
+  };
+  const handleMobileNumberChange = (e) => {
+    const inputNumber = e.target.value;
+
+    // Check if the input is a valid positive number
+    if (/^\d+$/.test(inputNumber)) {
+      setMobileNumber(inputNumber);
+      setMobileError("");
+    } else {
+      // Display an error message for invalid input
+      setMobileNumber("");
+      setMobileError("Please enter a valid mobile number.");
+    }
+  };
   return (
-    <form className="container py-5">
+    <form className="py-5 container">
       <div className="row mb-3">
         <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <label
-            htmlFor="name"
-            className={`d-block fw-bold ${style.text20} mb-1`}
-          >
-            الاسم بالكامل
+          <label htmlFor="name" className={`d-block fw-bold shamel mb-1`}>
+            {t("fullName")}
           </label>
           <input
             type="text"
             placeholder="Ex : ماجد الشافعي"
             id="name"
             className="inp"
+            onChange={handleNameChange}
           />
+          {nameError && <p className="my-2 error">{nameError}</p>}
         </div>
         <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <label
-            htmlFor="number"
-            className={`d-block fw-bold ${style.text20} mb-1`}
-          >
-            رقم الهاتف
+          <label htmlFor="number" className={`d-block fw-bold shamel mb-1`}>
+            {t("phone")}
           </label>
           <input
             type="number"
             placeholder="Ex : 0102215"
             id="number"
             className="inp"
+            min={0}
+            onChange={handleMobileNumberChange}
           />
+          {mobileError && <p className="my-2 error">{mobileError}</p>}
         </div>
       </div>
       <div className="row mb-3">
         <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <label
-            htmlFor="email"
-            className={`d-block fw-bold ${style.text20} mb-1`}
-          >
-            البريد الإلكتروني
+          <label htmlFor="email" className={`d-block fw-bold  shamel mb-1`}>
+            {t("emailTwo")}
           </label>
           <input
             type="email"
@@ -50,11 +78,8 @@ const RegForm = () => {
           />
         </div>
         <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <label
-            htmlFor="city"
-            className={`d-block fw-bold ${style.text20} mb-1`}
-          >
-            الدولة
+          <label htmlFor="city" className={`d-block fw-bold shamel mb-1`}>
+            {t("country")}
           </label>
           <select className="inp" id="city">
             <option>الكويت</option>
@@ -63,15 +88,13 @@ const RegForm = () => {
           </select>
         </div>
       </div>
-      <div className="row  my-5 justify-content-center">
-        <div className="col-12 col-md-6 mb-3 mb-md-0 d-flex flex-column gap-3 align-items-center">
-          <label htmlFor="question" className={`mb-1 fw-bold ${style.text20}`}>
-            هل أنت عميل في{" "}
-            <span className={`red ${style.text20} text-uppercase`}>
-              tikmill
-            </span>
+      <div className="row mt-5 mb-4 ">
+        <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex flex-column gap-2">
+          <label htmlFor="question" className={`shamel fs15 `}>
+            {t("customer")}{" "}
+            <span className={`red  fw-bold text-uppercase`}>tikmill</span>
           </label>
-          <div className="d-flex justify-content-center align-items-center gap-3">
+          <div className="d-flex gap-5  align-items-center gap-3">
             <div>
               <input
                 type="radio"
@@ -79,11 +102,8 @@ const RegForm = () => {
                 className={`p-0 m-0  ${style.radio}`}
                 name="ask"
               />
-              <label
-                htmlFor="yes"
-                className={`p-0 my-0 mx-1 fw-bold ${style.text20}`}
-              >
-                نعم
+              <label htmlFor="yes" className={`p-0 my-0 mx-1 fw-bold  shamel`}>
+                {t("yes")}
               </label>
             </div>
             <div>
@@ -93,18 +113,15 @@ const RegForm = () => {
                 className={`p-0 m-0  ${style.radio}`}
                 name="ask"
               />
-              <label
-                htmlFor="no"
-                className={`p-0 my-0 mx-1 fw-bold ${style.text20}`}
-              >
-                لا
+              <label htmlFor="no" className={`p-0 my-0 mx-1 fw-bold  shamel`}>
+                {t("no")}
               </label>
             </div>
           </div>
         </div>
-        <div className="col-12 col-md-6 mb-3 mb-md-0 d-flex flex-column gap-3">
-          <p htmlFor="conditions" className={`m-0 p-0 fw-bold ${style.text20}`}>
-            الشروط و الأحكام
+        <div className="col-12 col-md-6 mb-3 mb-md-0 d-flex flex-column gap-2">
+          <p htmlFor="conditions" className={`m-0 p-0 fw-bold  shamel`}>
+            {t("terms")}
           </p>
           <div>
             <input
@@ -112,38 +129,39 @@ const RegForm = () => {
               id="conditions"
               className={`p-0 m-0  ${style.checkBox}`}
             />
-            <label
-              htmlFor="yes"
-              className={`p-0 my-0 mx-1 fw-bold ${style.text20}`}
-            >
-              اوافق علي
+            <label htmlFor="yes" className={`p-0 my-0 mx-1 fw-bold  shamel`}>
+              {t("agree")}
             </label>
             <span
-              className={`m-0 p-0 ${style.text20} fw-bold ${style.condition}`}
+              onClick={() => setShowModal(true)}
+              className={`pointer m-0 p-0 shamel  fw-bold ${style.condition}`}
             >
-              الشروط والأحكام
+              {t("terms")}
             </span>
           </div>
         </div>
       </div>
-      <button className={style.btn}>
-        <MdOutlineArrowBackIosNew size={20} />
-        <span className="text-white mt-1">التالي</span>
+      <button
+        onClick={() => navigate("/forex-account/details")}
+        className={`book mb-3 ${style.btn}`}
+      >
+        <MdOutlineArrowBackIos size={20} />
+        <span>{t("next")}</span>
       </button>
-      <p className="text-center my-3 mx-0 p-0 fw-bold">
-        <span className={style.haveAccount}>لديك حساب بالفعل ؟ </span>{" "}
-        <span className={style.reg}>تسجيل الدخول</span>
+
+      <p className=" my-3 mx-0 p-0">
+        <span className={`tahoma ${style.haveAccount}`}>
+          {t("havAccount")}{" "}
+        </span>{" "}
+        <span
+          onClick={() => navigate("/login")}
+          className={`pointer tahoma fw-bold ${style.reg}`}
+        >
+          {t("Authlogin")}
+        </span>
       </p>
     </form>
   );
 };
 
 export default RegForm;
-/*
-    <div className="d-flex justify-content-center align-items-center gap-3">
-            <div>
-             
-            
-            </div>
-          </div>
-*/

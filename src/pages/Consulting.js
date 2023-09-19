@@ -23,7 +23,7 @@ const Consulting = ({
         desc="يمكنك كتابة سؤالك وسيتم الرد عليك في اقرب وقت ممكن من أ أحمد الموسوي"
       />
       <Header handleChangeTitle={handleChangeTitle} />
-      <div className="container py-4">
+      <div className="container py-5">
         <div className="row">
           <div className="col-12 col-md-8 mb-3 mb-md-0">
             <ConsultingIntro />
@@ -32,7 +32,7 @@ const Consulting = ({
               canclledAppointments={canclledAppointments}
             />
           </div>
-          <div className="col-12 col-md-4 mb-3 mb-md-0">
+          <div className="col-12 col-md-3 mx-auto mb-3 mb-md-0">
             <Booking />
             <ContactUs />
           </div>

@@ -1,5 +1,13 @@
 .mainImg {
   width: 100%;
   object-fit: contain;
-  height: 270px;
+  height: 280px;
+}
+@media screen and (max-width: 767px) {
+  .mainImg {
+    width: 100%;
+    margin: 20px auto !important;
+    height: 120px;
+    object-fit: contain;
+  }
 }

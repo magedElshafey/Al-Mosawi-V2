@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Hero from "../components/utils/hero/Hero";
 import heroImg from "../assets/hero.png";
 import BlogDetails from "../components/blog/BlogDetails";
+import Header from "../components/utils/header/Header";
 const Blog = ({ blogs }) => {
   const { id } = useParams();
   const [blog, setBlog] = useState({});
@@ -22,7 +23,8 @@ const Blog = ({ blogs }) => {
         img={heroImg}
         title="المدونة"
       />
-      <div className="container py-5">
+      <Header />
+      <div className="container py-4">
         <BlogDetails data={blog} />
       </div>
     </div>

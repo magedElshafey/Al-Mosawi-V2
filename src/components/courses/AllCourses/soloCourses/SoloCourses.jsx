@@ -1,14 +1,17 @@
 import React from "react";
 import CourseRow from "../../../utils/courseRow/CourseRow";
+import { useTranslation } from "react-i18next";
+
 const SoloCourses = ({ expertCourses }) => {
   const newCount = expertCourses.map((item) => Math.floor(item.ratio / 25));
+  const [t] = useTranslation();
   return (
-    <div className="mb-4">
-      <h3 className="fs-4 fw-bolder mb-3 mx-0 mt-0 p-0">
-        الدورات التعليمية منفردة
+    <div>
+      <h3 className="fs26 shamel fw-bolder mb-2 mx-0 mt-0 p-0">
+        {t("soloCourse")}
       </h3>
 
-      <div className="py-3">
+      <div>
         {expertCourses.map((item, index) => (
           <CourseRow item={item} key={index} newCount={newCount} />
         ))}

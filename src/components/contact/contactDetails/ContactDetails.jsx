@@ -13,9 +13,9 @@ const ContactDetails = ({ details, appointment }) => {
               className={style.icon}
             />
             <div>
-              <p className="fs18 p-0 m-0 fw-bold">{item.title}</p>
+              <p className="shamel p-0 m-0 fw-bold">{item.title}</p>
               <p
-                className="green roboto fs20 mt-1 fw-bold"
+                className="green  mt-1 fw-bold"
                 dangerouslySetInnerHTML={{ __html: item.details }}
               ></p>
             </div>
@@ -29,25 +29,25 @@ const ContactDetails = ({ details, appointment }) => {
             className={style.icon}
           />
           <div>
-            <p className="p-0 m-0 fw-bold">{appointment.title}</p>
+            <p className="p-0 m-0 fw-bold shamel">{appointment.title}</p>
             <div className="mt-0">
               {appointment.details.map((item, index) =>
                 item.day === "الجمعة" ? (
                   <div key={index} className="d-flex gap-4 mt-2">
-                    <p className="m-0 p-0">{item.day} : </p>
-                    <p className="red m-0 p-0">مغلق</p>
+                    <p className="m-0 p-0 ">{item.day} : </p>
+                    <p className="red m-0 p-0 ">مغلق</p>
                   </div>
                 ) : (
                   <div
                     key={index}
-                    className="d-flex justify-content-between align-items-center gap-2 mt-2 roboto"
+                    className="d-flex justify-content-between align-items-center gap-2 mt-2 roboto fs16 roboto"
                   >
-                    <p className="m-0 p-0">{item.day} : </p>
-                    <p className="green m-0 p-0">{item.from}</p>
-                    <p className="m-0 p-0">{item.a_m}</p>
-                    <p className="m-0 p-0">-</p>
-                    <p className="red m-0 p-0">{item.to}</p>
-                    <p className="m-0 p-0">{item.p_m}</p>
+                    <p className="m-0 p-0 fs16 roboto">{item.day} : </p>
+                    <p className="green m-0 p-0 fs16 roboto">{item.from}</p>
+                    <p className="m-0 p-0 fs16 roboto">{item.a_m}</p>
+                    <p className="m-0 p-0 fs16 roboto">-</p>
+                    <p className="red m-0 p-0 fs16 roboto">{item.to}</p>
+                    <p className="m-0 p-0 fs16 roboto">{item.p_m}</p>
                   </div>
                 )
               )}

@@ -1,17 +1,66 @@
 import React from "react";
 import style from "./heroForex.module.css";
 import AccountDetails from "../../forexDetails/accountDetails/AccountDetails";
-import Services from "../../forexDetails/services/Services";
-const HeroForex = ({ isProchart }) => {
+import tickmillLogo from "../../../assets/Tickmill_logo_red&grey@2x.png";
+import RecommendationHistoryCard from "../recommendationHistoryCard/RecommendationHistoryCard";
+import PdfBtn from "../pdfBtn/PdfBtn";
+import { useTranslation } from "react-i18next";
+import ServicesCard from "../../forexDetails/serviceCard/ServicesCard";
+const HeroForex = ({ isProchart, data }) => {
+  const [t] = useTranslation();
   return (
-    <div className={style.mainDiv}>
+    <div className={`${style.mainDiv} m-0 p-0`}>
       <div className="container">
-        <div className="row justify-content-center">
-          <div className="text-center text-md-end mt-5   pt-5 z-3 col-12 col-md-2">
+        <div className="row justify-content-center justify-content-md-start">
+          <div className="text-center text-md-end mt100 z-3 col-12 col-md-3">
             <AccountDetails />
           </div>
-          <div className="z-3 mt-5 pt-5  col-12  col-md-10">
-            <Services isProchart={isProchart} />
+          <div className="z-3 mt101 col-12 col-md-9">
+            {!isProchart && (
+              <div
+                className={`d-flex align-items-center  gap-2 mb-5 ${style.desc}`}
+              >
+                <p className="fw-bolder shamel fs24 text-white mx-0 mt-1 mb-0 p-0">
+                  {t("quick")}
+                </p>
+                <img
+                  src={tickmillLogo}
+                  alt="tickmill/logo"
+                  className={style.tickmillLogo}
+                  loading="lazy"
+                />
+              </div>
+            )}
+            {isProchart && (
+              <div>
+                <div className="mb-5">
+                  <div
+                    className={`d-flex justify-content-between align-items-center flex-wrap`}
+                  >
+                    <div>
+                      <p
+                        className={`d-inline-block m-0 p-0  fw-bolder  text-white fs24 shamel`}
+                      >
+                        {t("control ")}
+                      </p>
+                      <h3
+                        className={`d-inline-block shamel my-0 mx-2 whiteGreen p-0  fw-bolder   fs24`}
+                      >
+                        {t("prochart")}
+                      </h3>
+                      <h3
+                        className={`shamel d-inline-block my-0 mx-2 whiteGreen p-0  fw-bolder   fs24`}
+                      >
+                        / prochart
+                      </h3>
+                    </div>
+                    <PdfBtn text={t("downloadPlan")} />
+                  </div>
+                  <RecommendationHistoryCard />
+                </div>
+              </div>
+            )}
+            <ServicesCard data={data} />
           </div>
         </div>
       </div>
@@ -20,23 +69,16 @@ const HeroForex = ({ isProchart }) => {
 };
 
 export default HeroForex;
-/*
-   <div className={`mb-4 ${style.mainContainer}`}>
-      <img
-        loading="lazy"
-        alt="hero/img"
-        src={heroImg}
-        className={style.mainImg}
-      />
-      <div className={style.overlay}>
-        <div className="container pt-5 mt-5">
-          <div className="row mt-5">
-       
-            
-          
-           
+/**
+ * 
+ *  <div>
+      <div className="container">
+        <div >
+         
+          <div >
+            <Services isProchart={isProchart} />
           </div>
         </div>
       </div>
     </div>
-*/
+ */

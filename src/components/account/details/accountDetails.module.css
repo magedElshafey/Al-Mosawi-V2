@@ -10,19 +10,7 @@
 .name,
 .customerService {
   color: #003684 !important;
-  font-weight: bold;
 }
-.desc {
+/* .desc {
   font-size: 13px;
-}
-.btn {
-  padding: 16px;
-  background-color: #003684;
-  border-radius: 26px;
-  border: none;
-  width: fit-content;
-  -webkit-border-radius: 26px;
-  -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
-}
+} */

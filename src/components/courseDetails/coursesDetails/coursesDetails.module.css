@@ -1,11 +1,18 @@
 .box {
   border-radius: 24px;
-  border-bottom: 2px solid var(--darkGreen);
+  width: 100%;
+  border-bottom: 3px solid var(--darkGreen);
+  border-left: 0.2px solid var(--darkGreen);
   background-color: #f4f7fc;
   -webkit-border-radius: 24px;
   -moz-border-radius: 24px;
   -ms-border-radius: 24px;
   -o-border-radius: 24px;
+}
+@media screen and (max-width: 772px) {
+  .box {
+    width: 100%;
+  }
 }
 .border {
   border: 1px solid #c8c8c8;
@@ -21,16 +28,16 @@
   }
 }
 .textContentTwo {
-  height: 180px;
+  height: 150px;
 }
-@media screen and (max-width: 772px) {
+@media screen and (max-width: 991px) {
   .textContentTwo {
     height: auto;
   }
 }
 .courseImg {
-  height: 281px;
   width: 320px;
+  height: 240px;
   object-fit: cover;
   border-radius: 24px;
   -webkit-border-radius: 24px;
@@ -52,9 +59,7 @@
 /* .textContent {
   height: 100px;
 }  */
-.text24 {
-  font-size: 24px;
-}
+
 .text36 {
   font-size: 36px;
 }

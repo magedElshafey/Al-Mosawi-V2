@@ -15,8 +15,8 @@ const Booking = ({ chooseAppointment }) => {
         title="الاستشارات"
         desc="يمكنك كتابة سؤالك وسيتم الرد عليك في اقرب وقت ممكن من أ أحمد الموسوي"
       />
-      <Header/>
-      <div className="container py-4">
+      <Header />
+      <div className="container py-5">
         <ConsultingIntro />
         <ChooseAppointment data={chooseAppointment} />
       </div>

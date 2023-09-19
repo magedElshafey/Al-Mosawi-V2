@@ -5,7 +5,7 @@ const FilterBlogs = () => {
   const [activeId, setActiveId] = useState(null);
   const handleClick = (id) => setActiveId(id);
   return (
-    <div className="container py-4">
+    <div className="container py-3">
       <div className="d-flex justify-content-center flex-wrap align-items-center gap-3">
         {blogsFilter.map((item, index) => (
           <button

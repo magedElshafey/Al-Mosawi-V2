@@ -3,7 +3,7 @@ import style from "./blogCard.module.css";
 import { Link } from "react-router-dom";
 const BlogCard = ({ item }) => {
   return (
-    <div className={`p-0 col-12 col-md-6 col-lg-3 ${style.mainContainer}`}>
+    <div className={`p-0 ${style.mainContainer}`}>
       <Link to={`/blogs/${item.id}`}>
         <img
           src={item.img}

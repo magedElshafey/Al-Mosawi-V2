@@ -6,9 +6,9 @@ const OuerTeam = ({ team }) => {
 
   return (
     <div className="container py-5">
-      <p className="m-0 p-0 fw-bolder fs-2 text-center">{team.title}</p>
-      <p className="mx-0 p-0 my-2 text-center">{team.desc}</p>
-      <div className="mt-5 d-flex justify-content-center align-items-center gap-3 flex-wrap">
+      <p className="m-0 p-0 fw-bolder fs36 shamel text-center">{team.title}</p>
+      <p className="mx-0 p-0 my-1 text-center">{team.desc}</p>
+      <div className="mt-3 d-flex justify-content-center align-items-center gap-3 flex-wrap">
         {team.members.map((item, index) => (
           <div
             onMouseEnter={() => {

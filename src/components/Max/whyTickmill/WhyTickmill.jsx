@@ -1,66 +1,174 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./whyTickmill.module.css";
-import arrow from "../../../assets/arrowTop.png";
 import check from "../../../assets/check.png";
 import { whyTickmill, media } from "../../../fakers/data";
 import buyImg from "../../../assets/buy-svgrepo-com.png";
+import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 const WhyTickmill = () => {
+  const [showDetails, setShowDetails] = useState(false);
+  const [showHow, sewtShowHow] = useState(false);
+  const [showCopmany, setShowCompany] = useState(false);
   return (
-    <div className="py-4 row gap-3">
-      <div className={`col-12 col-md-7 p-2 ${style.mainContainer}`}>
-        <div className="d-flex justify-content-between align-items-center mb-2">
-          <div className="d-flex align-items-center gap-2 fs28">
-            <p className={`m-0 p-0 fw-bold ${style.blue}`}>لماذا تختار</p>
-            <p className="m-0 p-0 red fw-bold">Tickmill</p>
-          </div>
-          <img
-            loading="lazy"
-            className={style.arrow}
-            alt="arrow/img"
-            src={arrow}
-          />
-        </div>
-        <div>
-          {whyTickmill.map((item, index) => (
-            <div key={index} className="mb-4">
-              <div className="mb-2 d-flex align-items-center gap-2 mb-2">
-                <img
-                  loading="lazy"
-                  src={check}
-                  className={style.check}
-                  alt="check/img"
-                />
-                <p className={`m-0 p-0 fs22 fw-bold ${style.blue}`}>
-                  {item.title}
-                </p>
+    <div className="container py-4">
+      <div className="row gap-5">
+        <div className="col-12 col-md-7">
+          <div className={`mb-4 ${style.main} p-2`}>
+            <div className="w-100">
+              <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex align-items-center gap-2 fs22 shamel">
+                  <p className={`m-0 p-0 fw-bold ${style.blue}`}>لماذا تختار</p>
+                  <p className="m-0 p-0 red fw-bold">Tickmill</p>
+                </div>
+                {showHow ? (
+                  <MdKeyboardArrowUp
+                    size={30}
+                    className="pointer"
+                    onClick={() => sewtShowHow(false)}
+                  />
+                ) : (
+                  <MdKeyboardArrowDown
+                    size={30}
+                    className="pointer"
+                    onClick={() => sewtShowHow(true)}
+                  />
+                )}
               </div>
-              <p className="m-0 p-0 roboto fs18 ">{item.desc}</p>
+              <div className={`mt-4 ${showHow ? style.show : style.hide}`}>
+                {whyTickmill.map((item, index) => (
+                  <div key={index} className="mb-2">
+                    <div className={`d-flex gap-1 `}>
+                      <img
+                        loading="lazy"
+                        src={check}
+                        className={style.check}
+                        alt="check/img"
+                      />
+                      <p
+                        className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    <p className="m-0 p-0">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className={`mb-4 ${style.main} p-2`}>
+            <div className="w-100">
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="fw-bold fs24 shamel green m-0 p-0">
+                  كيف تتم عملية السحب و الايداع
+                </p>
+
+                {showDetails ? (
+                  <MdKeyboardArrowUp
+                    size={30}
+                    className="pointer"
+                    onClick={() => setShowDetails(false)}
+                  />
+                ) : (
+                  <MdKeyboardArrowDown
+                    size={30}
+                    className="pointer"
+                    onClick={() => setShowDetails(true)}
+                  />
+                )}
+              </div>
+              <div className={`mt-4 ${showDetails ? style.show : style.hide}`}>
+                {whyTickmill.map((item, index) => (
+                  <div key={index} className="mb-2">
+                    <div className={`d-flex gap-1 `}>
+                      <img
+                        loading="lazy"
+                        src={check}
+                        className={style.check}
+                        alt="check/img"
+                      />
+                      <p
+                        className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    <p className="m-0 p-0">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className={`mb-4 ${style.main} p-2`}>
+            <div className="w-100">
+              <div className="d-flex justify-content-between align-items-center">
+                <p className="fw-bold fs24 shamel green m-0 p-0">
+                  تراخيص الشركة
+                </p>
+
+                {showCopmany ? (
+                  <MdKeyboardArrowUp
+                    size={30}
+                    className="pointer"
+                    onClick={() => setShowCompany(false)}
+                  />
+                ) : (
+                  <MdKeyboardArrowDown
+                    size={30}
+                    className="pointer"
+                    onClick={() => setShowCompany(true)}
+                  />
+                )}
+              </div>
+              <div className={`mt-4 ${showCopmany ? style.show : style.hide}`}>
+                {whyTickmill.map((item, index) => (
+                  <div key={index} className="mb-2">
+                    <div className={`d-flex gap-1 `}>
+                      <img
+                        loading="lazy"
+                        src={check}
+                        className={style.check}
+                        alt="check/img"
+                      />
+                      <p
+                        className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}
+                      >
+                        {item.title}
+                      </p>
+                    </div>
+                    <p className="m-0 p-0">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={`px-5 py-3 col-12 col-md-4 ${style.mediaContainer}`}>
+          <p className="fs24 text-white mx-0 mt-0 mb-1 p-0 shamel">وسائل</p>
+          <p className="fs28 whiteGreen mx-0 mt-0 mb-3 p-0 shamel">
+            السحب والإيداع
+          </p>
+          {media.details.map((item, index) => (
+            <div className="mb-3 d-flex align-items-center gap-2" key={index}>
+              <img
+                alt="check/img"
+                loading="lazy"
+                className={style.check}
+                src={check}
+              />
+              <p className="m-0 p-0 text-white fw-bold shamel">{item.title}</p>
             </div>
           ))}
-        </div>
-      </div>
-      <div className={`px-5 py-3 col-12 col-md-4 ${style.mediaContainer}`}>
-        <p className="fs28 text-white mx-0 mt-0 mb-1 p-0">وسائل</p>
-        <p className="fs36 green mx-0 mt-0 mb-5 p-0">السحب والإيداع</p>
-        {media.details.map((item, index) => (
-          <div className="mb-4 d-flex align-items-center gap-2" key={index}>
+          <p className="text-white fs15 fw-bold m-0 p-0">
+            {media.partener.join(" - ")}
+          </p>
+          <div className="d-flex justify-content-center pt-3 pb-2">
             <img
-              alt="check/img"
               loading="lazy"
-              className={style.check}
-              src={check}
+              className={style.buyImg}
+              src={buyImg}
+              alt="buy / img"
             />
-            <p className="m-0 p-0 text-white">{item.title}</p>
           </div>
-        ))}
-        <p className="text-white">{media.partener.join(" - ")}</p>
-        <div className="d-flex justify-content-center py-3">
-          <img
-            loading="lazy"
-            className={style.buyImg}
-            src={buyImg}
-            alt="buy / img"
-          />
         </div>
       </div>
     </div>
@@ -68,3 +176,91 @@ const WhyTickmill = () => {
 };
 
 export default WhyTickmill;
+
+/**
+ * 
+ *  <div className="row row gap-5">
+        <div className="col-12 col-md-7">
+          <div className={`mb-3 ${style.main} p-2`}>
+            <div className="d-flex mb-4 justify-content-between align-items-center">
+              
+              
+            </div>
+           
+          </div>
+          <div className={`${style.main} mb-5 p-2`}>
+            <div className="d-flex mb-4 justify-content-between align-items-center">
+            
+              {showDetails ? (
+                <MdKeyboardArrowUp
+                  size={30}
+                  className="pointer"
+                  onClick={() => setShowDetails(false)}
+                />
+              ) : (
+                <MdKeyboardArrowDown
+                  size={30}
+                  className="pointer"
+                  onClick={() => setShowDetails(true)}
+                />
+              )}
+            </div>
+            <div className={`${showDetails ? style.show : style.hide}`}>
+              {whyTickmill.map((item, index) => (
+                <div key={index} className="mb-2">
+                  <div className={`d-flex gap-1 `}>
+                    <img
+                      loading="lazy"
+                      src={check}
+                      className={style.check}
+                      alt="check/img"
+                    />
+                    <p className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}>
+                      {item.title}
+                    </p>
+                  </div>
+                  <p className="m-0 p-0">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={`${style.main} mb-5 p-2`}>
+            <div className="d-flex mb-4 justify-content-between align-items-center">
+        
+              {showCopmany ? (
+                <MdKeyboardArrowUp
+                  size={30}
+                  className="pointer"
+                  onClick={() => setShowCompany(false)}
+                />
+              ) : (
+                <MdKeyboardArrowDown
+                  size={30}
+                  className="pointer"
+                  onClick={() => setShowCompany(true)}
+                />
+              )}
+            </div>
+            <div className={`${showCopmany ? style.show : style.hide}`}>
+              {whyTickmill.map((item, index) => (
+                <div key={index} className="mb-2">
+                  <div className={`d-flex gap-1 `}>
+                    <img
+                      loading="lazy"
+                      src={check}
+                      className={style.check}
+                      alt="check/img"
+                    />
+                    <p className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}>
+                      {item.title}
+                    </p>
+                  </div>
+                  <p className="m-0 p-0">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+ */

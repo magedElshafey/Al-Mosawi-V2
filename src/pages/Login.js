@@ -2,30 +2,35 @@ import React from "react";
 import AuthImg from "../components/utils/authImg/AuthImg";
 import AuthIntro from "../components/utils/authIntro/AuthIntro";
 import LoginForm from "../components/login/LoginForm";
-import style from "../components/login/LoginForm.module.css";
+import { useTranslation } from "react-i18next";
 const Login = () => {
+  const [t] = useTranslation();
   return (
-    <div className="d-flex align-items-centerjustify-content-between">
-      <div className={`${style.content}`}>
-        <AuthIntro title="تسجيل الدخول" />
-        <LoginForm />
+    <>
+      <div className="d-none d-md-block">
+        <div className="row">
+          <div className="col-6">
+            <AuthIntro title={t("Authlogin")} />
+            <LoginForm />
+          </div>
+          <div className="col-6">
+            <AuthImg showWelcome={true} desc="" desc2="" />
+          </div>
+        </div>
       </div>
-      <div className={style.content}>
-     
-        <AuthImg showWelcome={true} desc="" desc2="" />
+      <div className="d-md-none">
+        <div className="row m-0 p-0">
+          <div className="col-12 mb-3 m-0 p-0">
+            <AuthImg showWelcome={true} desc="" desc2="" />
+          </div>
+          <div className="col-12">
+            <AuthIntro title={t("Authlogin")} />
+            <LoginForm />
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 export default Login;
-/*
-    <div className="row mb-5">
-      <div className="col-12 col-md-7">
-      
-      </div>
-      <div className="col-12 col-md-5">
-    
-      </div>
-    </div>
-*/

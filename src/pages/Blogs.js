@@ -17,7 +17,7 @@ const Blogs = ({ blogs }) => {
       <Header />
       <FilterBlogs />
       <div className="container">
-        <div className="row mb-5 gap-2  justify-content-center">
+        <div className="mt-3 d-flex align-items-center justify-content-center gap-4 flex-wrap">
           {blogs.map((blog, index) => (
             <BlogCard key={index} item={blog} />
           ))}

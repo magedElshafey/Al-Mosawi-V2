@@ -1,14 +1,18 @@
 .btn {
   background-color: transparent !important;
   border: none;
-  padding: 7px 15px;
-  border-radius: 19px;
+  padding: 7px 10px;
+  border-radius: 25px;
   height: 43px;
-  width: fit-content;
-  -webkit-border-radius: 19px;
-  -moz-border-radius: 19px;
-  -ms-border-radius: 19px;
-  -o-border-radius: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 200px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
   transition: 0.3s;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
@@ -29,9 +33,13 @@
 .btn:hover {
   background-color: var(--gradientBackground) !important;
   color: white !important;
+  justify-content: space-evenly;
 
   text-align: center !important;
 }
 .btn:hover .arrowContainer {
   background-color: transparent;
+}
+.btn:hover .text {
+  margin-left: 8px;
 }

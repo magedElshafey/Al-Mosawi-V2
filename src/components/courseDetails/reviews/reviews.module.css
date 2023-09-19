@@ -8,3 +8,20 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+.coma {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.arrow {
+  position: absolute;
+  right: 0;
+  right: 0px;
+  color: #1c86c0;
+  top: 30%;
+  transform: translateY(-30%);
+  -webkit-transform: translateY(-30%);
+  -moz-transform: translateY(-30%);
+  -ms-transform: translateY(-30%);
+  -o-transform: translateY(-30%);
+}
