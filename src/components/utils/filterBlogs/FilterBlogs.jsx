@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import style from "./FilterBlogs.module.css";
 import { blogsFilter } from "../../../fakers/data.js";
-const FilterBlogs = () => {
+const FilterBlogs = ({ data }) => {
   const [activeId, setActiveId] = useState(null);
   const handleClick = (id) => setActiveId(id);
   return (
     <div className="container py-3">
       <div className="d-flex justify-content-center flex-wrap align-items-center gap-3">
-        {blogsFilter.map((item, index) => (
+        {data.map((item, index) => (
           <button
             onClick={() => handleClick(index)}
             key={index}
@@ -15,7 +15,7 @@ const FilterBlogs = () => {
               activeId === index ? style.active : null
             }`}
           >
-            {item.title}
+            {item.name}
           </button>
         ))}
       </div>

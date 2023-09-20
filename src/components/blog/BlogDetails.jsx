@@ -13,21 +13,11 @@ const BlogDetails = ({ data }) => {
           <img
             alt="single_blog / img"
             loading="lazy"
-            src={data.img}
+            src={data.thumbnail}
             className={`mb-3 ${style.mainImg}`}
           />
           <div className="py-3">
-            {data.desc1 ? <p className="m-0 p-0">{data.desc1}</p> : null}
-            {data.desc2 ? (
-              <p
-                className="m-0 p-0 "
-                dangerouslySetInnerHTML={{ __html: data.desc2 }}
-              ></p>
-            ) : null}
-            {data.desc3 ? <p className="mx-0 my-3 p-0 ">{data.desc3}</p> : null}
-            {data.desc4 ? <p className="mx-0 my-3 p-0">{data.desc4}</p> : null}
-            {data.desc5 ? <p className="mx-0 my-3 p-0">{data.desc5}</p> : null}
-            {data.desc6 ? <p className="mx-0 my-3 p-0">{data.desc6}</p> : null}
+            <div dangerouslySetInnerHTML={{ __html: data.content }} />
           </div>
         </div>
       </div>

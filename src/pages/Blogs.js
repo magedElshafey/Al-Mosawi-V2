@@ -4,26 +4,45 @@ import Header from "../components/utils/header/Header";
 import heroImg from "../assets/hero.png";
 import BlogCard from "../components/utils/blogCard/BlogCard";
 import FilterBlogs from "../components/utils/filterBlogs/FilterBlogs";
-const Blogs = ({ blogs }) => {
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
+
+const Blogs = () => {
+  const { i18n } = useTranslation();
+  const fetchData = () => {
+    return request({ url: "/blog" });
+  };
+  const { isLoading, data } = useQuery("blogs-page", fetchData, {
+    cacheTime: 12000,
+    staleTime: 12000,
+  });
   return (
-    <div>
-      <Hero
-        isBigHero={false}
-        isSmallHero={true}
-        isMediumHero={false}
-        img={heroImg}
-        title="المدونة"
-      />
-      <Header />
-      <FilterBlogs />
-      <div className="container">
-        <div className="mt-3 d-flex align-items-center justify-content-center gap-4 flex-wrap">
-          {blogs.map((blog, index) => (
-            <BlogCard key={index} item={blog} />
-          ))}
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="mb-3">
+          <Hero
+            isBigHero={false}
+            isSmallHero={true}
+            isMediumHero={false}
+            img={heroImg}
+            title={i18n.language === "en" ? "blogs" : "المدونة"}
+          />
+          <Header />
+          <FilterBlogs data={data.data.blogCategorylist} />
+          <div className="container">
+            <div className="mt-3 d-flex align-items-center justify-content-center gap-4 flex-wrap">
+              {data.data.data.map((blog, index) => (
+                <BlogCard key={index} item={blog} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

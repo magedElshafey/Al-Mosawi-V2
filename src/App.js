@@ -102,7 +102,6 @@ const App = () => {
       document.getElementsByTagName("body")[0].style.direction = "rtl";
     } else {
       document.getElementsByTagName("body")[0].style.direction = "ltr";
-      document.getElementsByTagName("body")[0].style.fontFamily = "Montserrat";
     }
   }, [i18n.language]);
   // handle animation effect

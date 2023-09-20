@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import style from "./ourtTeam.module.css";
+import { useTranslation } from "react-i18next";
 const OuerTeam = ({ team }) => {
   const [showOriginalText, setShowOriginalText] = useState(true);
   const [cardId, setCardId] = useState(null);
-
+  const { i18n } = useTranslation();
   return (
     <div className="container py-5">
-      <p className="m-0 p-0 fw-bolder fs36 shamel text-center">{team.title}</p>
-      <p className="mx-0 p-0 my-1 text-center">{team.desc}</p>
+      <p className="m-0 p-0 fw-bolder fs36 shamel text-center">
+        {i18n.language === "en" ? "team members" : "فريق العمل"}
+      </p>
+      <p className="mx-0 p-0 my-1 text-center">{team.teamWorkDes}</p>
       <div className="mt-3 d-flex justify-content-center align-items-center gap-3 flex-wrap">
-        {team.members.map((item, index) => (
+        {team.data.map((item, index) => (
           <div
             onMouseEnter={() => {
               setShowOriginalText(false);
@@ -25,7 +28,7 @@ const OuerTeam = ({ team }) => {
             <img
               alt="team/img"
               loading="lazy"
-              src={item.img}
+              src={item.photo}
               className={style.mainImg}
             />
             <div className={style.overlay}>
@@ -36,7 +39,7 @@ const OuerTeam = ({ team }) => {
                     : style.show
                 }`}
               >
-                <p className="m-0 p-0 ">{item.jobTitle}</p>
+                <p className="m-0 p-0 ">{item.position}</p>
                 <p className="m-0 p-0 fs-5 fw-bold ">{item.name}</p>
               </div>
               <div
@@ -46,7 +49,7 @@ const OuerTeam = ({ team }) => {
                     : style.hide
                 }`}
               >
-                <p className="m-0 p-0 ">{item.desc}</p>
+                <p className="m-0 p-0 ">{item.quote}</p>
               </div>
             </div>
           </div>

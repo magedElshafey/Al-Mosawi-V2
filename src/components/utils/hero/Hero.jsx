@@ -52,22 +52,7 @@ const Hero = ({
                   </p>
                 ) : null}
 
-                {desc ? (
-                  <p
-                    className={`mx-0  my-2 p-0 text-white  ${
-                      bigDesc ? "fs28 " : null
-                    }`}
-                  >
-                    {desc}
-                    {redTitle ? (
-                      <p
-                        className={`d-inline-block m-0 shamel p-0 red text-uppercase fw-bold`}
-                      >
-                        {redTitle}
-                      </p>
-                    ) : null}
-                  </p>
-                ) : null}
+                <div dangerouslySetInnerHTML={{ __html: desc }} />
                 {desc2 ? (
                   <p
                     className={`mx-0 mt-2 mb-1 p-0 book  text-white ${style.desc3}`}
@@ -82,7 +67,10 @@ const Hero = ({
                 ) : null}
                 {isBtn && (
                   <div className="py-2 mt-4">
-                    <button className={`book ${style.btnTwo}`} onClick={onClick}>
+                    <button
+                      className={`book ${style.btnTwo}`}
+                      onClick={onClick}
+                    >
                       <MdOutlineArrowBackIos size={20} />
                       <span className="mt-1">الباقات المتاحة</span>
                     </button>
@@ -117,25 +105,11 @@ const Hero = ({
                 </p>
               ) : null}
 
-              {desc ? (
-                <p
-                  className={`${style.desc} ${style.w8} d-inline-block text-white`}
-                >
-                  {desc}
-                </p>
-              ) : null}
-              {desc2 ? (
-                <p
-                  className={`mx-0 mt-2 mb-1 ${style.w8}  me-4 p-0 book  text-white ${style.desc3}`}
-                >
-                  {desc2}
-                </p>
-              ) : null}
-              {desc3 ? (
-                <p className={`m-0 p-0 me-4  text-white ${style.desc2}`}>
-                  {desc3}
-                </p>
-              ) : null}
+              <div
+                className={`text-white ${style.desc}`}
+                dangerouslySetInnerHTML={{ __html: desc }}
+              />
+
               {pageName ? (
                 <p className={` ${style.pageName}`}>{pageName}</p>
               ) : null}

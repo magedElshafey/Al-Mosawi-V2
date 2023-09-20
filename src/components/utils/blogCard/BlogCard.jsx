@@ -6,7 +6,7 @@ const BlogCard = ({ item }) => {
     <div className={`p-0 ${style.mainContainer}`}>
       <Link to={`/blogs/${item.id}`}>
         <img
-          src={item.img}
+          src={item.thumbnail}
           alt="blog/img"
           className={style.mainImg}
           loading="lazy"
@@ -14,10 +14,9 @@ const BlogCard = ({ item }) => {
       </Link>
       <div className="p-4 text-white lh">{item.title}</div>
       <div className={`m-0 p-0 ${style.date}`}>
-        <p
-          className="d-flex flex-column  align-items-center"
-          dangerouslySetInnerHTML={{ __html: item.date }}
-        ></p>
+        <p className="d-flex flex-column  align-items-center">
+          {item.updated_at}
+        </p>
       </div>
     </div>
   );

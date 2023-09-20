@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const lang = window.localStorage.getItem("lang")
   ? JSON.parse(window.localStorage.getItem("lang"))
   : "en";
