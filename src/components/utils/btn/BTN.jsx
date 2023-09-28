@@ -1,11 +1,17 @@
 import React from "react";
 import style from "./btn.module.css";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { MdOutlineArrowBackIos, MdKeyboardArrowRight } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 const BTN = ({ action, text }) => {
+  const { i18n } = useTranslation();
   return (
-    <button className={`book ${style.btn}`} onClick={() => action()}>
-      <MdOutlineArrowBackIos size={20} />
-      <span className="mt-1">{text}</span>
+    <button className={` ${style.btn}`} onClick={() => action()}>
+      {i18n.language === "en" ? (
+        <MdKeyboardArrowRight size={20} />
+      ) : (
+        <MdOutlineArrowBackIos size={20} />
+      )}
+      <span>{text}</span>
     </button>
   );
 };

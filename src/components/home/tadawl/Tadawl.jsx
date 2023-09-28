@@ -1,9 +1,8 @@
 import React from "react";
 import style from "./tadwal.module.css";
-import tdwalImg from "../../../assets/Group 73340.png";
 import { useTranslation } from "react-i18next";
 const Tadawl = ({ tadwal }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   console.log("hiii this is the language", i18n.language);
   return (
     <div className={`pt-3 ${style.mainDiv}`}>
@@ -43,7 +42,12 @@ const Tadawl = ({ tadwal }) => {
                     <p className="fw-bolder m-0 p-0 fs18 shamel">
                       {item.featuretitle}
                     </p>
-                    <p className="m-0 p-0">{item.featureDescription}</p>
+                    <p
+                      className="m-0 p-0"
+                      dangerouslySetInnerHTML={{
+                        __html: item.featureDescription,
+                      }}
+                    />
                   </div>
                 </div>
               ))}
@@ -81,7 +85,12 @@ const Tadawl = ({ tadwal }) => {
                   <p className="fw-bolder m-0 p-0 fs18 shamel">
                     {item.featuretitle}
                   </p>
-                  <p className="m-0 p-0">{item.featureDescription}</p>
+                  <p
+                    className="m-0 p-0"
+                    dangerouslySetInnerHTML={{
+                      __html: item.featureDescription,
+                    }}
+                  />
                 </div>
               </div>
             ))}

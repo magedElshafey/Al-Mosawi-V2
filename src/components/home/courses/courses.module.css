@@ -6,6 +6,9 @@
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
+.border {
+  border-bottom: 1px solid #eee;
+}
 .small {
   width: 330px !important;
 }
@@ -40,6 +43,7 @@
   left: 50%;
   width: 150px;
   height: 180px;
+  opacity: 0.2 !important;
   object-fit: contain;
   z-index: -1;
   transform: translate(-50%, -50%);

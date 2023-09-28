@@ -1,6 +1,5 @@
-
 /* font sizes */
-@font-face {
+/* @font-face {
   font-family: 'Helvetica';
   src: url('./fonts/Helvetica.ttf') format('truetype');
   font-weight: normal;
@@ -12,7 +11,7 @@
   src: url('./fonts/Helvetica-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
-}
+} */
 .fs {
   font-size: 10px;
 }
@@ -127,12 +126,12 @@
 
 body {
   overflow-x: hidden;
-  font-family:  Helvetica !important;
+  font-family: "Tajawal", sans-serif;
   text-transform: capitalize !important;
 }
 html {
   text-transform: capitalize !important;
-  font-family:  Helvetica !important;
+  font-family: "Tajawal", sans-serif;
 }
 /* global variables */
 :root {
@@ -240,29 +239,7 @@ ul {
 .dropdown-toggle::after {
   display: none;
 }
-/* .swiper-horizontal > .swiper-pagination-bullets,
-.swiper-pagination-bullets.swiper-pagination-horizontal {
-  width: 50%;
-}
 
-.swiper-pagination-bullet {
-  background-color: red;
-  opacity: 1;
-}
-
-.swiper-pagination-bullet-active {
-  background-color: var(--darkGreen) !important;
-} */
-/*  {
-  width: 50%;
-}
-
-.swiper-pagination-bullet {
-  background-color: red;
-  opacity: 1;
-}
-
- */
 .swiper-horizontal > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
   margin-top: 25px !important;

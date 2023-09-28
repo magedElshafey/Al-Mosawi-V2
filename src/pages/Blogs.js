@@ -1,7 +1,6 @@
 import React from "react";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
-import heroImg from "../assets/hero.png";
 import BlogCard from "../components/utils/blogCard/BlogCard";
 import FilterBlogs from "../components/utils/filterBlogs/FilterBlogs";
 import { request } from "../components/utils/axios";
@@ -28,7 +27,7 @@ const Blogs = () => {
             isBigHero={false}
             isSmallHero={true}
             isMediumHero={false}
-            img={heroImg}
+            img={data.data.blogHeaderImg}
             title={i18n.language === "en" ? "blogs" : "المدونة"}
           />
           <Header />

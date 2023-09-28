@@ -6,7 +6,8 @@ import { MdOutlineCallToAction } from "react-icons/md";
 import { AiOutlinePhone } from "react-icons/ai";
 import phone from "../../../assets/phoneCall.png";
 import { useTranslation } from "react-i18next";
-const AuthImg = ({ desc, desc2, showWelcome }) => {
+import helpDesc from "../../../assets/help-desk-log-svgrepo-com.svg";
+const AuthImg = ({ desc, desc2, showWelcome, phoneNum }) => {
   const { i18n, t } = useTranslation();
 
   return (
@@ -46,7 +47,7 @@ const AuthImg = ({ desc, desc2, showWelcome }) => {
           </div>
           <div className={`p-3 ${style.box}`}>
             <div className="d-flex align-items-center  gap-2 mb-3">
-              <MdOutlineCallToAction size={30} className={style.icon} />
+              <img alt="icon" src={helpDesc} className={style.icon} />
               <div>
                 <p className="d-inline-block shamel fs18 ms-2 fw-bold text-white m-0 p-0 ">
                   {t("contact us")}{" "}
@@ -57,12 +58,16 @@ const AuthImg = ({ desc, desc2, showWelcome }) => {
             <div
               className={`green fw-bold d-flex align-items-center justify-content-center gap-2`}
             >
-              <span className="p-0 mx-0 mb-0 mt-1 shamel fs20">25281720</span>
               {i18n.language === "en" ? (
-                <AiOutlinePhone size={20} className="green fw-bold" />
+                <img
+                  src={phone}
+                  alt="phone/img"
+                  className={`green fw-bold ${style.phoneIcon}`}
+                />
               ) : (
-                <MdOutlineCallToAction size={20} className="green fw-bold" />
+                <AiOutlinePhone size={20} className="green fw-bold" />
               )}
+              <span className="p-0 mx-0 mb-0 mt-1 shamel fs20">{phoneNum}</span>
             </div>
           </div>
         </div>

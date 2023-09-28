@@ -1,4 +1,6 @@
 import React from "react";
+import ReactPlayer from "react-player";
+
 import style from "./Hero.module.css";
 import videoPlayer from "../../../assets/Component 31 – 1.svg";
 import BTN from "../../utils/btn/BTN";
@@ -11,8 +13,7 @@ const Hero = ({
   pageName,
   desc,
   redTitle,
-  desc2,
-  desc3,
+  btnText,
   isSmallHero,
   isMediumHero,
   isBigHero,
@@ -21,6 +22,7 @@ const Hero = ({
   intro,
   bigDesc,
   isBtn,
+  video,
   action,
   onClick,
 }) => {
@@ -47,24 +49,14 @@ const Hero = ({
                   </p>
                 )}
                 {title ? (
-                  <p className="fs28 shamel fw-bolder m-0 p-0 whiteGreen">
-                    {title}
-                  </p>
+                  <p
+                    className=" shamel fw-bolder m-0 p-0 "
+                    dangerouslySetInnerHTML={{ __html: title }}
+                  />
                 ) : null}
 
                 <div dangerouslySetInnerHTML={{ __html: desc }} />
-                {desc2 ? (
-                  <p
-                    className={`mx-0 mt-2 mb-1 p-0 book  text-white ${style.desc3}`}
-                  >
-                    {desc2}
-                  </p>
-                ) : null}
-                {desc3 ? (
-                  <p className={`m-0 p-0 book  text-white ${style.desc2}`}>
-                    {desc3}
-                  </p>
-                ) : null}
+
                 {isBtn && (
                   <div className="py-2 mt-4">
                     <button
@@ -72,24 +64,26 @@ const Hero = ({
                       onClick={onClick}
                     >
                       <MdOutlineArrowBackIos size={20} />
-                      <span className="mt-1">الباقات المتاحة</span>
+                      <span className="mt-1">{btnText}</span>
                     </button>
                   </div>
                 )}
                 {pageName ? (
-                  <p className={`${style.pageName}`}>{pageName}</p>
+                  <p className={`z-3 ${style.pageName}`}>{pageName}</p>
                 ) : null}
               </div>
               <div
                 className={`${style.secondImgContainer} col-12 col-md-6 mb-3 mb-md-0`}
               >
-                <img
-                  className={style.secondImg}
-                  alt="img/img"
-                  loading="lazy"
-                  src={secondImg}
-                />
-                <AiOutlinePlayCircle size={70} className={style.videoPlayer} />
+                <iframe
+                  src={`https://player.vimeo.com/video/${video}`}
+                  width="640"
+                  height="360"
+                  frameBorder="0"
+                  allowFullScreen
+                ></iframe>
+                {/**                <AiOutlinePlayCircle size={70} className={style.videoPlayer} />
+                 */}
               </div>
             </div>
           ) : (

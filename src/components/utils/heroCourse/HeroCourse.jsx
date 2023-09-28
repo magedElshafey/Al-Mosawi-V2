@@ -10,7 +10,17 @@ import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const HeroCourse = ({ item, fixedContainer }) => {
+const HeroCourse = ({
+  title,
+  desc,
+  img,
+  price,
+  afterDisscount,
+  hours,
+  level,
+  duration,
+  fixedContainer,
+}) => {
   const { t, i18n } = useTranslation();
   const [isFixed, setIsFixed] = useState(false);
   useEffect(() => {
@@ -54,25 +64,23 @@ const HeroCourse = ({ item, fixedContainer }) => {
         <div className="row align-items-center justify-content-center justify-content-md-start ">
           <div className="col-12 col-md-9 mb-2 mb-md-0">
             <p className={`text-white mx-0 book   mb-1 p-0 ${style.intro}`}>
-              الدورات التدريبية
+              {i18n.language === "ar" ? "الدورات التدريبية" : "courses"}
             </p>
             <p className={`mx-0 mb-2 p-0 shamel fs28 whiteGreen fw-bolder`}>
-              {item.title}
+              {title}
             </p>
             <div className={style.imgContainer}>
               <img
                 className={`rounded ${style.challengeImg}`}
                 alt="challenger/img"
                 loading="lazy"
-                src={item.img}
+                src={img}
               />
             </div>
-            <p className="mx-0 p-0 my-2 fw-bold text-white fs20 shamel">
-              {item.desc}
-            </p>
-            <p className={`mx-0 p-0 my-2 text-white ${style.desc2}`}>
-              {item.descTwo}
-            </p>
+            <p
+              className=" m-0 p-0 "
+              dangerouslySetInnerHTML={{ __html: desc }}
+            />
           </div>
 
           <div
@@ -88,23 +96,32 @@ const HeroCourse = ({ item, fixedContainer }) => {
           >
             <div className={`position-relative ${style.offerContainer}`}>
               <p className="mt-3 shamel fs28 fw-bold m-0 p-0 whiteGreen">
-                {item.offer ? item.price - item.offer : item.price} $
+                {afterDisscount ? afterDisscount : price} $
               </p>
-              <span className={style.offer}>{item.price}$</span>
+              <span className={style.offer}>{price}$</span>
             </div>
             <div className="mb-3 mt-4 d-flex">
               <div>
                 <div className="mb-2 d-flex align-items-center gap-2 text-white">
                   <AiOutlineClockCircle size={20} />
-                  <p className="m-0 p-0 book ">{item.time}</p>
+                  <p
+                    className=" m-0 p-0 "
+                    dangerouslySetInnerHTML={{ __html: hours }}
+                  />
                 </div>
-                <div className="mb-2 d-flex align-items-center gap-2 text-white">
+                <div className="mb-2 d-flex  gap-2 text-white">
                   <FaLevelUpAlt size={20} />
-                  <p className="m-0 p-0 book">{item.to}</p>
+                  <p
+                    className=" m-0 p-0 "
+                    dangerouslySetInnerHTML={{ __html: level }}
+                  />
                 </div>
-                <div className="mb-2 d-flex align-items-center gap-2 text-white">
+                <div className="mb-2 d-flex  gap-2 text-white">
                   <AiOutlineEye size={20} />
-                  <p className="m-0 p-0 book">مدي الحياة</p>
+                  <p
+                    className="m-0 p-0"
+                    dangerouslySetInnerHTML={{ __html: duration }}
+                  />
                 </div>
               </div>
             </div>
@@ -114,12 +131,11 @@ const HeroCourse = ({ item, fixedContainer }) => {
                 <p className="m-0 p-0 fw-bold">{t("buyNow")}</p>
               </div>
               <span className={`mt-1 ${style.origineal}`}>
-                ({item.offer ? item.price - item.offer : item.price} $)
+                ({afterDisscount ? afterDisscount : price} $)
               </span>
             </button>
             <button
               disabled={disabledBtn ? true : false}
-              onClick={() => handleAddToCart(item)}
               className={`mt-4  book ${style.cartBtn} ${
                 disabledBtn ? style.disabled : null
               } `}

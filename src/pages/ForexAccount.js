@@ -3,7 +3,17 @@ import Hero from "../components/utils/hero/Hero";
 import img from "../assets/forex.png";
 import ForexForm from "../components/forexAccoutn/forexForm/ForexForm";
 import ForexDetails from "../components/forexAccoutn/forexDetails/ForexDetails";
-const ForexAccount = () => {
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
+const ForexAccount = ({ phoneNum }) => {
+  const fetchData = () => {
+    return request({ url: "/forex" });
+  };
+  const { isLoading, data } = useQuery("special-account-page", fetchData, {
+    cacheTime: 12000,
+    staleTime: 12000,
+  });
   return (
     <div>
       <Hero
@@ -21,7 +31,7 @@ const ForexAccount = () => {
             <ForexForm />
           </div>
           <div className="col-12 col-md-4 ">
-            <ForexDetails />
+            <ForexDetails phoneNum={phoneNum} />
           </div>
         </div>
       </div>

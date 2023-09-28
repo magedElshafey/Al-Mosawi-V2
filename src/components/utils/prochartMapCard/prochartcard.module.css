@@ -38,7 +38,10 @@
 }
 .mainContainer {
   width: 320px;
-  height: 300px;
+  min-height: auto;
+
+  height: auto;
+  max-height: 300px;
   border: 1px solid #dfdfdf;
   border-radius: 26px;
   position: relative;

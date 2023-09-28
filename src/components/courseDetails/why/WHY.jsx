@@ -10,23 +10,24 @@ const WHY = ({ data }) => {
         {data.map((item, index) => (
           <div key={index}>
             <p
-              onClick={() => setActiveId(item.id)}
+              onClick={() => setActiveId(index)}
               className={` shamel fs18 pointer  mx-0 fw-bold    ${
-                item.id === activeId ? style.active : null
+                index === activeId ? style.active : null
               }`}
             >
-              {item.question}
+              {item.why_title}
             </p>
           </div>
         ))}
       </div>
+
       <div>
-        {activeId === 1 && (
-          <p className={`py-3 lh  text-center text-md-end`}>{data[0].answer}</p>
+        {activeId === 0 && (
+          <p className={`py-2   text-center text-md-end`}>{data[0]?.why_des}</p>
         )}
-        {activeId === 2 && (
-          <p className={`py-3 lh   text-center text-md-end`}>
-            {data[1].answer}
+        {activeId === 1 && (
+          <p className={`py-2    text-center text-md-end`}>
+            {data[1]?.why_des}
           </p>
         )}
       </div>

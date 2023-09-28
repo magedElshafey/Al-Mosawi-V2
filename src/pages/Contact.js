@@ -3,14 +3,16 @@ import Hero from "../components/utils/hero/Hero";
 import ContactForm from "../components/contact/contactForm/ContactForm";
 import ContactDetails from "../components/contact/contactDetails/ContactDetails";
 import Location from "../components/contact/Location/Location";
-const Contact = ({ heroContact, details, appointment }) => {
+import { useTranslation } from "react-i18next";
+const Contact = ({  appointment, contactDetails }) => {
+  const { i18n } = useTranslation();
   return (
     <div>
       <Hero
-        title={heroContact.title}
-        img={heroContact.img}
-        desc={heroContact.desc}
-        pageName={heroContact.pageName}
+        title={i18n.language === "en" ? "contact us" : "تواصل معنا"}
+        img={contactDetails.headerImg}
+        desc={contactDetails.headerDes}
+        pageName={i18n.language === "en" ? "contact us" : "تواصل معنا"}
         isBigHero={false}
         isSmallHero={false}
         isMediumHero={true}
@@ -21,11 +23,16 @@ const Contact = ({ heroContact, details, appointment }) => {
             <ContactForm />
           </div>
           <div className="col-12 col-md-4">
-            <ContactDetails details={details} appointment={appointment} />
+            <ContactDetails
+              phone={contactDetails.phone}
+              hotLine={contactDetails.customerServicePhone}
+              address={contactDetails.address}
+              appointment={appointment}
+            />
           </div>
         </div>
       </div>
-      <Location />
+      <Location map={contactDetails.map} quote={contactDetails.mapQuote} />
     </div>
   );
 };

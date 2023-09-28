@@ -46,7 +46,7 @@ const Reviews = ({ data }) => {
               {...swiperOptions}
             >
               {data.map((item, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide className= {style.main} key={index}>
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="d-flex align-items-center gap-2">
                       <img

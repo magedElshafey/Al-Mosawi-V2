@@ -71,8 +71,8 @@
   position: absolute;
   bottom: 5px;
   left: 80px;
-  opacity: 0.1;
-  letter-spacing: 8px;
+  opacity: 0.3;
+  /* letter-spacing: 8px; */
 }
 @media screen and (max-width: 767px) {
   .pageName {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Aos from "aos";
 import { useTranslation } from "react-i18next";
 import {
@@ -16,20 +16,7 @@ import Regester from "./pages/Regester.js";
 import About from "./pages/About.js";
 import Contact from "./pages/Contact.js";
 import {
-  slider,
-  tadwal,
-  weOffer,
-  courses,
-  social,
   aboutUs,
-  heroAbout,
-  aboutCompany,
-  team,
-  aboutAhmed,
-  heroContact,
-  details,
-  appointment,
-  blogs,
   expertCourses,
   newCourses,
   accountDetails,
@@ -64,9 +51,37 @@ import ForgetPassword from "./pages/ForgetPassword.js";
 import NewPassword from "./pages/NewPassword.js";
 import MAX from "./pages/MAX.js";
 import FixedBtn from "./components/utils/fixedBtn/FixedBtn.jsx";
-import { QueryClientProvider, QueryClient, useQuery } from "react-query";
+import { QueryClientProvider, QueryClient } from "react-query";
+import Spinner from "./components/utils/Spinner/Spinner.jsx";
+import axios from "axios";
 
 const App = () => {
+  // handle website settings data
+  const lang = window.localStorage.getItem("lang")
+    ? JSON.parse(window.localStorage.getItem("lang"))
+    : "ar";
+  const [loading, setLoading] = useState(true);
+  const [settingsData, setSettingsData] = useState({});
+  useEffect(() => {
+    axios
+      .get("https://almosawi.admin.technomasrsystems.com/api/settings", {
+        headers: {
+          lang,
+        },
+      })
+      .then((res) => {
+        console.log("this is res from app component", res.status);
+        if (res.status === 200) {
+          setSettingsData(res.data.data);
+          console.log("this is data from app component", settingsData);
+          setLoading(false);
+        } else {
+          setLoading(true);
+        }
+      });
+  }, [lang]);
+
+  // handle price box on course details page
   const [fixedContainer, setFixedContainer] = useState(false);
   useEffect(() => {
     function handleScroll() {
@@ -92,7 +107,6 @@ const App = () => {
     };
   }, []);
   const queryClient = new QueryClient();
-  // handle price box on course details page
 
   const [t, i18n] = useTranslation();
   // handle language
@@ -122,188 +136,213 @@ const App = () => {
   // git settings data
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <ScrollToTopAfterChangePage />
-        <Meta />
-        <Nav />
-        <FixedBtn />
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                slider={slider}
-                tadwal={tadwal}
-                weOffer={weOffer}
-                courses={courses}
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <QueryClientProvider client={queryClient}>
+          <Router>
+            <ScrollToTopAfterChangePage />
+            <Meta data={settingsData.generalSetting} />
+            <Nav data={settingsData.generalSetting} />
+            <FixedBtn />
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    slider={settingsData.slider}
+                    tadwal={settingsData.trade}
+                    weOffer={settingsData.adSections}
+                    video={settingsData.adSections2}
+                    courses={settingsData.courses}
+                    partner={settingsData.sponser}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/reg" element={<Regester />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/forget" element={<ForgetPassword />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/about"
-            element={
-              <About
-                aboutCompany={aboutCompany}
-                heroAbout={heroAbout}
-                team={team}
-                aboutAhmed={aboutAhmed}
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/login"
+                element={
+                  <Login phoneNum={settingsData.contactSettings.phone} />
+                }
               />
-            }
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/contact"
-            element={
-              <Contact
-                heroContact={heroContact}
-                details={details}
-                appointment={appointment}
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/reg"
+                element={
+                  <Regester phoneNum={settingsData.contactSettings.phone} />
+                }
               />
-            }
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/blogs" element={<Blogs blogs={blogs} />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/blogs/:id" element={<Blog blogs={blogs} />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/forex-account" element={<ForexAccount />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/forex-account/details"
-            element={<ForexAccountDetails />}
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/prochart" element={<Prochart />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/courses"
-            element={
-              <Courses expertCourses={expertCourses} newCourses={newCourses} />
-            }
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/course/:id"
-            element={<CourseDetails fixedContainer={fixedContainer} />}
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/account"
-            element={
-              <Account
-                accountDetails={accountDetails}
-                monthlyWithdraw={monthlyWithdraw}
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/forget" element={<ForgetPassword />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/about" element={<About />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/contact"
+                element={
+                  <Contact
+                    contactDetails={settingsData.contactSettings}
+                    appointment={settingsData.schdule}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/user/prochart" element={<UserProchart />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/deals" element={<Deals />} />
-        </Routes>
-        <Routes>
-          <Route
-            path="/recommendations"
-            element={<Recommendations data={recommendations} />}
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/prochart/video" element={<ProchartVideo />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/forex-calc" element={<ForexCalc />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/consulting"
-            element={
-              <Consulting
-                nextAppointments={nextAppointments}
-                canclledAppointments={canclledAppointments}
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/blogs" element={<Blogs />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/blogs/:id" element={<Blog />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/forex-account"
+                element={
+                  <ForexAccount phoneNum={settingsData.contactSettings.phone} />
+                }
               />
-            }
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/booking"
-            element={<Booking chooseAppointment={chooseAppointment} />}
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/booking/success" element={<SuccessBooking />} />
-        </Routes>
-        {/*donea*/}
-        <Routes>
-          <Route
-            path="/ask"
-            element={<Ask details={details} appointment={appointment} />}
-          />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        {/*done*/}
-        <Routes>
-          <Route
-            path="/recommendation-details"
-            element={<RecommendationHistory data={recommendationDetails} />}
-          />
-        </Routes>
-        <Routes>
-          <Route path="/new-password" element={<NewPassword />} />
-        </Routes>
-        <Routes>
-          <Route path="/account/:test" element={<MAX />} />
-        </Routes>
-        <Footer aboutUs={aboutUs} social={social} />
-      </Router>
-    </QueryClientProvider>
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/forex-account/details"
+                element={<ForexAccountDetails />}
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/prochart" element={<Prochart />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/courses"
+                element={
+                  <Courses
+                    expertCourses={expertCourses}
+                    newCourses={newCourses}
+                  />
+                }
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/course/:id"
+                element={<CourseDetails fixedContainer={fixedContainer} />}
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/account"
+                element={
+                  <Account
+                    accountDetails={accountDetails}
+                    monthlyWithdraw={monthlyWithdraw}
+                  />
+                }
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/user/prochart" element={<UserProchart />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/deals" element={<Deals />} />
+            </Routes>
+            <Routes>
+              <Route
+                path="/recommendations"
+                element={<Recommendations data={recommendations} />}
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/prochart/video" element={<ProchartVideo />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/forex-calc" element={<ForexCalc />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/consulting"
+                element={
+                  <Consulting
+                    nextAppointments={nextAppointments}
+                    canclledAppointments={canclledAppointments}
+                  />
+                }
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/booking"
+                element={<Booking chooseAppointment={chooseAppointment} />}
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/booking/success" element={<SuccessBooking />} />
+            </Routes>
+            {/*donea*/}
+            <Routes>
+              <Route
+                path="/ask"
+                element={
+                  <Ask
+                    details={settingsData.contactSettings}
+                    appointment={settingsData.schdule}
+                  />
+                }
+              />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+            {/*done*/}
+            <Routes>
+              <Route
+                path="/recommendation-details"
+                element={<RecommendationHistory data={recommendationDetails} />}
+              />
+            </Routes>
+            <Routes>
+              <Route path="/new-password" element={<NewPassword />} />
+            </Routes>
+            <Routes>
+              <Route path="/account/:test" element={<MAX />} />
+            </Routes>
+            <Footer
+              phoneNum={settingsData.contactSettings.phone}
+              aboutUs={aboutUs}
+              generalData={settingsData.generalSetting}
+              socailData={settingsData.SocialMediaLinks}
+            />
+          </Router>
+        </QueryClientProvider>
+      )}
+    </>
   );
 };
 

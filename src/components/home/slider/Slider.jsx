@@ -7,7 +7,7 @@ import group from "../../../assets/Group 73339.svg";
 import rightGroup from "../../../assets/Group 36.svg";
 import { useTranslation } from "react-i18next";
 const Slider = ({ slider }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const isPreviousButtonDisabled = currentSlide === 0;
   const isNextButtonDisabled = currentSlide === slider.length - 1;
@@ -74,7 +74,9 @@ const Slider = ({ slider }) => {
                   <div className={style.videoContainer}>
                     <TbPlayerPlay className={style.videoIcon} />
                   </div>
-                  <span className="text-white">شاهدها الان</span>
+                  <span className="text-white">
+                    {i18n.language === "en" ? "whatch now" : "شاهدها الان"}
+                  </span>
                 </button>
               )}
             </div>

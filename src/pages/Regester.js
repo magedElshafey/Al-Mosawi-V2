@@ -4,7 +4,7 @@ import AuthIntro from "../components/utils/authIntro/AuthIntro";
 import RegForm from "../components/Reg/RegForm";
 import { useTranslation } from "react-i18next";
 import RegModal from "../components/Reg/regmodal/RegModal";
-const Regester = () => {
+const Regester = ({ phoneNum }) => {
   const [t] = useTranslation();
   const [showModal, setShowModal] = useState(false);
   return (
@@ -18,14 +18,14 @@ const Regester = () => {
             </div>
           </div>
           <div className="col-6">
-            <AuthImg showWelcome={true} desc="" desc2="" />
+            <AuthImg phoneNum={phoneNum} showWelcome={true} desc="" desc2="" />
           </div>
         </div>
       </div>
       <div className="d-md-none">
         <div className="row m-0 p-0">
           <div className="col-12 mb-3  m-0 p-0">
-            <AuthImg showWelcome={true} desc="" desc2="" />
+            <AuthImg phoneNum={phoneNum} showWelcome={true} desc="" desc2="" />
           </div>
           <div className="col-12">
             <AuthIntro title={t("reg")} desc={t("canReg")} />

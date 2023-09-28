@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import style from "./footer.module.css";
-import logo from "../../../assets/Logo.svg";
 import leftArrow from "../../../assets/leftArrow.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import phone from "../../../assets/phoneCall.png";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
-
-const Footer = ({ social, aboutUs }) => {
+import face from "../../../assets/social/face.svg";
+import insta from "../../../assets/social/insta.svg";
+import youtube from "../../../assets/social/youtube.svg";
+import twitter from "../../../assets/social/twitter.svg";
+import linkedin from "../../../assets/social/linkedin.svg";
+const Footer = ({ generalData, socailData, aboutUs, phoneNum }) => {
   const { t, i18n } = useTranslation();
-  const currentYear = new Date().getFullYear();
   const { pathname } = useLocation();
   const [showFooter, setShowFooter] = useState(true);
   useEffect(() => {
@@ -34,20 +35,92 @@ const Footer = ({ social, aboutUs }) => {
             <div className="row">
               {/*logo and social media*/}
               <div className=" col-12 col-md-3 mb-5 mb-md-0 d-flex flex-column align-items-center gap-4 pt-2">
-                <img loading="lazy" alt="logo/img" src={logo} />
+                <img
+                  loading="lazy"
+                  alt="logo/img"
+                  src={generalData.logo}
+                  className={style.logo}
+                />
                 <div className="d-flex align-items-center gap-1">
-                  {social.map((item, index) => (
-                    <div className={style.socialContainer} key={index}>
-                      <a target="_blank" rel="noreferrer" href={item.path}>
+                  {socailData.facebook && (
+                    <a
+                      className={style.socialContainer}
+                      target="_blank"
+                      rel="noreferrer"
+                      href={socailData.facebook}
+                    >
+                      <img
+                        className={style.socialMediaIcons}
+                        loading="lazy"
+                        alt="socialmedia/img"
+                        src={face}
+                      />
+                    </a>
+                  )}
+                  {socailData.twitter && (
+                    <div className={style.socialContainer}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={socailData.twitter}
+                      >
                         <img
                           className={style.socialMediaIcons}
                           loading="lazy"
                           alt="socialmedia/img"
-                          src={item.img}
+                          src={twitter}
                         />
                       </a>
                     </div>
-                  ))}
+                  )}
+                  {socailData.linkedIn && (
+                    <div className={style.socialContainer}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={socailData.linkedIn}
+                      >
+                        <img
+                          className={style.socialMediaIcons}
+                          loading="lazy"
+                          alt="socialmedia/img"
+                          src={linkedin}
+                        />
+                      </a>
+                    </div>
+                  )}
+                  {socailData.instagram && (
+                    <div className={style.socialContainer}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={socailData.instagram}
+                      >
+                        <img
+                          className={style.socialMediaIcons}
+                          loading="lazy"
+                          alt="socialmedia/img"
+                          src={insta}
+                        />
+                      </a>
+                    </div>
+                  )}
+                  {socailData.youtube && (
+                    <div className={style.socialContainer}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={socailData.youtube}
+                      >
+                        <img
+                          className={style.socialMediaIcons}
+                          loading="lazy"
+                          alt="socialmedia/img"
+                          src={youtube}
+                        />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
               {/*about website*/}
@@ -101,12 +174,12 @@ const Footer = ({ social, aboutUs }) => {
                     {t("contact us")}
                   </h3>
                 </div>
-                <div className="d-flex align-items-center gap-2">
-                  <p className={`fw-bold shamel fs22 green`}>25281720</p>
+                <div className="d-flex align-items-center gap-1">
+                  <p className={`fw-bold shamel fs22 green`}>{phoneNum}</p>
                   {i18n.language === "en" ? (
-                    <AiFillPhone size={30} className="green mb-4" />
+                    <AiFillPhone size={20} className="green mb-3" />
                   ) : (
-                    <BsFillTelephoneFill size={30} className="green mb-4" />
+                    <BsFillTelephoneFill size={20} className="green mb-3" />
                   )}
                 </div>
               </div>
@@ -120,7 +193,7 @@ const Footer = ({ social, aboutUs }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                {t("copyRight")} &#169; {currentYear}
+                {generalData.copyright_}
               </a>
             </div>
           </div>

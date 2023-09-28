@@ -1,8 +1,6 @@
 import React from "react";
 import style from "./WeOffer.module.css";
-import img from "../../../assets/hhh.png";
 import { MdArrowBackIosNew } from "react-icons/md";
-import mob from "../../../assets/mob.png";
 const WeOffer = ({ weOffer }) => {
   return (
     <div className="py-5">

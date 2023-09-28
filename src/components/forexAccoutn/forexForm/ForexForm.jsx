@@ -9,6 +9,13 @@ const ForexForm = () => {
   const [id, setId] = useState("");
   const [address, setAddress] = useState("");
   const [passport, setPassport] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [email, setEmail] = useState("");
+  const [city, setCity] = useState("");
+  const [accountKind, setAccountKind] = useState("");
+  
   const handleIdChange = (event) => {
     setId(event.target.files[0]);
   };

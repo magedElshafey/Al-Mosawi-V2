@@ -4,7 +4,7 @@ import check from "../../../assets/check.png";
 import { whyTickmill, media } from "../../../fakers/data";
 import buyImg from "../../../assets/buy-svgrepo-com.png";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
-const WhyTickmill = () => {
+const WhyTickmill = ({ paper }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showHow, sewtShowHow] = useState(false);
   const [showCopmany, setShowCompany] = useState(false);
@@ -143,11 +143,11 @@ const WhyTickmill = () => {
           </div>
         </div>
         <div className={`px-5 py-3 col-12 col-md-4 ${style.mediaContainer}`}>
-          <p className="fs24 text-white mx-0 mt-0 mb-1 p-0 shamel">وسائل</p>
-          <p className="fs28 whiteGreen mx-0 mt-0 mb-3 p-0 shamel">
-            السحب والإيداع
-          </p>
-          {media.details.map((item, index) => (
+          <p
+            className="m-0 p-0"
+            dangerouslySetInnerHTML={{ __html: paper.title }}
+          />
+          {paper.depositMethod.map((item, index) => (
             <div className="mb-3 d-flex align-items-center gap-2" key={index}>
               <img
                 alt="check/img"
@@ -155,17 +155,15 @@ const WhyTickmill = () => {
                 className={style.check}
                 src={check}
               />
-              <p className="m-0 p-0 text-white fw-bold shamel">{item.title}</p>
+              <p className="m-0 p-0 text-white fw-bold shamel">{item.item}</p>
             </div>
           ))}
-          <p className="text-white fs15 fw-bold m-0 p-0">
-            {media.partener.join(" - ")}
-          </p>
+
           <div className="d-flex justify-content-center pt-3 pb-2">
             <img
               loading="lazy"
               className={style.buyImg}
-              src={buyImg}
+              src={paper.Image}
               alt="buy / img"
             />
           </div>

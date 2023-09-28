@@ -9,7 +9,19 @@ import Success from "../components/Prochart/success/Success";
 import Management from "../components/Prochart/managment/Management";
 import TextContent from "../components/Prochart/textContent/TextContent";
 import PackageModal from "../components/Prochart/package/PackageModal";
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 const Prochart = () => {
+  const { i18n } = useTranslation();
+  const fetchData = () => {
+    return request({ url: "/prochart" });
+  };
+  const { isLoading, data } = useQuery("prochart-page", fetchData, {
+    cacheTime: 12000,
+    staleTime: 12000,
+  });
   const sectionRef = useRef(null);
   const scrollToNextSection = () => {
     // Get the next section's offsetTop
@@ -30,37 +42,48 @@ const Prochart = () => {
     setShowModal(false);
   };
   return (
-    <div>
-      <Hero
-        onClick={scrollToNextSection}
-        pageName="prochart"
-        img={img}
-        isBigHero={true}
-        isSmallHero={false}
-        isMediumHero={false}
-        isRow={true}
-        secondImg={secondImg}
-        title="البروشارت / Prochart"
-        intro="أهلا بكم في القسم الأكثر تميزا في موقعنا"
-        desc="تحليلات ... صفقات ... ارباح "
-        bigDesc={true}
-        desc2="سجل الان و تداول بأفضل الصفقات مع الأفضل في عالم التداول"
-        isBtn={true}
-        action={handleShowModal}
-      />
-      <div className="container">
-        <Advantage data={whatOffer} main={sectionRef} />
-        <Maps action={handleShowModal} showModal={showModal} data={quota} />
-        <Success />
-        <Management />
-        <TextContent />
-        <PackageModal
-          action={handleCloseModal}
-          showModal={showModal}
-          setShowModal={setShowModal}
-        />
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <Hero
+            onClick={scrollToNextSection}
+            video={data.data.data.header.media}
+            pageName={i18n.language === "en" ? "prochart" : "البروشارت"}
+            img={data.data.data.header.image}
+            isBigHero={true}
+            isSmallHero={false}
+            isMediumHero={false}
+            isRow={true}
+            secondImg={secondImg}
+            title={data.data.data.header.title}
+            intro={data.data.data.header.welcome}
+            desc={data.data.data.header.des}
+            bigDesc={true}
+            isBtn={true}
+            action={handleShowModal}
+            btnText={data.data.data.header.buttonTitle}
+          />
+          <div className="container">
+            <Advantage data={data.data.data.pros} main={sectionRef} />
+            <Maps
+              action={handleShowModal}
+              showModal={showModal}
+              data={data.data.data.prochart_plans}
+            />
+            <Success data={data.data.data.slider} />
+            <Management data={data.data.data.wallet} />
+            <TextContent data={data.data.data.wallet.finalWord} />
+            <PackageModal
+              action={handleCloseModal}
+              showModal={showModal}
+              setShowModal={setShowModal}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -2,14 +2,13 @@ import React from "react";
 import style from "./success.module.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { successSlider } from "../../../fakers/data";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Navigation, Pagination } from "swiper";
-const Success = () => {
+const Success = ({ data }) => {
   const swiperOptions = {
     loop: true,
-    centeredSlides: false,
+    centeredSlides: true,
     spaceBetween: 10,
     navigation: true,
     autoplay: true,
@@ -35,46 +34,30 @@ const Success = () => {
     <div className="py-5">
       <Swiper
         {...swiperOptions}
-        className="mySwiper w-100"
+        className="mySwiper w-100 text-center"
         modules={[Autoplay, Navigation, Pagination]}
       >
-        {successSlider.map((item, index) => (
+        {data.map((item, index) => (
           <SwiperSlide key={index} className="row justify-content-center">
-            <div className="text-center col-12 col-md-6 mb-3 mb-md-0">
-              <p
-                className={`mx-0 mt-0 mb-2 text-center text-md-end  fw-bolder shamel fs36 green`}
-              >
-                {item.static.title}
-              </p>
-              <p
-                className={`fs28 shamel text-center text-md-end  fw-bolder mx-1 d-inline-block mb-2 mt-0 mb-0`}
-              >
-                {item.static.desc}
-              </p>
-              <p
-                className={`fs28 shamel text-center text-md-end fw-bold green d-inline-block  p-0 m-0`}
-              >
-                {item.static.desc2}
-              </p>
-              <p className="my-2 text-center text-md-end fs18">
-                {item.static.desc3}
-              </p>
+            <div className="m-0 p-0  col-12 col-md-7 mb-2 mb-md-0 ">
+              <div dangerouslySetInnerHTML={{ __html: item.title }} />
+              <p className={`fs28 m-0 p-0 mx-5 `}>{item.des}</p>
               <div className={`p-4 text-center ${style.textContainer}`}>
                 <div>
                   <p
-                    className={`fs20  shamel fw-bold mb-2 mt-0 mx-0 p-0 d-inline-block ${style.client}`}
+                    className={`fs20 d-block shamel fw-bold m-0 mb-2 p-0  ${style.client}`}
                   >
-                    {item.slides.title}
+                    {item.content.title}
                   </p>
-                  <p className="mx-0 p-0 mb-2">{item.slides.desc}</p>
+                  <p className="d-block mx-0 p-0 mb-2">{item.content.des}</p>
                 </div>
               </div>
             </div>
-            <div className="col-12 text-center text-md-end col-md-6 mb-3 mb-md-0 gap-2">
+            <div className="col-12  col-md-5 mb-3 mb-md-0 gap-2">
               <img
                 loading="lazy"
                 alt="slide/img"
-                src={item.slides.img}
+                src={item.image}
                 className={style.img}
               />
             </div>
@@ -87,56 +70,14 @@ const Success = () => {
 
 export default Success;
 /*
-  <div className="py-5">
-      <div className="row">
-        <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <p className={`mx-0 mt-0 mb-2  fw-bolder shamel fs36 green`}>
-            النجاح في التداول
-          </p>
-          <p
-            className={`fs28 shamel  fw-bolder mx-1 d-inline-block mb-2 mt-0 mb-0`}
-          >
-            يبدأ مع اختيارك
-          </p>
-          <p className={`fs28 shamel fw-bold green d-inline-block  p-0 m-0`}>
-            لصفقات ناجحة
-          </p>
-          <p className="my-2 fs18">
-            صفقات متميزة حققناها ... لا تتردد بالاطلاع عليها
-          </p>
-          <div className={`p-2 text-center ${style.textContainer}`}>
-            <p
-              className={`fs20  shamel fw-bold mb-2 mt-0 mx-0 p-0 d-inline-block ${style.client}`}
-            >
-              صفقات العملاء
-            </p>
+  <SwiperSlide key={index} className="row justify-content-center">
+            <div className="text-center col-12 col-md-6 mb-3 mb-md-0">
+             
+              
 
-            <p className="mx-0 p-0 mb-2">
-              إذا كنت من محبي التداول على العملات مثل الدولار واليورو شاهد
-              النقاط التي حققناها في هذه الصفقة
-            </p>
-          </div>
-          <div className="mt-3 d-flex justify-content-center align-items-center gap-2">
-            <span className={`${style.span}`}></span>
-            <span className={`${style.span}`}></span>
-            <span className={`${style.span}`}></span>
-            <span className={`${style.span} ${style.active}`}></span>
-          </div>
-        </div>
-        <div className="col-12 col-md-6 mb-3 mb-md-0 d-flex align-items-center gap-2 justify-content-center">
-          <img
-            alt="mob/img"
-            src={mob1}
-            loading="lazy"
-            className={style.mobOne}
-          />
-          <img
-            alt="mobile/img"
-            src={mob2}
-            loading="lazy"
-            className={`d-none d-md-block ${style.mobTwo}`}
-          />
-        </div>
-      </div>
-    </div>
+              
+            </div>
+          
+          </SwiperSlide>
+   
 */

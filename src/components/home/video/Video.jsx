@@ -1,29 +1,27 @@
 import React from "react";
+import ReactPlayer from "react-player";
 import style from "./video.module.css";
-import videoPlayer from "../../../assets/video.png";
-import { MdArrowBackIosNew } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 const Video = ({ data }) => {
   const [t] = useTranslation();
   return (
-    <div className={style.app}>
+    <div>
       <div className={style.videoBackground}>
-        <iframe
+        <ReactPlayer
           width="100%"
-          height="100%"
-          src={data.videoLink}
-          title="YouTube Video"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <div className={`w-100 ${style.text}`}>
-        <div className="w-100 row juistify-content-center align-items-center">
-          <div className="col-12 col-md-10 mb-3 mb-md-0">
-            <div dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }} />
-            <div
-              className="mt-5"
-              dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
-            />
+          height="80%"
+          url={`${data.videoLink}`}
+          controls
+        />
+        <div className={`w-100 ${style.text}`}>
+          <div className="w-100 row juistify-content-center align-items-center">
+            <div className="col-12 col-md-10 mb-3 mb-md-0">
+              <div dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }} />
+              <div
+                className="mt-5"
+                dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
+              />
+            </div>
           </div>
         </div>
       </div>

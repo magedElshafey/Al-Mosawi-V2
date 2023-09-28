@@ -12,50 +12,71 @@ import CourseTwo from "../components/courseDetails/coursesDetails/courseTwo/Cour
 import CourseThree from "../components/courseDetails/coursesDetails/courseThree/CourseThree";
 import { courseOne, courseTwo, courseThree } from "../fakers/data";
 import style from "../components/courseDetails/coursesDetails/coursesDetails.module.css";
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
 const CourseDetails = ({ fixedContainer }) => {
-  const { id } = useParams();
-  const data = coursesDetails.filter((item) => item.id === parseInt(id));
-  return (
-    <div>
-      <HeroCourse item={data[0]} fixedContainer={fixedContainer} />
-      <div className="container my-4">
-        <div className="row">
-          <div
-            className={`col-12 col-md-11 col-lg-9 ${
-              parseInt(id) === 2 || parseInt(id) === 3 ? style.border : null
-            }`}
-          >
-            <AboutCourse data={data[0].aboutCourse} />
-            {data[0].mt4 ? <MT4 img={data[0].mt4} /> : null}
-            {parseInt(id) === 1 && <CourseOne data={courseOne} />}
-            {parseInt(id) === 2 && <CourseTwo data={courseTwo} />}
-            {parseInt(id) === 3 && <CourseThree data={courseThree} />}
-            <Advantages
-              img={data[0].advantage}
-              question={data[0].advantageQuestion}
-              details={data[0].advantageDetails}
-              why={data[0].why}
-            />
+  const params = useParams();
 
-            <Reviews data={data[0].reviews} />
+  const fetchData = (id) => {
+    return request({ url: `course/${id}` });
+  };
+  const { isLoading, data } = useQuery(
+    ["course details-page", params.id],
+    () => fetchData(params.id),
+    {
+      cacheTime: 12000,
+      staleTime: 12000,
+    }
+  );
+  return (
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <HeroCourse
+            title={data.data.data.title}
+            desc={data.data.data.header_des}
+            img={data.data.data.header_img}
+            price={data.data.data.price}
+            afterDisscount={data.data.data.price_after_discount}
+            hours={data.data.data.hours}
+            level={data.data.data.course_level}
+            duration={data.data.data.leve_duration}
+            fixedContainer={fixedContainer}
+          />
+          <div className="container my-4">
+            <div className="row">
+              <div
+                className={`col-12 col-md-11 col-lg-9 ${
+                  parseInt(params.id) === 2 || parseInt(params.id) === 3
+                    ? style.border
+                    : null
+                }`}
+              >
+                <AboutCourse
+                  title={data.data.data.content_title}
+                  desc={data.data.data.content_des}
+                />
+
+                <CourseTwo data={data.data.data.CourseClasses} />
+
+                <Advantages
+                  img={data.data.data.feature_img}
+                  title={data.data.data.feature_title}
+                  desc={data.data.data.feature_des}
+                  why={data.data.data.CourseImportance}
+                />
+
+                {/*   <Reviews data={data[0].reviews} /> */}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
 export default CourseDetails;
-/*
-      <div
-        className={`container my-4 me-0 me-md-5 `}
-      >
-        <div className="row">
-          <div className="col-12 col-md-11 col-lg-9">
-           
-          
-          
-          </div>
-        </div>
-      </div>
-*/

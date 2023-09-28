@@ -8,7 +8,7 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
-const About = ({ heroAbout, aboutCompany, team, aboutAhmed }) => {
+const About = () => {
   const { t, i18n } = useTranslation();
   const fetchData = () => {
     return request({ url: "/aboutUs" });
@@ -32,12 +32,18 @@ const About = ({ heroAbout, aboutCompany, team, aboutAhmed }) => {
             isSmallHero={false}
             isMediumHero={true}
           />
-          <WhyUs aboutCompany={aboutCompany} />
+          <WhyUs
+            img={data.data.data.aboutUsImage}
+            aboutCompany={data.data.data.aboutUsSections}
+          />
           <OuerTeam team={data.data.data.team} />
           <AboutAhmed
             title={data.data.data.section2Title}
             desc={data.data.data.section2Des}
-            aboutAhmed={aboutAhmed}
+            
+            state={data.data.data.secondSecMedia}
+            imgLink={data.data.data.secondSecImage}
+            videoLink={data.data.data.secondSecLink}
           />
           <TextContent text={data.data.data.ending} />
         </div>

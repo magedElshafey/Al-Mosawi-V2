@@ -4,10 +4,10 @@ import ReqPaper from "./reqPapers/ReqPaper";
 import Conditions from "./conditions/Conditions";
 import ContactUs from "../../utils/contactus/ContactUs";
 
-const ForexDetails = () => {
+const ForexDetails = ({ phoneNum }) => {
   return (
     <div>
-      <ContactUs />
+      <ContactUs phoneNum={phoneNum} />
       <ReqPaper data={reqPaper} />
       <Conditions data={conditions} />
     </div>
