@@ -17,7 +17,7 @@ import chat from "../../../assets/chat-bubble-check-svgrepo-com.png";
 import menu from "../../../assets/menu.svg";
 import close from "../../../assets/cross.png";
 
-const Nav = ({ data }) => {
+const Nav = ({ data, phoneNum, menus }) => {
   const { t, i18n } = useTranslation();
   const [showSidebar, setShowSidebar] = useState(false);
   const [showProchart, setShowPorchart] = useState(false);
@@ -27,6 +27,7 @@ const Nav = ({ data }) => {
   const [showLogo, setShowLogo] = useState(true);
   const [showAsk, setShowAsk] = useState(false);
   const navigate = useNavigate();
+  const isLogin = JSON.parse(localStorage.getItem("isLogin"));
   useEffect(() => {
     if (
       pathname === "/forget" ||
@@ -135,12 +136,14 @@ const Nav = ({ data }) => {
                 </div>
               ) : (
                 <div className="d-flex align-items-center gap-1">
-                  <button
-                    onClick={() => navigate("/login")}
-                    className={`mx-3 ${style.btn}`}
-                  >
-                    {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
-                  </button>
+                  {!isLogin && (
+                    <button
+                      onClick={() => navigate("/login")}
+                      className={`mx-3 ${style.btn}`}
+                    >
+                      {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
+                    </button>
+                  )}
                   <div
                     onClick={() => setShowSidebar(true)}
                     className={`pointer ${showLogo ? null : "me-auto"}`}
@@ -372,45 +375,23 @@ const Nav = ({ data }) => {
                       {t("reg")}
                     </Link>
                   </li>
-                  <li className="mb-2 mt-4 ">
-                    <Link
-                      onClick={() => setShowSidebar(false)}
-                      className={`book text-white ${style.link}`}
-                      to="/consulting"
-                    >
-                      <MdOutlineKeyboardDoubleArrowRight
-                        className="green d-inline-block mx-1 "
-                        size={25}
-                      />
-                      {t("consultation")}
-                    </Link>
-                  </li>
-                  <li className="mb-2">
-                    <Link
-                      onClick={() => setShowSidebar(false)}
-                      className={`book text-white ${style.link}`}
-                      to="/about"
-                    >
-                      <MdKeyboardArrowLeft
-                        className="green d-inline-block mx-1 "
-                        size={25}
-                      />
-                      {t("about")}
-                    </Link>
-                  </li>
-                  <li className="mb-2">
-                    <Link
-                      onClick={() => setShowSidebar(false)}
-                      className={`book text-white ${style.link}`}
-                      to="/contact"
-                    >
-                      <MdKeyboardArrowLeft
-                        className="green d-inline-block mx-1 "
-                        size={25}
-                      />
-                      {t("contact us")}
-                    </Link>
-                  </li>
+                  {menus.length
+                    ? menus.map((item, index) => (
+                        <li key={index} className="mb-2">
+                          <Link
+                            onClick={() => setShowSidebar(false)}
+                            className={`book text-white ${style.link}`}
+                            to={item.link}
+                          >
+                            <MdKeyboardArrowLeft
+                              className="green d-inline-block mx-1 "
+                              size={25}
+                            />
+                            {item.title}
+                          </Link>
+                        </li>
+                      ))
+                    : null}
                 </ul>
                 <div
                   className={`mx-auto  p-3  d-flex flex-column align-items-center gap-1 ${style.contactContainer}`}
@@ -427,7 +408,9 @@ const Nav = ({ data }) => {
                     {t("help")}
                   </p>
                   <p className="green m-0 p-0 d-flex gap-1 align-items-center">
-                    <span className="fw-bold shamel fs22 mt-1 ">252158</span>
+                    <span className="fw-bold shamel fs22 mt-1 ">
+                      {phoneNum}
+                    </span>
                     <BsFillTelephoneFill size={20} />{" "}
                   </p>
                 </div>

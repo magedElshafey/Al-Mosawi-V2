@@ -69,17 +69,24 @@ const Hero = ({
                   </div>
                 )}
                 {pageName ? (
-                  <p className={`z-3 ${style.pageName}`}>{pageName}</p>
+                  <p
+                    className={`z-3 ${
+                      i18n.language === "ar"
+                        ? style.pageNamear
+                        : style.pageNameen
+                    } `}
+                  >
+                    {pageName}
+                  </p>
                 ) : null}
               </div>
               <div
                 className={`${style.secondImgContainer} col-12 col-md-6 mb-3 mb-md-0`}
               >
                 <iframe
-                  src={`https://player.vimeo.com/video/${video}`}
-                  width="640"
-                  height="360"
-                  frameBorder="0"
+                  src="https://player.vimeo.com/video/867338027"
+                  className={style.videoFrame}
+                  allow="autoplay; fullscreen;"
                   allowFullScreen
                 ></iframe>
                 {/**                <AiOutlinePlayCircle size={70} className={style.videoPlayer} />
@@ -105,7 +112,13 @@ const Hero = ({
               />
 
               {pageName ? (
-                <p className={` ${style.pageName}`}>{pageName}</p>
+                <p
+                  className={`z-3 ${
+                    i18n.language === "ar" ? style.pageNamear : style.pageNameen
+                  } `}
+                >
+                  {pageName}
+                </p>
               ) : null}
             </div>
           )}

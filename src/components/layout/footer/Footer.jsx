@@ -10,7 +10,15 @@ import insta from "../../../assets/social/insta.svg";
 import youtube from "../../../assets/social/youtube.svg";
 import twitter from "../../../assets/social/twitter.svg";
 import linkedin from "../../../assets/social/linkedin.svg";
-const Footer = ({ generalData, socailData, aboutUs, phoneNum }) => {
+import { FaSnapchatGhost, FaTiktok } from "react-icons/fa";
+const Footer = ({
+  generalData,
+  socailData,
+  aboutUs,
+  phoneNum,
+  footer1,
+  footer2,
+}) => {
   const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
   const [showFooter, setShowFooter] = useState(true);
@@ -18,9 +26,18 @@ const Footer = ({ generalData, socailData, aboutUs, phoneNum }) => {
     if (
       pathname === "/prochart/video" ||
       pathname === "/forex-account/details" ||
-      pathname === "/deals" ||
+      pathname === "/deals/1" ||
+      pathname === "/deals/2" ||
+      pathname === "/deals/3" ||
+      pathname === "/deals/4" ||
+      pathname === "/deals/5" ||
+      pathname === "/deals/6" ||
+      pathname === "/deals/7" ||
+      pathname === "/deals/8" ||
+      pathname === "/deals/9" ||
       pathname === "/recommendation-details" ||
-      pathname === "/user/prochart"
+      pathname === "/user/prochart" ||
+      pathname === "/recommendations"
     ) {
       setShowFooter(false);
     } else {
@@ -34,7 +51,11 @@ const Footer = ({ generalData, socailData, aboutUs, phoneNum }) => {
           <div className="container">
             <div className="row">
               {/*logo and social media*/}
-              <div className=" col-12 col-md-3 mb-5 mb-md-0 d-flex flex-column align-items-center gap-4 pt-2">
+              <div
+                className={`col-12 ${
+                  footer2.length ? "col-md-3" : "col-md-4"
+                } mb-5 mb-md-0 d-flex flex-column align-items-center gap-4 pt-2`}
+              >
                 <img
                   loading="lazy"
                   alt="logo/img"
@@ -121,10 +142,42 @@ const Footer = ({ generalData, socailData, aboutUs, phoneNum }) => {
                       </a>
                     </div>
                   )}
+                  {socailData.snapchat && (
+                    <div className={style.socialContainer}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={socailData.snapchat}
+                      >
+                        <FaSnapchatGhost
+                          className={style.socialMediaIcons}
+                          size={20}
+                        />
+                      </a>
+                    </div>
+                  )}
+                  {socailData.tiktok && (
+                    <div className={style.socialContainer}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={socailData.tiktok}
+                      >
+                        <FaTiktok
+                          className={style.socialMediaIcons}
+                          size={20}
+                        />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
               {/*about website*/}
-              <div className="col-6 col-md-3 mb-5 mb-md-0 d-flex flex-column align-items-center gap-4">
+              <div
+                className={`col-6 ${
+                  footer2.length ? "col-md-3" : "col-md-4"
+                } mb-5 mb-md-0 d-flex flex-column align-items-center gap-4`}
+              >
                 <div
                   className={`${style.bg} ${style.border} ${
                     i18n.language === "ar" ? style.rtlStyle : style.ltrStyle
@@ -133,42 +186,48 @@ const Footer = ({ generalData, socailData, aboutUs, phoneNum }) => {
                   <h3 className="pt-3 fw-bolder fs18 shamel">{t("aboutUs")}</h3>
                 </div>
                 <div className="d-flex flex-column  gap-1">
-                  {aboutUs.map((item, index) => (
+                  {footer1.map((item, index) => (
                     <div
                       key={index}
                       className="d-flex fs18 align-items-center gap-1"
                     >
                       <img alt="arrow/img" src={leftArrow} loading="lazy" />
-                      <Link className="m-0 p-0" to={item.path}>
+                      <Link className="m-0 p-0" to={item.link}>
                         {item.title}
                       </Link>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="col-6 col-md-3 mb-5 mb-md-0 d-flex flex-column align-items-center gap-4">
-                <div
-                  className={`${style.bg} ${style.border} ${
-                    i18n.language === "ar" ? style.rtlStyle : style.ltrStyle
-                  } `}
-                >
-                  <h3 className="pt-3 fw-bolder fs18 shamel">{t("links")}</h3>
+              {footer2.length ? (
+                <div className="col-6 col-md-3 mb-5 mb-md-0 d-flex flex-column align-items-center gap-4">
+                  <div
+                    className={`${style.bg} ${style.border} ${
+                      i18n.language === "ar" ? style.rtlStyle : style.ltrStyle
+                    } `}
+                  >
+                    <h3 className="pt-3 fw-bolder fs18 shamel">{t("links")}</h3>
+                  </div>
+                  <div className="d-flex flex-column  gap-1">
+                    {aboutUs.map((item, index) => (
+                      <div
+                        key={index}
+                        className="d-flex fs18 align-items-center gap-1"
+                      >
+                        <img alt="arrow/img" src={leftArrow} loading="lazy" />
+                        <Link className="m-0 p-0" to={item.path}>
+                          {item.title}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="d-flex flex-column  gap-1">
-                  {aboutUs.map((item, index) => (
-                    <div
-                      key={index}
-                      className="d-flex fs18 align-items-center gap-1"
-                    >
-                      <img alt="arrow/img" src={leftArrow} loading="lazy" />
-                      <Link className="m-0 p-0" to={item.path}>
-                        {item.title}
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="col-12 col-md-3 mb-md-0 d-flex flex-column align-items-center gap-3">
+              ) : null}
+              <div
+                className={`col-12 ${
+                  footer2.length ? "col-md-3" : "col-md-4"
+                } mb-md-0 d-flex flex-column align-items-center gap-3`}
+              >
                 <div className={`${style.bg} `}>
                   <h3 className={` pt-3 fw-bolder fs18 shamel`}>
                     {t("contact us")}

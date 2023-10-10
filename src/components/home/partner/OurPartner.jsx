@@ -2,7 +2,12 @@ import React from "react";
 import style from "./ourpartner.module.css";
 import { useTranslation } from "react-i18next";
 import MainBtn from "../../utils/mainBtn/MainBtn";
+import { useNavigate } from "react-router-dom";
 const OurPartner = ({ data }) => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/about");
+  };
   const [t] = useTranslation();
   return (
     <div className={`${style.mainDiv} py-4 `}>
@@ -31,7 +36,7 @@ const OurPartner = ({ data }) => {
               {data.description}
             </p>
             <div className="d-flex justify-content-center justify-content-md-start">
-              <MainBtn text={t("learnBtn")} />
+              <MainBtn action={handleNavigate} text={t("learnBtn")} />
             </div>
           </div>
         </div>

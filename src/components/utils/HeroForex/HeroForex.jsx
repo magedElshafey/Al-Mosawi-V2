@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import ServicesCard from "../../forexDetails/serviceCard/ServicesCard";
 const HeroForex = ({ isProchart, data }) => {
   const [t] = useTranslation();
+  const isTickMill = JSON.parse(localStorage.getItem("tickmillUser"));
   return (
     <div className={`${style.mainDiv} m-0 p-0`}>
       <div className="container">
@@ -60,7 +61,7 @@ const HeroForex = ({ isProchart, data }) => {
                 </div>
               </div>
             )}
-            <ServicesCard data={data} />
+            <ServicesCard data={data} isTickMill={isTickMill} />
           </div>
         </div>
       </div>

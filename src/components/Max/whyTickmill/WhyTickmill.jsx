@@ -4,143 +4,49 @@ import check from "../../../assets/check.png";
 import { whyTickmill, media } from "../../../fakers/data";
 import buyImg from "../../../assets/buy-svgrepo-com.png";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
-const WhyTickmill = ({ paper }) => {
+const WhyTickmill = ({ paper, faqs }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [showHow, sewtShowHow] = useState(false);
   const [showCopmany, setShowCompany] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   return (
     <div className="container py-4">
       <div className="row gap-5">
         <div className="col-12 col-md-7">
-          <div className={`mb-4 ${style.main} p-2`}>
-            <div className="w-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center gap-2 fs22 shamel">
-                  <p className={`m-0 p-0 fw-bold ${style.blue}`}>لماذا تختار</p>
-                  <p className="m-0 p-0 red fw-bold">Tickmill</p>
+          {faqs.map((item, index) => (
+            <div key={index} className={`mb-4 ${style.main} p-2`}>
+              <div className="w-100">
+                <div className="d-flex justify-content-between align-items-center">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: item.question_,
+                    }}
+                  />
+                  {selectedIndex === index ? (
+                    <MdKeyboardArrowUp
+                      size={30}
+                      className="pointer"
+                      onClick={() => setSelectedIndex(null)}
+                    />
+                  ) : (
+                    <MdKeyboardArrowDown
+                      size={30}
+                      className="pointer"
+                      onClick={() => setSelectedIndex(index)}
+                    />
+                  )}
                 </div>
-                {showHow ? (
-                  <MdKeyboardArrowUp
-                    size={30}
-                    className="pointer"
-                    onClick={() => sewtShowHow(false)}
-                  />
-                ) : (
-                  <MdKeyboardArrowDown
-                    size={30}
-                    className="pointer"
-                    onClick={() => sewtShowHow(true)}
+                {selectedIndex === index && (
+                  <div
+                    className="m-0 p-0 mt-2"
+                    dangerouslySetInnerHTML={{
+                      __html: item.answer,
+                    }}
                   />
                 )}
               </div>
-              <div className={`mt-4 ${showHow ? style.show : style.hide}`}>
-                {whyTickmill.map((item, index) => (
-                  <div key={index} className="mb-2">
-                    <div className={`d-flex gap-1 `}>
-                      <img
-                        loading="lazy"
-                        src={check}
-                        className={style.check}
-                        alt="check/img"
-                      />
-                      <p
-                        className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}
-                      >
-                        {item.title}
-                      </p>
-                    </div>
-                    <p className="m-0 p-0">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
-          </div>
-          <div className={`mb-4 ${style.main} p-2`}>
-            <div className="w-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <p className="fw-bold fs24 shamel green m-0 p-0">
-                  كيف تتم عملية السحب و الايداع
-                </p>
-
-                {showDetails ? (
-                  <MdKeyboardArrowUp
-                    size={30}
-                    className="pointer"
-                    onClick={() => setShowDetails(false)}
-                  />
-                ) : (
-                  <MdKeyboardArrowDown
-                    size={30}
-                    className="pointer"
-                    onClick={() => setShowDetails(true)}
-                  />
-                )}
-              </div>
-              <div className={`mt-4 ${showDetails ? style.show : style.hide}`}>
-                {whyTickmill.map((item, index) => (
-                  <div key={index} className="mb-2">
-                    <div className={`d-flex gap-1 `}>
-                      <img
-                        loading="lazy"
-                        src={check}
-                        className={style.check}
-                        alt="check/img"
-                      />
-                      <p
-                        className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}
-                      >
-                        {item.title}
-                      </p>
-                    </div>
-                    <p className="m-0 p-0">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div className={`mb-4 ${style.main} p-2`}>
-            <div className="w-100">
-              <div className="d-flex justify-content-between align-items-center">
-                <p className="fw-bold fs24 shamel green m-0 p-0">
-                  تراخيص الشركة
-                </p>
-
-                {showCopmany ? (
-                  <MdKeyboardArrowUp
-                    size={30}
-                    className="pointer"
-                    onClick={() => setShowCompany(false)}
-                  />
-                ) : (
-                  <MdKeyboardArrowDown
-                    size={30}
-                    className="pointer"
-                    onClick={() => setShowCompany(true)}
-                  />
-                )}
-              </div>
-              <div className={`mt-4 ${showCopmany ? style.show : style.hide}`}>
-                {whyTickmill.map((item, index) => (
-                  <div key={index} className="mb-2">
-                    <div className={`d-flex gap-1 `}>
-                      <img
-                        loading="lazy"
-                        src={check}
-                        className={style.check}
-                        alt="check/img"
-                      />
-                      <p
-                        className={`m-0  p-0 shamel fs18 fw-bold ${style.blue}`}
-                      >
-                        {item.title}
-                      </p>
-                    </div>
-                    <p className="m-0 p-0">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
         <div className={`px-5 py-3 col-12 col-md-4 ${style.mediaContainer}`}>
           <p

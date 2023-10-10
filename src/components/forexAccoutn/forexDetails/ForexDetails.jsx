@@ -1,15 +1,14 @@
 import React from "react";
-import { reqPaper, conditions } from "../../../fakers/data.js";
 import ReqPaper from "./reqPapers/ReqPaper";
 import Conditions from "./conditions/Conditions";
 import ContactUs from "../../utils/contactus/ContactUs";
 
-const ForexDetails = ({ phoneNum }) => {
+const ForexDetails = ({ phoneNum, paper, accountRequirments }) => {
   return (
     <div>
       <ContactUs phoneNum={phoneNum} />
-      <ReqPaper data={reqPaper} />
-      <Conditions data={conditions} />
+      <ReqPaper data={paper} />
+      <Conditions data={accountRequirments} />
     </div>
   );
 };

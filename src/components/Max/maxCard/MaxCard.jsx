@@ -92,8 +92,8 @@ const MaxCard = ({ maxTitle, maxDesc, mainTitle, mainDesc, accounts }) => {
               </div>
               <p className={`mx-0 p-0 mb-1 ${style.intro}  `}>
                 {i18n.language === "en"
-                  ? "Maximum physical leverage"
-                  : "الحد الأقصي للرافعات المادية"}
+                  ? "Maximum  financial leverage"
+                  : "الحد الأقصي للرافعة المالية"}
               </p>
               <div className="mb-1 d-flex align-items-center gap-1">
                 <img
@@ -108,8 +108,8 @@ const MaxCard = ({ maxTitle, maxDesc, mainTitle, mainDesc, accounts }) => {
               </div>
               <p className={`mx-0 p-0 mb-1 ${style.intro}  `}>
                 {i18n.language === "en"
-                  ? "minimum physical leverage"
-                  : "الحد الأدني للرافعات المادية"}
+                  ? "Minimum contract size"
+                  : "الحد الأدني لحجم العقد"}
               </p>
               <div className="mb-1 d-flex align-items-center gap-1">
                 <img

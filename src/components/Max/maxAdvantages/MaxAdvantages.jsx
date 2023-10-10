@@ -3,8 +3,7 @@ import style from "./maxAdvantages.module.css";
 import { useParams } from "react-router-dom";
 const MaxAdvantages = ({ mainAdvantage, maxAdvantage }) => {
   const { test } = useParams();
-  console.log("this is main", mainAdvantage.features);
-  console.log("this is max", maxAdvantage.features);
+
   return (
     <div className={style.mainDiv}>
       <div className="container">

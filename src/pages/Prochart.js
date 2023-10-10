@@ -13,7 +13,7 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
-const Prochart = () => {
+const Prochart = ({ phoneNum }) => {
   const { i18n } = useTranslation();
   const fetchData = () => {
     return request({ url: "/prochart" });
@@ -79,6 +79,7 @@ const Prochart = () => {
               action={handleCloseModal}
               showModal={showModal}
               setShowModal={setShowModal}
+              phoneNum={phoneNum}
             />
           </div>
         </div>

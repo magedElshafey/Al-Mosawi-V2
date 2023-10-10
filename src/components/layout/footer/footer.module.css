@@ -36,6 +36,8 @@
   background-color: #f5f5f5;
   padding: 8px;
   display: flex;
+  width: 150px;
+  height: 60px;
   justify-content: center;
   align-items: center;
 }
@@ -61,8 +63,8 @@
   right: 135px;
 }
 .ltrStyle::before {
-  width: 210%;
-  left: 70px;
+  width: 100%;
+  left: 120px;
 }
 
 @media screen and (max-width: 767px) {

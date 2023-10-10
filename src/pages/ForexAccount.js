@@ -6,36 +6,54 @@ import ForexDetails from "../components/forexAccoutn/forexDetails/ForexDetails";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 const ForexAccount = ({ phoneNum }) => {
+  const { i18n } = useTranslation();
   const fetchData = () => {
     return request({ url: "/forex" });
   };
-  const { isLoading, data } = useQuery("special-account-page", fetchData, {
+  const { isLoading, data } = useQuery("forex-page", fetchData, {
     cacheTime: 12000,
     staleTime: 12000,
   });
   return (
-    <div>
-      <Hero
-        isBigHero={false}
-        isSmallHero={true}
-        isMediumHero={false}
-        title="إنشاء حساب"
-        desc="أنشئ حساب.. اودع ... تداول.. اربح"
-        pageName="create account"
-        img={img}
-      />
-      <div className="container py-5">
-        <div className="row gap-5">
-          <div className="col-12 col-md-7 ">
-            <ForexForm />
-          </div>
-          <div className="col-12 col-md-4 ">
-            <ForexDetails phoneNum={phoneNum} />
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <Hero
+            isBigHero={false}
+            isSmallHero={true}
+            isMediumHero={false}
+            title={i18n.language === "ar" ? "إنشاء حساب" : "create account"}
+            desc={
+              i18n.language === "ar"
+                ? "أنشئ حساب.. اودع ... تداول.. اربح"
+                : "Create an account... deposit... trade... win"
+            }
+            pageName={i18n.language === "ar" ? "إنشاء حساب" : "create account"}
+            img={img}
+          />
+          <div className="container py-5">
+            <div className="row gap-5">
+              <div className="col-12 col-md-7 ">
+                <ForexForm />
+              </div>
+              <div className="col-12 col-md-4 ">
+                <ForexDetails
+                  paper={data.data.data.mainData.paperRequirments}
+                  accountRequirments={
+                    data.data.data.mainData.accountRequirments
+                  }
+                  phoneNum={phoneNum}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

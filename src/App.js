@@ -54,6 +54,7 @@ import FixedBtn from "./components/utils/fixedBtn/FixedBtn.jsx";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Spinner from "./components/utils/Spinner/Spinner.jsx";
 import axios from "axios";
+import Checkout from "./pages/Checkout.js";
 
 const App = () => {
   // handle website settings data
@@ -70,10 +71,8 @@ const App = () => {
         },
       })
       .then((res) => {
-        console.log("this is res from app component", res.status);
         if (res.status === 200) {
           setSettingsData(res.data.data);
-          console.log("this is data from app component", settingsData);
           setLoading(false);
         } else {
           setLoading(true);
@@ -108,7 +107,7 @@ const App = () => {
   }, []);
   const queryClient = new QueryClient();
 
-  const [t, i18n] = useTranslation();
+  const { i18n } = useTranslation();
   // handle language
   useEffect(() => {
     document.documentElement.setAttribute("lang", i18n.language);
@@ -133,7 +132,6 @@ const App = () => {
     }, [pathname]);
     return null;
   }
-  // git settings data
 
   return (
     <>
@@ -144,7 +142,11 @@ const App = () => {
           <Router>
             <ScrollToTopAfterChangePage />
             <Meta data={settingsData.generalSetting} />
-            <Nav data={settingsData.generalSetting} />
+            <Nav
+              data={settingsData.generalSetting}
+              phoneNum={settingsData.contactSettings.phone}
+              menus={settingsData.header}
+            />
             <FixedBtn />
             {/*done*/}
             <Routes>
@@ -226,7 +228,15 @@ const App = () => {
             </Routes>
             {/*done*/}
             <Routes>
-              <Route path="/prochart" element={<Prochart />} />
+              <Route
+                path="/prochart"
+                element={
+                  <Prochart phoneNum={settingsData.contactSettings.phone} />
+                }
+              />
+            </Routes>
+            <Routes>
+              <Route path="/checkout" element={<Checkout />} />
             </Routes>
             {/*done*/}
             <Routes>
@@ -265,7 +275,7 @@ const App = () => {
             </Routes>
             {/*done*/}
             <Routes>
-              <Route path="/deals" element={<Deals />} />
+              <Route path="/deals/:id" element={<Deals />} />
             </Routes>
             <Routes>
               <Route
@@ -334,6 +344,8 @@ const App = () => {
               <Route path="/account/:test" element={<MAX />} />
             </Routes>
             <Footer
+              footer1={settingsData.footer1}
+              footer2={settingsData.footer2}
               phoneNum={settingsData.contactSettings.phone}
               aboutUs={aboutUs}
               generalData={settingsData.generalSetting}

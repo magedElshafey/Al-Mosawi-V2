@@ -3,12 +3,12 @@
   border: none;
   padding: 7px 10px;
   border-radius: 25px;
-  height: 43px;
+  height: 33px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 200px;
+  width: 140px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;

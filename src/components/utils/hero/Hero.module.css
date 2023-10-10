@@ -63,7 +63,7 @@
   -ms-border-radius: 22px;
   -o-border-radius: 22px;
 }
-.pageName {
+.pageNamear {
   font-size: 60px;
   text-transform: uppercase;
   color: white;
@@ -75,9 +75,26 @@
   /* letter-spacing: 8px; */
 }
 @media screen and (max-width: 767px) {
-  .pageName {
+  .pageNamear {
     font-size: 24px;
     left: 30px;
+    bottom: 0;
+  }
+}
+.pageNameen {
+  font-size: 60px;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  bottom: 5px;
+  right: 80px !important;
+  opacity: 0.3;
+}
+@media screen and (max-width: 767px) {
+  .pageNameen {
+    font-size: 24px;
+    right: 30px;
     bottom: 0;
   }
 }

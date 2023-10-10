@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import style from "./upload.module.css";
 import uploadIcon from "../../../../assets/upload-to-cloud.svg";
 import { useTranslation } from "react-i18next";
-const Upload = ({ label, action, id }) => {
+const Upload = ({ label, action, id, name }) => {
   const [t] = useTranslation();
   const inputRef = useRef(null);
   const handleButtonClic = (e) => {
@@ -19,6 +19,7 @@ const Upload = ({ label, action, id }) => {
         className={style.fileInp}
         type="file"
         id={id}
+        name={name}
         onChange={action}
       />
       <button onClick={handleButtonClic} className={style.custom}>

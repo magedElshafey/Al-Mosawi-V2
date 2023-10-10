@@ -11,14 +11,20 @@ import HistoryDetails from "../../history/historyDetails/HistoryDetails";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 
-const HeroBox = ({ isHistory, isVideo, isRecommendations, data }) => {
+const HeroBox = ({
+  isHistory,
+  isVideo,
+  isRecommendations,
+  data,
+  dealsData,
+}) => {
   return (
-    <div className={style.mainDiv}>
-      <div className="container mt-5 pt-5">
+    <div className={`m-0 p-0 ${style.mainDiv}`}>
+      <div className="z-3 container mb-0 pb-0 mt-5 pt-5">
         {!isRecommendations && !isVideo && !isHistory && (
           <div>
-            <div className={`p-2 ${style.dealsBox}`}>
-              <DealsHeader />
+            <div className={`p-2 pb-0 m-0 ${style.dealsBox}`}>
+              <DealsHeader data={dealsData} />
               <div className={`pt-2 my-4 z-3 row align-items-center `}>
                 <div className="z-3  position-relative col-12 col-md-6  mb-md-0">
                   <img
@@ -29,7 +35,7 @@ const HeroBox = ({ isHistory, isVideo, isRecommendations, data }) => {
                   />
                 </div>
                 <div className="z-3 col-12 col-md-6  mb-md-0">
-                  <DealsDetails />
+                  <DealsDetails data={dealsData} />
                 </div>
               </div>
             </div>
@@ -101,8 +107,8 @@ const HeroBox = ({ isHistory, isVideo, isRecommendations, data }) => {
           </div>
         )}
         {!isVideo && isRecommendations && !isHistory && (
-          <div className="z-3">
-            <p className={`mx-0 m-0 p-0 z-3 text-white shamel fs30 fw-bold`}>
+          <>
+            <p className={`m-0 p-0  text-white   fs30 fw-bold ${style.reco}`}>
               قسم و تحليلات و التوصيات
             </p>
             <div className="d-flex flex-wrap  align-items-center gap-4 mt-3 justify-content-center">
@@ -110,7 +116,7 @@ const HeroBox = ({ isHistory, isVideo, isRecommendations, data }) => {
                 <RecommendationCard data={item} key={index} />
               ))}
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>

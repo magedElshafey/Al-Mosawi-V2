@@ -5,22 +5,28 @@ import { useTranslation } from "react-i18next";
 const Video = ({ data }) => {
   const [t] = useTranslation();
   return (
-    <div>
-      <div className={style.videoBackground}>
+    <div className="container">
+      <div className={style.videocontainer}>
         <ReactPlayer
+          url="https://player.vimeo.com/video/867338027"
+          playing={true}
+          loop={true}
+          muted={true}
           width="100%"
-          height="80%"
-          url={`${data.videoLink}`}
-          controls
+          height="100%"
         />
-        <div className={`w-100 ${style.text}`}>
-          <div className="w-100 row juistify-content-center align-items-center">
-            <div className="col-12 col-md-10 mb-3 mb-md-0">
-              <div dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }} />
-              <div
-                className="mt-5"
-                dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
-              />
+        <div className={style.overlay}>
+          <div className={`w-100 ${style.text}`}>
+            <div className="w-100 row juistify-content-center align-items-center">
+              <div className="col-12 col-md-10 mb-3 mb-md-0">
+                <div
+                  dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }}
+                />
+                <div
+                  className="mt-3"
+                  dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -30,6 +36,14 @@ const Video = ({ data }) => {
 };
 
 export default Video;
+/**
+ * https://player.vimeo.com/video/867338027
+ * <div className={style.videoBackground}>
+      
+
+     
+    </div>
+ */
 /**
  *   <div
       style={{ backgroundImage: `url(${data.videoLink})` }}
@@ -80,3 +94,13 @@ export default Video;
       </div>
     </div>
 */
+/**
+ *   <div className={style.videoBackground}>
+      <iframe
+        src="https://player.vimeo.com/video/867338027"
+        className={style.videoFrame}
+        allow="autoplay; fullscreen;"
+        allowFullScreen
+      ></iframe>
+    </div>
+ */

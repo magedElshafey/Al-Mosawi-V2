@@ -9,7 +9,9 @@ import BTN from "../../utils/btn/BTN";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-const PackageModal = ({ showModal, action, setShowModal }) => {
+import { useNavigate } from "react-router-dom";
+const PackageModal = ({ showModal, action, setShowModal, phoneNum }) => {
+  const navigate = useNavigate();
   const data = quota.filter((item) => item.title === "البرونزية");
   const { i18n } = useTranslation();
   const modalRef = useRef();
@@ -19,11 +21,7 @@ const PackageModal = ({ showModal, action, setShowModal }) => {
     }
   };
   const handleButtonClick = () => {
-    toast.success(
-      i18n.language === "en"
-        ? "your request send successfully"
-        : "تم ارسال الطلب بنجاح"
-    );
+    navigate("/checkout");
     setShowModal(false);
   };
   useEffect(() => {
@@ -118,7 +116,9 @@ const PackageModal = ({ showModal, action, setShowModal }) => {
                       className={`book ${style.btn}`}
                     >
                       <MdOutlineArrowBackIos size={20} />
-                      <span className="mt-1">ارسال الطلب</span>
+                      <span className="mt-1">
+                        {i18n.language === "ar" ? "ادفع" : "checkout"}
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -128,12 +128,15 @@ const PackageModal = ({ showModal, action, setShowModal }) => {
               <p className="fw-bold shamel fs22 mx-0 my-0 p-0 text-center">
                 يمكنك أيضا الاشتراك عن طريقالتواصل مع خدمة العملاء
               </p>
-              <div className="shamel my-3 d-flex justify-content-center align-items-center gap-1 fs22">
+              <a
+                href={`https://wa.me/${phoneNum}`}
+                className="shamel my-3 d-flex justify-content-center align-items-center gap-1 fs22"
+              >
                 <p className="fw-bolder  green mx-0 mt-1 mb-0 shamel p-0 ">
-                  25281720
+                  {phoneNum}
                 </p>
                 <BsFillTelephoneFill className="green " />
-              </div>
+              </a>
 
               <div className={`p-3 fw-bold ${style.purchas}`}>
                 <p className="text-center fs22 fw-bold shamel mb-2 mx-0 p-0">

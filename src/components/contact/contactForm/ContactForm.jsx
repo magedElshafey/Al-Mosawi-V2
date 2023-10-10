@@ -107,105 +107,101 @@ const ContactForm = () => {
       phone.trim() === "" ||
       city.trim() === ""
     ) {
+      toast.error(
+        i18n.language === "ar"
+          ? "جميع الحقول المطلوبة"
+          : "All Fields are Required"
+      );
       return;
     } else {
       const contactData = { name, phone, country: city, content: msg, email };
       mutate(contactData);
+      console.log("this is data from contact form", contactData);
     }
   };
   return (
     <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div className={`p-4 ${style.mainContainer}`}>
-          <p className="fw-bolder mb-2 p-0 mx-0 shamel fs28">{t("glade")}</p>
-          <p className="mb-2 mx-0 p-0 w-75">
-            إذا كان لديك أي استفسارات أو تعليقات، يرجى إرسالها إليناعبر نموذج
-            الاتصال وسيتم الرد بأسرع وقت
-          </p>
-          <form>
-            <div className="row my-4">
-              <div className="col-12 col-md-6 mb-3 mb-md-0">
-                <label
-                  htmlFor="name"
-                  className="fw-bolder shamel  d-block mb-1 "
-                >
-                  {t("name")}
-                </label>
-                <input
-                  value={name}
-                  onChange={handleNameChange}
-                  type="text"
-                  className="inp"
-                  id="name"
-                />
-                {nameError && <p className="p-0 my-2 error">{nameError}</p>}
-              </div>
-              <div className="col-12 col-md-6 mb-3 mb-md-0">
-                <label
-                  htmlFor="email"
-                  className="shamel fw-bolder d-block mb-1 "
-                >
-                  {t("email")}
-                </label>
-                <input
-                  value={email}
-                  onChange={handleEmailChange}
-                  type="email"
-                  className="inp"
-                  id="email"
-                />
-                {!isValidEmail && i18n.language === "en" && email !== "" && (
-                  <p className="p-0 my-2 error">not valid email</p>
-                )}
-                {!isValidEmail && i18n.language === "ar" && email !== "" && (
-                  <p className="p-0 my-2 error">
-                    هذا البريد الالكتروني غير صالح
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="row mb-4">
-              <div className="col-12 col-md-6 mb-3 mb-md-0">
-                <label htmlFor="num" className="shamel fw-bolder d-block mb-1 ">
-                  {t("phone")}
-                </label>
-                <input
-                  value={phone}
-                  onChange={handleChangePhone}
-                  type="text"
-                  className="inp"
-                  id="num"
-                />
-              </div>
-              <div className="col-12 col-md-6 mb-3 mb-md-0">
-                <label
-                  htmlFor="city"
-                  className="shamel fw-bolder d-block mb-1 "
-                >
-                  {t("country")}
-                </label>
-                <input
-                  value={city}
-                  onChange={handleChangeCountry}
-                  type="text"
-                  className="inp"
-                  id="city"
-                />
-                {cityError && <p className="p-0 my-2 error">{cityError}</p>}
-              </div>
-            </div>
-            <div className="mb-2">
-              <label htmlFor="msg" className="shamel d-block mb-1 fw-bolder ">
-                {t("sendMsg")}
+      <div className={`p-4 ${style.mainContainer}`}>
+        <p className="fw-bolder mb-2 p-0 mx-0 shamel fs28">{t("glade")}</p>
+        <p className="mb-2 mx-0 p-0 w-75">
+          {i18n.language === "ar"
+            ? "إذا كان لديك أي استفسارات أو تعليقات، يرجى إرسالها إليناعبر نموذج الاتصال وسيتم الرد بأسرع وقت"
+            : "If you have any questions or comments, please send them to us via the contact form and we will respond as soon as possible"}
+        </p>
+        <form>
+          <div className="row my-4">
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
+              <label htmlFor="name" className="fw-bolder shamel  d-block mb-1 ">
+                {t("name")}
               </label>
-              <textarea className="area"></textarea>
+              <input
+                value={name}
+                onChange={handleNameChange}
+                type="text"
+                className="inp"
+                id="name"
+              />
+              {nameError && <p className="p-0 my-2 error">{nameError}</p>}
             </div>
-            <BigBtn action={handleClick} text={t("sendNow")} />
-          </form>
-        </div>
-      )}
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
+              <label htmlFor="email" className="shamel fw-bolder d-block mb-1 ">
+                {t("email")}
+              </label>
+              <input
+                value={email}
+                onChange={handleEmailChange}
+                type="email"
+                className="inp"
+                id="email"
+              />
+              {!isValidEmail && i18n.language === "en" && email !== "" && (
+                <p className="p-0 my-2 error">not valid email</p>
+              )}
+              {!isValidEmail && i18n.language === "ar" && email !== "" && (
+                <p className="p-0 my-2 error">هذا البريد الالكتروني غير صالح</p>
+              )}
+            </div>
+          </div>
+          <div className="row mb-4">
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
+              <label htmlFor="num" className="shamel fw-bolder d-block mb-1 ">
+                {t("phone")}
+              </label>
+              <input
+                value={phone}
+                onChange={handleChangePhone}
+                type="text"
+                className="inp"
+                id="num"
+              />
+            </div>
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
+              <label htmlFor="city" className="shamel fw-bolder d-block mb-1 ">
+                {t("country")}
+              </label>
+              <input
+                value={city}
+                onChange={handleChangeCountry}
+                type="text"
+                className="inp"
+                id="city"
+              />
+              {cityError && <p className="p-0 my-2 error">{cityError}</p>}
+            </div>
+          </div>
+          <div className="mb-2">
+            <label htmlFor="msg" className="shamel d-block mb-1 fw-bolder ">
+              {t("sendMsg")}
+            </label>
+            <textarea
+              onChange={(e) => setMsg(e.target.value)}
+              className="area"
+              value={msg}
+            ></textarea>
+          </div>
+          <BigBtn action={handleClick} text={t("sendNow")} />
+        </form>
+      </div>
     </>
   );
 };

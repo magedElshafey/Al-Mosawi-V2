@@ -1,16 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { coursesDetails } from "../fakers/data";
+// import { coursesDetails } from "../fakers/data";
 import HeroCourse from "../components/utils/heroCourse/HeroCourse";
 import AboutCourse from "../components/courseDetails/aboutCourse/AboutCourse";
 
-import MT4 from "../components/courseDetails/mt4/MT4";
+// import MT4 from "../components/courseDetails/mt4/MT4";
 import Advantages from "../components/courseDetails/advantages/Advantages";
-import Reviews from "../components/courseDetails/reviews/Reviews";
-import CourseOne from "../components/courseDetails/coursesDetails/courseone/CourseOne";
+// import Reviews from "../components/courseDetails/reviews/Reviews";
+// import CourseOne from "../components/courseDetails/coursesDetails/courseone/CourseOne";
 import CourseTwo from "../components/courseDetails/coursesDetails/courseTwo/CourseTwo";
-import CourseThree from "../components/courseDetails/coursesDetails/courseThree/CourseThree";
-import { courseOne, courseTwo, courseThree } from "../fakers/data";
+// import CourseThree from "../components/courseDetails/coursesDetails/courseThree/CourseThree";
+// import { courseOne, courseTwo, courseThree } from "../fakers/data";
 import style from "../components/courseDetails/coursesDetails/coursesDetails.module.css";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
@@ -36,6 +36,7 @@ const CourseDetails = ({ fixedContainer }) => {
       ) : (
         <div>
           <HeroCourse
+            product={data.data.data}
             title={data.data.data.title}
             desc={data.data.data.header_des}
             img={data.data.data.header_img}

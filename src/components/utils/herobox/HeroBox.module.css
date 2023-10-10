@@ -6,6 +6,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  z-index: 5;
   justify-content: center;
 }
 
@@ -21,6 +22,7 @@
     rgba(0, 3, 43, 0.6),
     rgba(19, 0, 90, 0.7)
   );
+  z-index: 3;
 }
 .chartsImg {
   width: 95%;
@@ -151,12 +153,10 @@
   -o-border-radius: 10px;
 }
 .moreBtn {
-
   background-color: #003684;
   color: white;
   border: none;
   padding: 18px !important;
-
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -170,4 +170,8 @@
 
     rgba(1, 36, 86, 1) 100%
   );
+}
+.reco {
+  opacity: 1;
+  z-index: 50 !important;
 }

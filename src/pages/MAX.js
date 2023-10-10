@@ -51,7 +51,10 @@ const MAX = () => {
             maxClassic={data.data.data.maxAccounts.proClass}
             maxVip={data.data.data.maxAccounts.proVip}
           />
-          <WhyTickmill paper={data.data.data.mainData.deposit} />
+          <WhyTickmill
+            faqs={data.data.data.mainData.Faq}
+            paper={data.data.data.mainData.deposit}
+          />
         </div>
       )}
     </>

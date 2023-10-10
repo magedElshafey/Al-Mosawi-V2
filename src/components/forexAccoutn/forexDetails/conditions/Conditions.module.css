@@ -1,3 +1,8 @@
 .false {
   color: red !important;
 }
+.icon {
+  width: 13px;
+  height: 12px;
+  object-fit: cover;
+}

@@ -1,15 +1,30 @@
 import React from "react";
 import HeroBox from "../components/utils/herobox/HeroBox";
-
-const Recommendations = ({ data }) => {
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
+const Recommendations = () => {
+  const { i18n } = useTranslation();
+  const fetchData = () => {
+    return request({ url: "/deal/index" });
+  };
+  const { isLoading, data } = useQuery("deals-page", fetchData, {
+    cacheTime: 12000,
+    staleTime: 12000,
+  });
   return (
     <div>
-      <HeroBox
-        isHistory={false}
-        isVideo={false}
-        isRecommendations={true}
-        data={data}
-      />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <HeroBox
+          isHistory={false}
+          isVideo={false}
+          isRecommendations={true}
+          data={data.data.data}
+        />
+      )}
     </div>
   );
 };
