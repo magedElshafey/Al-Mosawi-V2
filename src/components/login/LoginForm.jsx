@@ -10,6 +10,37 @@ import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 const LoginForm = () => {
   const { t, i18n } = useTranslation();
+  const cartItems = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : null;
+  const user = localStorage.getItem("userId")
+    ? JSON.parse(localStorage.getItem("userId"))
+    : null;
+  const lang = i18n.language;
+  const sendCartItems = async () => {
+    const res = await fetch(
+      "https://almosawi.admin.technomasrsystems.com/api/cart/preOrder",
+      {
+        method: "POST",
+        headers: {
+          user,
+          "Content-Type": "application/json",
+          lang,
+        },
+        body: JSON.stringify({
+          cart: cartItems,
+        }),
+      }
+    );
+    const data = await res.json();
+    if (data.status) {
+      console.log("request sent");
+    } else {
+      console.log("this is the res", data);
+    }
+    return data;
+  };
+
   const navigate = useNavigate();
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +55,7 @@ const LoginForm = () => {
             ? "you are loggin successfulyy"
             : "تم تسجيل دخولك بنجاح"
         );
+        sendCartItems();
         setAccount("");
         setPassword("");
         localStorage.setItem("userId", JSON.stringify(data.data.data.id));
@@ -56,6 +88,7 @@ const LoginForm = () => {
       mutate(userData);
     }
   };
+
   return (
     <>
       {isLoading ? (

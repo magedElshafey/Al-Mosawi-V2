@@ -24,6 +24,12 @@ const Cart = () => {
     return request({ url: "/cart/myCart", headers });
   };
   const { isLoading, data } = useQuery("cart-page", fetchData);
+  const totalPrice = items.reduce((acc, product) => {
+    acc += product.price_after_discount
+      ? +product.price_after_discount
+      : +product.price;
+    return acc;
+  }, 0);
   return (
     <>
       {isLoading ? (
@@ -54,27 +60,27 @@ const Cart = () => {
                   <CartEmpty />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
-                  <CartTotal />
+                  <CartTotal user={user} total={data.data.data.total} />
                 </div>
               </div>
             )}
-            {!user && items && (
+            {!user && items.length && (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartItems items={items} />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
-                  <CartTotal />
+                  <CartTotal total={totalPrice} user={null} />
                 </div>
               </div>
             )}
-            {!user && !items && (
+            {!user && !items.length && (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartEmpty />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
-                  <CartTotal />
+                  <CartTotal total={totalPrice} user={null} />
                 </div>
               </div>
             )}

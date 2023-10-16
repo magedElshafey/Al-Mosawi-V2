@@ -23,18 +23,28 @@ const RecommendationCard = ({ data }) => {
       </p>
       <div className="row text-white">
         <div
-          className={`col-6 mb-2 d-flex gap-1 mb-md-0 ${style.stopContainer}`}
+          className={`col-6 mb-2 d-flex flex-column gap-2 mb-md-0 ${style.stopContainer}`}
         >
-          <p className=" m-0 p-0 text-white  ">ايقاف</p>
-          <p className="m-0 p-0 text-white">: {data.Recommendation.stop}</p>
-        </div>
-        <div className="col-6 mb-2  mb-2 mb-md-0">
+          <div className="d-flex gap-1">
+            <p className=" m-0 p-0 text-white  ">ايقاف</p>
+            <p className="m-0 p-0 text-white">: {data.Recommendation.stop}</p>
+          </div>
           <div className="d-flex gap-1">
             <p className="m-0 p-0 text-white roboto ">دخول</p>
             <p className="m-0 p-0 text-white roboto  mb-4">
               : {data.Recommendation.enter}
             </p>
           </div>
+        </div>
+        <div className="col-6 mb-2 d-flex flex-column gap-2  mb-2 mb-md-0">
+          <div className="d-flex gap-1">
+            <p className=" m-0 p-0 text-white  ">الثقة : </p>
+            <p className="m-0 p-0 text-white">: {data.Recommendation.trust}</p>
+          </div>
+          <p className="m-0 p-0 text-white roboto">
+            {data.Recommendation.status}
+          </p>
+
           <img
             loading="lazy"
             alt="candels"
@@ -43,11 +53,11 @@ const RecommendationCard = ({ data }) => {
           />
         </div>
       </div>
-      <div className={` ${style.goalContainer}`}>
+      <div className={`${style.goalContainer}`}>
         <p className="my-0  p-0 roboto d-inline-block text-white p-2">
           الهدف :{" "}
         </p>
-        <p className="my-0  p-0 roboto d-inline-block text-white p-2">
+        <p className="my-0  p-0 roboto d-inline-block text-white">
           {data.Recommendation.Goal[0].goal}
         </p>
       </div>

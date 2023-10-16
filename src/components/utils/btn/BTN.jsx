@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const BTN = ({ action, text }) => {
   const { i18n } = useTranslation();
   return (
-    <button className={` ${style.btn}`} onClick={() => action()}>
+    <button className={` ${style.btn}`} onClick={action}>
       {i18n.language === "en" ? (
         <MdKeyboardArrowRight size={20} />
       ) : (

@@ -101,9 +101,10 @@ const Hero = ({
                 </p>
               )}
               {title ? (
-                <p className="fs26 shamel fw-bolder my-0  ms-0  p-0 whiteGreen shamel">
-                  {title}
-                </p>
+                <p
+                  className=" shamel fw-bolder m-0 p-0 "
+                  dangerouslySetInnerHTML={{ __html: title }}
+                />
               ) : null}
 
               <div

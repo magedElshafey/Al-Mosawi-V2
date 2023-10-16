@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 import style from "./chooseAppointment.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { BsArrowRightCircle, BsArrowLeftCircle } from "react-icons/bs";
-
-const ChooseAppointment = ({ data }) => {
+import { useMutation } from "react-query";
+import Spinner from "../utils/Spinner/Spinner";
+import { request } from "../utils/axios";
+import toast from "react-hot-toast";
+const ChooseAppointment = ({ data, title, desc }) => {
   const [dayId, setDayId] = useState(null);
   const [timeId, setTimeId] = useState(null);
   const [time, setTime] = useState(null);
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [day, setDay] = useState(null);
   const swiperOptions = {
     loop: true,
     centeredSlides: false,
-    spaceBetween: 5,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+    spaceBetween: 20,
+    navigation: true,
     autoplay: {
-      delay: 15000,
+      delay: 5000,
       disableOnInteraction: false,
     },
     pagination: {
@@ -29,79 +31,118 @@ const ChooseAppointment = ({ data }) => {
     },
     breakpoints: {
       500: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 1,
-      },
-      900: {
         slidesPerView: 4,
       },
-      1024: {
+      768: {
+        slidesPerView: 5,
+      },
+      900: {
         slidesPerView: 6,
+      },
+      1024: {
+        slidesPerView: 5,
       },
     },
   };
   const navigate = useNavigate();
-  const handleClick = (day, time) => {
-    navigate("/booking/success");
-    window.localStorage.setItem("appoitment", JSON.stringify([day, time]));
+  const book = (data) => {
+    const headers = {
+      userId: JSON.parse(localStorage.getItem("userId")),
+    };
+    return request({
+      url: "/consultation/store",
+      method: "post",
+      data,
+      headers,
+    });
+  };
+  const { isLoading, mutate } = useMutation(book, {
+    onSuccess: (data) => {
+      console.log("this is the data at Sucess", data);
+      navigate("/booking/success");
+      toast.success(
+        i18n.language === "ar" ? "تم الحجز بنجاح" : "booked succfully"
+      );
+      localStorage.setItem("day", JSON.stringify(day));
+      localStorage.setItem("time", JSON.stringify(time));
+      setDayId(null);
+      setTime(null);
+      setTimeId(null);
+    },
+    onError: (data) => {
+      console.log("this is the data at error", data);
+    },
+  });
+  const handleClick = (appointment) => {
+    const userAppoitment = {
+      day: appointment.key,
+      date: appointment.date,
+      time,
+    };
+    mutate(userAppoitment);
   };
   return (
-    <div className="mt-5 row justify-content-center">
-      <div className={`col-12 col-md-9 p-4 ${style.mainDiv}`}>
-        <div className="my-2 text-center">
-          <div className="d-flex flex-column align-items-center gap-1">
-            <p className="m-0 p-0 fw-bold fs24 shamel">{t("reservation")}</p>
-            <p>{t("afterChoosing")}</p>
-          </div>
-          <div className="row justify-content-center">
-            <Swiper
-              modules={[Autoplay, Navigation]}
-              {...swiperOptions}
-              className="mySwiper col-12 col-md-11"
-            >
-              {data.map((day, index) => (
-                <SwiperSlide key={index}>
-                  <p className={`mx-0  mt-0 mb-2 ${style.border}`}>
-                    {day.title}
-                  </p>
-                  {day.appointments.map((item, indexTwo) => (
-                    <p
-                      onClick={() => {
-                        setDayId(day.title);
-                        setTimeId(indexTwo);
-                        setTime(item.time);
-                      }}
-                      key={indexTwo}
-                      className={` book pointer mx-0 mt-0  mb-1 ${
-                        style.border
-                      } ${
-                        dayId === day.title && timeId === indexTwo
-                          ? style.greenBorder
-                          : null
-                      } ${item.dark ? style.dark : null}`}
-                    >
-                      {item.time}
-                    </p>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div className="mt-5 row justify-content-center">
+          <div className={` col-12 col-md-9 p-4 ${style.mainDiv}`}>
+            <div className="my-2 text-center">
+              <div className="d-flex flex-column align-items-center gap-1">
+                <p className="m-0 p-0 fw-bold fs24 shamel">{title}</p>
+                <p>{desc}</p>
+              </div>
+              <div className="row justify-content-center">
+                <Swiper
+                  modules={[Autoplay, Navigation]}
+                  {...swiperOptions}
+                  className="mySwiper col-12 col-md-11 "
+                >
+                  {data.map((day, index) => (
+                    <SwiperSlide className="position-relative " key={index}>
+                      <p className={`mx-0  mt-0 mb-2 ${style.border}`}>
+                        {day.day}
+                      </p>
+                      {day.schedule.map((item, indexTwo) => (
+                        <p
+                          onClick={() => {
+                            setDayId(index);
+                            setTimeId(indexTwo);
+                            setDay(day.day);
+                            setTime(item.time);
+                          }}
+                          key={indexTwo}
+                          className={` book pointer mx-0 mt-0  mb-1 ${
+                            style.border
+                          } ${
+                            timeId === indexTwo && dayId === index
+                              ? style.greenBorder
+                              : null
+                          } ${!item.appointment_status ? null : style.dark}`}
+                        >
+                          {item.time}
+                        </p>
+                      ))}
+                      <button
+                        onClick={() => handleClick(day)}
+                        disabled={!dayId && !timeId && !time}
+                        className={`book ${style.btn} ${
+                          dayId === index ? style.bgGreen : style.disabled
+                        }`}
+                      >
+                        <MdArrowBackIosNew size={20} />
+                        <span className="mt-1">{t("book")}</span>
+                      </button>
+                    </SwiperSlide>
                   ))}
-                  <button
-                    onClick={() => handleClick(dayId, time)}
-                    disabled={!dayId && !timeId}
-                    className={`book ${style.btn} ${
-                      dayId === day.title ? style.bgGreen : style.disabled
-                    }`}
-                  >
-                    <MdArrowBackIosNew size={20} />
-                    <span className="mt-1">{t("book")}</span>
-                  </button>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                </Swiper>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

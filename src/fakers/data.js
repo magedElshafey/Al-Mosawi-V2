@@ -822,256 +822,7 @@ export const dealsDetails = {
   descTwos:
     "يتم شرح الهدف الاول هنا نص تجريبي يتم استبدالة بالنص الاصلي . هذا النص تجريبي شكرا للمعاينة",
 };
-export const recommendations = [
-  {
-    id: 1,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to left, rgba(0, 135, 79, 1) 30% , rgba(0, 135, 79, 0.3)100%) ",
-    btnText: "شراء",
-  },
-  {
-    id: 2,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to right  , rgba(126, 0, 0, 1) 40% , rgba(126, 0, 0, 0.3) 100%)",
-    btnText: "بيع",
-  },
-  {
-    id: 1,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to left, rgba(0, 135, 79, 1) 30% , rgba(0, 135, 79, 0.3)100%) ",
-    btnText: "شراء",
-  },
-  {
-    id: 2,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to right  , rgba(126, 0, 0, 1) 40% , rgba(126, 0, 0, 0.3) 100%)",
-    btnText: "بيع",
-  },
-  {
-    id: 1,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to left, rgba(0, 135, 79, 1) 30% , rgba(0, 135, 79, 0.3)100%) ",
-    btnText: "شراء",
-  },
-  {
-    id: 2,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to right  , rgba(126, 0, 0, 1) 40% , rgba(126, 0, 0, 0.3) 100%)",
-    btnText: "بيع",
-  },
-  {
-    id: 1,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to left, rgba(0, 135, 79, 1) 30% , rgba(0, 135, 79, 0.3)100%) ",
-    btnText: "شراء",
-  },
-  {
-    id: 2,
-    stop: 0.9872,
-    enter: 0.9872,
-    confidance: " 80%",
-    goal: 0.9823,
-    bg: "linear-gradient(to right  , rgba(126, 0, 0, 1) 40% , rgba(126, 0, 0, 0.3) 100%)",
-    btnText: "بيع",
-  },
-];
-export const nextAppointments = [
-  {
-    title: "اليوم : الساعة 5.00 مساء",
-    disabled: false,
-  },
-  {
-    title: "السبت 27/5/2023 : الساعة 9 مساء",
-    disabled: true,
-  },
-  {
-    title: "الخميس 02/6/2023 : الساعة 9 مساء",
-    disabled: true,
-  },
-];
-export const canclledAppointments = [
-  {
-    title: "السبت 27/1/2023 : الساعة 9 مساء",
-    disabled: true,
-  },
-  {
-    title: "الخميس 02/3/2023 : الساعة 9 مساء",
-    disabled: true,
-  },
-];
-export const chooseAppointment = [
-  {
-    title: "اليوم",
-    appointments: [
-      {
-        time: "9.00 صباحا",
-        dark: true,
-      },
-      {
-        time: "0.00 صباحا",
-        dark: true,
-      },
-      {
-        time: "5.00 مساء",
-        dark: false,
-      },
-      {
-        time: "9.00 مساء",
-        dark: false,
-      },
-      {
-        time: "0.00 مساء",
-        dark: false,
-      },
-    ],
-  },
-  {
-    title: "غدا",
-    appointments: [
-      {
-        time: "9.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "0.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "5.00 مساء",
-        dark: true,
-      },
-      {
-        time: "9.00 مساء",
-        dark: false,
-      },
-      {
-        time: "0.00 مساء",
-        dark: false,
-      },
-    ],
-  },
-  {
-    title: "الأحد 14/5",
-    appointments: [
-      {
-        time: "9.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "0.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "5.00 مساء",
-        dark: false,
-      },
-      {
-        time: "9.00 مساء",
-        dark: true,
-      },
-      {
-        time: "0.00 مساء",
-        dark: false,
-      },
-    ],
-  },
-  {
-    title: "الإثنين 15/5",
-    appointments: [
-      {
-        time: "9.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "0.00 صباحا",
-        dark: true,
-      },
-      {
-        time: "5.00 مساء",
-        dark: false,
-      },
-      {
-        time: "9.00 مساء",
-        dark: false,
-      },
-      {
-        time: "0.00 مساء",
-        dark: false,
-      },
-    ],
-  },
-  {
-    title: "الثلاثاء 16/5",
-    appointments: [
-      {
-        time: "9.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "0.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "5.00 مساء",
-        dark: true,
-      },
-      {
-        time: "9.00 مساء",
-        dark: true,
-      },
-      {
-        time: "0.00 مساء",
-        dark: true,
-      },
-    ],
-  },
-  {
-    title: "الأربعاء 17/5",
-    appointments: [
-      {
-        time: "9.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "0.00 صباحا",
-        dark: false,
-      },
-      {
-        time: "5.00 مساء",
-        dark: false,
-      },
-      {
-        time: "9.00 مساء",
-        dark: false,
-      },
-      {
-        time: "0.00 مساء",
-        dark: false,
-      },
-    ],
-  },
-];
+
 export const recommendationDetails = [
   {
     currency: "ETH",
@@ -1114,26 +865,7 @@ export const recommendationDetails = [
     btnText: "عرض الصفقة",
   },
 ];
-export const cartItems = [
-  {
-    id: 1,
-    img: challenger,
-    title: "اساسيات التداول",
-    price: 200,
-  },
-  {
-    id: 2,
-    img: challenger,
-    title: "اساسيات البرمجة",
-    price: 200,
-  },
-  {
-    id: 3,
-    img: challenger,
-    title: "اساسيات تطوير المواقع",
-    price: 500,
-  },
-];
+
 export const maxCards = [
   {
     id: 1,
@@ -1306,3 +1038,107 @@ export const successSlider = [
     },
   },
 ];
+export const test = {
+  status: "success",
+  message: "",
+  ask: {
+    title:
+      '<p><span style="color: #FF0000;"><strong>Elsaed</strong></span></p>',
+    des: "<p>Good Moring Guys</p>",
+    image:
+      "http://127.0.0.1:8000/uploads/ask/1/en/76oDUB1ralvGvsLmQIeBbtJMNjs0ssWE6ixhStIV.png",
+  },
+  data: [
+    {
+      id: 4,
+      user: {
+        id: 64,
+        name: "السعيد البرشلي",
+        userName: null,
+        email: "saed@gmail.com",
+        phone: "01224845766",
+        address: null,
+        photo:
+          "http://127.0.0.1:8000/AdminAssets/app-assets/images/portrait/small/avatar-s-11.jpg",
+        birth: null,
+        gender: null,
+      },
+      message: "السلام عليكم علوى حابيب قلبي",
+      created_at: "2023-10-10",
+      replies: [
+        {
+          id: 1,
+          user: {
+            id: 1,
+            name: "محمد سلطان",
+            userName: null,
+            email: "admin@admin.com",
+            phone: "01008015133",
+            address: null,
+            photo:
+              "http://127.0.0.1:8000/uploads/users/1/S7j8zkAjFm6NMqOU9aDKiGFLFyZdWeUHSh0sNysv.png",
+            birth: null,
+            gender: null,
+          },
+          replies: "حبيبى كيف شو أخبار معاليك .؟",
+          created_at: "2023-10-10",
+        },
+      ],
+    },
+    {
+      id: 5,
+      user: {
+        id: 64,
+        name: "السعيد البرشلي",
+        userName: null,
+        email: "saed@gmail.com",
+        phone: "01224845766",
+        address: null,
+        photo:
+          "http://127.0.0.1:8000/AdminAssets/app-assets/images/portrait/small/avatar-s-11.jpg",
+        birth: null,
+        gender: null,
+      },
+      message:
+        "بخير ي صديقى موسوى\nبدى طلب سلفهة لاخر الشهر لان لسا القبض منزلش",
+      created_at: "2023-10-11",
+      replies: [
+        {
+          id: 2,
+          user: {
+            id: 1,
+            name: "محمد سلطان",
+            userName: null,
+            email: "admin@admin.com",
+            phone: "01008015133",
+            address: null,
+            photo:
+              "http://127.0.0.1:8000/uploads/users/1/S7j8zkAjFm6NMqOU9aDKiGFLFyZdWeUHSh0sNysv.png",
+            birth: null,
+            gender: null,
+          },
+          replies: "<p>بس كدا ي باشا انت تؤمر كم بتريد ؟</p>",
+          created_at: "2023-10-11",
+        },
+      ],
+    },
+    {
+      id: 6,
+      user: {
+        id: 64,
+        name: "السعيد البرشلي",
+        userName: null,
+        email: "saed@gmail.com",
+        phone: "01224845766",
+        address: null,
+        photo:
+          "http://127.0.0.1:8000/AdminAssets/app-assets/images/portrait/small/avatar-s-11.jpg",
+        birth: null,
+        gender: null,
+      },
+      message: "بدى حوالي مليون دولار ي موسوى ي صديقى",
+      created_at: "2023-10-11",
+      replies: [],
+    },
+  ],
+};

@@ -4,7 +4,7 @@ import style from "./success.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Navigation, Pagination } from "swiper";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 const Success = ({ data }) => {
   const swiperOptions = {
     loop: true,

@@ -1,33 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImg from "../assets/hero.png";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
 import Chat from "../components/askAhmed/chat/Chat";
 import EmptyChat from "../components/askAhmed/emptyChat/EmptyChat";
-
+import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { useMutation, useQuery } from "react-query";
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
 const Ask = ({ handleChangeTitle, details, appointment }) => {
-  const chat = JSON.parse(window.localStorage.getItem("chat"))
-    ? JSON.parse(window.localStorage.getItem("chat"))
-    : [];
+  const [msg, setMsg] = useState("");
+  const { i18n } = useTranslation();
+  const user = JSON.parse(localStorage.getItem("userId"));
+  const headers = {
+    userId: user,
+  };
+  const fetchData = () => {
+    return request({
+      url: "/chat",
+      headers: {
+        userId: user,
+      },
+    });
+  };
+  const {
+    isLoading: loadingMsg,
+    data,
+    refetch,
+  } = useQuery("chat-page", fetchData);
+
+  const handleSendMsg = (data) => {
+    return request({ url: "/chat/send", headers, method: "post", data });
+  };
+  const { isLoading, mutate } = useMutation(handleSendMsg, {
+    onSuccess: (data) => {
+      if (data?.data.status === "success") {
+        toast.success(
+          i18n.language === "en"
+            ? "your message sent succfully"
+            : "تم ارسال رسالتك بنجاح"
+        );
+        setMsg("");
+        refetch();
+      }
+    },
+    onError: () => {
+      toast.error(
+        i18n.language === "en"
+          ? "there is an error occurred , please try again"
+          : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
+      );
+    },
+  });
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    if (msg.trim() === "") {
+      toast.error(
+        i18n.language === "ar"
+          ? "يرجي ارسال الاستشارة"
+          : "please write your message them send"
+      );
+      return;
+    } else {
+      const contactData = { message: msg };
+      mutate(contactData);
+    }
+  };
+
   return (
-    <div>
-      <Hero
-        isBigHero={false}
-        isSmallHero={true}
-        isMediumHero={false}
-        img={heroImg}
-        title="اسأل أحمد الموسوي"
-        desc="يمكنك كتابة سؤالك وسيتم الرد عليك في اقرب وقت ممكن من أ أحمد الموسوي"
-      />
-      <Header handleChangeTitle={handleChangeTitle} />
-      <div className="container py-4">
-        {chat.length ? (
-          <Chat data={chat} details={details} appointment={appointment} />
-        ) : (
-          <EmptyChat details={details} appointment={appointment} />
-        )}
-      </div>
-    </div>
+    <>
+      {loadingMsg ? (
+        <Spinner />
+      ) : (
+        <div>
+          <Hero
+            isBigHero={false}
+            isSmallHero={true}
+            isMediumHero={false}
+            img={data.data.ask.image}
+            title={data.data.ask.title}
+            desc={data.data.ask.des}
+          />
+          <Header handleChangeTitle={handleChangeTitle} />
+          <div className="container py-4">
+            {data.data.data.length ? (
+              <Chat
+                msg={msg}
+                setMsg={setMsg}
+                handleClick={handleClick}
+                data={data.data.data}
+                details={details}
+                appointment={appointment}
+              />
+            ) : (
+              <EmptyChat
+                msg={msg}
+                setMsg={setMsg}
+                handleClick={handleClick}
+                details={details}
+                appointment={appointment}
+              />
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

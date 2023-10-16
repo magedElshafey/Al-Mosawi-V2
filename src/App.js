@@ -21,12 +21,9 @@ import {
   newCourses,
   accountDetails,
   monthlyWithdraw,
-  recommendations,
-  nextAppointments,
-  canclledAppointments,
-  chooseAppointment,
+  
   recommendationDetails,
-  cartItems,
+ 
 } from "./fakers/data.js";
 import Blogs from "./pages/Blogs.js";
 import Blog from "./pages/Blog.js";
@@ -280,7 +277,7 @@ const App = () => {
             <Routes>
               <Route
                 path="/recommendations"
-                element={<Recommendations data={recommendations} />}
+                element={<Recommendations  />}
               />
             </Routes>
             {/*done*/}
@@ -296,19 +293,13 @@ const App = () => {
               <Route
                 path="/consulting"
                 element={
-                  <Consulting
-                    nextAppointments={nextAppointments}
-                    canclledAppointments={canclledAppointments}
-                  />
+                  <Consulting phoneNum={settingsData.contactSettings.phone} />
                 }
               />
             </Routes>
             {/*done*/}
             <Routes>
-              <Route
-                path="/booking"
-                element={<Booking chooseAppointment={chooseAppointment} />}
-              />
+              <Route path="/booking" element={<Booking />} />
             </Routes>
             {/*done*/}
             <Routes>

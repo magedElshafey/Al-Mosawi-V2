@@ -4,8 +4,9 @@ import ConsultingIntro from "../consulting/consultingIntro/ConsultingIntro";
 import BTN from "../utils/btn/BTN";
 import { useTranslation } from "react-i18next";
 const SuccessBookingDetails = () => {
-  const bookedTime = JSON.parse(localStorage.getItem("appoitment"));
-  const [t] = useTranslation();
+  const day = JSON.parse(localStorage.getItem("day"));
+  const time = JSON.parse(localStorage.getItem("time"));
+  const { t, i18n } = useTranslation();
   return (
     <div>
       <ConsultingIntro />
@@ -18,11 +19,7 @@ const SuccessBookingDetails = () => {
           </h4>
           <div className="d-flex justify-content-center align-items-center gap-3 flex-wrap">
             <p className="m-0 p-0">
-              {bookedTime.map((item, index) => (
-                <span className="d-inline-block mx-1" key={index}>
-                  {item}
-                </span>
-              ))}
+              {day} : {i18n.language === "ar" ? "الساعة" : "at"} {time}
             </p>
             <BTN text={t("enterMetting")} />
           </div>

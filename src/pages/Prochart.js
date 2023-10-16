@@ -35,8 +35,10 @@ const Prochart = ({ phoneNum }) => {
     });
   };
   const [showModal, setShowModal] = useState(false);
-  const handleShowModal = () => {
+  const [modalId, setModalId] = useState(null);
+  const handleShowModal = (id) => {
     setShowModal(true);
+    setModalId(id);
   };
   const handleCloseModal = () => {
     setShowModal(false);
@@ -75,12 +77,16 @@ const Prochart = ({ phoneNum }) => {
             <Success data={data.data.data.slider} />
             <Management data={data.data.data.wallet} />
             <TextContent data={data.data.data.wallet.finalWord} />
-            <PackageModal
-              action={handleCloseModal}
-              showModal={showModal}
-              setShowModal={setShowModal}
-              phoneNum={phoneNum}
-            />
+            {modalId && (
+              <PackageModal
+                action={handleCloseModal}
+                showModal={showModal}
+                setShowModal={setShowModal}
+                phoneNum={phoneNum}
+                modalId={modalId}
+                packages={data.data.data.prochart_plans}
+              />
+            )}
           </div>
         </div>
       )}

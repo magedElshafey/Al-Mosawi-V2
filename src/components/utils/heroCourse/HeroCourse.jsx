@@ -28,6 +28,8 @@ const HeroCourse = ({
   const { t, i18n } = useTranslation();
   const [isFixed, setIsFixed] = useState(false);
   const nvigate = useNavigate();
+
+  // handle window resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -52,7 +54,7 @@ const HeroCourse = ({
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
-  const [items, setItems] = useState(cartItems);
+  // const [items, setItems] = useState(cartItems);
   const addCourseToApi = (data) => {
     const headers = {
       type: "course",
@@ -66,10 +68,6 @@ const HeroCourse = ({
         toast.success(
           i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
         );
-        const newData = items.push(product);
-        setItems(newData);
-        window.localStorage.setItem("cart", JSON.stringify(items));
-        nvigate("/cart");
       }
     },
     onError: () => {
@@ -80,23 +78,28 @@ const HeroCourse = ({
       );
     },
   });
-
   const handleAddToCart = (product) => {
-    const index = items.findIndex((item) => item.id === product.id);
-    if ((user && index >= 0) || (!user && index >= 0)) {
+    const index = cartItems.findIndex((item) => item.id === product.id);
+    if (index >= 0) {
       setDisabledBtn(true);
-    }
-    if (user && index < 0) {
-      const courseDetails = { productId: product.id };
-      mutate(courseDetails);
-    }
-    if (!user && index < 0) {
-      const newData = items.push(product);
-      setItems(newData);
-      window.localStorage.setItem("cart", JSON.stringify(items));
-      nvigate("/cart");
+      toast.error(
+        i18n.language === "en"
+          ? "this item already at the cart"
+          : "هذا المنتج موجود في العربة بالفعل"
+      );
+    } else {
+      if (user) {
+        const courseDetails = { productId: product.id };
+        mutate(courseDetails);
+      }
+      setTimeout(() => {
+        const newData = [...cartItems, { ...product, product_type: "course" }];
+        window.localStorage.setItem("cart", JSON.stringify(newData));
+        nvigate("/cart");
+      }, 5000);
     }
   };
+
   return (
     <>
       {isLoading ? (

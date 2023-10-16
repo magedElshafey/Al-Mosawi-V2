@@ -10,6 +10,37 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 const RegForm = ({ setShowModal }) => {
   const { t, i18n } = useTranslation();
+  const cartItems = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : null;
+  const user = localStorage.getItem("userId")
+    ? JSON.parse(localStorage.getItem("userId"))
+    : null;
+  const lang = i18n.language;
+  const sendCartItems = async (id) => {
+    const res = await fetch(
+      "https://almosawi.admin.technomasrsystems.com/api/cart/preOrder",
+      {
+        method: "POST",
+        headers: {
+          user: id,
+          "Content-Type": "application/json",
+          lang,
+        },
+        body: JSON.stringify({
+          cart: cartItems,
+        }),
+      }
+    );
+    const data = await res.json();
+    console.log("this is the res", data);
+    if (data.status) {
+      console.log("request sent");
+    } else {
+    }
+    return data;
+  };
+
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [nameError, setNameError] = useState("");
@@ -69,6 +100,11 @@ const RegForm = ({ setShowModal }) => {
         //
         // );
 
+        if (data.data.data.id) {
+          sendCartItems(data.data.data.id);
+          localStorage.setItem("userId", JSON.stringify(data.data.data.id));
+          localStorage.setItem("isLogin", JSON.stringify(true));
+        }
         setFullName("");
         setMobileNumber("");
         setEmail("");

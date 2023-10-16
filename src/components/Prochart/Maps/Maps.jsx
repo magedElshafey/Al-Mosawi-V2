@@ -20,7 +20,7 @@ const Maps = ({ data, showModal, action }) => {
       >
         {data.map((item, index) => (
           <ProchartMapCard
-            action={action}
+            action={() => action(item.id)}
             showModal={showModal}
             text={t("subscribe ")}
             key={index}

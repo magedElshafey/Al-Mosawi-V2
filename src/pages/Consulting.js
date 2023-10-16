@@ -1,44 +1,57 @@
 import React from "react";
-import heroImg from "../assets/hero.png";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
 import ConsultingIntro from "../components/consulting/consultingIntro/ConsultingIntro";
 import ConsultingAppointments from "../components/consulting/consultingAppointments/ConsultingAppointments";
 import Booking from "../components/consulting/booking/Booking";
 import ContactUs from "../components/utils/contactus/ContactUs";
-const Consulting = ({
-  heroTitle,
-  handleChangeTitle,
-  nextAppointments,
-  canclledAppointments,
-}) => {
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
+const Consulting = ({ handleChangeTitle, phoneNum }) => {
+  const fetchData = () => {
+    const headers = {
+      userId: JSON.parse(localStorage.getItem("userId")),
+    };
+    return request({ url: "/consultation/show", headers });
+  };
+  const { isLoading, data } = useQuery("consultation-page", fetchData, {
+    cacheTime: 12000,
+    staleTime: 12000,
+  });
   return (
-    <div>
-      <Hero
-        isBigHero={false}
-        isSmallHero={true}
-        isMediumHero={false}
-        img={heroImg}
-        title="الاستشارات"
-        desc="يمكنك كتابة سؤالك وسيتم الرد عليك في اقرب وقت ممكن من أ أحمد الموسوي"
-      />
-      <Header handleChangeTitle={handleChangeTitle} />
-      <div className="container py-5">
-        <div className="row">
-          <div className="col-12 col-md-8 mb-3 mb-md-0">
-            <ConsultingIntro />
-            <ConsultingAppointments
-              nextAppointments={nextAppointments}
-              canclledAppointments={canclledAppointments}
-            />
-          </div>
-          <div className="col-12 col-md-3 mx-auto mb-3 mb-md-0">
-            <Booking />
-            <ContactUs />
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <Hero
+            isBigHero={false}
+            isSmallHero={true}
+            isMediumHero={false}
+            img={data.data.consultingPage.image}
+            title={data.data.consultingPage.header_title}
+            desc={data.data.consultingPage.header_des}
+          />
+          <Header handleChangeTitle={handleChangeTitle} />
+          <div className="container py-5">
+            <div className="row">
+              <div className="col-12 col-md-8 mb-3 mb-md-0">
+                <ConsultingIntro />
+                <ConsultingAppointments
+                  nextAppointments={data.data.appointments}
+                  canclledAppointments={data.data.appointments}
+                />
+              </div>
+              <div className="col-12 col-md-3 mx-auto mb-3 mb-md-0">
+                <Booking />
+                <ContactUs phoneNum={phoneNum} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

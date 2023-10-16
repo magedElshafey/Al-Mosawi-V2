@@ -52,7 +52,7 @@ const ProchartMapCard = ({ data, text, action, showModal }) => {
         <p className={`fs22  p-0 m-0 ${style.original}`}>{data.price} $</p>
       </div>
       <button
-        onClick={action}
+        onClick={() => action(data.id)}
         className={`pb-4 d-flex justify-content-center align-items-center mx-auto gap-1 p-4 ${style.btn}`}
       >
         <MdOutlineArrowBackIos size={20} />
