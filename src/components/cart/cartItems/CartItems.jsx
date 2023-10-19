@@ -35,6 +35,7 @@ const CartItems = ({ items, user }) => {
   const handleDeleteItems = (item) => {
     if (user) {
       deleteFromApi(item);
+      window.location.reload();
     } else {
       const updatedCart = items.filter((cartItem) => cartItem.id !== item.id);
       setCart(updatedCart);

@@ -18,10 +18,14 @@ const Prochart = ({ phoneNum }) => {
   const fetchData = () => {
     return request({ url: "/prochart" });
   };
-  const { isLoading, data } = useQuery("prochart-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading: loadingProchart, data } = useQuery(
+    "prochart-page",
+    fetchData,
+    {
+      cacheTime: 12000,
+      staleTime: 12000,
+    }
+  );
   const sectionRef = useRef(null);
   const scrollToNextSection = () => {
     // Get the next section's offsetTop
@@ -45,13 +49,12 @@ const Prochart = ({ phoneNum }) => {
   };
   return (
     <>
-      {isLoading ? (
+      {loadingProchart ? (
         <Spinner />
       ) : (
         <div>
           <Hero
             onClick={scrollToNextSection}
-            video={data.data.data.header.media}
             pageName={i18n.language === "en" ? "prochart" : "البروشارت"}
             img={data.data.data.header.image}
             isBigHero={true}

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import style from "./nav.module.css";
 import { BiLogOut } from "react-icons/bi";
-import { BsFillPersonFill, BsFillTelephoneFill, BsGlobe } from "react-icons/bs";
+import {
+  BsFillPersonFill,
+  BsFillTelephoneFill,
+  BsGlobe,
+  BsFillCartCheckFill,
+} from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import callIcon from "../../../assets/help-desk-log-svgrepo-com.svg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -109,6 +114,15 @@ const Nav = ({ data, phoneNum, menus }) => {
                     </li>
                   </ul>
                 </div>
+                <Link
+                  to="/cart"
+                  className="position-relative d-inline-block mx-3 "
+                >
+                  <BsFillCartCheckFill size={30} className="whiteGreen" />
+                  <p className={style.length}>
+                    {JSON.parse(localStorage.getItem("cart")).length}
+                  </p>
+                </Link>
               </div>
               {showAsk ? (
                 <div className="d-flex align-items-center gap10">

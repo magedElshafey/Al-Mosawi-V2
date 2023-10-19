@@ -8,9 +8,8 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 const Cart = () => {
-  const items = localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [];
+  const items = JSON.parse(localStorage.getItem("cart"));
+  console.log("this is the items", items);
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
@@ -52,7 +51,7 @@ const Cart = () => {
             title="عربة التسوق"
           />
           <div className="container py-5">
-            {user && data?.data.data.itemsDetails.length && (
+            {user && data?.data?.data?.itemsDetails?.length && (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartItems user={user} items={data.data.data.itemsDetails} />

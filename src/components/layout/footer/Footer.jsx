@@ -201,7 +201,7 @@ const Footer = ({
                     <h3 className="pt-3 fw-bolder fs18 shamel">{t("links")}</h3>
                   </div>
                   <div className="d-flex flex-column  gap-1">
-                    {aboutUs.map((item, index) => (
+                    {footer2.map((item, index) => (
                       <div
                         key={index}
                         className="d-flex fs18 align-items-center gap-1"

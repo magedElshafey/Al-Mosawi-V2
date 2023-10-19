@@ -68,7 +68,10 @@ const Slider = ({ slider }) => {
                 dangerouslySetInnerHTML={{ __html: slider[currentSlide].des }}
               />
               {slider[currentSlide].buttonType === "solid" ? (
-                <NormalBtn text={slider[currentSlide].buttonTitle} />
+                <NormalBtn
+                  path={slider[currentSlide].link}
+                  text={slider[currentSlide].buttonTitle}
+                />
               ) : (
                 <button className={`book mt-3 ${style.videoBtn}`}>
                   <div className={style.videoContainer}>

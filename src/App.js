@@ -59,6 +59,12 @@ const App = () => {
     : "ar";
   const [loading, setLoading] = useState(true);
   const [settingsData, setSettingsData] = useState({});
+  // add cart to local storage
+  useEffect(() => {
+    if (!localStorage.getItem("cart")) {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
   useEffect(() => {
     axios
       .get("https://almosawi.admin.technomasrsystems.com/api/settings", {
@@ -231,7 +237,7 @@ const App = () => {
                 }
               />
             </Routes>
-           
+
             {/*done*/}
             <Routes>
               <Route
