@@ -7,16 +7,16 @@ import PdfBtn from "../pdfBtn/PdfBtn";
 import { useTranslation } from "react-i18next";
 import ServicesCard from "../../forexDetails/serviceCard/ServicesCard";
 const HeroForex = ({ isProchart, data }) => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   const isTickMill = JSON.parse(localStorage.getItem("tickmillUser"));
   return (
     <div className={`${style.mainDiv} m-0 p-0`}>
       <div className="container">
         <div className="row justify-content-center justify-content-md-start">
-          <div className="text-center text-md-end mt100 z-3 col-12 col-md-3">
+          <div className=" mt100 z-3 col-12 col-md-2">
             <AccountDetails />
           </div>
-          <div className="z-3 mt101 col-12 col-md-9">
+          <div className="z-3 mt100 col-12 col-md-10">
             {!isProchart && (
               <div
                 className={`d-flex align-items-center  gap-2 mb-5 ${style.desc}`}
@@ -40,19 +40,14 @@ const HeroForex = ({ isProchart, data }) => {
                   >
                     <div>
                       <p
-                        className={`d-inline-block m-0 p-0  fw-bolder  text-white fs24 shamel`}
+                        className={`d-inline-block m-0 p-0  fw-bolder  text-white fs20 shamel`}
                       >
-                        {t("control ")}
+                        {i18n.language === "ar" ? "لوحة تحكم" : "Control Panel"}
                       </p>
                       <h3
-                        className={`d-inline-block shamel my-0 mx-2 whiteGreen p-0  fw-bolder   fs24`}
+                        className={`d-inline-block shamel my-0 mx-2 whiteGreen p-0  fw-bolder   fs20`}
                       >
                         {t("prochart")}
-                      </h3>
-                      <h3
-                        className={`shamel d-inline-block my-0 mx-2 whiteGreen p-0  fw-bolder   fs24`}
-                      >
-                        / prochart
                       </h3>
                     </div>
                     <PdfBtn text={t("downloadPlan")} />

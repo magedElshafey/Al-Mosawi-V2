@@ -2,33 +2,10 @@ import React, { useState } from "react";
 import style from "./Header.module.css";
 import { header } from "../../../fakers/data";
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslation } from "react-i18next";
 import "swiper/css";
 const Header = () => {
-  const swiperOptions = {
-    loop: true,
-    centeredSlides: false,
-    spaceBetween: 0,
-
-    autoplay: true,
-    pagination: {
-      clickable: true,
-    },
-    breakpoints: {
-      500: {
-        slidesPerView: 2,
-      },
-      768: {
-        slidesPerView: 4,
-      },
-      900: {
-        slidesPerView: 5,
-      },
-      1024: {
-        slidesPerView: 7,
-      },
-    },
-  };
+  const { i18n } = useTranslation();
   const [clickedLinkId, setClickedLinkId] = useState(null);
   const handleClick = (id, title) => {
     setClickedLinkId(id);
@@ -44,7 +21,7 @@ const Header = () => {
               clickedLinkId === index ? style.active : null
             }`}
           >
-            {item.title}
+            {i18n.language === "ar" ? item.title : item.enTitle}
           </Link>
         ))}
       </div>

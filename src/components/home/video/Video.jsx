@@ -7,6 +7,7 @@ const Video = ({ data }) => {
   return (
     <div className="container">
       <div className={style.videocontainer}>
+        
         <ReactPlayer
           url="https://player.vimeo.com/video/867338027"
           playing={true}

@@ -8,7 +8,7 @@ const RecommendationHistoryCard = () => {
   const [t] = useTranslation();
   const navigate = useNavigate();
   return (
-    <div className={`mt-3 mb-0 p-0  ${style.mainContainer}`}>
+    <div className={`mt-3 mb-0 p-0  ${style.mainContainer} `}>
       <div className="d-flex justify-content-between align-items-center gap-1 gap-md-3 flex-wrap">
         <div className="d-flex flex-column align-items-center just gap-1">
           <p className={`shamel text-white fs20 fw-bold m-0 p-0`}>

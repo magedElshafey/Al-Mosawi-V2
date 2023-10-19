@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import style from "./modal.module.css";
 import close from "../../../assets/cross.png";
-import { quota, purchasDetails } from "../../../fakers/data.js";
+import { purchasDetails } from "../../../fakers/data.js";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
@@ -21,10 +21,7 @@ const PackageModal = ({
   packages,
 }) => {
   const navigate = useNavigate();
-  console.log("this is the modal id", modalId);
-  console.log("this is");
   const data = packages.filter((item) => item.id === modalId);
-  console.log("this is the modal data", data);
   const { i18n } = useTranslation();
   const modalRef = useRef();
   const handleCloseRef = (e) => {
@@ -39,6 +36,7 @@ const PackageModal = ({
       document.removeEventListener("mousedown", handleCloseRef);
     };
   }, []);
+
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
@@ -57,11 +55,14 @@ const PackageModal = ({
   };
   const { isLoading, mutate } = useMutation(addProchartToApi, {
     onSuccess: (data) => {
-      if (data?.data.status) {
-        toast.success(
-          i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
-        );
-      }
+      toast.success(
+        i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
+      );
+      window.localStorage.setItem(
+        "cart",
+        JSON.stringify(data?.data?.data?.itemsDetails)
+      );
+      navigate("/cart");
     },
     onError: () => {
       toast.error(
@@ -71,8 +72,8 @@ const PackageModal = ({
       );
     },
   });
-  const handleAddToCart = (product) => {
-    console.log("this is product id", product.id);
+  const handleAddToCart = async (product) => {
+    console.log("this is the product", product);
     const index = cartItems.findIndex((item) => item.id === product.id);
     if (index >= 0) {
       setDisabledBtn(true);
@@ -84,12 +85,8 @@ const PackageModal = ({
     } else {
       if (isLogin) {
         const courseDetails = { productId: product.id };
-        mutate(courseDetails);
+        await mutate(courseDetails);
         setShowModal(false);
-
-        const newData = [...cartItems, { ...product }];
-        window.localStorage.setItem("cart", JSON.stringify(newData));
-        navigate("/cart");
       } else {
         setShowModal(false);
         navigate("/login");

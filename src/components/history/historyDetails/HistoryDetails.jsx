@@ -1,43 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./HistoryDetails.module.css";
-import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { MdOutlineArrowBackIosNew, MdKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 const HistoryDetails = ({ data }) => {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+  const [showMore, setShowMore] = useState(false);
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
   return (
     <div>
       <div
-        className={`${style.mainContainer} tahoma mb-3 fs18 d-flex justify-content-center  justify-content-md-between align-items-center gap-3 gap-md-0 flex-wrap`}
+        className={`${style.mainContainer} mb-3 d-flex justify-content-center  justify-content-md-between align-items-center gap-3 gap-md-0 flex-wrap`}
       >
-        <p className="m-0 p-0 tahoma fs18 ">العملة</p>
-        <p className="m-0 p-0 tahoma fs18 ">تاريخ التوصية</p>
-        <p className="m-0 p-0 tahoma fs18 ">نوع الصفقة</p>
-        <p className="m-0 p-0 tahoma fs18 ">حالة الصفقة</p>
-        <p className="m-0 p-0 tahoma fs18 ">عدد النقاط المحققة</p>
-        <p className="m-0 p-0 tahoma fs18 ">معاينة الصفقة</p>
+        <p className="m-0 p-0   ">
+          {i18n.language === "ar" ? "العملة" : "currency"}
+        </p>
+        <p className="m-0 p-0   ">
+          {i18n.language === "ar" ? "تاريخ التوصية" : "Recommendation date"}
+        </p>
+        <p className="m-0 p-0   ">
+          {i18n.language === "ar" ? "نوع الصفقة" : "Transaction type"}
+        </p>
+        <p className="m-0 p-0   ">
+          {i18n.language === "ar" ? "حالة الصفقة" : "Transaction status"}
+        </p>
+        <p className="m-0 p-0   ">
+          {i18n.language === "ar"
+            ? "عدد النقاط المحققة"
+            : "Number of points achieved"}
+        </p>
+        <p className="m-0 p-0   ">
+          {i18n.language === "ar" ? "معاينة الصفقة" : "Preview deal"}
+        </p>
       </div>
-      {data.map((item, index) => (
+      {data.slice(0, showMore ? data.length : 3).map((item, index) => (
         <div
           key={index}
-          className={`${style.mainContainer} mb-4 tahoma fs18 d-flex justify-content-center justify-content-md-between align-items-center gap-5 flex-wrap`}
+          className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 flex-wrap`}
         >
-          <p className="m-0 p-0 tahoma ">{item.currency}</p>
-          <p className="m-0 p-0 tahoma ">{item.date}</p>
+          <p className="m-0 p-0 ">{item.currency}</p>
+          <p className="m-0 p-0 ">{item.date}</p>
           <p
-            className={`m-0 p-0 tahoma ${
-              item.type === "شراء" ? "green" : null
-            }`}
+            className={`m-0 p-0 ${
+              item.type === "شراء" ? `${style.title}` : `${style.buy}`
+            }   `}
           >
             {item.type}
           </p>
-          <p className="m-0 p-0 tahoma ">{item.state}</p>
-          <p className="m-0 p-0 green  tahoma">{item.number}</p>
-          <button
-            onClick={() => navigate("/deals")}
-            className={`book fs18 ${style.btn}`}
-          >
+          <p className="m-0 p-0 ">{item.state}</p>
+          <p className={`m-0 p-0 ${style.title}`}>{item.number}</p>
+          <button onClick={() => navigate("/deals")} className={`${style.btn}`}>
             <MdOutlineArrowBackIosNew />
-            <span className="mt-1 ">{item.btnText}</span>
+            <span>{i18n.language === "ar" ? "عرض الصفقة" : "View deal"}</span>
           </button>
           <div
             className={`${style.arrowContainer} ${
@@ -46,6 +63,23 @@ const HistoryDetails = ({ data }) => {
           ></div>
         </div>
       ))}
+      {data.length > 3 && (
+        <button
+          className={`mx-auto z-3 d-flex justify-content-center align-items-center text-white  gap-2 ${style.moreBtn}`}
+          onClick={toggleShowMore}
+        >
+          <MdKeyboardArrowDown size={20} />
+          <span>
+            {showMore
+              ? i18n.language === "ar"
+                ? "عرض صفقات اقل"
+                : "Show Fewer Deals"
+              : i18n.language === "ar"
+              ? "عرض صفقات اكتر"
+              : "Show More Deals"}
+          </span>
+        </button>
+      )}
     </div>
   );
 };

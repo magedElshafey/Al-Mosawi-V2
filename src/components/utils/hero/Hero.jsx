@@ -50,7 +50,7 @@ const Hero = ({
                 )}
                 {title ? (
                   <p
-                    className=" shamel fw-bolder m-0 p-0 "
+                    className=" m-0 p-0 "
                     dangerouslySetInnerHTML={{ __html: title }}
                   />
                 ) : null}
@@ -102,7 +102,7 @@ const Hero = ({
               )}
               {title ? (
                 <p
-                  className=" shamel fw-bolder m-0 p-0 "
+                  className=" m-0 p-0 fw-bolder text-white fs20 "
                   dangerouslySetInnerHTML={{ __html: title }}
                 />
               ) : null}

@@ -63,6 +63,28 @@ const CartTotal = ({ total, user }) => {
       },
     }
   );
+  const checkout = () => {
+    const headers = {
+      user,
+    };
+    return request({
+      url: "/orders/create",
+      headers,
+      method: "POST",
+    });
+  };
+  const { isLoading: loadingCheckout, mutate: mutateCheckout } = useMutation(
+    checkout,
+    {
+      onSuccess: (data) => {
+        window.location.href = data.data.Data.invoiceURL;
+      },
+    }
+  );
+  const handleCheckout = async () => {
+    const data = {};
+    await mutateCheckout(data);
+  };
   return (
     <div className={`p-3 ${style.mainContainer}`}>
       <p className="mb-3 book">{t("coponIntro")}</p>
@@ -116,9 +138,13 @@ const CartTotal = ({ total, user }) => {
           <p className="m-0 p-0 fw-bold shamel ">{t("netPrice")}</p>
           <p className="m-0 p-0 fw-bold shamel ">{total - coponValue}$</p>
         </div>
-        <button className={`mt-5 book ${style.btnTwo}`}>
+        <button
+          onClick={handleCheckout}
+          disabled={cartItems.length === 0}
+          className={`mt-5 book ${style.btnTwo}`}
+        >
           <MdOutlineArrowBackIos size={20} />
-          <span className="mt-1">{t("checkOut")}</span>
+          <span>{t("checkOut")}</span>
         </button>
       </div>
     </div>

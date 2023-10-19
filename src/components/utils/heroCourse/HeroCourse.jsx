@@ -54,7 +54,7 @@ const HeroCourse = ({
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
-  // const [items, setItems] = useState(cartItems);
+
   const addCourseToApi = (data) => {
     const headers = {
       type: "course",
@@ -64,11 +64,14 @@ const HeroCourse = ({
   };
   const { isLoading, mutate } = useMutation(addCourseToApi, {
     onSuccess: (data) => {
-      if (data?.data.status) {
-        toast.success(
-          i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
-        );
-      }
+      toast.success(
+        i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
+      );
+      window.localStorage.setItem(
+        "cart",
+        JSON.stringify(data?.data?.data?.itemsDetails)
+      );
+      nvigate("/cart");
     },
     onError: () => {
       toast.error(
@@ -78,7 +81,7 @@ const HeroCourse = ({
       );
     },
   });
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     const index = cartItems.findIndex((item) => item.id === product.id);
     if (index >= 0) {
       setDisabledBtn(true);
@@ -90,13 +93,12 @@ const HeroCourse = ({
     } else {
       if (user) {
         const courseDetails = { productId: product.id };
-        mutate(courseDetails);
-      }
-      setTimeout(() => {
+        await mutate(courseDetails);
+      } else {
         const newData = [...cartItems, { ...product, product_type: "course" }];
         window.localStorage.setItem("cart", JSON.stringify(newData));
         nvigate("/cart");
-      }, 5000);
+      }
     }
   };
 

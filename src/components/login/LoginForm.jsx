@@ -13,31 +13,29 @@ const LoginForm = () => {
   const cartItems = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : null;
-  const user = localStorage.getItem("userId")
-    ? JSON.parse(localStorage.getItem("userId"))
-    : null;
+  const formattedCart = {};
+  if (cartItems) {
+    cartItems.forEach((item, index) => {
+      formattedCart[index] = { product_id: item.id };
+    });
+  }
   const lang = i18n.language;
-  const sendCartItems = async () => {
+  const sendCartItems = async (id) => {
     const res = await fetch(
       "https://almosawi.admin.technomasrsystems.com/api/cart/preOrder",
       {
         method: "POST",
         headers: {
-          user,
+          user: id,
           "Content-Type": "application/json",
           lang,
         },
         body: JSON.stringify({
-          cart: cartItems,
+          cart: formattedCart,
         }),
       }
     );
     const data = await res.json();
-    if (data.status) {
-      console.log("request sent");
-    } else {
-      console.log("this is the res", data);
-    }
     return data;
   };
 
@@ -49,27 +47,26 @@ const LoginForm = () => {
   };
   const { isLoading, mutate } = useMutation(handleSendMsg, {
     onSuccess: (data) => {
-      if (data?.data.status) {
-        toast.success(
-          i18n.language === "en"
-            ? "you are loggin successfulyy"
-            : "تم تسجيل دخولك بنجاح"
-        );
-        sendCartItems();
-        setAccount("");
-        setPassword("");
-        localStorage.setItem("userId", JSON.stringify(data.data.data.id));
-        localStorage.setItem("isLogin", JSON.stringify(true));
-        if (data.data.data.tikmill) {
-          navigate("/forex-account/details");
-        } else {
-          navigate("/account");
-        }
-        localStorage.setItem(
-          "tickmillUser",
-          JSON.stringify(data.data.data.tikmill)
-        );
+      toast.success(
+        i18n.language === "en"
+          ? "you are loggin successfulyy"
+          : "تم تسجيل دخولك بنجاح"
+      );
+      localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
+      localStorage.setItem("isLogin", JSON.stringify(true));
+      sendCartItems(data?.data?.data?.id);
+      setAccount("");
+      setPassword("");
+
+      if (data.data.data.tikmill) {
+        navigate("/forex-account/details");
+      } else {
+        navigate("/account");
       }
+      localStorage.setItem(
+        "tickmillUser",
+        JSON.stringify(data.data.data.tikmill)
+      );
     },
     onError: () => {
       toast.error(
@@ -79,13 +76,13 @@ const LoginForm = () => {
       );
     },
   });
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     if (account.trim() === "" || password.trim() === "") {
       return false;
     } else {
       const userData = { account, password };
-      mutate(userData);
+      await mutate(userData);
     }
   };
 

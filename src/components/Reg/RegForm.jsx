@@ -13,9 +13,12 @@ const RegForm = ({ setShowModal }) => {
   const cartItems = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
     : null;
-  const user = localStorage.getItem("userId")
-    ? JSON.parse(localStorage.getItem("userId"))
-    : null;
+  const formattedCart = {};
+  if (cartItems) {
+    cartItems.forEach((item, index) => {
+      formattedCart[index] = { product_id: item.id };
+    });
+  }
   const lang = i18n.language;
   const sendCartItems = async (id) => {
     const res = await fetch(
@@ -28,16 +31,11 @@ const RegForm = ({ setShowModal }) => {
           lang,
         },
         body: JSON.stringify({
-          cart: cartItems,
+          cart: formattedCart,
         }),
       }
     );
     const data = await res.json();
-    console.log("this is the res", data);
-    if (data.status) {
-      console.log("request sent");
-    } else {
-    }
     return data;
   };
 
@@ -76,53 +74,42 @@ const RegForm = ({ setShowModal }) => {
   const handleRadioChange = (event) => {
     setTickmillUser(event.target.value);
   };
-  const handleSendMsg = (data) => {
+  const handleRegster = (data) => {
     return request({ url: "/auth/register", method: "post", data });
   };
-  const { isLoading, mutate } = useMutation(handleSendMsg, {
+  const { isLoading, mutate } = useMutation(handleRegster, {
     onSuccess: (data) => {
-      if (data?.data.status) {
-        Swal.fire({
-          title: `${
-            i18n.language === "ar"
-              ? "تم ارسال طلبك بالنجاح و سوف يتم ارسال كلمة المرور علي البريد الالكتروني الذي قمت ب ادخالة"
-              : "your request has been sent successfully and the password will be sent to the email address you entered"
-          }`,
-          showClass: {
-            popup: "animate__animated animate__fadeInDown",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutUp",
-          },
-        });
-
-        // toast.success(
-        //
-        // );
-
-        if (data.data.data.id) {
-          sendCartItems(data.data.data.id);
-          localStorage.setItem("userId", JSON.stringify(data.data.data.id));
-          localStorage.setItem("isLogin", JSON.stringify(true));
-        }
-        setFullName("");
-        setMobileNumber("");
-        setEmail("");
-        setCountry("");
-        setTickmillUser("");
-      }
+      Swal.fire({
+        title: `${
+          i18n.language === "ar"
+            ? "تم ارسال طلبك بالنجاح و سوف يتم ارسال كلمة المرور علي البريد الالكتروني الذي قمت ب ادخالة"
+            : "your request has been sent successfully and the password will be sent to the email address you entered"
+        }`,
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
+      localStorage.setItem("isLogin", JSON.stringify(true));
+      sendCartItems(data?.data?.data?.id);
+      setFullName("");
+      setMobileNumber("");
+      setEmail("");
+      setCountry("");
+      setTickmillUser("");
     },
-    onError: (data) => {
-      if (!data.data.status) {
-        toast.error(
-          i18n.language === "en"
-            ? "there is an error occurred , please try again"
-            : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
-        );
-      }
+    onError: () => {
+      toast.error(
+        i18n.language === "en"
+          ? "there is an error occurred , please try again"
+          : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
+      );
     },
   });
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     if (
       fullName.trim() === "" ||
@@ -140,7 +127,7 @@ const RegForm = ({ setShowModal }) => {
         country,
         tikmill: tickMillUser,
       };
-      mutate(userData);
+      await mutate(userData);
     }
   };
   return (

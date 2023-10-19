@@ -4,10 +4,7 @@ import { BiLogOut } from "react-icons/bi";
 import { BsFillPersonFill, BsFillTelephoneFill, BsGlobe } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import callIcon from "../../../assets/help-desk-log-svgrepo-com.svg";
-import {
-  MdOutlineKeyboardDoubleArrowRight,
-  MdKeyboardArrowLeft,
-} from "react-icons/md";
+import { MdKeyboardArrowLeft } from "react-icons/md";
 import pyramids from "../../../assets/aboutCourses/pyramidsDefault.png";
 import energy from "../../../assets/aboutCourses/energyDefault.png";
 import person from "../../../assets/aboutCourses/personDefault.png";
@@ -16,18 +13,21 @@ import ahmed from "../../../assets/a7medAv.png";
 import chat from "../../../assets/chat-bubble-check-svgrepo-com.png";
 import menu from "../../../assets/menu.svg";
 import close from "../../../assets/cross.png";
-
+import back from "../../../assets/back.svg";
+import down from "../../../assets/down.svg";
+import avatar from "../../../assets/avatar.png";
 const Nav = ({ data, phoneNum, menus }) => {
   const { t, i18n } = useTranslation();
   const [showSidebar, setShowSidebar] = useState(false);
   const [showProchart, setShowPorchart] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const [showContact, setShowContact] = useState(false);
   const { pathname } = useLocation();
   const [showLogo, setShowLogo] = useState(true);
   const [showAsk, setShowAsk] = useState(false);
   const navigate = useNavigate();
   const isLogin = JSON.parse(localStorage.getItem("isLogin"));
+  const [showMenu, setShowMenu] = useState(true);
+  const [showBack, setShowBack] = useState(false);
   useEffect(() => {
     if (
       pathname === "/forget" ||
@@ -45,6 +45,15 @@ const Nav = ({ data, phoneNum, menus }) => {
       setShowAsk(true);
     } else {
       setShowAsk(false);
+    }
+  }, [pathname]);
+  useEffect(() => {
+    if (pathname === "/recommendation-details") {
+      setShowMenu(false);
+      setShowBack(true);
+    } else {
+      setShowMenu(true);
+      setShowBack(false);
     }
   }, [pathname]);
 
@@ -144,17 +153,37 @@ const Nav = ({ data, phoneNum, menus }) => {
                       {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
                     </button>
                   )}
-                  <div
-                    onClick={() => setShowSidebar(true)}
-                    className={`pointer ${showLogo ? null : "me-auto"}`}
-                  >
-                    <img
-                      alt="menu/icon"
-                      className={style.menu}
-                      src={menu}
-                      loading="lazy"
-                    />
-                  </div>
+                  {showMenu && (
+                    <div
+                      onClick={() => setShowSidebar(true)}
+                      className={`pointer ${showLogo ? null : "me-auto"}`}
+                    >
+                      <img
+                        alt="menu/icon"
+                        className={style.menu}
+                        src={menu}
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  {showBack && (
+                    <div className="d-flex align-items-center gap-3">
+                      <div className="d-flex align-items-center gap-2 ">
+                        <img alt="back" src={avatar} className={style.av} />
+                        <p className="m-0 p-0 text-white">MeGz</p>
+                        <img alt="back" src={down} className={style.down} />
+                      </div>
+                      <div
+                        onClick={() => navigate(-1)}
+                        className="d-flex align-items-center pointer "
+                      >
+                        <p className="m-0 p-0 text-white">
+                          {i18n.language === "ar" ? "العودة" : "back"}
+                        </p>
+                        <img alt="back" src={back} className={style.back} />
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

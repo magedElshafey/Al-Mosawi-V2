@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import heroImg from "../assets/hero.png";
+import React, { useState, useEffect } from "react";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
 import Chat from "../components/askAhmed/chat/Chat";
@@ -9,13 +8,22 @@ import { useTranslation } from "react-i18next";
 import { useMutation, useQuery } from "react-query";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 const Ask = ({ handleChangeTitle, details, appointment }) => {
   const [msg, setMsg] = useState("");
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userId"));
   const headers = {
     userId: user,
   };
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      return;
+    }
+  }, [user, navigate]);
   const fetchData = () => {
     return request({
       url: "/chat",

@@ -123,7 +123,7 @@
 }
 .box2 {
   z-index: 8;
-  padding: 10px;
+  padding: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,25 +144,15 @@
   gap: 4px;
   color: white;
   border: none;
-  padding: 10px !important;
-  width: 180px;
+  padding: 7px !important;
+  width: 130px;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-.moreBtn {
-  background-color: #003684;
-  color: white;
-  border: none;
-  padding: 18px !important;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-}
+
 .dealsBox {
   background: linear-gradient(
     to bottom right,
@@ -174,4 +164,19 @@
 .reco {
   opacity: 1;
   z-index: 50 !important;
+}
+.calender {
+  width: 15px;
+  height: 15px;
+  object-fit: cover;
+}
+.inp {
+  border: none;
+}
+.inp:focus {
+  outline: none;
+}
+.videoContainer {
+  width: 600px;
+  height: 300px;
 }

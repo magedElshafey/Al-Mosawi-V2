@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31" height="32" viewBox="0 0 31 32">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_17919" data-name="Rectangle 17919" width="31" height="32" transform="translate(-0.379 -0.491)" fill="#fff" stroke="#fff" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="arrow-left-2-svgrepo-com" transform="translate(0.379 0.491)" clip-path="url(#clip-path)">
+    <path id="Path_163639" data-name="Path 163639" d="M15.443,7,9,13.443" transform="translate(2.248 2.026)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+    <path id="Path_163640" data-name="Path 163640" d="M9,12l6.443,6.443" transform="translate(2.248 3.469)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+  </g>
+</svg>

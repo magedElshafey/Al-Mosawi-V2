@@ -34,10 +34,8 @@ const ServicesCard = ({ data, isTickMill }) => {
           onClick={() => handleNavigate(item)}
         >
           <div>
-            <p
-              className={`fw-bold shamel fs20 m-0 p-0 text-white ${style.title}`}
-            >
-              {item.title}
+            <p className={`fw-bold shamel  m-0 p-0 text-white ${style.title}`}>
+              {i18n.language === "ar" ? item.title : item.enTitle}
             </p>
             {/*icon container*/}
             <div

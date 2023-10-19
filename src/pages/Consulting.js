@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
 import ConsultingIntro from "../components/consulting/consultingIntro/ConsultingIntro";
@@ -8,10 +8,20 @@ import ContactUs from "../components/utils/contactus/ContactUs";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 const Consulting = ({ handleChangeTitle, phoneNum }) => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("userId"));
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      return;
+    }
+  }, [user, navigate]);
   const fetchData = () => {
     const headers = {
-      userId: JSON.parse(localStorage.getItem("userId")),
+      userId: user,
     };
     return request({ url: "/consultation/show", headers });
   };

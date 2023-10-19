@@ -344,3 +344,14 @@
   -ms-border-radius: 18px;
   -o-border-radius: 18px;
 }
+.back,
+.down {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+}
+.av {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}

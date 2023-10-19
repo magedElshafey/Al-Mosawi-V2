@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const DealsHeader = ({ data }) => {
   console.log("this is deals data", data);
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div
       className={`z-3 ${style.mainContainer} p-2 d-flex justify-content-center align-items-center gap-5 flex-wrap`}
@@ -38,7 +38,10 @@ const DealsHeader = ({ data }) => {
         <h4 className="m-0 p-0 fw-bolder  shamel fs22 text-uppercase">
           {data.title}
         </h4>
-        <span className="text-white">{data.Recommendation.Goal[0].goal}</span>
+        <span className="text-white">
+          {i18n.language === "ar" ? "سعر الدخول" : "Entry price"} :{" "}
+          {data.Recommendation.Goal[0].goal}
+        </span>
       </div>
     </div>
   );

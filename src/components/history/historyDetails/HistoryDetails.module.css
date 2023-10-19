@@ -1,17 +1,16 @@
 .mainContainer {
-  padding: 16px;
+  padding: 9px;
   box-shadow: 0px 8px 6px #00000029;
   position: relative;
   opacity: 0.7;
   width: 100%;
 
- 
   background: linear-gradient(
     to right,
     #061d71 10%,
     #061e72 20%,
-    #091068 35%,
-    #1b55a7 100%
+    #1b55a7 35%,
+    #091068 100%
   );
   border-radius: 16px;
   -webkit-border-radius: 16px;
@@ -24,12 +23,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
   color: white;
   border: none;
   background-color: #1b55a7;
-  padding: 11px;
-  height: 40px;
+  padding: 8px;
+  height: 30px;
   border-radius: 11px;
   -webkit-border-radius: 11px;
   -moz-border-radius: 11px;
@@ -39,7 +38,7 @@
 .arrowContainer {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -8px;
   width: 10px;
   box-shadow: 0px 8px 6px #00000029;
   height: 100%;
@@ -55,4 +54,21 @@
 }
 .green {
   background-color: #0ab46e;
+}
+.title {
+  color: #0ecb7d;
+}
+.moreBtn {
+  background-color: #003684;
+  color: white;
+  border: none;
+  padding: 9px !important;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.buy {
+  color: #acbcd8 !important;
 }

@@ -21,9 +21,7 @@ import {
   newCourses,
   accountDetails,
   monthlyWithdraw,
-  
   recommendationDetails,
- 
 } from "./fakers/data.js";
 import Blogs from "./pages/Blogs.js";
 import Blog from "./pages/Blog.js";
@@ -51,7 +49,8 @@ import FixedBtn from "./components/utils/fixedBtn/FixedBtn.jsx";
 import { QueryClientProvider, QueryClient } from "react-query";
 import Spinner from "./components/utils/Spinner/Spinner.jsx";
 import axios from "axios";
-import Checkout from "./pages/Checkout.js";
+import OrderSuccess from "./pages/OrderSuccess.js";
+import OrderFaild from "./pages/OrderFaild.js";
 
 const App = () => {
   // handle website settings data
@@ -232,9 +231,7 @@ const App = () => {
                 }
               />
             </Routes>
-            <Routes>
-              <Route path="/checkout" element={<Checkout />} />
-            </Routes>
+           
             {/*done*/}
             <Routes>
               <Route
@@ -260,6 +257,7 @@ const App = () => {
                 path="/account"
                 element={
                   <Account
+                    phoneNum={settingsData.contactSettings.phone}
                     accountDetails={accountDetails}
                     monthlyWithdraw={monthlyWithdraw}
                   />
@@ -275,10 +273,7 @@ const App = () => {
               <Route path="/deals/:id" element={<Deals />} />
             </Routes>
             <Routes>
-              <Route
-                path="/recommendations"
-                element={<Recommendations  />}
-              />
+              <Route path="/recommendations" element={<Recommendations />} />
             </Routes>
             {/*done*/}
             <Routes>
@@ -304,6 +299,12 @@ const App = () => {
             {/*done*/}
             <Routes>
               <Route path="/booking/success" element={<SuccessBooking />} />
+            </Routes>
+            <Routes>
+              <Route path="/order/success" element={<OrderSuccess />} />
+            </Routes>
+            <Routes>
+              <Route path="/order/faild" element={<OrderFaild />} />
             </Routes>
             {/*donea*/}
             <Routes>

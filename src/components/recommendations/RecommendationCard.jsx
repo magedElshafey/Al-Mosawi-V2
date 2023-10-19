@@ -30,7 +30,9 @@ const RecommendationCard = ({ data }) => {
             <p className="m-0 p-0 text-white">: {data.Recommendation.stop}</p>
           </div>
           <div className="d-flex gap-1">
-            <p className="m-0 p-0 text-white roboto ">دخول</p>
+            <p className="m-0 p-0 text-white roboto ">
+              {i18n.language === "ar" ? "دخول" : "entrance"} :
+            </p>
             <p className="m-0 p-0 text-white roboto  mb-4">
               : {data.Recommendation.enter}
             </p>
@@ -38,7 +40,9 @@ const RecommendationCard = ({ data }) => {
         </div>
         <div className="col-6 mb-2 d-flex flex-column gap-2  mb-2 mb-md-0">
           <div className="d-flex gap-1">
-            <p className=" m-0 p-0 text-white  ">الثقة : </p>
+            <p className=" m-0 p-0 text-white  ">
+              {i18n.language === "ar" ? "الثقة" : "trust"} :
+            </p>
             <p className="m-0 p-0 text-white">: {data.Recommendation.trust}</p>
           </div>
           <p className="m-0 p-0 text-white roboto">

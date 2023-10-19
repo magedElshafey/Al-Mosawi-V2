@@ -26,15 +26,7 @@ const Footer = ({
     if (
       pathname === "/prochart/video" ||
       pathname === "/forex-account/details" ||
-      pathname === "/deals/1" ||
-      pathname === "/deals/2" ||
-      pathname === "/deals/3" ||
-      pathname === "/deals/4" ||
-      pathname === "/deals/5" ||
-      pathname === "/deals/6" ||
-      pathname === "/deals/7" ||
-      pathname === "/deals/8" ||
-      pathname === "/deals/9" ||
+      pathname.startsWith("/deals/") ||
       pathname === "/recommendation-details" ||
       pathname === "/user/prochart" ||
       pathname === "/recommendations"
