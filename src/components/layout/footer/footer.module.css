@@ -59,11 +59,11 @@
   -o-transform: translateY(-50%);
 }
 .rtlStyle::before {
-  width: 110%;
+  width: 140%;
   right: 135px;
 }
 .ltrStyle::before {
-  width: 100%;
+  width: 140%;
   left: 120px;
 }
 

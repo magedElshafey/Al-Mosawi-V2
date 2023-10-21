@@ -12,19 +12,7 @@
 .small {
   width: 330px !important;
 }
-.big {
-  width: 430px !important;
-}
-@media screen and (max-width: 767px) {
-  .small {
-    width: 300px !important;
-  }
-}
-@media screen and (max-width: 767px) {
-  .big {
-    width: 300px !important;
-  }
-}
+
 @media screen and (max-width: 1100px) {
   .transform {
     transform: translateY(0) !important;

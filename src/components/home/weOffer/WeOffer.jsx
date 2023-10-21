@@ -1,7 +1,10 @@
 import React from "react";
 import style from "./WeOffer.module.css";
 import { MdArrowBackIosNew } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 const WeOffer = ({ weOffer }) => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate("/account/special");
   return (
     <div className="py-5">
       <div className={`${style.imgContainer}`}>
@@ -22,7 +25,7 @@ const WeOffer = ({ weOffer }) => {
                   dangerouslySetInnerHTML={{ __html: weOffer.adSectionDes1 }}
                 />
 
-                <button className={style.btn}>
+                <button onClick={handleClick} className={style.btn}>
                   <div
                     className={`d-flex justify-content-center align-items-center p-2 ${style.arrowContainer}`}
                   >

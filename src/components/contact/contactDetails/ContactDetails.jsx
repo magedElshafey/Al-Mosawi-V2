@@ -11,7 +11,7 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
     <div className={`px-3 py-2 ${style.mainContainer}`}>
       <div className="d-flex flex-column gap-1">
         {/*phone*/}
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-2 ">
           <img
             src={phoneImg}
             alt="contact_icon/img"
@@ -22,13 +22,10 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <p className="shamel p-0 m-0 fw-bold">
               {i18n.language === "en" ? "for contact" : "للاتصال"}
             </p>
-            <p
-              className="green  mt-1 fw-bold"
-              dangerouslySetInnerHTML={{ __html: phone }}
-            ></p>
+            <p dangerouslySetInnerHTML={{ __html: phone }}></p>
           </div>
         </div>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-2">
           <img
             src={whatsImg}
             alt="contact_icon/img"
@@ -39,13 +36,10 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <p className="shamel p-0 m-0 fw-bold">
               {i18n.language === "en" ? "whatsapp" : "رقم خدمة العملاء واتساب"}
             </p>
-            <p
-              className="green  mt-1 fw-bold"
-              dangerouslySetInnerHTML={{ __html: hotLine }}
-            ></p>
+            <p dangerouslySetInnerHTML={{ __html: hotLine }}></p>
           </div>
         </div>
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-2 ">
           <img
             src={addressImg}
             alt="contact_icon/img"
@@ -53,17 +47,14 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             className={style.icon}
           />
           <div>
-            <p className="shamel p-0 m-0 fw-bold">
+            <p className=" p-0 m-0 fw-bold">
               {i18n.language === "en" ? "location" : "العنوان"}
             </p>
-            <p
-              className="green  mt-1 fw-bold"
-              dangerouslySetInnerHTML={{ __html: address }}
-            ></p>
+            <p dangerouslySetInnerHTML={{ __html: address }}></p>
           </div>
         </div>
 
-        <div className="d-flex gap-3">
+        <div className="d-flex gap-2 ">
           <img
             alt="appointment_icon / img"
             loading="lazy"
@@ -77,17 +68,17 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <div className="mt-0">
               {appointment.map((item, index) =>
                 item.value === "0" ? (
-                  <div key={index} className="d-flex gap-4 mt-2">
+                  <div key={index} className="d-flex gap-4 ">
                     <p className="m-0 p-0 ">{item.day} : </p>
                     <p className="red m-0 p-0 ">مغلق</p>
                   </div>
                 ) : (
                   <div
                     key={index}
-                    className="d-flex justify-content-between align-items-center gap-2 mt-2 roboto fs16 roboto"
+                    className="d-flex justify-content-between align-items-center gap-2  fs16 "
                   >
-                    <p className="m-0 p-0 fs16 roboto">{item.day} : </p>
-                    <p className="green m-0 p-0 fs16 roboto">{item.Start}</p>
+                    <p className="m-0 p-0 fs16 ">{item.day} : </p>
+                    <p className="green m-0 p-0 fs16 ">{item.Start}</p>
                     <p className="m-0 p-0 fs16 roboto">
                       {i18n.language === "en" ? "Am" : "ص"}
                     </p>

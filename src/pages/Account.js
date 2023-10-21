@@ -12,7 +12,8 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-const Account = ({ accountDetails, monthlyWithdraw, phoneNum }) => {
+const Account = ({ monthlyWithdraw, phoneNum }) => {
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const user = localStorage.getItem("userId");
   useEffect(() => {
@@ -41,7 +42,9 @@ const Account = ({ accountDetails, monthlyWithdraw, phoneNum }) => {
             isSmallHero={true}
             isMediumHero={false}
             img={heroImg}
-            title="معلومات الحساب"
+            title={
+              i18n.language === "ar" ? "معلومات الحساب" : "account details"
+            }
           />
           <Header />
           <div className="container pb-5">

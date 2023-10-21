@@ -17,7 +17,7 @@ const CartItems = ({ items, user }) => {
       {
         method: "GET",
         headers: {
-          user: item.id,
+          user,
           "Content-Type": "application/json",
           lang,
           type: item.product_type,
@@ -25,17 +25,17 @@ const CartItems = ({ items, user }) => {
       }
     );
     const data = await res.json();
-    if (data.status === "success") {
+    console.log("this is data from delete page", data);
+    if (data.status) {
       queryClient.invalidateQueries("cart-page");
+      window.location.reload();
     }
-    console.log("this is data", data);
     return data;
   };
 
   const handleDeleteItems = (item) => {
     if (user) {
       deleteFromApi(item);
-      window.location.reload();
     } else {
       const updatedCart = items.filter((cartItem) => cartItem.id !== item.id);
       setCart(updatedCart);
@@ -88,55 +88,3 @@ const CartItems = ({ items, user }) => {
 };
 
 export default CartItems;
-//
-// const { isLoading, refetch } = useQuery(
-//   "delete-item",
-//   (id, type) => deleteFromApi(id, type),
-//   {
-//     enabled: false,
-//     onSuccess: (data) => {
-//
-//       if (data.data.status) {
-//         console.log(data.data.data.itemsDetails);
-//         const updatedCart = data.data.data.itemsDetails;
-//         localStorage.setItem("cart", JSON.stringify(updatedCart));
-//       }
-//     },
-//   }
-// );
-// const handleDeleteItems = (item) => {
-//   console.log("this is the item id", item);
-//   if (user) {
-//     refetch(item.id, item.product_type);
-//   } else {
-//
-//   }
-// };
-// const fetchData = (product) => {
-//   const headers = {
-//     user,
-//     type: product.product_type,
-//   };
-//   return request({ url: `/cart/removeItem/${product.id}`, headers });
-// };
-// const { isLoading } = useQuery(["delete-page", user], fetchData, {
-//   enabled: false,
-// });
-// const handleDeleteItems = async (product) => {
-//   if (user) {
-//     await fetchData(product);
-//
-//   } else {
-//     const newData = items.filter((item) => item.id !== product.id);
-//     setCartItems(newData);
-//     window.localStorage.setItem("cart", JSON.stringify(newData));
-//   }
-
-//   // console.log("this is the product id", product.id);
-//   // console.log("this is the product tyep", product.product_type);
-//   // ;
-
-//   // const newData = items.filter((item) => item.id !== product.id);
-//   // // setItems(newData);
-//   // window.localStorage.setItem("cart", JSON.stringify(newData));
-// };

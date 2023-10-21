@@ -1,15 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HeroBox from "../components/utils/herobox/HeroBox";
-const RecommendationHistory = ({ data }) => {
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+
+const RecommendationHistory = () => {
+  const user = JSON.parse(localStorage.getItem("userId"));
+  const navigate = useNavigate();
+  const fetchData = () => {
+    const headers = {
+      user,
+    };
+    return request({ url: "/deal/recommendation-detalis", headers });
+  };
+  const { isLoading, data } = useQuery("history-page", fetchData, {
+    cacheTime: 12000,
+    staleTime: 12000,
+  });
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      navigate("/recommendation-details");
+    }
+  }, [user, navigate]);
   return (
-    <div>
-      <HeroBox
-        isHistory={true}
-        isVideo={false}
-        isRecommendations={false}
-        data={data}
-      />
-    </div>
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <HeroBox
+            isHistory={true}
+            isVideo={false}
+            isRecommendations={false}
+            data={data.data.data}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

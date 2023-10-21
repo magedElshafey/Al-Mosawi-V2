@@ -151,6 +151,7 @@ const App = () => {
             />
             <FixedBtn />
             {/*done*/}
+            {/*done*/}
             <Routes>
               <Route
                 path="/"
@@ -189,9 +190,11 @@ const App = () => {
               <Route path="/forget" element={<ForgetPassword />} />
             </Routes>
             {/*done*/}
+            {/*done*/}
             <Routes>
               <Route path="/about" element={<About />} />
             </Routes>
+            {/*done*/}
             {/*done*/}
             <Routes>
               <Route
@@ -307,15 +310,16 @@ const App = () => {
               <Route path="/booking/success" element={<SuccessBooking />} />
             </Routes>
             <Routes>
-              <Route path="/order/success" element={<OrderSuccess />} />
+              <Route path="/order/success/:id" element={<OrderSuccess />} />
             </Routes>
             <Routes>
-              <Route path="/order/faild" element={<OrderFaild />} />
+              <Route path="/order/faild/:id" element={<OrderFaild />} />
             </Routes>
             {/*donea*/}
             <Routes>
               <Route
                 path="/ask"
+                g
                 element={
                   <Ask
                     details={settingsData.contactSettings}

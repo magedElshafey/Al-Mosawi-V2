@@ -12,11 +12,9 @@ const client = axios.create({
 });
 export const request = ({ ...options }) => {
   const onSuccess = (response) => {
-    console.log(response);
     return response;
   };
   const onError = (error) => {
-    console.log(error);
     return error;
   };
 

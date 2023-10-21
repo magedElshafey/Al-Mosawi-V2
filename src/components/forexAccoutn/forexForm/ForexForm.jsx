@@ -15,52 +15,45 @@ const ForexForm = () => {
     : "ar";
   const { t, i18n } = useTranslation();
   const [id, setId] = useState(null);
-  const [idData, setIdData] = useState("");
+
   const [address, setAddress] = useState(null);
-  const [addressData, setAddressData] = useState("");
+
   const [passport, setPassport] = useState(null);
-  const [passportData, setPassportData] = useState("");
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
+  const [successMessageID, setSuccessMessageID] = useState("");
+  const [successMsgPassport, setSuccessMsgPassport] = useState("");
+  const [successMsgAddrress, setSuccessPassport] = useState("");
   const handleIdChange = (e) => {
     setId(e.target.files[0]);
+    setSuccessMessageID(
+      i18n.language === "ar"
+        ? "تم رفع الملف بنجاح!"
+        : "File uploaded successfully!"
+    );
   };
   const handlePassportChange = (e) => {
     setPassport(e.target.files[0]);
+    setSuccessMsgPassport(
+      i18n.language === "ar"
+        ? "تم رفع الملف بنجاح!"
+        : "File uploaded successfully!"
+    );
   };
   const handleAddressChange = (e) => {
     setAddress(e.target.files[0]);
+    setSuccessPassport(
+      i18n.language === "ar"
+        ? "تم رفع الملف بنجاح!"
+        : "File uploaded successfully!"
+    );
   };
   const [accountKind, setAccountKind] = useState("");
-  // const [isValid, setIsValid] = useState(false);
 
-  // const validatePhoneNumber = () => {
-  //   const pattern = /^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-  //   setIsValid(pattern.test(phoneNum));
-  // };
-  // const [formData, setFormData] = useState({
-  //   first_name: "",
-  //   family_name: "",
-  //   phone: "",
-  //   accountType: "",
-  //   country: "",
-  //   personalCard: null,
-  //   addressConfirm: null,
-  //   passport: null,
-  //   email: "",
-  // });
-
-  // const handleInputChange = (e) => {
-  //   const { name, value, type, files } = e.target;
-  //   if (type === "file") {
-  //     setFormData({ ...formData, [name]: files[0] });
-  //   } else {
-  //     setFormData({ ...formData, [name]: value });
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -122,30 +115,6 @@ const ForexForm = () => {
       }
     }
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const api = "";
-  //   const formDataToSend = new FormData();
-  //   formDataToSend.append("first_name", formData.first_name);
-  //   formDataToSend.append("family_name", formData.family_name);
-  //   formDataToSend.append("phone", formData.phone);
-  //   formDataToSend.append("accountType", formData.accountType);
-  //   formDataToSend.append("country", formData.country);
-  //   formDataToSend.append("personalCard", formData.personalCard);
-  //   formDataToSend.append("addressConfirm", formData.addressConfirm);
-  //   formDataToSend.append("passport", formData.passport);
-  //   formDataToSend.append("email", formData.email);
-  //   const res = await fetch(api, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "Application/json",
-  //       lang,
-  //     },
-  //     body: formDataToSend,
-  //   });
-  //   const data = await res.json();
-  //   console.log("data from form", data);
-  // };
   return (
     <div className={`p-3 ${style.mainContainer}`}>
       <p className="fw-bold mx-0 p- shamel fs22 mb-2">{t("regForm")}</p>
@@ -195,11 +164,6 @@ const ForexForm = () => {
               onChange={(e) => setPhoneNum(e.target.value)}
               value={phoneNum}
             />
-            {/**{isValid ? (
-                  <p>Valid phone number</p>
-                ) : (
-                  <p>Invalid phone number</p>
-                )} */}
           </div>
           <div className="col-12 col-md-6 mb-2 mb-md-0">
             <label htmlFor="email" className="fw-bold shamel d-block  mb-2">
@@ -256,18 +220,21 @@ const ForexForm = () => {
             action={handleIdChange}
             label={t("id")}
             id="ID"
+            successMessageID={successMessageID}
           />
           <Upload
             name="addressConfirm"
             action={handleAddressChange}
             label={t("address")}
             id="add"
+            successMsgPassport={successMsgPassport}
           />
           <Upload
             name="passport"
             action={handlePassportChange}
             label={t("passport")}
             id="passport"
+            successMsgAddrress={successMsgAddrress}
           />
           <button type="submit" className={style.btn}>
             <MdOutlineArrowBackIosNew size={20} />

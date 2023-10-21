@@ -47,21 +47,24 @@ const Management = ({ data }) => {
   };
   const { isLoading, mutate } = useMutation(handleSendMsg, {
     onSuccess: (data) => {
-      if (data?.data.status) {
+      console.log("this is the data at success from managment", data.data);
+      if (data.data.status === "faild") {
+        toast.error(
+          i18n.language === "ar"
+            ? "هناك خطأ في البيانات التي قمت ب ادخالها يرجي التأكد من صحتها و التأكد من انك لم تقم ب ادخالها من قبل"
+            : "There is an error in the data that you entered. Please verify that it is correct and make sure that you have not entered it before."
+        );
+      } else {
         toast.success(
           i18n.language === "en"
             ? "your message sent succfully"
             : "تم ارسال رسالتك بنجاح"
         );
         setName("");
+        setEmail("");
+        setPhoneValue("");
+        setNumber("");
       }
-    },
-    onError: () => {
-      toast.error(
-        i18n.language === "en"
-          ? "there is an error occurred , please try again"
-          : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
-      );
     },
   });
   const handleClick = (e) => {
@@ -76,7 +79,6 @@ const Management = ({ data }) => {
       e.preventDefault();
       const data = { investAmount: number, phone: phoneValue, name, email };
       mutate(data);
-      console.log("this is the body", data);
     }
   };
   return (
@@ -127,6 +129,7 @@ const Management = ({ data }) => {
                       className={`inp ${style.w90}`}
                       type="text"
                       id="name"
+                      value={name}
                     />
                   </div>
                   <div className="mb-3">
@@ -151,6 +154,7 @@ const Management = ({ data }) => {
                       className={`inp ${style.w90}`}
                       type="email"
                       id="email"
+                      value={email}
                     />
                   </div>
                   <div className="mb-3">

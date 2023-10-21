@@ -36,33 +36,45 @@ const HistoryDetails = ({ data }) => {
           {i18n.language === "ar" ? "معاينة الصفقة" : "Preview deal"}
         </p>
       </div>
-      {data.slice(0, showMore ? data.length : 3).map((item, index) => (
-        <div
-          key={index}
-          className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 flex-wrap`}
-        >
-          <p className="m-0 p-0 ">{item.currency}</p>
-          <p className="m-0 p-0 ">{item.date}</p>
-          <p
-            className={`m-0 p-0 ${
-              item.type === "شراء" ? `${style.title}` : `${style.buy}`
-            }   `}
-          >
-            {item.type}
-          </p>
-          <p className="m-0 p-0 ">{item.state}</p>
-          <p className={`m-0 p-0 ${style.title}`}>{item.number}</p>
-          <button onClick={() => navigate("/deals")} className={`${style.btn}`}>
-            <MdOutlineArrowBackIosNew />
-            <span>{i18n.language === "ar" ? "عرض الصفقة" : "View deal"}</span>
-          </button>
+      {data.slice(0, showMore ? data.length : 3).map((item, index) => {
+        console.log("this is the item", item);
+        return (
           <div
-            className={`${style.arrowContainer} ${
-              item.type === "شراء" ? style.green : style.red
-            }`}
-          ></div>
-        </div>
-      ))}
+            key={index}
+            className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 flex-wrap`}
+          >
+            <p className="m-0 p-0 ">{item.title}</p>
+            <p className="m-0 p-0 ">{item?.Recommendation[0]?.update_at}</p>
+            <p
+              className={`m-0 p-0 ${
+                item?.Recommendation[0]?.type === "شراء"
+                  ? `${style.title}`
+                  : `${style.buy}`
+              }   `}
+            >
+              {item?.Recommendation[0]?.type}
+            </p>
+            <p className="m-0 p-0 ">{item?.Recommendation[0]?.status}</p>
+            <p className={`m-0 p-0 ${style.point}`}>
+              {item?.Recommendation[0]?.point}
+            </p>
+            <button
+              onClick={() => navigate(`/deals/${item.id}`)}
+              className={`${style.btn}`}
+            >
+              <MdOutlineArrowBackIosNew />
+              <span>{i18n.language === "ar" ? "عرض الصفقة" : "View deal"}</span>
+            </button>
+            <div
+              className={`${style.arrowContainer} ${
+                item?.Recommendation[0]?.type === "شراء"
+                  ? style.green
+                  : style.red
+              }`}
+            ></div>
+          </div>
+        );
+      })}
       {data.length > 3 && (
         <button
           className={`mx-auto z-3 d-flex justify-content-center align-items-center text-white  gap-2 ${style.moreBtn}`}

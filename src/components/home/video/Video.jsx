@@ -7,16 +7,15 @@ const Video = ({ data }) => {
   return (
     <div className="container">
       <div className={style.videocontainer}>
-        
-        <ReactPlayer
-          url="https://player.vimeo.com/video/867338027"
-          playing={true}
-          loop={true}
-          muted={true}
-          width="100%"
-          height="100%"
-        />
         <div className={style.overlay}>
+          <ReactPlayer
+            url="https://player.vimeo.com/video/867338027"
+            playing={true}
+            loop={true}
+            muted={true}
+            width="100%"
+            height="100%"
+          />
           <div className={`w-100 ${style.text}`}>
             <div className="w-100 row juistify-content-center align-items-center">
               <div className="col-12 col-md-10 mb-3 mb-md-0">

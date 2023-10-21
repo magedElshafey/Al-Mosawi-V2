@@ -43,7 +43,7 @@ const Slider = ({ slider }) => {
   }, [currentSlide, slider.length]);
   return (
     <div className={style.mainContainer}>
-      <div className="container pt-4 mt-4">
+      <div className="container pt-5 mt-5">
         <div
           data-aos="zoom-in"
           data-aos-delay="800"

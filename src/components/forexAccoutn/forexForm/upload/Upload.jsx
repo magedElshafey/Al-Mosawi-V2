@@ -2,7 +2,15 @@ import React, { useRef } from "react";
 import style from "./upload.module.css";
 import uploadIcon from "../../../../assets/upload-to-cloud.svg";
 import { useTranslation } from "react-i18next";
-const Upload = ({ label, action, id, name }) => {
+const Upload = ({
+  label,
+  action,
+  id,
+  name,
+  successMessageID,
+  successMsgPassport,
+  successMsgAddrress,
+}) => {
   const [t] = useTranslation();
   const inputRef = useRef(null);
   const handleButtonClic = (e) => {
@@ -29,6 +37,13 @@ const Upload = ({ label, action, id, name }) => {
         </p>
         <p className="m-0 p-0 tahoma fs ">{t("best")}</p>
       </button>
+      {successMessageID && <p className="green m-0 p-0">{successMessageID}</p>}
+      {successMsgPassport && (
+        <p className="green m-0 p-0">{successMsgPassport}</p>
+      )}
+      {successMsgAddrress && (
+        <p className="green m-0 p-0">{successMsgAddrress}</p>
+      )}
     </div>
   );
 };
