@@ -25,7 +25,7 @@ const CartItems = ({ items, user }) => {
       }
     );
     const data = await res.json();
-    console.log("this is data from delete page", data);
+  
     if (data.status) {
       queryClient.invalidateQueries("cart-page");
       window.location.reload();

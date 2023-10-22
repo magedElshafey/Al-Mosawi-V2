@@ -61,7 +61,11 @@ const LoginForm = () => {
       if (data.data.data.tikmill) {
         navigate("/forex-account/details");
       } else {
-        navigate("/account");
+        if (data.data.data.type === "prochart_user") {
+          navigate("/user/prochart");
+        } else {
+          navigate("/account");
+        }
       }
       localStorage.setItem(
         "tickmillUser",

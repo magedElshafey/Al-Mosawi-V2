@@ -63,7 +63,7 @@ const Cart = () => {
             title={i18n.language === "ar" ? "عربة التسوق" : "cart"}
           />
           <div className="container py-5">
-            {user && data?.data?.data?.itemsDetails?.length && (
+            {user && data?.data?.data?.itemsDetails?.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartItems
@@ -75,8 +75,8 @@ const Cart = () => {
                   <CartTotal user={user} total={data?.data?.data?.total} />
                 </div>
               </div>
-            )}
-            {user && !items.length && (
+            ) : null}
+            {user && !items.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartEmpty />
@@ -85,8 +85,8 @@ const Cart = () => {
                   <CartTotal user={user} total={0} />
                 </div>
               </div>
-            )}
-            {!user && items.length && (
+            ) : null}
+            {!user && items.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartItems user={null} items={items} />
@@ -95,8 +95,8 @@ const Cart = () => {
                   <CartTotal total={totalPrice} user={null} />
                 </div>
               </div>
-            )}
-            {!user && !items.length && (
+            ) : null}
+            {!user && !items.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartEmpty />
@@ -105,7 +105,7 @@ const Cart = () => {
                   <CartTotal total={totalPrice} user={null} />
                 </div>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       )}
