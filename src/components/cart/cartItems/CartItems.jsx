@@ -4,12 +4,15 @@ import deleteIcon from "../../../assets/delete-svgrepo-com(2).png";
 import { useTranslation } from "react-i18next";
 import Spinner from "../../utils/Spinner/Spinner";
 import { useQueryClient } from "react-query";
+import toast from "react-hot-toast";
 
 const CartItems = ({ items, user }) => {
+  console.log("this is the items", items);
   const { t, i18n } = useTranslation();
   const queryClient = useQueryClient();
 
   const [cart, setCart] = useState(items);
+
   const lang = i18n.language;
   const deleteFromApi = async (item) => {
     const res = await fetch(
@@ -25,10 +28,14 @@ const CartItems = ({ items, user }) => {
       }
     );
     const data = await res.json();
-
     if (data.status === "success") {
-      queryClient.invalidateQueries("cart-page");
+      setCart(data.data.itemsDetails);
+      toast.success(`${item.title} deleted successfully`);
+    } else {
+      toast.error("try again");
     }
+    console.log("data from delete", data.data);
+
     return data;
   };
 
@@ -45,7 +52,7 @@ const CartItems = ({ items, user }) => {
     <>
       <div className={`px-3 py-4 ${style.firstContainer}`}>
         <p className="m-0 p-0 fs28 shamel">{t("cart")}</p>
-        <p className="mx-0 mt-0 p-0 mb-2">لديك عدد {items.length} منتجات</p>
+        <p className="mx-0 mt-0 p-0 mb-2">لديك عدد {cart.length} منتجات</p>
         <div className={`p-2`}>
           {cart.map((item, index) => (
             <div
