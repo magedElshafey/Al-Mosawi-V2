@@ -44,7 +44,9 @@ const HistoryDetails = ({ data }) => {
             className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 flex-wrap`}
           >
             <p className="m-0 p-0 ">{item.title}</p>
-            <p className="m-0 p-0 ">{item?.Recommendation?.updated_at}</p>
+            <p className={`m-0 p-0  ${style.date}`}>
+              {item?.Recommendation?.updated_at}
+            </p>
             <p
               className={`m-0 p-0 ${
                 item?.Recommendation?.type === "شراء"

@@ -25,10 +25,9 @@ const CartItems = ({ items, user }) => {
       }
     );
     const data = await res.json();
-  
-    if (data.status) {
+
+    if (data.status === "success") {
       queryClient.invalidateQueries("cart-page");
-      window.location.reload();
     }
     return data;
   };

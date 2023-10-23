@@ -46,11 +46,9 @@ const HeroCourse = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
   const [disabledBtn, setDisabledBtn] = useState(false);
-  const cartItems = window.localStorage.getItem("cart")
-    ? JSON.parse(window.localStorage.getItem("cart"))
-    : [];
+  const cartItems = JSON.parse(window.localStorage.getItem("cart"));
+  const [items, setItems] = useState(cartItems);
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
@@ -67,6 +65,7 @@ const HeroCourse = ({
       toast.success(
         i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
       );
+      setItems(data.data.data.itemsDetails);
       window.localStorage.setItem(
         "cart",
         JSON.stringify(data?.data?.data?.itemsDetails)
@@ -96,7 +95,9 @@ const HeroCourse = ({
         await mutate(courseDetails);
       } else {
         const newData = [...cartItems, { ...product, product_type: "course" }];
+        setItems(newData);
         window.localStorage.setItem("cart", JSON.stringify(newData));
+
         nvigate("/cart");
       }
     }

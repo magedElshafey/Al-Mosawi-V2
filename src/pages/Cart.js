@@ -8,10 +8,11 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
+import { useState } from "react";
 const Cart = () => {
   const { i18n } = useTranslation();
   const items = JSON.parse(localStorage.getItem("cart"));
-
+  const [cartItems, setCartItems] = useState(items);
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
@@ -27,6 +28,7 @@ const Cart = () => {
       if (!data.data.data.id) {
         return;
       } else {
+        setCartItems(data.data.data.itemsDetails);
         localStorage.setItem(
           "cart",
           JSON.stringify(data.data.data.itemsDetails)
@@ -66,10 +68,7 @@ const Cart = () => {
             {user && data?.data?.data?.itemsDetails?.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
-                  <CartItems
-                    user={user}
-                    items={data?.data?.data?.itemsDetails}
-                  />
+                  <CartItems user={user} items={cartItems} />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
                   <CartTotal user={user} total={data?.data?.data?.total} />

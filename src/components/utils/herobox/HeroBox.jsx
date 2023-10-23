@@ -66,7 +66,7 @@ const HeroBox = ({
         {isHistory && !isVideo && !isRecommendations && (
           <div className=" mt-5 pt-4 pb-3">
             <div className=" d-flex justify-content-between align-items-center flex-column flex-md-row gap-3 gap-md-0 mb-4">
-              <p className="z-3 shamel m-0 p-0 text-white fw-bolder fs20">
+              <p className="z-3  m-0 p-0 text-white fw-bolder fs20">
                 {i18n.language === "ar"
                   ? "تاريخ التوصيات"
                   : "History of recommendations"}

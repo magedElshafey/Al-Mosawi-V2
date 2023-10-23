@@ -11,10 +11,15 @@ import { Toaster } from "react-hot-toast";
 // i18next
 import "./i18n";
 import "./index.css";
+// redux
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Toaster position="top-center" reverseOrder={false} />
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
