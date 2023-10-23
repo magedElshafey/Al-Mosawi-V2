@@ -11,4 +11,8 @@
   width: 15px;
   height: 15px;
   object-fit: contain;
+  margin-top: 5px;
+}
+.day {
+  width: 50px;
 }

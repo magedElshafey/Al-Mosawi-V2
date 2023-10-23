@@ -9,7 +9,7 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
   const { i18n } = useTranslation();
   return (
     <div className={`px-3 py-2 ${style.mainContainer}`}>
-      <div className="d-flex flex-column gap-1">
+      <div>
         {/*phone*/}
         <div className="d-flex gap-2 ">
           <img
@@ -19,7 +19,7 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             className={style.icon}
           />
           <div>
-            <p className="shamel p-0 m-0 fw-bold">
+            <p className="p-0 m-0 mb-3 fw-bold">
               {i18n.language === "en" ? "for contact" : "للاتصال"}
             </p>
             <p dangerouslySetInnerHTML={{ __html: phone }}></p>
@@ -68,24 +68,21 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <div className="mt-0">
               {appointment.map((item, index) =>
                 item.value === "0" ? (
-                  <div key={index} className="d-flex gap-4 ">
-                    <p className="m-0 p-0 ">{item.day} : </p>
-                    <p className="red m-0 p-0 ">مغلق</p>
+                  <div key={index} className="d-flex mb-2 ">
+                    <p className={`m-0 p-0  ${style.day}`}>{item.day} : </p>
+                    <p className="red m-0 p-0 text-center ">مغلق</p>
                   </div>
                 ) : (
-                  <div
-                    key={index}
-                    className="d-flex justify-content-between align-items-center gap-2  fs16 "
-                  >
-                    <p className="m-0 p-0 fs16 ">{item.day} : </p>
-                    <p className="green m-0 p-0 fs16 ">{item.Start}</p>
-                    <p className="m-0 p-0 fs16 roboto">
+                  <div key={index} className="d-flex  mb-2  fs16 ">
+                    <p className={`m-0 p-0  ${style.day}`}>{item.day} : </p>
+                    <p className="green m-0 p-0">{item.Start}</p>
+                    <p className="m-0 p-0 mx-1 ">
                       {i18n.language === "en" ? "Am" : "ص"}
                     </p>
-                    <p className="m-0 p-0 fs16 roboto">-</p>
-                    <p className="red m-0 p-0 fs16 roboto">{item.End}</p>
-                    <p className="m-0 p-0 fs16 roboto">
-                      <p className="m-0 p-0 fs16 roboto">
+                    <p className="m-0 p-0 mx-1">-</p>
+                    <p className="red m-0 p-0  ">{item.End}</p>
+                    <p className="m-0 p-0 fs16 ">
+                      <p className="m-0 p-0 fs16 mx-1 ">
                         {i18n.language === "en" ? "Pm" : "م"}
                       </p>
                     </p>

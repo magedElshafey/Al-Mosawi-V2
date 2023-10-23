@@ -44,19 +44,19 @@ const HistoryDetails = ({ data }) => {
             className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 flex-wrap`}
           >
             <p className="m-0 p-0 ">{item.title}</p>
-            <p className="m-0 p-0 ">{item?.Recommendation[0]?.update_at}</p>
+            <p className="m-0 p-0 ">{item?.Recommendation?.updated_at}</p>
             <p
               className={`m-0 p-0 ${
-                item?.Recommendation[0]?.type === "شراء"
+                item?.Recommendation?.type === "شراء"
                   ? `${style.title}`
                   : `${style.buy}`
               }   `}
             >
-              {item?.Recommendation[0]?.type}
+              {item?.Recommendation?.type}
             </p>
-            <p className="m-0 p-0 ">{item?.Recommendation[0]?.status}</p>
+            <p className="m-0 p-0 ">{item?.Recommendation?.status}</p>
             <p className={`m-0 p-0 ${style.point}`}>
-              {item?.Recommendation[0]?.point}
+              {item?.Recommendation?.point}
             </p>
             <button
               onClick={() => navigate(`/deals/${item.id}`)}
@@ -67,9 +67,7 @@ const HistoryDetails = ({ data }) => {
             </button>
             <div
               className={`${style.arrowContainer} ${
-                item?.Recommendation[0]?.type === "شراء"
-                  ? style.green
-                  : style.red
+                item?.Recommendation.type === "شراء" ? style.green : style.red
               }`}
             ></div>
           </div>

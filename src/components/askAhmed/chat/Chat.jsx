@@ -61,20 +61,7 @@ const Chat = ({ appointment, details, data, msg, setMsg, handleClick }) => {
                 </div>
               ))}
             </div>
-            {/**
-             <div className="d-flex gap-3 align-items-center mt-5 ">
-              <img alt="avatar/img" loading="lazy" src={item.ahmedAv} />
-              <p className="m-0 p-0 ">أحمد الموسوي</p>
-              <p dir="ltr" className="m-0 p-0 roboto text-black-50">
-                {new Date().toLocaleTimeString()}
-              </p>
-            </div>
-            <p
-              className={`text-black-50 p-3 mt-3 mx-5 ${style.answerContainer}`}
-            >
-              {item.answer}
-            </p>
-          */}
+           
           </div>
         ))}
         <div className="row mt-4">

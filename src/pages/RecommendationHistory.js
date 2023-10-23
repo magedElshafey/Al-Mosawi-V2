@@ -12,9 +12,9 @@ const RecommendationHistory = () => {
     const headers = {
       user,
     };
-    return request({ url: "/deal/recommendation-detalis", headers });
+    return request({ url: "/deal/index", headers });
   };
-  const { isLoading, data } = useQuery("history-page", fetchData, {
+  const { isLoading, data } = useQuery("deals-page", fetchData, {
     cacheTime: 12000,
     staleTime: 12000,
   });

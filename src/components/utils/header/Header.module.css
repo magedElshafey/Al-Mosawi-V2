@@ -11,13 +11,12 @@
 } */
 
 .link {
-  font-size: 13px;
   display: inline-block !important;
   text-align: center;
   padding: 14px !important;
   margin: 0 15px !important;
   text-decoration: none;
-  font-family: "FF Shamel Family";
+  font-size: 15px;
 }
 .link:hover {
   color: #003684 !important;
