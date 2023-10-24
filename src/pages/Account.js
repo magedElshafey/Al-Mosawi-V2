@@ -16,6 +16,8 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const user = localStorage.getItem("userId");
+  const type = JSON.parse(localStorage.getItem("accountType"));
+  const isTickmill = JSON.parse(localStorage.getItem("tickmillUser"));
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -50,12 +52,18 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
           <div className="container pb-5">
             <div className="row gap-5">
               <div className="col-12  col-md-7">
-                <AccountDetails accountDetails={data.data.data} />
-                <Withdraw monthlyWithdraw={monthlyWithdraw} />
+                <AccountDetails
+                  type={type}
+                  accountDetails={data.data.data}
+                  isTickmill={isTickmill}
+                />
+                {isTickmill ? (
+                  <Withdraw monthlyWithdraw={monthlyWithdraw} />
+                ) : null}
               </div>
               <div className="col-12   col-md-4 mx-auto">
-                <DownloadPlane />
-                <PromoCode />
+                {type === "vip_max" ||
+                  (type === "pro_classic_max" ? <DownloadPlane /> : null)}
                 <ContactUs phoneNum={phoneNum} />
               </div>
             </div>

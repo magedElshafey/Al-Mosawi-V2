@@ -3,13 +3,10 @@ import style from "./HeroBox.module.css";
 import DealsHeader from "../../deals/dealsHeader/DealsHeader";
 import DealsDetails from "../../deals/dealsDetails/DealsDetails";
 import charts from "../../../assets/Candles1.png";
-import calender from "../../../assets/calender.svg";
-import prochartImg from "../../../assets/prochartImg.png";
+
 import RecommendationCard from "../../recommendations/RecommendationCard";
-import { AiOutlinePlayCircle } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import HistoryDetails from "../../history/historyDetails/HistoryDetails";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineSearch } from "react-icons/ai";
 import ReactPlayer from "react-player";
 const HeroBox = ({
@@ -18,6 +15,15 @@ const HeroBox = ({
   isRecommendations,
   data,
   dealsData,
+  status,
+  type,
+  date,
+  setDate,
+  dealType,
+  setDealType,
+  dealStatus,
+  setDealStatus,
+  handleSearch,
 }) => {
   const { i18n } = useTranslation();
   return (
@@ -72,27 +78,35 @@ const HeroBox = ({
                   : "History of recommendations"}
               </p>
               <div className="d-flex align-items-center flex-wrap gap-3">
-                <select className={`${style.box2}`}>
-                  <option>نوع الصفقة - الكل</option>
-                  <option>نوع الصفقة - الكل</option>
-                  <option>نوع الصفقة - الكل</option>
-                  <option>نوع الصفقة - الكل</option>
-                  <option>نوع الصفقة - الكل</option>
+                <select value={dealType} className={`${style.box2}`}>
+                  <option onChange={(e) => setDealType(e.target.value)}>
+                    نوع الصفقة - الكل
+                  </option>
+                  <option value="buy">{type.buy}</option>
+                  <option value="sell">{type.sell}</option>
                 </select>
-                <select className={`${style.box2}`}>
-                  <option>حالة الصفقة - الكل</option>
-                  <option>حالة الصفقة - الكل</option>
-                  <option>حالة الصفقة - الكل</option>
-                  <option>حالة الصفقة - الكل</option>
-                  <option>حالة الصفقة - الكل</option>
+                <select
+                  value={dealStatus}
+                  onChange={(e) => setDealStatus(e.target.value)}
+                  className={`${style.box2}`}
+                >
+                  <option value="">حالة الصفقة</option>
+                  <option value="active">{status.active}</option>
+                  <option value="unactive">{status.unactive}</option>
+                  <option value="expired">{status.expired}</option>
                 </select>
 
                 <input
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                   type="date"
                   className={`text-center bg-light ${style.box2} ${style.inp}`}
                 />
 
-                <button className={`book ${style.box} ${style.btn2}`}>
+                <button
+                  onClick={handleSearch}
+                  className={`book ${style.box} ${style.btn2}`}
+                >
                   <AiOutlineSearch />
                   <span className="mx-0 mt-1 p-0">
                     {i18n.language === "en" ? "show result" : "عرض النتائج"}

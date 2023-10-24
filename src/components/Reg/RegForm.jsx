@@ -93,7 +93,6 @@ const RegForm = ({ setShowModal }) => {
         },
       });
       localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
-      localStorage.setItem("isLogin", JSON.stringify(true));
       sendCartItems(data?.data?.data?.id);
       setFullName("");
       setMobileNumber("");

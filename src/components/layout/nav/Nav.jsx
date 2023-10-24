@@ -10,6 +10,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import callIcon from "../../../assets/help-desk-log-svgrepo-com.svg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { AiFillUnlock, AiFillEdit } from "react-icons/ai";
 import pyramids from "../../../assets/aboutCourses/pyramidsDefault.png";
 import energy from "../../../assets/aboutCourses/energyDefault.png";
 import person from "../../../assets/aboutCourses/personDefault.png";
@@ -21,7 +22,14 @@ import close from "../../../assets/cross.png";
 import back from "../../../assets/back.svg";
 import down from "../../../assets/down.svg";
 import avatar from "../../../assets/avatar.png";
+import { IoIosArrowDown } from "react-icons/io";
+import { useSelector, useDispatch } from "react-redux";
+import { request } from "../../utils/axios";
+import { useMutation } from "react-query";
+import { toast } from "react-hot-toast";
+import { logout, removePip, removeName } from "../../../Redux/auth.js";
 const Nav = ({ data, phoneNum, menus }) => {
+  const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const [showSidebar, setShowSidebar] = useState(false);
   const [showProchart, setShowPorchart] = useState(false);
@@ -30,9 +38,12 @@ const Nav = ({ data, phoneNum, menus }) => {
   const [showLogo, setShowLogo] = useState(true);
   const [showAsk, setShowAsk] = useState(false);
   const navigate = useNavigate();
-  const isLogin = JSON.parse(localStorage.getItem("isLogin"));
   const [showMenu, setShowMenu] = useState(true);
   const [showBack, setShowBack] = useState(false);
+  const { isLogin, name, profilePhoto } = useSelector(
+    (state) => state.authSlice
+  );
+  const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
   useEffect(() => {
     if (
       pathname === "/forget" ||
@@ -61,7 +72,35 @@ const Nav = ({ data, phoneNum, menus }) => {
       setShowBack(false);
     }
   }, [pathname]);
-  // handle change language
+
+  // handle logout
+  const handleLogout = (data) => {
+    return request({ url: "/auth/logout", method: "post", data });
+  };
+  const { mutate } = useMutation(handleLogout, {
+    onSuccess: (data) => {
+      if (data.data.status) {
+        toast.success(
+          i18n.language === "en"
+            ? "you are logout successfulyy"
+            : "تم تسجيل خروجك بنجاح"
+        );
+        dispatch(logout(false));
+        dispatch(removeName());
+        dispatch(removePip());
+      } else {
+        toast.error(
+          i18n.language === "en"
+            ? "there is an error occurred , please try again"
+            : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
+        );
+      }
+    },
+  });
+  const handleClick = async () => {
+    const userData = {};
+    await mutate(userData);
+  };
   return (
     <>
       <div>
@@ -215,15 +254,69 @@ const Nav = ({ data, phoneNum, menus }) => {
               </p>
 
               <div className="d-flex align-items-center gap-2">
-                <img
-                  onClick={() => setShowSidebar(false)}
-                  loading="lazy"
-                  alt="close/icon"
-                  className={`${style.closeIcon} pointer`}
-                  src={close}
-                />
-
-                <p className="text-white m-0 p-0 book fs18">إغلاق</p>
+                {isLogin ? (
+                  <div className="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                      <button
+                        className={`dropdown-toggle d-flex align-items-center gap-2 ${style.menuBtn}`}
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <img
+                          alt="profile/img"
+                          className={style.pp}
+                          src={profilePhoto}
+                        />
+                        <p className="text-white m-0 p-0 fw-bolder">{name}</p>
+                        <IoIosArrowDown size={15} className="text-white" />
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li onClick={() => setShowSidebar(false)}>
+                          <Link
+                            className="dropdown-item"
+                            to={
+                              tickmillUser
+                                ? "/forex-account/details"
+                                : "/account"
+                            }
+                          >
+                            {i18n.language === "ar" ? "حسابي" : "profile"}
+                          </Link>
+                        </li>
+                        <li
+                          className="dropdown-item pointer"
+                          onClick={() => {
+                            setShowSidebar(false);
+                            handleClick();
+                          }}
+                        >
+                          {i18n.language === "ar" ? "تسجيل الخروج" : "logout"}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="d-flex align-items-center gap-2">
+                      <img
+                        onClick={() => setShowSidebar(false)}
+                        loading="lazy"
+                        alt="close/icon"
+                        className={`${style.closeIcon} pointer`}
+                        src={close}
+                      />
+                      <p className="text-white m-0 p-0 book fs18">إغلاق</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="d-flex align-items-center gap-2">
+                    <img
+                      onClick={() => setShowSidebar(false)}
+                      loading="lazy"
+                      alt="close/icon"
+                      className={`${style.closeIcon} pointer`}
+                      src={close}
+                    />
+                    <p className="text-white m-0 p-0 book fs18">إغلاق</p>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -392,32 +485,71 @@ const Nav = ({ data, phoneNum, menus }) => {
               </div>
               <div className={`col-12 col-md-6 col-lg-3 `}>
                 <ul className=" m-0 p-0">
-                  <li className="mb-2">
-                    <Link
-                      onClick={() => setShowSidebar(false)}
-                      className={`book text-white  ${style.link}`}
-                      to="/login"
-                    >
-                      <BiLogOut
-                        className="green d-inline-block mx-1 "
-                        size={20}
-                      />
-                      {t("login")}
-                    </Link>
-                  </li>
-                  <li className="mb-2">
-                    <Link
-                      onClick={() => setShowSidebar(false)}
-                      className={`book text-white ${style.link}`}
-                      to="/reg"
-                    >
-                      <BsFillPersonFill
-                        className="green d-inline-block mx-1 "
-                        size={20}
-                      />
-                      {t("reg")}
-                    </Link>
-                  </li>
+                  {!isLogin ? (
+                    <>
+                      {" "}
+                      <li className="mb-2">
+                        <Link
+                          onClick={() => setShowSidebar(false)}
+                          className={`book text-white  ${style.link}`}
+                          to="/login"
+                        >
+                          <BiLogOut
+                            className="green d-inline-block mx-1 "
+                            size={20}
+                          />
+                          {t("login")}
+                        </Link>
+                      </li>
+                      <li className="mb-2">
+                        <Link
+                          onClick={() => setShowSidebar(false)}
+                          className={`book text-white ${style.link}`}
+                          to="/reg"
+                        >
+                          <BsFillPersonFill
+                            className="green d-inline-block mx-1 "
+                            size={20}
+                          />
+                          {t("reg")}
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      {" "}
+                      <li className="mb-2">
+                        <Link
+                          onClick={() => setShowSidebar(false)}
+                          className={`book text-white  ${style.link}`}
+                          to="/forget"
+                        >
+                          <AiFillUnlock
+                            className="green d-inline-block mx-1 "
+                            size={20}
+                          />
+                          {i18n.language === "ar"
+                            ? "تغيير كلمة المرور"
+                            : "change password"}
+                        </Link>
+                      </li>
+                      <li className="mb-2">
+                        <Link
+                          onClick={() => setShowSidebar(false)}
+                          className={`book text-white ${style.link}`}
+                          to="/edit"
+                        >
+                          <AiFillEdit
+                            className="green d-inline-block mx-1 "
+                            size={20}
+                          />
+                          {i18n.language === "ar"
+                            ? "تعديل بيانات الحساب"
+                            : "edit account"}
+                        </Link>
+                      </li>
+                    </>
+                  )}
                   {menus.length
                     ? menus.map((item, index) => (
                         <li key={index} className="mb-2">

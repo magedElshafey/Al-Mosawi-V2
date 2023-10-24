@@ -6,7 +6,7 @@ import RecommendationHistoryCard from "../recommendationHistoryCard/Recommendati
 import PdfBtn from "../pdfBtn/PdfBtn";
 import { useTranslation } from "react-i18next";
 import ServicesCard from "../../forexDetails/serviceCard/ServicesCard";
-const HeroForex = ({ isProchart, data }) => {
+const HeroForex = ({ isProchart, data, accountDetails }) => {
   const { t, i18n } = useTranslation();
   const isTickMill = JSON.parse(localStorage.getItem("tickmillUser"));
   return (
@@ -14,7 +14,7 @@ const HeroForex = ({ isProchart, data }) => {
       <div className="container">
         <div className="row justify-content-center justify-content-md-start">
           <div className=" mt100 z-3 col-12 col-md-2">
-            <AccountDetails />
+            <AccountDetails data={accountDetails} />
           </div>
           <div className="z-3 mt100 col-12 col-md-10">
             {!isProchart && (

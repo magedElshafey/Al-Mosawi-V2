@@ -12,7 +12,46 @@ const ExpertsLevel = ({ expertCourses }) => {
       <h3 className="fs26 shamel fw-bolder mb-2 mx-0 mt-0 p-0">
         {t("courses")}
       </h3>
-      <p className="mb-2 mx-0 mt-0 p-0">يتم كتابة وصف عن الدورة التعليمية</p>
+      <div>
+        {expertCourses.map((course, index) => (
+          <div className="mb-2" key={index}>
+            <div
+              dangerouslySetInnerHTML={{ __html: course.header_des }}
+              className={`${style.desc}`}
+            />
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              <div
+                className="green fw-bolder fs-5"
+                dangerouslySetInnerHTML={{ __html: course.title }}
+              />
+              <button className={`book ${style.btn}`}>
+                <img
+                  alt="pdf/icon"
+                  loading="lazy"
+                  src={pdfIcon}
+                  className={style.mainImg}
+                />
+                <p
+                  className={`mx-0 mb-0 mt-1 p-0 text-white ${style.downLoad}`}
+                >
+                  {t("downloadCertificate")}
+                </p>
+              </button>
+            </div>
+            {course.CourseClasses.map((item, index) => (
+              <CourseRow item={item} key={index} newCount={newCount} />
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ExpertsLevel;
+/**
+ *  
+      
       <div className="d-flex justify-content-between align-items-center">
         <div>
           <p className="d-inline-block m-0 p-0 fw-bold fs18 shamel">
@@ -22,25 +61,9 @@ const ExpertsLevel = ({ expertCourses }) => {
             / Expert
           </p>
         </div>
-        <button className={`book ${style.btn}`}>
-          <img
-            alt="pdf/icon"
-            loading="lazy"
-            src={pdfIcon}
-            className={style.mainImg}
-          />
-          <p className={`mx-0 mb-0 mt-1 p-0 text-white ${style.downLoad}`}>
-            {t("downloadCertificate")}
-          </p>
-        </button>
+       
       </div>
       <div className="py-3">
-        {expertCourses.map((item, index) => (
-          <CourseRow item={item} key={index} newCount={newCount} />
-        ))}
+      
       </div>
-    </div>
-  );
-};
-
-export default ExpertsLevel;
+ */

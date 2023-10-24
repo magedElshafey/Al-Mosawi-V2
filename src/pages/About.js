@@ -40,7 +40,6 @@ const About = () => {
           <AboutAhmed
             title={data.data.data.section2Title}
             desc={data.data.data.section2Des}
-            
             state={data.data.data.secondSecMedia}
             imgLink={data.data.data.secondSecImage}
             videoLink={data.data.data.secondSecLink}

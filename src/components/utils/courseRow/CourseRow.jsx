@@ -14,9 +14,9 @@ const CourseRow = ({ item, newCount }) => {
           loading="lazy"
           alt="course/img"
           className={style.mainImg}
-          src={item.img}
+          src={item.image}
         />
-        <p className="fw-bold m-0 p-0 shamel">{item.title}</p>
+        <p className="fw-bold m-0 p-0 shamel">{item.name}</p>
       </div>
 
       <button className={`book ${style.viewsBtn}`}>

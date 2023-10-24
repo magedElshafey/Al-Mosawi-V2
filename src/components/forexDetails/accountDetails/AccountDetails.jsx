@@ -4,23 +4,29 @@ import avatar from "../../../assets/team-4.png";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-const AccountDetails = () => {
+const AccountDetails = ({ data }) => {
   const { t, i18n } = useTranslation();
   return (
     <>
       <div className="d-flex align-items-center align-items-md-start flex-column  gap-2 mb-3">
-        <img
-          className={style.avImg}
-          loading="lazy"
-          alt="profilePhoto/img"
-          src={avatar}
-        />
+        {data.profile_photo ? (
+          <img
+            className={style.avImg}
+            loading="lazy"
+            alt="profilePhoto/img"
+            src={data.profile_photo}
+          />
+        ) : null}
+
         <div className="d-flex flex-column gap-1">
           <div className="d-flex align-items-center gap-1 text-white">
-            <p className="m-0 p-0 fw-bold shamel">ماجد الشافعي</p>
+            <p className="m-0 p-0 fw-bold shamel">{data.name}</p>
             <IoMdArrowDropdown size={20} />
           </div>
-          <p className="text-white m-0 p-0"> {t("accountKind")} : MAX</p>
+          <p className="text-white m-0 p-0">
+            {" "}
+            {t("accountKind")} : {data.account_type}
+          </p>
         </div>
       </div>
       <div className="row">
@@ -30,7 +36,9 @@ const AccountDetails = () => {
           }`}
         >
           <p className=" text-white mx-0 mt-0 mb-1 p-0 ">{t("accountNum")}: </p>
-          <p className=" m-0 p-0 text-white fw-bold mb-2">2528172</p>
+          <p className=" m-0 p-0 text-white fw-bold mb-2">
+            {data.account_number}
+          </p>
         </div>
         <div
           className={`col-6 col-md-12 d-flex gap-2 d-md-block ${
@@ -41,7 +49,9 @@ const AccountDetails = () => {
             {" "}
             {t("investment")} :{" "}
           </p>
-          <p className="m-0 p-0 text-white fw-bold mb-2">1500$</p>
+          <p className="m-0 p-0 text-white fw-bold mb-2">
+            {data.invest_amount}
+          </p>
         </div>
       </div>
       <div className="row ">
@@ -51,7 +61,7 @@ const AccountDetails = () => {
           }`}
         >
           <p className="text-white  mx-0 mt-0 mb-1 p-0 "> {t("phone")} :</p>
-          <p className="m-0 p-0 text-white fw-bold mb-2">01022153359</p>
+          <p className="m-0 p-0 text-white fw-bold mb-2">{data.phone}</p>
         </div>
         <div
           className={`col-6 col-md-12 d-flex gap-2 d-md-block ${

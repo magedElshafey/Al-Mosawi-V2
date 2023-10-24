@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import style from "./LoginForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "react-query";
 import { request } from "../../components/utils/axios";
 import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
+import { login, gitName, gitPp } from "../../Redux/auth";
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const cartItems = localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
@@ -52,8 +54,11 @@ const LoginForm = () => {
           ? "you are loggin successfulyy"
           : "تم تسجيل دخولك بنجاح"
       );
+      dispatch(login(true));
+      dispatch(gitName(data.data.data.name));
+      dispatch(gitPp(data.data.data.photo));
       localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
-      localStorage.setItem("isLogin", JSON.stringify(true));
+      localStorage.setItem("accountType", JSON.stringify(data.data.data.type));
       sendCartItems(data?.data?.data?.id);
       setAccount("");
       setPassword("");

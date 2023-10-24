@@ -3,7 +3,7 @@ import style from "./accountDetails.module.css";
 import { Link } from "react-router-dom";
 import BTN from "../../utils/btn/BTN";
 import { useTranslation } from "react-i18next";
-const AccountDetails = ({ accountDetails }) => {
+const AccountDetails = ({ accountDetails, type, isTickmill }) => {
   const { t, i18n } = useTranslation();
   return (
     <div className={`p-4 mb-3  ${style.mainContainer}`}>
@@ -42,36 +42,48 @@ const AccountDetails = ({ accountDetails }) => {
           </div>
         </div>
       </div>
-      <div className="row mb-2">
-        <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <div>
-            <span> {t("accountNum")} : </span>{" "}
-            <p className="shamel m-0 d-inline-block p-0 fw-bold ">
-              {accountDetails.account_number}
-            </p>
+      {isTickmill ? (
+        <div className="row mb-2">
+          <div className="col-12 col-md-6 mb-3 mb-md-0">
+            <div>
+              <span> {t("accountNum")} : </span>{" "}
+              <p className="shamel m-0 d-inline-block p-0 fw-bold ">
+                {accountDetails.account_number}
+              </p>
+            </div>
+          </div>
+          <div className="col-12 col-md-6 mb-3 mb-md-0">
+            <div>
+              <span>{t("accountKind")} : </span>{" "}
+              <p className="shamel m-0 d-inline-block p-0 fw-bold  text-uppercase">
+                {accountDetails.account_type}
+              </p>
+            </div>
           </div>
         </div>
-        <div className="col-12 col-md-6 mb-3 mb-md-0">
-          <div>
-            <span>{t("accountKind")} : </span>{" "}
-            <p className="shamel m-0 d-inline-block p-0 fw-bold  text-uppercase">
-              {accountDetails.account_type}
-            </p>
-          </div>
-        </div>
-      </div>
+      ) : null}
 
-      <div className="mb-2">
-        <span> {t("investment")} : </span>{" "}
-        <p className="shamel m-0 d-inline-block p-0 fw-bold  text-uppercase">
-          {accountDetails.invest_amount}$
-        </p>{" "}
-        <Link to="/" className={`${style.customerService}`}>
-          {t("edit")}
-        </Link>
-      </div>
+      {isTickmill ? (
+        <div className="mb-2">
+          <span> {t("investment")} : </span>{" "}
+          <p className="shamel m-0 d-inline-block p-0 fw-bold  text-uppercase">
+            {accountDetails.invest_amount}$
+          </p>{" "}
+          <Link to="/" className={`${style.customerService}`}>
+            {t("edit")}
+          </Link>
+        </div>
+      ) : null}
       <div className="mb-2 mt-4">
-        <BTN text={t("editInfo")} />
+        <BTN
+          text={
+            isTickmill
+              ? t("editInfo")
+              : i18n.language === "en"
+              ? "edit account"
+              : "تعديل الحساب"
+          }
+        />
       </div>
     </div>
   );
