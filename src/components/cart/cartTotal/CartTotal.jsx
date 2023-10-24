@@ -89,7 +89,9 @@ const CartTotal = ({ total, user }) => {
     <div className={`p-3 ${style.mainContainer}`}>
       <p className="mb-3 book">{t("coponIntro")}</p>
       <p className="mb-3 fs">
-        تحتاج الي تسجيل الدخول لتحصل علي الكوبوبن الخاص بك
+        {i18n.language === "ar"
+          ? " تحتاج الي تسجيل الدخول لتحصل علي الكوبوبن الخاص بك"
+          : "You need to log in to get your coupon"}
       </p>
       <div className={style.inpContainer}>
         {!coponSent && (

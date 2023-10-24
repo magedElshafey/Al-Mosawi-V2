@@ -88,6 +88,7 @@ const Nav = ({ data, phoneNum, menus }) => {
         dispatch(logout(false));
         dispatch(removeName());
         dispatch(removePip());
+        navigate("/");
       } else {
         toast.error(
           i18n.language === "en"

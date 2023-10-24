@@ -25,6 +25,7 @@ const Hero = ({
   video,
   action,
   onClick,
+  isStatic,
 }) => {
   const { t, i18n } = useTranslation();
   return (
@@ -100,13 +101,12 @@ const Hero = ({
                   {intro}
                 </p>
               )}
-              {title ? (
-                <p
-                  className=" m-0 p-0 fw-bolder text-white fs20 "
-                  dangerouslySetInnerHTML={{ __html: title }}
-                />
+              {title && !isStatic ? (
+                <p dangerouslySetInnerHTML={{ __html: title }} />
               ) : null}
-
+              {title && isStatic ? (
+                <p className="fw-bolder whiteGreen fs18">{title}</p>
+              ) : null}
               <div
                 className={`text-white ${style.desc}`}
                 dangerouslySetInnerHTML={{ __html: desc }}

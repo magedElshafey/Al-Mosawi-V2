@@ -9,10 +9,7 @@ import toast from "react-hot-toast";
 const CartItems = ({ items, user }) => {
   console.log("this is the items", items);
   const { t, i18n } = useTranslation();
-  const queryClient = useQueryClient();
-
   const [cart, setCart] = useState(items);
-
   const lang = i18n.language;
   const deleteFromApi = async (item) => {
     const res = await fetch(
@@ -52,7 +49,11 @@ const CartItems = ({ items, user }) => {
     <>
       <div className={`px-3 py-4 ${style.firstContainer}`}>
         <p className="m-0 p-0 fs28 shamel">{t("cart")}</p>
-        <p className="mx-0 mt-0 p-0 mb-2">لديك عدد {cart.length} منتجات</p>
+        <p className="mx-0 mt-0 p-0 mb-2">
+          {i18n.language === "ar"
+            ? `لديك ${cart.length} في عربة التسوق`
+            : `you have ${cart.length} items on the cart`}
+        </p>
         <div className={`p-2`}>
           {cart.map((item, index) => (
             <div

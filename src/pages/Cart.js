@@ -62,6 +62,7 @@ const Cart = () => {
             isSmallHero={true}
             isMediumHero={false}
             img={heroImg}
+            isStatic={true}
             title={i18n.language === "ar" ? "عربة التسوق" : "cart"}
           />
           <div className="container py-5">
