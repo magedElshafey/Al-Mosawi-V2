@@ -6,8 +6,7 @@ import ChooseAppointment from "../components/bookingPage/ChooseAppointment";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
-const Booking = ( ) => {
-
+const Booking = () => {
   const fetchData = () => {
     return request({ url: "/consultation" });
   };
@@ -15,6 +14,14 @@ const Booking = ( ) => {
     cacheTime: 12000,
     staleTime: 12000,
   });
+  const date = new Date();
+  const day = date.getDate().toString().padStart(2, "0");
+  const nextDay = +day + 1;
+  console.log(nextDay);
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+  const today = `${year}-${month}-${day}`;
+  const tomorrow = `${year}-${month}-${nextDay}`;
   return (
     <>
       {isLoading ? (
@@ -33,6 +40,8 @@ const Booking = ( ) => {
           <div className="container py-5">
             <ConsultingIntro />
             <ChooseAppointment
+              tomorrow={tomorrow}
+              today={today}
               title={data.data.consultingPage.form_title}
               desc={data.data.consultingPage.form_des}
               data={data.data.schedule}

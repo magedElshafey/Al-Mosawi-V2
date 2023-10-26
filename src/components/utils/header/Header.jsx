@@ -30,12 +30,3 @@ const Header = () => {
 };
 
 export default Header;
-/*
-   <Swiper {...swiperOptions} className={`mt-4 ${style.mainDiv} text-center`}>
-      {header.map((item, index) => (
-        <SwiperSlide key={index}>
-         
-        </SwiperSlide>
-      ))}
-    </Swiper>
-*/

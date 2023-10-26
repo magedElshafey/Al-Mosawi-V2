@@ -3,12 +3,7 @@
   position: relative;
   overflow: hidden;
 }
-/* .headerContainer {
-  width: 100%;
-  white-space: nowrap;
-  animation: scrollHeader 20s linear infinite;
-  border-bottom: 1px solid #cccc;
-} */
+
 
 .link {
   display: inline-block !important;
@@ -38,7 +33,20 @@
 .menu {
   text-align: center;
   padding: 15px;
-
   overflow: auto;
   white-space: nowrap;
+  margin-bottom: 25px !important;
+}
+.menu::-webkit-scrollbar {
+  width: 6px; /* You can adjust the width as needed */
+}
+.menu::-webkit-scrollbar-thumb {
+  background-color: var(--darkGreen); /* Change the color to your preference */
+  border-radius: 6px; /* Adjust the border radius for rounded corners */
+}
+.menu::-webkit-scrollbar-track:hover {
+  background-color: #ddd; /* Change the hover background color */
+}
+.menu::-webkit-scrollbar-thumb:hover {
+  background-color: var(--whiteGreen); /* Change the hover color */
 }

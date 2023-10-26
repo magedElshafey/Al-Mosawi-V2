@@ -37,18 +37,17 @@ const HistoryDetails = ({ data }) => {
         </p>
       </div>
       {data.slice(0, showMore ? data.length : 3).map((item, index) => {
-        console.log("this is the item", item);
         return (
           <div
             key={index}
-            className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 flex-wrap`}
+            className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 gap-md-0 flex-wrap`}
           >
             <p className="m-0 p-0 ">{item.title}</p>
             <p className={`m-0 p-0  ${style.date}`}>
               {item?.Recommendation?.updated_at}
             </p>
             <p
-              className={`m-0 p-0 ${
+              className={`m-0 p-0 ${style.date} ${
                 item?.Recommendation?.type === "شراء"
                   ? `${style.title}`
                   : `${style.buy}`
@@ -56,8 +55,10 @@ const HistoryDetails = ({ data }) => {
             >
               {item?.Recommendation?.type}
             </p>
-            <p className="m-0 p-0 ">{item?.Recommendation?.status}</p>
-            <p className={`m-0 p-0 ${style.point}`}>
+            <p className={`m-0 p-0 ${style.date}`}>
+              {item?.Recommendation?.status}
+            </p>
+            <p className={`m-0 p-0 ${style.point} ${style.date}`}>
               {item?.Recommendation?.point}
             </p>
             <button

@@ -1,10 +1,12 @@
 import React from "react";
 import style from "./newCourses.module.css";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router-dom";
 import timer from "../../../assets/timer.png";
 const NewCourses = ({ newCourses }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+
   return (
     <>
       {newCourses.length ? (
@@ -25,7 +27,12 @@ const NewCourses = ({ newCourses }) => {
                   className={style.mainImg}
                 />
                 <div>
-                  <p className="fw-bold mx-0 mb-2 p-0 shamel ">{item.title}</p>
+                  <p
+                    onClick={() => navigate(`/course/${item.id}`)}
+                    className="fw-bold mx-0 mb-2 p-0 pointer "
+                  >
+                    {item.title}
+                  </p>
                   <div className="d-flex align-items-center justify-content-between flex-wrap gap-3">
                     <div className="d-flex align-items-center gap-2">
                       <img

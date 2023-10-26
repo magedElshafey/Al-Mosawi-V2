@@ -79,33 +79,34 @@ const RegForm = ({ setShowModal }) => {
   };
   const { isLoading, mutate } = useMutation(handleRegster, {
     onSuccess: (data) => {
-      Swal.fire({
-        title: `${
-          i18n.language === "ar"
-            ? "تم ارسال طلبك بالنجاح و سوف يتم ارسال كلمة المرور علي البريد الالكتروني الذي قمت ب ادخالة"
-            : "your request has been sent successfully and the password will be sent to the email address you entered"
-        }`,
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
-      });
-      localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
-      sendCartItems(data?.data?.data?.id);
-      setFullName("");
-      setMobileNumber("");
-      setEmail("");
-      setCountry("");
-      setTickmillUser("");
-    },
-    onError: () => {
-      toast.error(
-        i18n.language === "en"
-          ? "there is an error occurred , please try again"
-          : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
-      );
+      if (data.data.status === "faild") {
+        toast.error(
+          i18n.language === "en"
+            ? "there is an error occurred , please try again"
+            : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
+        );
+      } else {
+        Swal.fire({
+          title: `${
+            i18n.language === "ar"
+              ? "تم ارسال طلبك بالنجاح و سوف يتم ارسال كلمة المرور علي البريد الالكتروني الذي قمت ب ادخالة"
+              : "your request has been sent successfully and the password will be sent to the email address you entered"
+          }`,
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
+        sendCartItems(data?.data?.data?.id);
+        setFullName("");
+        setMobileNumber("");
+        setEmail("");
+        setCountry("");
+        setTickmillUser("");
+      }
     },
   });
   const handleClick = async (e) => {
@@ -117,6 +118,9 @@ const RegForm = ({ setShowModal }) => {
       country.trim() === "" ||
       tickMillUser === null
     ) {
+      toast.error(
+        i18n.language === "ar" ? "جميع الحقول مطلوبة" : "all field are required"
+      );
       return false;
     } else {
       const userData = {

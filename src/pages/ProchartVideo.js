@@ -18,7 +18,7 @@ const ProchartVideo = () => {
     const headers = {
       user,
     };
-    return request({ url: "/prochart", headers });
+    return request({ url: "/prochart/panel", headers });
   };
   const { isLoading, data } = useQuery("prochart video-page", fetchData, {
     cacheTime: 12000,

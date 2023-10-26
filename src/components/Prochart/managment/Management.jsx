@@ -15,7 +15,7 @@ const Management = ({ data }) => {
   const { i18n } = useTranslation();
   const [showContent, setShowContent] = useState(false);
   const [number, setNumber] = useState(0);
-  const [phoneValue, setPhoneValue] = useState(0);
+  const [phoneValue, setPhoneValue] = useState("");
   const [numError, setNumError] = useState(false);
   const handleNumberChange = (event) => {
     // Get the value entered by the user
@@ -31,14 +31,12 @@ const Management = ({ data }) => {
       }
     }
   };
-  const handlePhoneChange = (event) => {
-    // Get the value entered by the user
-    const inputValue = event.target.value;
 
-    // Check if the input is a valid non-negative number
-    if (inputValue >= 0 || inputValue === "") {
-      setPhoneValue(inputValue); // Update the state with the valid input
-    }
+  const handleChangePhone = (event) => {
+    const input = event.target.value;
+    const cleanedInput = input.replace(/\D/g, "");
+
+    setPhoneValue(cleanedInput);
   };
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -138,11 +136,10 @@ const Management = ({ data }) => {
                     </label>
                     <input
                       className={`inp ${style.w90}`}
-                      type="number"
+                      type="text"
                       id="phone"
                       value={phoneValue}
-                      onChange={handlePhoneChange}
-                      min="0"
+                      onChange={handleChangePhone}
                     />
                   </div>
                   <div className=" mb-3">

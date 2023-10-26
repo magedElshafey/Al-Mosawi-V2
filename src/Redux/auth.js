@@ -33,8 +33,24 @@ const authSlice = createSlice({
       state.name = null;
       localStorage.removeItem("userName");
     },
+    gitUserId: (state, action) => {
+      state.user = action.payload;
+      localStorage.setItem("userId", action.payload);
+    },
+    removeUserId: (state) => {
+      state.user = null;
+      localStorage.removeItem("userId");
+    },
   },
 });
-export const { login, logout, gitName, gitPp, removePip, removeName } =
-  authSlice.actions;
+export const {
+  login,
+  logout,
+  gitName,
+  gitPp,
+  removePip,
+  removeName,
+  gitUserId,
+  removeUserId,
+} = authSlice.actions;
 export default authSlice.reducer;

@@ -11,36 +11,33 @@ import { useMutation } from "react-query";
 import Spinner from "../utils/Spinner/Spinner";
 import { request } from "../utils/axios";
 import toast from "react-hot-toast";
-const ChooseAppointment = ({ data, title, desc }) => {
+const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
   const [dayId, setDayId] = useState(null);
   const [timeId, setTimeId] = useState(null);
   const [time, setTime] = useState(null);
   const { t, i18n } = useTranslation();
   const [day, setDay] = useState(null);
   const swiperOptions = {
-    loop: true,
+    loop: false,
     centeredSlides: false,
     spaceBetween: 20,
     navigation: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
+
     pagination: {
       clickable: true,
     },
     breakpoints: {
       500: {
-        slidesPerView: 4,
+        slidesPerView: 1,
       },
       768: {
-        slidesPerView: 5,
+        slidesPerView: 2,
       },
       900: {
-        slidesPerView: 6,
+        slidesPerView: 3,
       },
       1024: {
-        slidesPerView: 5,
+        slidesPerView: 4,
       },
     },
   };
@@ -75,7 +72,7 @@ const ChooseAppointment = ({ data, title, desc }) => {
   });
   const handleClick = (appointment) => {
     const userAppoitment = {
-      day: appointment.key,
+      day: appointment.day,
       date: appointment.date,
       time,
     };
@@ -102,7 +99,16 @@ const ChooseAppointment = ({ data, title, desc }) => {
                   {data.map((day, index) => (
                     <SwiperSlide className="position-relative " key={index}>
                       <p className={`mx-0  mt-0 mb-2 ${style.border}`}>
-                        {day.day}
+                        {day.date === today
+                          ? i18n.language === "ar"
+                            ? "اليوم"
+                            : "today"
+                          : day.date === tomorrow
+                          ? i18n.language === "ar"
+                            ? "غدا"
+                            : "tomorrow"
+                          : day.day}{" "}
+                        : {day.date}
                       </p>
                       {day.schedule.map((item, indexTwo) => (
                         <p

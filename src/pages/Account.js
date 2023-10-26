@@ -44,6 +44,7 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
             isSmallHero={true}
             isMediumHero={false}
             img={heroImg}
+            isStatic={true}
             title={
               i18n.language === "ar" ? "معلومات الحساب" : "account details"
             }

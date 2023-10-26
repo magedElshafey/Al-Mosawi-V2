@@ -51,6 +51,7 @@ import Spinner from "./components/utils/Spinner/Spinner.jsx";
 import axios from "axios";
 import OrderSuccess from "./pages/OrderSuccess.js";
 import OrderFaild from "./pages/OrderFaild.js";
+import Takweem from "./pages/Takweem.js";
 
 const App = () => {
   // handle website settings data
@@ -324,6 +325,7 @@ const App = () => {
                   <Ask
                     details={settingsData.contactSettings}
                     appointment={settingsData.schdule}
+                    contactDetails={settingsData.contactSettings}
                   />
                 }
               />
@@ -331,6 +333,9 @@ const App = () => {
             {/*done*/}
             <Routes>
               <Route path="/cart" element={<Cart />} />
+            </Routes>
+            <Routes>
+              <Route path="/takweem" element={<Takweem />} />
             </Routes>
             {/*done*/}
             <Routes>

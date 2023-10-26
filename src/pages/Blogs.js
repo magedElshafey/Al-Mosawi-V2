@@ -29,6 +29,7 @@ const Blogs = () => {
             isMediumHero={false}
             img={data.data.blogHeaderImg}
             title={i18n.language === "en" ? "blogs" : "المدونة"}
+            isStatic={true}
           />
           <Header />
           <FilterBlogs data={data.data.blogCategorylist} />

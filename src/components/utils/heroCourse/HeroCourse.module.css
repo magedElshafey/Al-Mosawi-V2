@@ -76,10 +76,10 @@
 }
 .buyBtn,
 .cartBtn {
-  width: 100%;
+  width: 70%;
   margin: auto;
   height: auto;
-  padding: 7px 15px;
+  padding: 7px;
   display: flex;
   align-items: center;
   border-radius: 21px;
@@ -117,4 +117,9 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 88888;
+}
+.icon {
+  width: 18px;
+  height: 10px;
+  object-fit: contain;
 }

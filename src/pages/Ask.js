@@ -9,7 +9,9 @@ import { useMutation, useQuery } from "react-query";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
-const Ask = ({ handleChangeTitle, details, appointment }) => {
+import ContactDetails from "../components/contact/contactDetails/ContactDetails";
+
+const Ask = ({ handleChangeTitle, details, appointment, contactDetails }) => {
   const [msg, setMsg] = useState("");
   const { i18n } = useTranslation();
   const navigate = useNavigate();
@@ -93,24 +95,36 @@ const Ask = ({ handleChangeTitle, details, appointment }) => {
           />
           <Header handleChangeTitle={handleChangeTitle} />
           <div className="container py-4">
-            {data.data.data.length ? (
-              <Chat
-                msg={msg}
-                setMsg={setMsg}
-                handleClick={handleClick}
-                data={data.data.data}
-                details={details}
-                appointment={appointment}
-              />
-            ) : (
-              <EmptyChat
-                msg={msg}
-                setMsg={setMsg}
-                handleClick={handleClick}
-                details={details}
-                appointment={appointment}
-              />
-            )}
+            <div className="row">
+              <div className="col-12 col-md-7 mb-3 mb-md-0">
+                {data.data.data.length ? (
+                  <Chat
+                    msg={msg}
+                    setMsg={setMsg}
+                    handleClick={handleClick}
+                    data={data.data.data}
+                    details={details}
+                    appointment={appointment}
+                  />
+                ) : (
+                  <EmptyChat
+                    msg={msg}
+                    setMsg={setMsg}
+                    handleClick={handleClick}
+                    details={details}
+                    appointment={appointment}
+                  />
+                )}
+              </div>
+              <div className="col-12 col-md-5">
+                <ContactDetails
+                  phone={contactDetails.phone}
+                  hotLine={contactDetails.customerServicePhone}
+                  address={contactDetails.address}
+                  appointment={appointment}
+                />
+              </div>
+            </div>
           </div>
         </div>
       )}

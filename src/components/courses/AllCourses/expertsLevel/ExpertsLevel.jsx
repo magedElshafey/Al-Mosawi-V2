@@ -6,44 +6,52 @@ import { useTranslation } from "react-i18next";
 
 const ExpertsLevel = ({ expertCourses }) => {
   const newCount = expertCourses.map((item) => Math.floor(item.ratio / 25));
-  const [t] = useTranslation();
+  const { i18n, t } = useTranslation();
   return (
     <div className="py-3">
       <h3 className="fs26 shamel fw-bolder mb-2 mx-0 mt-0 p-0">
         {t("courses")}
       </h3>
-      <div>
-        {expertCourses.map((course, index) => (
-          <div className="mb-2" key={index}>
-            <div
-              dangerouslySetInnerHTML={{ __html: course.header_des }}
-              className={`${style.desc}`}
-            />
-            <div className="d-flex justify-content-between align-items-center mb-4">
+      {expertCourses.length ? (
+        <div>
+          {expertCourses.map((course, index) => (
+            <div className="mb-2" key={index}>
               <div
-                className="green fw-bolder fs-5"
-                dangerouslySetInnerHTML={{ __html: course.title }}
+                dangerouslySetInnerHTML={{ __html: course.header_des }}
+                className={`${style.desc}`}
               />
-              <button className={`book ${style.btn}`}>
-                <img
-                  alt="pdf/icon"
-                  loading="lazy"
-                  src={pdfIcon}
-                  className={style.mainImg}
+              <div className="d-flex justify-content-between align-items-center mb-4">
+                <div
+                  className="green fw-bolder fs-5"
+                  dangerouslySetInnerHTML={{ __html: course.title }}
                 />
-                <p
-                  className={`mx-0 mb-0 mt-1 p-0 text-white ${style.downLoad}`}
-                >
-                  {t("downloadCertificate")}
-                </p>
-              </button>
+                <button className={`book ${style.btn}`}>
+                  <img
+                    alt="pdf/icon"
+                    loading="lazy"
+                    src={pdfIcon}
+                    className={style.mainImg}
+                  />
+                  <p
+                    className={`mx-0 mb-0 mt-1 p-0 text-white ${style.downLoad}`}
+                  >
+                    {t("downloadCertificate")}
+                  </p>
+                </button>
+              </div>
+              {course.CourseClasses.map((item, index) => (
+                <CourseRow item={item} key={index} newCount={newCount} />
+              ))}
             </div>
-            {course.CourseClasses.map((item, index) => (
-              <CourseRow item={item} key={index} newCount={newCount} />
-            ))}
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <h4>
+          {i18n.language === "ar"
+            ? "لم تقم ب شراء اي دورات تدريبية من قبل"
+            : "there is no courses buy before"}
+        </h4>
+      )}
     </div>
   );
 };

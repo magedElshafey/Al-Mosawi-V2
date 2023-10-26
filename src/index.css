@@ -273,3 +273,20 @@ ul {
 .pointer {
   cursor: pointer;
 }
+
+.swiper-button-next::after , .swiper-button-prev::after {
+ font-size: 12px;
+ margin-left: 20px;
+ width: 30px;
+ height: 30px;
+ padding: 4px;
+ border-radius: 50%;
+ border: 1px solid var(--gradientBackground);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ -webkit-border-radius: 50%;
+ -moz-border-radius: 50%;
+ -ms-border-radius: 50%;
+ -o-border-radius: 50%;
+}

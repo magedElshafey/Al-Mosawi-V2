@@ -34,6 +34,7 @@ const Blog = () => {
             isMediumHero={false}
             img={heroImg}
             title={i18n.language === "en" ? "blogs" : "المدونة"}
+            isStatic={true}
           />
           <Header />
           <div className="container py-4">

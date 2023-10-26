@@ -27,7 +27,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { request } from "../../utils/axios";
 import { useMutation } from "react-query";
 import { toast } from "react-hot-toast";
-import { logout, removePip, removeName } from "../../../Redux/auth.js";
+import {
+  logout,
+  removePip,
+  removeName,
+  removeUserId,
+} from "../../../Redux/auth.js";
 const Nav = ({ data, phoneNum, menus }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -44,6 +49,7 @@ const Nav = ({ data, phoneNum, menus }) => {
     (state) => state.authSlice
   );
   const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
+  const { cartItems } = useSelector((state) => state.cartSlice);
   useEffect(() => {
     if (
       pathname === "/forget" ||
@@ -88,6 +94,7 @@ const Nav = ({ data, phoneNum, menus }) => {
         dispatch(logout(false));
         dispatch(removeName());
         dispatch(removePip());
+        dispatch(removeUserId());
         navigate("/");
       } else {
         toast.error(
@@ -159,9 +166,7 @@ const Nav = ({ data, phoneNum, menus }) => {
                   className="position-relative d-inline-block mx-3 "
                 >
                   <BsFillCartCheckFill size={30} className="whiteGreen" />
-                  <p className={style.length}>
-                    {JSON.parse(localStorage.getItem("cart")).length}
-                  </p>
+                  <p className={style.length}>{cartItems.length}</p>
                 </Link>
               </div>
               {showAsk ? (
@@ -198,14 +203,53 @@ const Nav = ({ data, phoneNum, menus }) => {
                   </div>
                 </div>
               ) : (
-                <div className="d-flex align-items-center gap-1">
-                  {!isLogin && (
+                <div className="d-flex align-items-center gap-3">
+                  {!isLogin ? (
                     <button
                       onClick={() => navigate("/login")}
                       className={`mx-3 ${style.btn}`}
                     >
                       {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
                     </button>
+                  ) : (
+                    <div class="dropdown">
+                      <button
+                        className={`dropdown-toggle d-flex align-items-center gap-2 ${style.menuBtn}`}
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <img
+                          alt="profile/img"
+                          className={style.pp}
+                          src={profilePhoto}
+                        />
+                        <p className="text-white m-0 p-0 fw-bolder">{name}</p>
+                        <IoIosArrowDown size={15} className="text-white" />
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li onClick={() => setShowSidebar(false)}>
+                          <Link
+                            className="dropdown-item"
+                            to={
+                              tickmillUser
+                                ? "/forex-account/details"
+                                : "/account"
+                            }
+                          >
+                            {i18n.language === "ar" ? "حسابي" : "profile"}
+                          </Link>
+                        </li>
+                        <li
+                          className="dropdown-item pointer"
+                          onClick={() => {
+                            setShowSidebar(false);
+                            handleClick();
+                          }}
+                        >
+                          {i18n.language === "ar" ? "تسجيل الخروج" : "logout"}
+                        </li>
+                      </ul>
+                    </div>
                   )}
                   {showMenu && (
                     <div
@@ -221,21 +265,14 @@ const Nav = ({ data, phoneNum, menus }) => {
                     </div>
                   )}
                   {showBack && (
-                    <div className="d-flex align-items-center gap-3">
-                      <div className="d-flex align-items-center gap-2 ">
-                        <img alt="back" src={avatar} className={style.av} />
-                        <p className="m-0 p-0 text-white">MeGz</p>
-                        <img alt="back" src={down} className={style.down} />
-                      </div>
-                      <div
-                        onClick={() => navigate(-1)}
-                        className="d-flex align-items-center pointer "
-                      >
-                        <p className="m-0 p-0 text-white">
-                          {i18n.language === "ar" ? "العودة" : "back"}
-                        </p>
-                        <img alt="back" src={back} className={style.back} />
-                      </div>
+                    <div
+                      onClick={() => navigate(-1)}
+                      className="d-flex align-items-center pointer "
+                    >
+                      <p className="m-0 p-0 text-white">
+                        {i18n.language === "ar" ? "العودة" : "back"}
+                      </p>
+                      <img alt="back" src={back} className={style.back} />
                     </div>
                   )}
                 </div>

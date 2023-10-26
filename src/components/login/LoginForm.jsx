@@ -8,7 +8,7 @@ import { useMutation } from "react-query";
 import { request } from "../../components/utils/axios";
 import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
-import { login, gitName, gitPp } from "../../Redux/auth";
+import { login, gitName, gitPp, gitUserId } from "../../Redux/auth";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -49,40 +49,44 @@ const LoginForm = () => {
   };
   const { isLoading, mutate } = useMutation(handleSendMsg, {
     onSuccess: (data) => {
-      toast.success(
-        i18n.language === "en"
-          ? "you are loggin successfulyy"
-          : "تم تسجيل دخولك بنجاح"
-      );
-      dispatch(login(true));
-      dispatch(gitName(data.data.data.name));
-      dispatch(gitPp(data.data.data.photo));
-      localStorage.setItem("userId", JSON.stringify(data?.data?.data?.id));
-      localStorage.setItem("accountType", JSON.stringify(data.data.data.type));
-      sendCartItems(data?.data?.data?.id);
-      setAccount("");
-      setPassword("");
-
-      if (data.data.data.tikmill) {
-        navigate("/forex-account/details");
+      if (data.data.status === "faild") {
+        toast.error(
+          i18n.language === "en"
+            ? "there is an error occurred , please try again"
+            : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
+        );
       } else {
-        if (data.data.data.type === "prochart_user") {
-          navigate("/user/prochart");
+        toast.success(
+          i18n.language === "en"
+            ? "you are loggin successfulyy"
+            : "تم تسجيل دخولك بنجاح"
+        );
+        dispatch(login(true));
+        dispatch(gitName(data.data.data.name));
+        dispatch(gitPp(data.data.data.photo));
+        dispatch(gitUserId(data?.data?.data?.id));
+        localStorage.setItem(
+          "accountType",
+          JSON.stringify(data.data.data.type)
+        );
+        sendCartItems(data?.data?.data?.id);
+        setAccount("");
+        setPassword("");
+
+        if (data.data.data.tikmill) {
+          navigate("/forex-account/details");
         } else {
-          navigate("/account");
+          if (data.data.data.type === "prochart_user") {
+            navigate("/user/prochart");
+          } else {
+            navigate("/account");
+          }
         }
+        localStorage.setItem(
+          "tickmillUser",
+          JSON.stringify(data.data.data.tikmill)
+        );
       }
-      localStorage.setItem(
-        "tickmillUser",
-        JSON.stringify(data.data.data.tikmill)
-      );
-    },
-    onError: () => {
-      toast.error(
-        i18n.language === "en"
-          ? "there is an error occurred , please try again"
-          : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
-      );
     },
   });
   const handleClick = async (e) => {

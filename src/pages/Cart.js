@@ -9,10 +9,12 @@ import Spinner from "../components/utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addAllProductToCart } from "../Redux/cart";
 const Cart = () => {
+  const { cartItems } = useSelector((state) => state.cartSlice);
   const { i18n } = useTranslation();
-  const items = JSON.parse(localStorage.getItem("cart"));
-  const [cartItems, setCartItems] = useState(items);
+  const dispatch = useDispatch();
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
@@ -28,11 +30,7 @@ const Cart = () => {
       if (!data.data.data.id) {
         return;
       } else {
-        setCartItems(data.data.data.itemsDetails);
-        localStorage.setItem(
-          "cart",
-          JSON.stringify(data.data.data.itemsDetails)
-        );
+        dispatch(addAllProductToCart(data.data.data.itemsDetails));
       }
     },
   });
@@ -43,14 +41,12 @@ const Cart = () => {
   }, [user, refetch]);
 
   // handle total price when the user not login
-  const totalPrice = items.length
-    ? items.reduce((acc, product) => {
-        acc += product.price_after_discount
-          ? +product.price_after_discount
-          : +product.price;
-        return acc;
-      }, 0)
-    : 0;
+  const totalPrice = cartItems.reduce((acc, product) => {
+    acc += product.price_after_discount
+      ? +product.price_after_discount
+      : +product.price;
+    return acc;
+  }, 0);
   return (
     <>
       {isLoading ? (
@@ -66,37 +62,37 @@ const Cart = () => {
             title={i18n.language === "ar" ? "عربة التسوق" : "cart"}
           />
           <div className="container py-5">
-            {user && data?.data?.data?.itemsDetails?.length ? (
+            {user && cartItems.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartItems user={user} items={cartItems} />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
-                  <CartTotal user={user} total={data?.data?.data?.total} />
+                  <CartTotal user={user} total={totalPrice} />
                 </div>
               </div>
             ) : null}
-            {user && !items.length ? (
+            {user && !cartItems.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartEmpty />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
-                  <CartTotal user={user} total={0} />
+                  <CartTotal user={user} total={totalPrice} />
                 </div>
               </div>
             ) : null}
-            {!user && items.length ? (
+            {!user && cartItems.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
-                  <CartItems user={null} items={items} />
+                  <CartItems user={null} items={cartItems} />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
                   <CartTotal total={totalPrice} user={null} />
                 </div>
               </div>
             ) : null}
-            {!user && !items.length ? (
+            {!user && !cartItems.length ? (
               <div className="row gap-5">
                 <div className="col-12 col-md-7 mb-3 mb-md-0">
                   <CartEmpty />

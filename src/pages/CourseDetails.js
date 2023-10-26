@@ -7,6 +7,7 @@ import CourseTwo from "../components/courseDetails/coursesDetails/courseTwo/Cour
 import style from "../components/courseDetails/coursesDetails/coursesDetails.module.css";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
+import Reviews from "../components/courseDetails/reviews/Reviews";
 import { useQuery } from "react-query";
 const CourseDetails = ({ fixedContainer }) => {
   const params = useParams();
@@ -63,7 +64,7 @@ const CourseDetails = ({ fixedContainer }) => {
                   why={data.data.data.CourseImportance}
                 />
 
-                {/*   <Reviews data={data[0].reviews} /> */}
+                <Reviews data={data.data.data.CourseReview} />
               </div>
             </div>
           </div>
