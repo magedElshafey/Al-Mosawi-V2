@@ -49,7 +49,11 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
               i18n.language === "ar" ? "معلومات الحساب" : "account details"
             }
           />
-          <Header />
+          <Header
+            title={
+              i18n.language === "ar" ? "معلومات الحساب" : "account details"
+            }
+          />
           <div className="container pb-5">
             <div className="row gap-5">
               <div className="col-12  col-md-7">

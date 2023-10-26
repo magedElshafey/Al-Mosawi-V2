@@ -55,7 +55,7 @@ const CartItems = ({ user, items }) => {
             user,
             "Content-Type": "application/json",
             lang,
-            type: "course",
+            type: product.product_type,
           },
         }
       );

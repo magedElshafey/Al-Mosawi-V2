@@ -96,55 +96,38 @@ const PackageModal = ({
   // };
 
   const handleAddToCart = async (product) => {
-    console.log("this is prochart id", product.id);
-    const index = cartItems.findIndex((item) => item.price === product.price);
-    const itemSelected = cartItems.some((item) => item.price === product.price);
-
-    if (index >= 0) {
-      toast.error(
-        i18n.language === "ar"
-          ? "هذا المنتج موجود بالفعل في العربة"
-          : "this item is already on the cart"
-      );
-    } else if (itemSelected) {
-      toast.error(
-        i18n.language === "ar"
-          ? "لا يمكن اختيار اكثر من باقة بروشارت"
-          : "It is not possible to choose more than one ProChart package"
-      );
-    } else {
-      if (isLogin) {
-        const res = await fetch(
-          "https://almosawi.admin.technomasrsystems.com/api/cart/add",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              lang: i18n.language,
-              user,
-              type: "ProchartPlans",
-            },
-            body: JSON.stringify({
-              productId: product.id,
-            }),
-          }
-        );
-        const data = await res.json();
-        console.log("this is the data from adding prochart to the cart", data);
-        if (data.status === "faild") {
-          toast.error(data.message);
-        } else {
-          dispatch(addToCart(product));
-          navigate("/cart");
+    if (isLogin) {
+      const res = await fetch(
+        "https://almosawi.admin.technomasrsystems.com/api/cart/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            lang: i18n.language,
+            user,
+            type: "ProchartPlans",
+          },
+          body: JSON.stringify({
+            productId: product.id,
+          }),
         }
+      );
+      const data = await res.json();
+      console.log("this is the data from adding prochart to the cart", data);
+
+      if (data.status === "faild") {
+        toast.error(data.message);
       } else {
-        toast.error(
-          i18n.language === "ar"
-            ? "تحتاج الي تسجيل الدخول اولا لتقوم ب اضافة باقة البروشارات الي العربة"
-            : "you need to login first before adding prochart to the cart"
-        );
-        navigate("/login");
+        dispatch(addToCart(product));
+        navigate("/cart");
       }
+    } else {
+      toast.error(
+        i18n.language === "ar"
+          ? "تحتاج الي تسجيل الدخول اولا لتقوم ب اضافة باقة البروشارات الي العربة"
+          : "you need to login first before adding prochart to the cart"
+      );
+      navigate("/login");
     }
   };
   return (

@@ -94,7 +94,7 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
                 <Swiper
                   modules={[Autoplay, Navigation]}
                   {...swiperOptions}
-                  className="mySwiper col-12 col-md-11 "
+                  className="mySwiper col-12 col-md-11"
                 >
                   {data.map((day, index) => (
                     <SwiperSlide className="position-relative " key={index}>
@@ -140,6 +140,8 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
                         <MdArrowBackIosNew size={20} />
                         <span className="mt-1">{t("book")}</span>
                       </button>
+
+                      {/* Next button */}
                     </SwiperSlide>
                   ))}
                 </Swiper>

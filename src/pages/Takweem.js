@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../components/utils/hero/Hero";
 import heroImg from "../assets/hero.png";
 import { useTranslation } from "react-i18next";
+import Header from "../components/utils/header/Header";
 const Takweem = () => {
   const { i18n } = useTranslation();
   return (
@@ -16,6 +17,7 @@ const Takweem = () => {
           i18n.language === "ar" ? "التقويم الاقتصادي" : "Economic calendar"
         }
       />
+      <Header />
       <div className="container py-5">
         <h3 className="fw-bolder m-0 p-0 text-center mb-4">
           {i18n.language === "ar" ? "التقويم الاقتصادي" : "Economic calendar"}

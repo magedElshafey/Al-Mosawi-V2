@@ -39,7 +39,7 @@ const Success = ({ data }) => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="row justify-content-center">
-            <div className="m-0 p-0  col-12 col-md-7 mb-2 mb-md-0 ">
+            <div className="m-0 p-0 col-12 col-md-7 mb-2 mb-md-0 ">
               <div dangerouslySetInnerHTML={{ __html: item.title }} />
               <p className={`fs28 m-0 p-0 mx-5 `}>{item.des}</p>
               <div className={`p-4 text-center ${style.textContainer}`}>
@@ -53,7 +53,7 @@ const Success = ({ data }) => {
                 </div>
               </div>
             </div>
-            <div className="col-12  col-md-5 mb-3 mb-md-0 gap-2">
+            <div className="col-12 col-md-5 mb-3 mb-md-0 gap-2">
               <img
                 loading="lazy"
                 alt="slide/img"
