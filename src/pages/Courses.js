@@ -41,9 +41,12 @@ const Courses = ({ expertCourses, newCourses }) => {
             isSmallHero={true}
             isMediumHero={false}
             img={heroImg}
-            title={i18n.language === "ar" ? "الدورات التدريبية" : "courses"}
+            title={i18n.language === "ar" ? "الدورات التعليمية" : "courses"}
+            isStatic={true}
           />
-          <Header />
+          <Header
+            title={i18n.language === "ar" ? "الدورات التعليمية" : "courses"}
+          />
           <div className="container">
             <div className="row py-3 ">
               <div className="col-12 col-md-8">

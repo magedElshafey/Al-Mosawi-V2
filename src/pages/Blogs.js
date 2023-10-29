@@ -31,7 +31,7 @@ const Blogs = () => {
             title={i18n.language === "en" ? "blogs" : "المدونة"}
             isStatic={true}
           />
-          <Header />
+          <Header title={i18n.language === "en" ? "blogs" : "المدونة"} />
           <FilterBlogs data={data.data.blogCategorylist} />
           <div className="container">
             <div className="mt-3 d-flex align-items-center justify-content-center gap-4 flex-wrap">

@@ -3,8 +3,11 @@ import style from "./accountDetails.module.css";
 import { Link } from "react-router-dom";
 import BTN from "../../utils/btn/BTN";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 const AccountDetails = ({ accountDetails, type, isTickmill }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const handleClick = () => navigate("/edit");
   return (
     <div className={`p-4 mb-3  ${style.mainContainer}`}>
       <p className="fw-bolder shamel fs26 d-inline-block mx-0 mt-0 p-0  mb-1">
@@ -76,6 +79,7 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
       ) : null}
       <div className="mb-2 mt-4">
         <BTN
+          action={handleClick}
           text={
             isTickmill
               ? t("editInfo")

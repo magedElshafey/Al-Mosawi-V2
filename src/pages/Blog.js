@@ -36,7 +36,7 @@ const Blog = () => {
             title={i18n.language === "en" ? "blogs" : "المدونة"}
             isStatic={true}
           />
-          <Header />
+          <Header title={i18n.language === "en" ? "blogs" : "المدونة"} />
           <div className="container py-4">
             <BlogDetails data={data.data.data} />
           </div>

@@ -43,20 +43,21 @@ const CourseDetails = ({ fixedContainer }) => {
           />
           <div className="container my-4">
             <div className="row">
-              <div
-                className={`col-12 col-md-11 col-lg-9 ${
-                  parseInt(params.id) === 2 || parseInt(params.id) === 3
-                    ? style.border
-                    : null
-                }`}
-              >
-                <AboutCourse
-                  title={data.data.data.content_title}
-                  desc={data.data.data.content_des}
-                />
+              <div className="col-12 col-md-11 col-lg-9">
+                <div
+                  className={`mb-4 ${
+                    parseInt(params.id) === 2 || parseInt(params.id) === 3
+                      ? style.border
+                      : null
+                  }`}
+                >
+                  <AboutCourse
+                    title={data.data.data.content_title}
+                    desc={data.data.data.content_des}
+                  />
 
-                <CourseTwo data={data.data.data.CourseClasses} />
-
+                  <CourseTwo data={data.data.data.CourseClasses} />
+                </div>
                 <Advantages
                   img={data.data.data.feature_img}
                   title={data.data.data.feature_title}

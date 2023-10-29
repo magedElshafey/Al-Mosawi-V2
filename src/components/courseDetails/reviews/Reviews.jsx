@@ -13,7 +13,8 @@ const Reviews = ({ data }) => {
     loop: false,
     centeredSlides: false,
     spaceBetween: 20,
-    navigation: true,
+    // navigation: true,
+
     pagination: {
       clickable: true,
     },
@@ -34,45 +35,53 @@ const Reviews = ({ data }) => {
   };
   return (
     <div className="py-3  mt-3 ">
-      <p className="mb-3 mx-0 p-0 green fs26 shamel fw-bold">{t("rev")}</p>
-      <div className={`row justify-content-center ${style.main} p-2`}>
-        <Swiper
-          className="col-12 position-relative px-5 px-md-4"
-          {...swiperOptions}
-          modules={[Autoplay, Navigation]}
-        >
-          {data.map((item, index) => (
-            <SwiperSlide key={index}>
-              <div className="d-flex justify-content-between align-items-center">
-                <div className="d-flex align-items-center gap-2">
-                  <img
-                    loading="lazy"
-                    alt="person/img"
-                    src={item.photo}
-                    className={style.avImg}
-                  />
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="d-flex flex-column align-items-center gap-1">
-                      <p className="m-0 p-0 fw-bolder">{item.name}</p>
-                      <p className="m-0 p-0 fw-bold ">{item.position}</p>
-                      <p className="lh p-0 m-0">{item.review}</p>
-                    </div>
-                    <img
-                      alt="comma"
-                      src={coma}
-                      loading="lazy"
-                      className={style.coma}
-                    />
-                  </div>
-                </div>
+      <p className="mb-3 mx-0 p-0 green fs26  fw-bold">{t("rev")}</p>
+      <Swiper
+        className="col-12  px-5 px-md-4"
+        {...swiperOptions}
+        modules={[Autoplay, Navigation]}
+        navigation={true}
+      >
+        {data.map((item, index) => (
+          <SwiperSlide key={index} className={style.mainBox}>
+            <div className="d-flex gap-2">
+              <img
+                loading="lazy"
+                alt="person/img"
+                src={item.photo}
+                className={style.avImg}
+              />
+              <div>
+                <p className="m-0 p-0 mb-2 fw-bolder">{item.name}</p>
+                <p className="m-0 p-0 fw-bold ">{item.position}</p>
               </div>
-            </SwiperSlide>
-          ))}
-          {/**   <BsArrowRightCircle className={style.arrow} size={20} /> */}
-        </Swiper>
-      </div>
+            </div>
+            <img alt="comma" src={coma} loading="lazy" className={style.coma} />
+
+            <p className="lh p-0 m-0 mt-3">{item.review}</p>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
 
 export default Reviews;
+/**
+ *  {data.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex align-items-center gap-2">
+                
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="d-flex flex-column align-items-center gap-1">
+                     
+                    
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+ */

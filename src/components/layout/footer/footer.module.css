@@ -7,11 +7,22 @@
   }
 }
 .socialContainer {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f1f1f1;
+  border-radius: 50%;
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
   -ms-transition: 0.4s;
   -o-transition: 0.4s;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 .socialContainer:hover {
   transform: translateY(-12px);
@@ -59,12 +70,12 @@
   -o-transform: translateY(-50%);
 }
 .rtlStyle::before {
-  width: 140%;
-  right: 135px;
+  width: 145%;
+  right: 110px;
 }
 .ltrStyle::before {
-  width: 140%;
-  left: 120px;
+  width: 145%;
+  left: 110px;
 }
 
 @media screen and (max-width: 767px) {
@@ -72,11 +83,7 @@
     display: none;
   }
 }
-.socialMediaIcons {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
+
 .phoneImg {
   width: 23px !important;
   height: 23px !important;
@@ -86,4 +93,25 @@
   width: 87px;
   height: 36px;
   object-fit: contain;
+}
+.socialContainer:hover .face {
+  color: #1877f2;
+}
+.socialContainer:hover .twitter {
+  color: #1da1f2;
+}
+.socialContainer:hover .linked {
+  color: #0a66c2;
+}
+.socialContainer:hover .insta {
+  color: #e1306c;
+}
+.socialContainer:hover .youtube {
+  color: #ff0000;
+}
+.socialContainer:hover .snap {
+  color: #fffc00;
+}
+.socialContainer:hover .tiktok {
+  color: #404040;
 }

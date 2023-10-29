@@ -5,7 +5,6 @@ import Header from "../components/utils/header/Header";
 import AccountDetails from "../components/account/details/AccountDetails";
 import Withdraw from "../components/account/Withdraw/Withdraw";
 import DownloadPlane from "../components/account/download/DownloadPlane.jsx";
-import PromoCode from "../components/account/code/PromoCode";
 import ContactUs from "../components/utils/contactus/ContactUs";
 import { useTranslation } from "react-i18next";
 import { request } from "../components/utils/axios";

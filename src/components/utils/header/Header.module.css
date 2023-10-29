@@ -5,6 +5,7 @@
   text-decoration: none;
   font-size: 15px;
   margin-top: 4px;
+ 
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
@@ -17,10 +18,12 @@
 }
 .active {
   color: #003684 !important;
-  position: relative;
+  position: relative !important;
   font-weight: bold;
+  border-bottom: 1px solid #003684;
+  
 }
-.active::before {
+/* .active::before {
   content: "";
   position: absolute;
   bottom: -18px;
@@ -28,7 +31,7 @@
   height: 3px;
   background-color: #003684;
   width: 100%;
-}
+} */
 .menu {
   background-color: #f4f7fc;
   text-align: center;

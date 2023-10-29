@@ -5,12 +5,16 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
-import face from "../../../assets/social/face.svg";
-import insta from "../../../assets/social/insta.svg";
 import youtube from "../../../assets/social/youtube.svg";
-import twitter from "../../../assets/social/twitter.svg";
-import linkedin from "../../../assets/social/linkedin.svg";
-import { FaSnapchatGhost, FaTiktok } from "react-icons/fa";
+import {
+  FaSnapchatGhost,
+  FaTiktok,
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaYoutube,
+} from "react-icons/fa";
+import { GrInstagram } from "react-icons/gr";
 const Footer = ({
   generalData,
   socailData,
@@ -46,122 +50,93 @@ const Footer = ({
               <div
                 className={`col-12 ${
                   footer2.length ? "col-md-3" : "col-md-4"
-                } mb-5 mb-md-0 d-flex flex-column align-items-center gap-4 pt-2`}
+                } mb-5 mb-md-0 d-flex  align-items-center `}
               >
-                <img
-                  loading="lazy"
-                  alt="logo/img"
-                  src={generalData.logo}
-                  className={style.logo}
-                />
-                <div className="d-flex align-items-center gap-1">
-                  {socailData.facebook && (
-                    <a
-                      className={style.socialContainer}
-                      target="_blank"
-                      rel="noreferrer"
-                      href={socailData.facebook}
-                    >
-                      <img
-                        className={style.socialMediaIcons}
-                        loading="lazy"
-                        alt="socialmedia/img"
-                        src={face}
-                      />
-                    </a>
-                  )}
-                  {socailData.twitter && (
-                    <div className={style.socialContainer}>
+                <div className="d-flex flex-column align-items-center gap-4">
+                  <img
+                    loading="lazy"
+                    alt="logo/img"
+                    src={generalData.logo}
+                    className={style.logo}
+                  />
+                  <div className="d-flex align-items-center gap-1">
+                    {socailData.facebook && (
                       <a
+                        className={style.socialContainer}
                         target="_blank"
                         rel="noreferrer"
-                        href={socailData.twitter}
+                        href={socailData.facebook}
                       >
-                        <img
-                          className={style.socialMediaIcons}
-                          loading="lazy"
-                          alt="socialmedia/img"
-                          src={twitter}
-                        />
+                        <FaFacebookF size={20} className={`${style.face} `} />
                       </a>
-                    </div>
-                  )}
-                  {socailData.linkedIn && (
-                    <div className={style.socialContainer}>
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={socailData.linkedIn}
-                      >
-                        <img
-                          className={style.socialMediaIcons}
-                          loading="lazy"
-                          alt="socialmedia/img"
-                          src={linkedin}
-                        />
-                      </a>
-                    </div>
-                  )}
-                  {socailData.instagram && (
-                    <div className={style.socialContainer}>
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={socailData.instagram}
-                      >
-                        <img
-                          className={style.socialMediaIcons}
-                          loading="lazy"
-                          alt="socialmedia/img"
-                          src={insta}
-                        />
-                      </a>
-                    </div>
-                  )}
-                  {socailData.youtube && (
-                    <div className={style.socialContainer}>
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={socailData.youtube}
-                      >
-                        <img
-                          className={style.socialMediaIcons}
-                          loading="lazy"
-                          alt="socialmedia/img"
-                          src={youtube}
-                        />
-                      </a>
-                    </div>
-                  )}
-                  {socailData.snapchat && (
-                    <div className={style.socialContainer}>
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={socailData.snapchat}
-                      >
-                        <FaSnapchatGhost
-                          className={style.socialMediaIcons}
-                          size={20}
-                        />
-                      </a>
-                    </div>
-                  )}
-                  {socailData.tiktok && (
-                    <div className={style.socialContainer}>
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={socailData.tiktok}
-                      >
-                        <FaTiktok
-                          className={style.socialMediaIcons}
-                          size={20}
-                        />
-                      </a>
-                    </div>
-                  )}
+                    )}
+                    {socailData.twitter && (
+                      <div className={style.socialContainer}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={socailData.twitter}
+                        >
+                          <FaTwitter size={20} className={style.twitter} />
+                        </a>
+                      </div>
+                    )}
+                    {socailData.linkedIn && (
+                      <div className={style.socialContainer}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={socailData.linkedIn}
+                        >
+                          <FaLinkedinIn size={20} className={style.linked} />
+                        </a>
+                      </div>
+                    )}
+                    {socailData.instagram && (
+                      <div className={style.socialContainer}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={socailData.instagram}
+                        >
+                          <GrInstagram size={20} className={style.insta} />
+                        </a>
+                      </div>
+                    )}
+                    {socailData.youtube && (
+                      <div className={style.socialContainer}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={socailData.youtube}
+                        >
+                          <FaYoutube size={20} className={style.youtube} />
+                        </a>
+                      </div>
+                    )}
+                    {socailData.snapchat && (
+                      <div className={style.socialContainer}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={socailData.snapchat}
+                        >
+                          <FaSnapchatGhost className={style.snap} size={20} />
+                        </a>
+                      </div>
+                    )}
+                    {socailData.tiktok && (
+                      <div className={style.socialContainer}>
+                        <a
+                          target="_blank"
+                          rel="noreferrer"
+                          href={socailData.tiktok}
+                        >
+                          <FaTiktok className={style.tiktok} size={20} />
+                        </a>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
               {/*about website*/}

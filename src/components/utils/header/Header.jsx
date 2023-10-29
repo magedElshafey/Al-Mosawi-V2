@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./Header.module.css";
 import { header } from "../../../fakers/data";
 import { Link } from "react-router-dom";

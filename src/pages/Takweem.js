@@ -17,7 +17,11 @@ const Takweem = () => {
           i18n.language === "ar" ? "التقويم الاقتصادي" : "Economic calendar"
         }
       />
-      <Header />
+      <Header
+        title={
+          i18n.language === "ar" ? "التقويم الاقتصادي" : "Economic calendar"
+        }
+      />
       <div className="container py-5">
         <h3 className="fw-bolder m-0 p-0 text-center mb-4">
           {i18n.language === "ar" ? "التقويم الاقتصادي" : "Economic calendar"}

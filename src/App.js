@@ -52,6 +52,7 @@ import axios from "axios";
 import OrderSuccess from "./pages/OrderSuccess.js";
 import OrderFaild from "./pages/OrderFaild.js";
 import Takweem from "./pages/Takweem.js";
+import EditProfile from "./pages/EditProfile.js";
 
 const App = () => {
   // handle website settings data
@@ -336,6 +337,9 @@ const App = () => {
             </Routes>
             <Routes>
               <Route path="/takweem" element={<Takweem />} />
+            </Routes>
+            <Routes>
+              <Route path="/edit" element={<EditProfile lang={lang} />} />
             </Routes>
             {/*done*/}
             <Routes>

@@ -18,8 +18,8 @@ const authSlice = createSlice({
       localStorage.setItem("isLogin", JSON.stringify(state.isLogin));
     },
     gitName: (state, action) => {
+      localStorage.setItem("userName", JSON.stringify(action.payload));
       state.name = action.payload;
-      localStorage.setItem("userName", JSON.stringify(state.name));
     },
     gitPp: (state, action) => {
       state.profilePhoto = action.payload;
