@@ -2,18 +2,19 @@ import React from "react";
 import style from "./reviews.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
+import SwiperCore from "swiper/core";
 import "swiper/css";
-import "swiper/css/navigation";
+// import "swiper/css/navigation";
 import { useTranslation } from "react-i18next";
 import coma from "../../../assets/coma.svg";
-import "swiper/css";
+SwiperCore.use([Navigation]);
 const Reviews = ({ data }) => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   const swiperOptions = {
     loop: false,
     centeredSlides: false,
     spaceBetween: 20,
-    // navigation: true,
+    navigation: true,
 
     pagination: {
       clickable: true,
@@ -40,11 +41,15 @@ const Reviews = ({ data }) => {
         className="col-12  px-5 px-md-4"
         {...swiperOptions}
         modules={[Autoplay, Navigation]}
-        navigation={true}
       >
         {data.map((item, index) => (
-          <SwiperSlide key={index} className={style.mainBox}>
-            <div className="d-flex gap-2">
+          <SwiperSlide
+            key={index}
+            className={`position-relative ${style.mainBox} ${
+              i18n.language === "ar" ? "me-5" : "ms-5"
+            }`}
+          >
+            <div className={`d-flex gap-2 `}>
               <img
                 loading="lazy"
                 alt="person/img"
@@ -53,12 +58,18 @@ const Reviews = ({ data }) => {
               />
               <div>
                 <p className="m-0 p-0 mb-2 fw-bolder">{item.name}</p>
-                <p className="m-0 p-0 fw-bold ">{item.position}</p>
+                <p className="m-0 p-0 ">{item.position}</p>
               </div>
             </div>
             <img alt="comma" src={coma} loading="lazy" className={style.coma} />
 
-            <p className="lh p-0 m-0 mt-3">{item.review}</p>
+            <p
+              className={`lh p-0 m-0 mt-3 ${
+                i18n.language === "ar" ? "me-5" : "ms-5"
+              }`}
+            >
+              {item.review}
+            </p>
           </SwiperSlide>
         ))}
       </Swiper>

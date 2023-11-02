@@ -8,7 +8,6 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
-import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addAllProductToCart } from "../Redux/cart";
 const Cart = () => {

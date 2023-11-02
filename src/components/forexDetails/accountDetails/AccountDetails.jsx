@@ -4,7 +4,9 @@ import avatar from "../../../assets/team-4.png";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 const AccountDetails = ({ data }) => {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   return (
     <>
@@ -69,6 +71,7 @@ const AccountDetails = ({ data }) => {
           }`}
         >
           <button
+            onClick={() => navigate("/forex-account")}
             className={`mt-2  ${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
           >
             <MdArrowBackIos size={20} />

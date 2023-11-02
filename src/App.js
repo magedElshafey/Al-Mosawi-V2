@@ -53,6 +53,10 @@ import OrderSuccess from "./pages/OrderSuccess.js";
 import OrderFaild from "./pages/OrderFaild.js";
 import Takweem from "./pages/Takweem.js";
 import EditProfile from "./pages/EditProfile.js";
+import JoinAfilate from "./pages/JoinAfilate.js";
+import Afilator from "./pages/Afilator.js";
+import LoginAfilate from "./pages/LoginAfilate.js";
+import Wallet from "./pages/Wallet.js";
 
 const App = () => {
   // handle website settings data
@@ -150,6 +154,7 @@ const App = () => {
               data={settingsData.generalSetting}
               phoneNum={settingsData.contactSettings.phone}
               menus={settingsData.header}
+              lang={lang}
             />
             <FixedBtn />
             {/*done*/}
@@ -353,6 +358,24 @@ const App = () => {
             </Routes>
             <Routes>
               <Route path="/account/:test" element={<MAX />} />
+            </Routes>
+            <Routes>
+              <Route
+                path="/join/afilate"
+                element={<JoinAfilate lang={lang} />}
+              />
+            </Routes>
+            <Routes>
+              <Route
+                path="/login/afilate"
+                element={<LoginAfilate lang={lang} />}
+              />
+            </Routes>
+            <Routes>
+              <Route path="/afilator" element={<Afilator />} />
+            </Routes>
+            <Routes>
+              <Route path="/wallet" element={<Wallet />} />
             </Routes>
             <Footer
               footer1={settingsData.footer1}

@@ -1,0 +1,19 @@
+.wallet {
+  background-color: var(--backgroundColor);
+  width: 130px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 15px auto !important;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.mainContainer {
+  background: linear-gradient(
+    to bottom right,
+    rgba(11, 48, 101, 1) 30%,
+
+    rgba(1, 36, 86, 1) 100%
+  ) !important;
+}

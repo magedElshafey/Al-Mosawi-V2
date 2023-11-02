@@ -1,26 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import HeroBox from "../components/utils/herobox/HeroBox";
+import { useSelector } from "react-redux";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
-const ProchartVideo = () => {
-  const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("userId"));
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    } else {
-      navigate("/prochart/video");
-    }
-  }, [user, navigate]);
+const Wallet = () => {
+  const { user } = useSelector((state) => state.authSlice);
+
   const fetchData = () => {
     const headers = {
       user,
     };
     return request({ url: "/prochart/panel", headers });
   };
-  const { isLoading, data } = useQuery("prochart video-page", fetchData, {
+  const { isLoading, data } = useQuery("prochart dashboard-page", fetchData, {
     cacheTime: 12000,
     staleTime: 12000,
   });
@@ -32,11 +25,11 @@ const ProchartVideo = () => {
         <div>
           <HeroBox
             isRecommendations={false}
-            isVideo={true}
-            isAfilator={false}
+            isVideo={false}
             isHistory={false}
-            isWallet={false}
-            data={data.data.data.video}
+            isAfilator={false}
+            isWallet={true}
+            accountDetails={data.data.data.UserData}
           />
         </div>
       )}
@@ -44,4 +37,4 @@ const ProchartVideo = () => {
   );
 };
 
-export default ProchartVideo;
+export default Wallet;

@@ -97,7 +97,12 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
                   className="mySwiper col-12 col-md-11"
                 >
                   {data.map((day, index) => (
-                    <SwiperSlide className="position-relative " key={index}>
+                    <SwiperSlide
+                      className={`position-relative ${
+                        i18n.language === "ar" ? "me-5 pe-5" : "ms-5 ps-5"
+                      }`}
+                      key={index}
+                    >
                       <p className={`mx-0  mt-0 mb-2 ${style.border}`}>
                         {day.date === today
                           ? i18n.language === "ar"

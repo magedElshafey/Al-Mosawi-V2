@@ -27,6 +27,7 @@ const ForexAccount = ({ phoneNum }) => {
             isSmallHero={true}
             isMediumHero={false}
             title={i18n.language === "ar" ? "إنشاء حساب" : "create account"}
+            isStatic={true}
             desc={
               i18n.language === "ar"
                 ? "أنشئ حساب.. اودع ... تداول.. اربح"

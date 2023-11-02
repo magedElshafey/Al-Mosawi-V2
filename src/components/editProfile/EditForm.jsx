@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { gitName, gitPp } from "../../Redux/auth";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const EditForm = ({
   isTickmill,
   name,
@@ -23,71 +24,76 @@ const EditForm = ({
   password,
   lang,
   user,
+  setAddress,
 }) => {
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name,
-    phone,
-    password,
-    profile_photo: photo,
-    account_type: accountType,
-    invest_amount: investmentAmount,
-    account_number: accountNumber,
-  });
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setFormData({
-      ...formData,
-      profilePhoto: file,
-    });
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("this is the user", user);
     const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.username);
-    formDataToSend.append("password", formData.password);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("profile_photo", formData.profile_photo);
-    formDataToSend.append("phone", formData.phone);
-
-    const res = await fetch(
+    formDataToSend.append("name", name);
+    formDataToSend.append("password", password);
+    formDataToSend.append("profile_photo", photo);
+    formDataToSend.append("phone", phone);
+    const res = await axios.post(
       "https://almosawi.admin.technomasrsystems.com/api/user/update-my-profile",
+      formDataToSend,
       {
-        method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "content-type": "multipart/form-data",
           lang,
           user,
         },
-        body: JSON.stringify(formDataToSend),
       }
     );
-    const data = await res.json();
-    console.log("this is the data after submit", data.data);
-    if (data.status === "success") {
-      toast.success(data.message);
-      dispatch(gitName(data.data.name));
-      dispatch(gitPp(data.data.photo));
+    console.log("this is the res", res);
+    if (res.data.status === "success") {
+      toast.success(res.data.message);
+      dispatch(gitName(res.data.data.name));
+      dispatch(gitPp(res.data.data.photo));
       if (isTickmill) {
         navigate("/user/prochart");
       } else {
         navigate("/account");
       }
     } else {
-      toast.error(data.message);
+      toast.error(res.data.message);
     }
-    return data;
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("this is the user", user);
+  //   const formDataToSend = new FormData();
+  //
+  //
+  //
+  //
+  //
+
+  //   const res = await fetch(
+  //     "",
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         lang,
+  //         user,
+  //       },
+  //       body: JSON.stringify(formDataToSend),
+  //     }
+  //   );
+  //   const data = await res.json();
+  //   console.log("this is the data after submit", data.data);
+  //   if (data.status === "success") {
+  //
+  //
+  //
+  //   } else {
+  //
+  //   }
+  //   return data;
+  // };
   return (
     <div className="row justify-content-center">
       <h3 className="fw-bolder green text-center mb-3">
@@ -103,8 +109,8 @@ const EditForm = ({
               {i18n.language === "ar" ? "الاسم" : "name"}
             </label>
             <input
-              value={formData.name}
-              onChange={handleInputChange}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="inp"
               type="text"
               name="name"
@@ -131,10 +137,10 @@ const EditForm = ({
               {i18n.language === "ar" ? "رقم الهاتف" : "phone"}
             </label>
             <input
-              onChange={handleInputChange}
+              onChange={(e) => setPhone(e.target.value)}
               className="inp"
               type="text"
-              value={formData.phone}
+              value={phone}
               name="phone"
               id="phone"
             />
@@ -148,6 +154,7 @@ const EditForm = ({
               type="text"
               value={address}
               name="address"
+              onChange={(e) => setAddress(e.target.value)}
               id="address"
             />
           </div>
@@ -160,11 +167,9 @@ const EditForm = ({
             <input
               className="inp"
               type="file"
-              filename={formData.profile_photo}
-              name="profilePhoto"
+              name="profile_photo"
               id="profilePhoto"
-              accept=".jpg, .jpeg, .png"
-              onChange={handleFileChange}
+              onChange={(e) => setPhoto(e.target.files[0])}
             />
           </div>
           <div className="col-12 col-md-6 mb-3 mb-md-0">
@@ -176,7 +181,8 @@ const EditForm = ({
               type="password"
               name="password"
               id="password"
-              value={formData.password}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>

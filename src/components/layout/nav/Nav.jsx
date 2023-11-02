@@ -20,8 +20,6 @@ import chat from "../../../assets/chat-bubble-check-svgrepo-com.png";
 import menu from "../../../assets/menu.svg";
 import close from "../../../assets/cross.png";
 import back from "../../../assets/back.svg";
-import down from "../../../assets/down.svg";
-import avatar from "../../../assets/avatar.png";
 import { IoIosArrowDown } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
 import { request } from "../../utils/axios";
@@ -33,7 +31,7 @@ import {
   removeName,
   removeUserId,
 } from "../../../Redux/auth.js";
-const Nav = ({ data, phoneNum, menus }) => {
+const Nav = ({ data, phoneNum, menus, lang }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -48,6 +46,33 @@ const Nav = ({ data, phoneNum, menus }) => {
   const { isLogin, name, profilePhoto } = useSelector(
     (state) => state.authSlice
   );
+  const userId = JSON.parse(localStorage.getItem("userId"));
+  const handleAfilate = async () => {
+    if (isLogin) {
+      const res = await fetch(
+        "https://almosawi.admin.technomasrsystems.com/api/affiliate/store",
+        {
+          method: "POST",
+          headers: {
+            userId,
+            lang,
+            "Content-Type": "application/json",
+          },
+          body: "",
+        }
+      );
+      const data = await res.json();
+      console.log("this is the data from afilate", data);
+      if (data.status) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } else {
+      navigate("/join/afilate");
+    }
+    setShowSidebar(false);
+  };
   const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
   const { cartItems } = useSelector((state) => state.cartSlice);
   useEffect(() => {
@@ -132,7 +157,7 @@ const Nav = ({ data, phoneNum, menus }) => {
                   >
                     <BsGlobe size={30} className="pointer whiteGreen" />
                   </button>
-                  <ul class="dropdown-menu">
+                  <ul className="dropdown-menu">
                     <li
                       onClick={() => {
                         window.location.reload();
@@ -212,7 +237,7 @@ const Nav = ({ data, phoneNum, menus }) => {
                       {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
                     </button>
                   ) : (
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <button
                         className={`dropdown-toggle d-flex align-items-center gap-2 ${style.menuBtn}`}
                         data-bs-toggle="dropdown"
@@ -226,7 +251,7 @@ const Nav = ({ data, phoneNum, menus }) => {
                         <p className="text-white m-0 p-0 fw-bolder">{name}</p>
                         <IoIosArrowDown size={15} className="text-white" />
                       </button>
-                      <ul class="dropdown-menu">
+                      <ul className="dropdown-menu">
                         <li onClick={() => setShowSidebar(false)}>
                           <Link
                             className="dropdown-item"
@@ -294,7 +319,7 @@ const Nav = ({ data, phoneNum, menus }) => {
               <div className="d-flex align-items-center gap-2">
                 {isLogin ? (
                   <div className="d-flex align-items-center gap-3">
-                    <div class="dropdown">
+                    <div className="dropdown">
                       <button
                         className={`dropdown-toggle d-flex align-items-center gap-2 ${style.menuBtn}`}
                         data-bs-toggle="dropdown"
@@ -308,7 +333,7 @@ const Nav = ({ data, phoneNum, menus }) => {
                         <p className="text-white m-0 p-0 fw-bolder">{name}</p>
                         <IoIosArrowDown size={15} className="text-white" />
                       </button>
-                      <ul class="dropdown-menu">
+                      <ul className="dropdown-menu">
                         <li onClick={() => setShowSidebar(false)}>
                           <Link
                             className="dropdown-item"
@@ -555,7 +580,6 @@ const Nav = ({ data, phoneNum, menus }) => {
                     </>
                   ) : (
                     <>
-                      {" "}
                       <li className="mb-2">
                         <Link
                           onClick={() => setShowSidebar(false)}
@@ -593,7 +617,7 @@ const Nav = ({ data, phoneNum, menus }) => {
                         <li key={index} className="mb-2">
                           <Link
                             onClick={() => setShowSidebar(false)}
-                            className={`book text-white ${style.link}`}
+                            className={`text-white ${style.link}`}
                             to={item.link}
                           >
                             <MdKeyboardArrowLeft
@@ -605,6 +629,35 @@ const Nav = ({ data, phoneNum, menus }) => {
                         </li>
                       ))
                     : null}
+                  <li className="mb-2">
+                    <p
+                      onClick={handleAfilate}
+                      className={`pointer m-0 p-0 text-white ${style.link}`}
+                    >
+                      <MdKeyboardArrowLeft
+                        className="green d-inline-block mx-1 "
+                        size={25}
+                      />
+                      {i18n.language === "ar"
+                        ? "انضم الي فريق التسويق لدينا"
+                        : "Join our marketing team"}
+                    </p>
+                  </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/login/afilate"
+                      className={`pointer m-0 p-0 text-white ${style.link}`}
+                      onClick={() => setShowSidebar(false)}
+                    >
+                      <MdKeyboardArrowLeft
+                        className="green d-inline-block mx-1 "
+                        size={25}
+                      />
+                      {i18n.language === "ar"
+                        ? "تسجيل الدخول كمسوق"
+                        : "login as afilator"}
+                    </Link>
+                  </li>
                 </ul>
                 <div
                   className={`mx-auto  p-3  d-flex flex-column align-items-center gap-1 ${style.contactContainer}`}

@@ -22,6 +22,8 @@ const Recommendations = () => {
           isHistory={false}
           isVideo={false}
           isRecommendations={true}
+          isWallet={false}
+          isAfilator={false}
           data={data.data.data}
         />
       )}

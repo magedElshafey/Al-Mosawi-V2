@@ -80,6 +80,8 @@ const RecommendationHistory = () => {
             isHistory={true}
             isVideo={false}
             isRecommendations={false}
+            isAfilator={false}
+            isWallet={false}
             data={data}
             date={date}
             setDate={setDate}

@@ -29,6 +29,8 @@ const Deals = () => {
             isRecommendations={false}
             isVideo={false}
             isHistory={false}
+            isAfilator={false}
+            isWallet={false}
           />
         </div>
       )}

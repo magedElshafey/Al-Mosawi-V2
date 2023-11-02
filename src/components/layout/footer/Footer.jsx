@@ -5,7 +5,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { AiFillPhone } from "react-icons/ai";
-import youtube from "../../../assets/social/youtube.svg";
 import {
   FaSnapchatGhost,
   FaTiktok,
@@ -15,14 +14,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { GrInstagram } from "react-icons/gr";
-const Footer = ({
-  generalData,
-  socailData,
-  aboutUs,
-  phoneNum,
-  footer1,
-  footer2,
-}) => {
+const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
   const { t, i18n } = useTranslation();
   const { pathname } = useLocation();
   const [showFooter, setShowFooter] = useState(true);
@@ -33,7 +25,9 @@ const Footer = ({
       pathname.startsWith("/deals/") ||
       pathname === "/recommendation-details" ||
       pathname === "/user/prochart" ||
-      pathname === "/recommendations"
+      pathname === "/recommendations" ||
+      pathname === "/afilator" ||
+      pathname === "/wallet"
     ) {
       setShowFooter(false);
     } else {

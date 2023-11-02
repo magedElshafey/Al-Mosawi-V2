@@ -10,6 +10,7 @@ import "aos/dist/aos.css";
 import { Toaster } from "react-hot-toast";
 // i18next
 import "./i18n";
+// index css
 import "./index.css";
 // redux
 import { Provider } from "react-redux";

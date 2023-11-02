@@ -70,12 +70,12 @@
   -o-transform: translateY(-50%);
 }
 .rtlStyle::before {
-  width: 145%;
-  right: 110px;
+  width: 90%;
+  right: 180px;
 }
 .ltrStyle::before {
-  width: 145%;
-  left: 110px;
+  width: 90%;
+  left: 180px;
 }
 
 @media screen and (max-width: 767px) {
