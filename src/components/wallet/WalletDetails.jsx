@@ -16,7 +16,7 @@ const WalletDetails = ({ profit, data }) => {
       <div className="custom-table">
         <div className="table-header">
           <div className="table-cell">
-            {i18n.language === "ar" ? "رقم الطلب" : "order number"}
+            {i18n.language === "ar" ? " الطلب" : "order"}
           </div>
           <div className="table-cell">
             {i18n.language === "ar" ? "حالة الطلب" : "order status"}
@@ -27,19 +27,15 @@ const WalletDetails = ({ profit, data }) => {
           <div className="table-cell">
             {i18n.language === "ar" ? "سحب" : "comession"}
           </div>
-          <div className="table-cell">
-            {i18n.language === "ar" ? "سحب العمولة" : "withdraw comession"}
-          </div>
         </div>
-        <div className="table-row">
-          <div className="table-cell">{data.order_id}</div>
-          <div className="table-cell">{data.status}</div>
-          <div className="table-cell">{data.in}$</div>
-          <div className="table-cell">{data.out}$</div>
-          <div className="table-cell">
-            <button className="customBtn">سحب العمولة</button>
+        {data.map((item, index) => (
+          <div className="table-row" key={index}>
+            <div className="table-cell">{item.orderName}</div>
+            <div className="table-cell">{item.status}</div>
+            <div className="table-cell">{item.in}$</div>
+            <div className="table-cell">{item.out}$</div>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
