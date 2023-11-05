@@ -31,9 +31,11 @@ import {
   removeName,
   removeUserId,
 } from "../../../Redux/auth.js";
+import { handleRequest } from "../../../Redux/afilator.js";
 const Nav = ({ data, phoneNum, menus, lang }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
+  const [isBg, setIsBg] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showProchart, setShowPorchart] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
@@ -46,7 +48,9 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   const { isLogin, name, profilePhoto } = useSelector(
     (state) => state.authSlice
   );
+  const { requestSent, isAfilator } = useSelector((state) => state.afilator);
   const userId = JSON.parse(localStorage.getItem("userId"));
+  // handle afilate
   const handleAfilate = async () => {
     if (isLogin) {
       const res = await fetch(
@@ -65,6 +69,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
       console.log("this is the data from afilate", data);
       if (data.status) {
         toast.success(data.message);
+        dispatch(handleRequest());
       } else {
         toast.error(data.message);
       }
@@ -76,12 +81,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
   const { cartItems } = useSelector((state) => state.cartSlice);
   useEffect(() => {
-    if (
-      pathname === "/forget" ||
-      pathname === "/login" ||
-      pathname === "/new-password" ||
-      pathname === "/reg"
-    ) {
+    if (pathname === "/forget" || pathname === "/new-password") {
       setShowLogo(false);
     } else {
       setShowLogo(true);
@@ -103,6 +103,21 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
       setShowBack(false);
     }
   }, [pathname]);
+
+  // handle scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 200) {
+        setIsBg(true);
+      } else {
+        setIsBg(false);
+      }
+    };
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // handle logout
   const handleLogout = (data) => {
@@ -137,7 +152,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   return (
     <>
       <div>
-        <div className={style.navContainer}>
+        <div className={`${style.navContainer} ${isBg ? style.bg : null}`}>
           <div className="container py-3 ">
             <div className="d-flex align-items-center justify-content-between">
               <div className="d-flex align-items-center">
@@ -629,35 +644,39 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                         </li>
                       ))
                     : null}
-                  <li className="mb-2">
-                    <p
-                      onClick={handleAfilate}
-                      className={`pointer m-0 p-0 text-white ${style.link}`}
-                    >
-                      <MdKeyboardArrowLeft
-                        className="green d-inline-block mx-1 "
-                        size={25}
-                      />
-                      {i18n.language === "ar"
-                        ? "انضم الي فريق التسويق لدينا"
-                        : "Join our marketing team"}
-                    </p>
-                  </li>
-                  <li className="mb-2">
-                    <Link
-                      to="/login/afilate"
-                      className={`pointer m-0 p-0 text-white ${style.link}`}
-                      onClick={() => setShowSidebar(false)}
-                    >
-                      <MdKeyboardArrowLeft
-                        className="green d-inline-block mx-1 "
-                        size={25}
-                      />
-                      {i18n.language === "ar"
-                        ? "تسجيل الدخول كمسوق"
-                        : "login as afilator"}
-                    </Link>
-                  </li>
+                  {requestSent ? null : (
+                    <li className="mb-2">
+                      <p
+                        onClick={handleAfilate}
+                        className={`pointer m-0 p-0 text-white ${style.link}`}
+                      >
+                        <MdKeyboardArrowLeft
+                          className="green d-inline-block mx-1 "
+                          size={25}
+                        />
+                        {i18n.language === "ar"
+                          ? "انضم الي فريق التسويق لدينا"
+                          : "Join our marketing team"}
+                      </p>
+                    </li>
+                  )}
+                  {isAfilator ? null : (
+                    <li className="mb-2">
+                      <Link
+                        to="/login/afilate"
+                        className={`pointer m-0 p-0 text-white ${style.link}`}
+                        onClick={() => setShowSidebar(false)}
+                      >
+                        <MdKeyboardArrowLeft
+                          className="green d-inline-block mx-1 "
+                          size={25}
+                        />
+                        {i18n.language === "ar"
+                          ? "تسجيل الدخول كمسوق"
+                          : "login as afilator"}
+                      </Link>
+                    </li>
+                  )}
                 </ul>
                 <div
                   className={`mx-auto  p-3  d-flex flex-column align-items-center gap-1 ${style.contactContainer}`}

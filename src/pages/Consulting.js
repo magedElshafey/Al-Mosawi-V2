@@ -29,6 +29,9 @@ const Consulting = ({ handleChangeTitle, phoneNum }) => {
     cacheTime: 12000,
     staleTime: 12000,
   });
+  const cancelledAppointments = data?.data?.appointments?.filter(
+    (item) => item.status === 0
+  );
   return (
     <>
       {isLoading ? (
@@ -50,7 +53,7 @@ const Consulting = ({ handleChangeTitle, phoneNum }) => {
                 <ConsultingIntro />
                 <ConsultingAppointments
                   nextAppointments={data.data.appointments}
-                  canclledAppointments={data.data.appointments}
+                  canclledAppointments={cancelledAppointments}
                 />
               </div>
               <div className="col-12 col-md-3 mx-auto mb-3 mb-md-0">

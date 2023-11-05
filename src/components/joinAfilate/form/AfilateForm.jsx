@@ -3,16 +3,14 @@ import style from "./afilateForm.module.css";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { MdKeyboardArrowRight, MdOutlineArrowBackIos } from "react-icons/md";
-
+import Swal from "sweetalert2";
+import { handleRequest } from "../../../Redux/afilator";
 const AfilateForm = ({ lang, setShowModal }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [tickMillUser, setTickmillUser] = useState(null);
   const [accountNum, setAccountNum] = useState("");
@@ -22,19 +20,18 @@ const AfilateForm = ({ lang, setShowModal }) => {
   const handleClick = async (e) => {
     e.preventDefault();
     if (
-      name.trim() === "" ||
       email.trim() === "" ||
-      password.trim() === "" ||
-      password.trim() === ""
+      name.trim() === "" ||
+      phone.trim() === "" ||
+      !tickMillUser ||
+      accountNum.trim() === ""
     ) {
       toast.error(
-        i18n.language === "ar"
-          ? "جميع الحقول مطلوبة"
-          : "all field aree required"
+        i18n.language === "ar" ? "جميع الحقول مطلوبة" : "all field are required"
       );
     } else {
       const res = await fetch(
-        "https://almosawi.admin.technomasrsystems.com/api/affiliate/store",
+        "https://almosawi.admin.technomasrsystems.com/api/affiliate/RegisterAsAffiliator",
         {
           method: "POST",
           headers: {
@@ -44,16 +41,30 @@ const AfilateForm = ({ lang, setShowModal }) => {
           body: JSON.stringify({
             name,
             email,
-            password,
             phone,
           }),
         }
       );
       const data = await res.json();
-      console.log("this is the data from afilate", data);
+      console.log("this is the data from afailate reqeuest", data);
       if (data.status) {
-        toast.success(data.message);
-        navigate("/afilator");
+        Swal.fire({
+          title: `${
+            i18n.language === "ar"
+              ? "تم ارسال طلبك بالنجاح و سوف يتم ارسال كلمة المرور علي البريد الالكتروني الذي قمت ب ادخالة"
+              : "your request has been sent successfully and the password will be sent to the email address you entered"
+          }`,
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+        });
+        dispatch(handleRequest());
+        setAccountNum("");
+        setName("");
+        setEmail("");
       } else {
         toast.error(data.message);
       }
@@ -61,14 +72,14 @@ const AfilateForm = ({ lang, setShowModal }) => {
   };
   return (
     <div>
-      <h4 className="green mb-4">
+      <h4 className="whiteGreen mb-4">
         {i18n.language === "ar"
           ? "قم بملء البيانات لتنضم لفريق التسويق الخاص بنا"
           : "Fill out the information to join our marketing team"}
       </h4>
       <form onSubmit={handleClick} className={style.mainContainer}>
         <div className="mb-3">
-          <label htmlFor="name" className="d-block mb-1 green">
+          <label htmlFor="name" className="d-block mb-1">
             {i18n.language === "ar" ? "الاسم" : "name"}
           </label>
           <input
@@ -81,7 +92,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="name" className="d-block mb-1 green">
+          <label htmlFor="name" className="d-block mb-1">
             {i18n.language === "ar" ? "رقم هاتف الواتساب" : "whatsapp"}
           </label>
           <input
@@ -95,7 +106,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="email" className="d-block mb-1 green">
+          <label htmlFor="email" className="d-block mb-1">
             {i18n.language === "ar" ? "البريد الالكتروني" : "email"}
           </label>
           <input
@@ -108,20 +119,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="d-block mb-1 green">
-            {i18n.language === "ar" ? "كلمة المرور" : "password"}
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="inp"
-            value={password}
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="number" className="d-block mb-1 green">
+          <label htmlFor="number" className="d-block mb-1">
             {i18n.language === "ar" ? "رقم حسابك" : "account number"}
           </label>
           <input

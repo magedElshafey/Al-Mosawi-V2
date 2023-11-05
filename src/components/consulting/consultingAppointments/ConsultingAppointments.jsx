@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ConsultingAppoitmentCard from "../../utils/consultingAppoitmentCard/ConsultingAppoitmentCard";
 import { useTranslation } from "react-i18next";
 const ConsultingAppointments = ({ nextAppointments, canclledAppointments }) => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showNext, setShowNext] = useState(true);
   const [showCancled, setShowCancled] = useState(false);
   const navigate = useNavigate();
@@ -52,13 +52,21 @@ const ConsultingAppointments = ({ nextAppointments, canclledAppointments }) => {
         )}
         {showCancled && (
           <div className="my-2">
-            {canclledAppointments.map((item, index) => (
-              <ConsultingAppoitmentCard
-                key={index}
-                item={item}
-                showButton={false}
-              />
-            ))}
+            {canclledAppointments.length ? (
+              canclledAppointments.map((item, index) => (
+                <ConsultingAppoitmentCard
+                  key={index}
+                  item={item}
+                  showButton={false}
+                />
+              ))
+            ) : (
+              <div>
+                {i18n.language === "ar"
+                  ? "لا يوجد مواعيد ملغية"
+                  : "no canclled appointment"}
+              </div>
+            )}
           </div>
         )}
       </div>

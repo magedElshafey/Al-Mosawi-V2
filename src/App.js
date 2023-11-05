@@ -282,7 +282,10 @@ const App = () => {
             </Routes>
             {/*done*/}
             <Routes>
-              <Route path="/user/prochart" element={<UserProchart />} />
+              <Route
+                path="/user/prochart"
+                element={<UserProchart lang={lang} />}
+              />
             </Routes>
             {/*done*/}
             <Routes>

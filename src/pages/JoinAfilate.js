@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import heroImg from "../assets/hero.png";
 import Hero from "../components/utils/hero/Hero";
 import RegModal from "../components/Reg/regmodal/RegModal";
@@ -7,7 +7,8 @@ import AfilateForm from "../components/joinAfilate/form/AfilateForm";
 import Img3D from "../components/joinAfilate/Img3D";
 const JoinAfilate = ({ lang }) => {
   const { i18n } = useTranslation();
-   const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <div>

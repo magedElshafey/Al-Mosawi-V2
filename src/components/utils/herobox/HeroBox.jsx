@@ -30,14 +30,15 @@ const HeroBox = ({
   setDealStatus,
   handleSearch,
   accountDetails,
+  prochart,
+  courses,
+  profit,
 }) => {
   const { i18n } = useTranslation();
   return (
     <div className={`m-0 p-0 ${style.mainDiv}`}>
       <div
-        className={`z-3 container ${
-          isAfilator || isWallet ? null : "mt-5 pt-5"
-        }   mb-0 pb-0`}
+        className={`z-3 container ${isWallet ? null : "mt-5 pt-5"}   mb-0 pb-0`}
       >
         {!isRecommendations &&
           !isVideo &&
@@ -168,7 +169,11 @@ const HeroBox = ({
                   <AccountDetails data={accountDetails} />
                 </div>
                 <div className="col-12 col-md-9">
-                  <AfilatorDashboard />
+                  <AfilatorDashboard
+                    prochart={prochart}
+                    courses={courses}
+                    profit={profit}
+                  />
                 </div>
               </div>
             </>
@@ -179,12 +184,12 @@ const HeroBox = ({
           !isAfilator &&
           isWallet && (
             <>
-              <div className="row">
+              <div className="row align-items-center">
                 <div className="col-12 col-md-3">
                   <AccountDetails data={accountDetails} />
                 </div>
                 <div className="col-12 col-md-9">
-                  <WalletDetails />
+                  <WalletDetails profit={profit} />
                 </div>
               </div>
             </>

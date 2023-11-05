@@ -5,15 +5,16 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 const Afilator = () => {
-  const { user } = useSelector((state) => state.authSlice);
+  const { isLogin, user } = useSelector((state) => state.authSlice);
+  const { afilatorId } = useSelector((state) => state.afilator);
 
   const fetchData = () => {
     const headers = {
-      user,
+      userId: isLogin ? user : afilatorId,
     };
-    return request({ url: "/prochart/panel", headers });
+    return request({ url: "/affiliate/links", headers });
   };
-  const { isLoading, data } = useQuery("prochart dashboard-page", fetchData, {
+  const { isLoading, data } = useQuery("affiliate dashboard-page", fetchData, {
     cacheTime: 12000,
     staleTime: 12000,
   });
@@ -29,7 +30,10 @@ const Afilator = () => {
             isHistory={false}
             isAfilator={true}
             isWallet={false}
-            accountDetails={data.data.data.UserData}
+            accountDetails={data.data.user}
+            prochart={data.data.prochart}
+            courses={data.data.courses}
+            profit={data.data.profit}
           />
         </div>
       )}

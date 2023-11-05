@@ -311,12 +311,74 @@ ul {
   font-size: 12px;
   color: #1c86c0;
 }
+
 .custom-table {
-  background-color: red;
+  background:linear-gradient( to bottom right, rgba(11, 48, 101, 1) 30%, rgba(1, 36, 86, 1) 100% );
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+}
+
+.table-header {
+  display: flex;
   color: white;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid white;
+}
+
+.table-row {
+  display: flex;
+}
+.table-row:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+
+}
+.table-cell {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  color: white;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 600px) {
+  .custom-table {
+    flex-direction: column;
+  }
+  
+  .table-row {
+    flex-direction: column;
+  }
+
+  .table-header {
+    display: none;
+  }
+  
+ 
+}
+
+/* Add more media queries for different screen sizes if needed */
+.customLink {
+  font-size: 12px;
+  text-transform: lowercase !important;
+}
+.customBtn {
+  padding: 7px;
+  background-color: white;
+  border: 1px solid #00032b ;
+  color: #00032b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
 }

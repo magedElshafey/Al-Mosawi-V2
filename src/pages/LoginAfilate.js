@@ -24,7 +24,7 @@ const LoginAfilate = ({ lang }) => {
         <div className="container my-5">
           <div className="row">
             <div className="col-12 col-md-6 mb-3 mb-md-0">
-              <LoginAfilateForm />
+              <LoginAfilateForm lang={lang} />
             </div>
             <div className="col-12 col-md-6 mb-3 mb-md-0">
               <Img3D />

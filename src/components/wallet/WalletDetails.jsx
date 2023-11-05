@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import style from "./walletDetails.module.css";
 import { useTranslation } from "react-i18next";
-const WalletDetails = () => {
+const WalletDetails = ({ profit }) => {
   const { i18n } = useTranslation();
   return (
     <div>
@@ -12,38 +11,36 @@ const WalletDetails = () => {
         <p className="m-0 p-0">
           {i18n.language === "ar" ? "المحفظة" : "wallet"} :
         </p>
-        <p className="m-0 p-0 fw-bold">150$</p>
+        <p className="m-0 p-0 fw-bold">{profit}$</p>
       </p>
-
-      <table className={`table  table-hover rounded-sm `}>
-        <thead className="text-white">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">product</th>
-            <th scope="col">link</th>
-            <th scope="col">afilator code</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="custom-table">
+        <div className="table-header">
+          <div className="table-cell">
+            {i18n.language === "ar" ? "رقم الطلب" : "order number"}
+          </div>
+          <div className="table-cell">
+            {i18n.language === "ar" ? "حالة الطلب" : "order status"}
+          </div>
+          <div className="table-cell">
+            {i18n.language === "ar" ? "السعر الكلي" : "total price"}
+          </div>
+          <div className="table-cell">
+            {i18n.language === "ar" ? "العمولة" : "comession"}
+          </div>
+          <div className="table-cell">
+            {i18n.language === "ar" ? "سحب العمولة" : "withdraw comession"}
+          </div>
+        </div>
+        <div className="table-row">
+          <div className="table-cell">1</div>
+          <div className="table-cell">معلق</div>
+          <div className="table-cell">200$</div>
+          <div className="table-cell">10$</div>
+          <div className="table-cell">
+            <button className="customBtn">سحب العمولة</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

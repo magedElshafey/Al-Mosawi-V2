@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
-const UserProchart = () => {
+const UserProchart = ({ lang }) => {
   const { user } = useSelector((state) => state.authSlice);
- 
+
   const fetchData = () => {
     const headers = {
       user,
@@ -25,6 +25,7 @@ const UserProchart = () => {
       ) : (
         <div>
           <HeroForex
+            lang={lang}
             isProchart={true}
             data={userProchart}
             accountDetails={data.data.data.UserData}

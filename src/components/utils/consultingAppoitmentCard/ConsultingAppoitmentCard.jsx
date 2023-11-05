@@ -6,8 +6,10 @@ import Spinner from "../Spinner/Spinner";
 import { useQuery } from "react-query";
 import { request } from "../axios";
 import toast from "react-hot-toast";
+import { useState } from "react";
 const ConsultingAppoitmentCard = ({ item, showButton }) => {
   const { t, i18n } = useTranslation();
+  const [disabledCanclle, setDisableCancle] = useState(false);
   const fetchData = (id) => {
     const headers = {
       appointmentId: id,
@@ -38,6 +40,38 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
   const handleClick = () => {
     refetch();
   };
+
+  // handle canclle
+  const canclleAppointment = (id) => {
+    const headers = {
+      appointmentId: id,
+    };
+    return request({ url: "/consultation/cancelAppointment", headers });
+  };
+  const { isLoading: loadingCanclle, refetch: canclle } = useQuery(
+    "canclle-consulting-page",
+    () => canclleAppointment(item.id),
+    {
+      cacheTime: 12000,
+      staleTime: 12000,
+      enabled: false,
+      onSuccess: (data) => {
+        if (data.data.status === "success") {
+          toast.success(data.data.message);
+          setDisableCancle(true);
+        } else {
+          toast.error(
+            i18n.language === "ar"
+              ? "حدث خطأ اثناء الاتصال يرجي المحاولة مرة اخري"
+              : "there is an error occured , please try again"
+          );
+        }
+      },
+    }
+  );
+  const handleCanclle = () => {
+    canclle();
+  };
   return (
     <>
       {isLoading ? (
@@ -51,22 +85,42 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
             {i18n.language === "ar" ? "الساعة" : "at"} {item.time}
           </p>
           {showButton && (
-            <button
-              onClick={() => handleClick(item.id)}
-              disabled={item.disabled}
-              className={`book ${style.seconBtn} ${
-                item.disabled ? style.disapled : null
-              }`}
-            >
-              <MdArrowBackIosNew />
-              <span className="mt-1">
-                {!item.pay
-                  ? i18n.language === "ar"
-                    ? "ادفع"
-                    : "pay"
-                  : t("enterMetting")}
-              </span>
-            </button>
+            <div className="d-flex flex-column align-items-center gap-3">
+              <button
+                onClick={() => handleClick(item.id)}
+                disabled={item.disabled}
+                className={`book ${style.seconBtn} ${
+                  item.disabled ? style.disapled : null
+                }`}
+              >
+                <MdArrowBackIosNew />
+                <span className="mt-1">
+                  {!item.pay
+                    ? i18n.language === "ar"
+                      ? "ادفع"
+                      : "pay"
+                    : t("enterMetting")}
+                </span>
+              </button>
+              {!item.pay ? (
+                <button
+                  onClick={() => handleCanclle(item.id)}
+                  disabled={disabledCanclle}
+                  className={`book ${style.seconBtn} ${
+                    item.disabled ? style.disapled : null
+                  }`}
+                >
+                  <MdArrowBackIosNew />
+                  <span className="mt-1">
+                    {!item.pay
+                      ? i18n.language === "ar"
+                        ? "الغاء المعاد"
+                        : "canclle appointment"
+                      : t("enterMetting")}
+                  </span>
+                </button>
+              ) : null}
+            </div>
           )}
         </div>
       )}
