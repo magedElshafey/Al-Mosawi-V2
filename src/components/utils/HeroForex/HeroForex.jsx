@@ -13,10 +13,10 @@ const HeroForex = ({ isProchart, data, accountDetails, lang }) => {
     <div className={`${style.mainDiv} m-0 p-0`}>
       <div className="container">
         <div className="row justify-content-center justify-content-md-start">
-          <div className=" mt100 z-3 col-12 col-md-2">
+          <div className=" mt100 z-3 col-12 col-md-3">
             <AccountDetails data={accountDetails} lang={lang} />
           </div>
-          <div className="z-3 mt100 col-12 col-md-10">
+          <div className="z-3 mt100 col-12 col-md-9">
             {!isProchart && (
               <div
                 className={`d-flex align-items-center  gap-2 mb-5 ${style.desc}`}

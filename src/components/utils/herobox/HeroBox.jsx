@@ -33,6 +33,7 @@ const HeroBox = ({
   prochart,
   courses,
   profit,
+  wallet,
 }) => {
   const { i18n } = useTranslation();
   return (
@@ -189,7 +190,7 @@ const HeroBox = ({
                   <AccountDetails data={accountDetails} />
                 </div>
                 <div className="col-12 col-md-9">
-                  <WalletDetails profit={profit} />
+                  <WalletDetails data={wallet} profit={profit} />
                 </div>
               </div>
             </>

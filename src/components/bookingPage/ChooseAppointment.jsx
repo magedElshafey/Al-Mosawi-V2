@@ -20,7 +20,7 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
   const swiperOptions = {
     loop: false,
     centeredSlides: false,
-    spaceBetween: 20,
+    spaceBetween: 0,
     navigation: true,
 
     pagination: {
@@ -34,10 +34,10 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
         slidesPerView: 2,
       },
       900: {
-        slidesPerView: 3,
+        slidesPerView: 4,
       },
       1024: {
-        slidesPerView: 4,
+        slidesPerView: 6,
       },
     },
   };
@@ -84,7 +84,7 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
         <Spinner />
       ) : (
         <div className="mt-5 row justify-content-center">
-          <div className={` col-12 col-md-9 p-4 ${style.mainDiv}`}>
+          <div className={` col-12  ${style.mainDiv}`}>
             <div className="my-2 text-center">
               <div className="d-flex flex-column align-items-center gap-1">
                 <p className="m-0 p-0 fw-bold fs24 shamel">{title}</p>
@@ -94,7 +94,7 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
                 <Swiper
                   modules={[Autoplay, Navigation]}
                   {...swiperOptions}
-                  className="mySwiper col-12 col-md-11"
+                  className="mySwiper col-12"
                 >
                   {data.map((day, index) => (
                     <SwiperSlide

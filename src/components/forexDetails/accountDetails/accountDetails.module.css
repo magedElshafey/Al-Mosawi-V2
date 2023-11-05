@@ -22,9 +22,13 @@
 @media screen and (max-width: 600px) {
   .btn {
     margin: 25px auto;
-   
   }
 }
 .btn:hover {
   background-color: #0d53b8;
+}
+.menuBtn {
+  border: none !important;
+  background-color: transparent !important;
+  text-transform: capitalize;
 }

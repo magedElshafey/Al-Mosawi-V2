@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import HeroCourse from "../components/utils/heroCourse/HeroCourse";
 import AboutCourse from "../components/courseDetails/aboutCourse/AboutCourse";
@@ -11,7 +11,19 @@ import Reviews from "../components/courseDetails/reviews/Reviews";
 import { useQuery } from "react-query";
 const CourseDetails = ({ fixedContainer }) => {
   const params = useParams();
-
+  const [currentUrl, setCurrentUrl] = useState(window.location.href);
+  console.log("this is the current url", currentUrl);
+  useEffect(() => {
+    const hasCode = currentUrl.includes("?r=");
+    console.log("has the code ?", hasCode);
+    if (hasCode) {
+      const rQueryParamIndex = currentUrl.indexOf("?r=");
+      const valueStartIndex = rQueryParamIndex + 3;
+      const value = currentUrl.substring(valueStartIndex);
+      console.log("this is the value code", value);
+      window.localStorage.setItem("codeFromCourses", JSON.stringify(value));
+    }
+  }, []);
   const fetchData = (id) => {
     return request({ url: `course/${id}` });
   };

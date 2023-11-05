@@ -8,10 +8,12 @@ const Login = ({ phoneNum }) => {
   return (
     <>
       <div className="d-none d-md-block">
-        <div className="row">
-          <div className="col-6 justify-content-center">
-            <AuthIntro title={t("Authlogin")} />
-            <LoginForm />
+        <div className="row justify-content-center">
+          <div className="col-6 ">
+            <div className="container mx-5 px-4">
+              <AuthIntro title={t("Authlogin")} />
+              <LoginForm />
+            </div>
           </div>
           <div className="col-6">
             <AuthImg phoneNum={phoneNum} showWelcome={true} desc="" desc2="" />

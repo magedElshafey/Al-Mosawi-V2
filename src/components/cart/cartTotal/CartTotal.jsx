@@ -5,13 +5,21 @@ import { MdOutlineArrowBackIos } from "react-icons/md";
 import { request } from "../../utils/axios";
 import { useMutation, useQuery } from "react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const CartTotal = ({ total, user }) => {
+  const [payment_method, setPaymentMethod] = useState("myfatoorah");
   const cartItems = JSON.parse(window.localStorage.getItem("cart"));
   const { i18n, t } = useTranslation();
-  const isLogin = JSON.parse(localStorage.getItem("isLogin"));
+  const { isLogin } = useSelector((state) => state.authSlice);
   const [copon, setCopon] = useState("");
   const [coponValue, setCoponValue] = useState(0);
   const [coponSent, setCoponSent] = useState(false);
+  const navigate = useNavigate();
+  const code = localStorage.getItem("codeFromCourses")
+    ? JSON.parse(localStorage.getItem("codeFromCourses"))
+    : null;
+
   const handleCopon = (data) => {
     const headers = {
       user,
@@ -67,6 +75,11 @@ const CartTotal = ({ total, user }) => {
     const headers = {
       user,
     };
+    if (code !== null) {
+      headers.code = code;
+      headers.payment_method = payment_method;
+    }
+    console.log("this is the yser", user);
     return request({
       url: "/orders/create",
       headers,
@@ -77,14 +90,30 @@ const CartTotal = ({ total, user }) => {
     checkout,
     {
       onSuccess: (data) => {
-        window.location.href = data.data.Data.invoiceURL;
+        console.log("checkout data", data);
+        if (payment_method === "myfatoorah") {
+          window.location.href = data.data.Data.invoiceURL;
+        }
       },
     }
   );
   const handleCheckout = async () => {
-    const data = {};
-    await mutateCheckout(data);
+    if (code && !payment_method) {
+      toast.error(
+        i18n.language === "ar"
+          ? "يجب عليك اختيار طريقة الدفع"
+          : "you need to choose payment method"
+      );
+    } else {
+      if (isLogin) {
+        const data = {};
+        await mutateCheckout(data);
+      } else {
+        navigate("/login");
+      }
+    }
   };
+
   return (
     <div className={`p-3 ${style.mainContainer}`}>
       <p className="mb-3 book">{t("coponIntro")}</p>
@@ -140,6 +169,26 @@ const CartTotal = ({ total, user }) => {
           <p className="m-0 p-0 fw-bold shamel ">{t("netPrice")}</p>
           <p className="m-0 p-0 fw-bold shamel ">{total - coponValue}$</p>
         </div>
+        {code && (
+          <div className="mb-3">
+            <label htmlFor="payment">
+              {i18n.language === "ar" ? "طريقة الدفع" : "payment method"}
+            </label>
+            <select
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="inp"
+              id="payment"
+            >
+              <option disabled={true} value="">
+                {i18n.language === "ar"
+                  ? "اختر طريقة الدفع"
+                  : "choose your payment method"}
+              </option>
+              <option value="myfatoorah">my fatora</option>
+              <option value="wallet">wallet</option>
+            </select>
+          </div>
+        )}
         <button
           onClick={handleCheckout}
           disabled={cartItems.length === 0}

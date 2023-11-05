@@ -9,6 +9,7 @@ import { request } from "../../components/utils/axios";
 import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { login, gitName, gitPp, gitUserId } from "../../Redux/auth";
+import { handleCode, handleRequest } from "../../Redux/afilator";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
@@ -49,6 +50,7 @@ const LoginForm = () => {
   };
   const { isLoading, mutate } = useMutation(handleSendMsg, {
     onSuccess: (data) => {
+      console.log("data from login", data);
       if (data.data.status === "faild") {
         toast.error(
           i18n.language === "en"
@@ -72,7 +74,10 @@ const LoginForm = () => {
         sendCartItems(data?.data?.data?.id);
         setAccount("");
         setPassword("");
-
+        if (data.data.data.referral_code) {
+          dispatch(handleCode(data.data.data.referral_code));
+          dispatch(handleRequest());
+        }
         if (data.data.data.tikmill) {
           navigate("/forex-account/details");
         } else {
@@ -105,7 +110,7 @@ const LoginForm = () => {
         <Spinner />
       ) : (
         <div className="py-3 container">
-          <div className="mb-4 mx-auto">
+          <div className="mb-4">
             <label htmlFor="email" className="d-block fw-bold mb-1 shamel ">
               {t("emailTwo")}
             </label>

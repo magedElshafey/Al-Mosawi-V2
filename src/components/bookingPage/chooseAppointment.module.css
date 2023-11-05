@@ -3,6 +3,8 @@
   box-shadow: 0px 17px 20px #00000012;
   border: 1px solid #dcdcdc;
   border-radius: 18px;
+  height: 550px;
+  overflow-y: scroll;
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   -ms-border-radius: 18px;
@@ -26,7 +28,7 @@
   align-items: center;
   padding: 5px;
   border: 1px solid #afafaf;
-  height: 38px;
+  width: 100%;
 }
 
 .dark {

@@ -95,7 +95,11 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
     }
   }, [pathname]);
   useEffect(() => {
-    if (pathname === "/recommendation-details" || pathname === "/deals/:id?") {
+    if (
+      pathname === "/recommendation-details" ||
+      pathname.startsWith("/deals/") ||
+      pathname === "/prochart/video"
+    ) {
       setShowMenu(false);
       setShowBack(true);
     } else {
@@ -135,6 +139,28 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
         dispatch(removeName());
         dispatch(removePip());
         dispatch(removeUserId());
+        if (localStorage.getItem("accountType")) {
+          window.localStorage.removeItem("accountType");
+        } else {
+          return;
+        }
+        if (localStorage.getItem("afilatorCode")) {
+          window.localStorage.removeItem("afilatorCode");
+        } else {
+          return;
+        }
+        if (localStorage.getItem("isAfilateReqSent")) {
+          window.localStorage.removeItem("isAfilateReqSent");
+        } else {
+          return;
+        }
+        if (localStorage.getItem("tickmillUser")) {
+          window.localStorage.removeItem("tickmillUser");
+        } else {
+          return;
+        }
+
+     
         navigate("/");
       } else {
         toast.error(
@@ -655,12 +681,12 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                           size={25}
                         />
                         {i18n.language === "ar"
-                          ? "انضم الي فريق التسويق لدينا"
-                          : "Join our marketing team"}
+                          ? "انضم الي برنامج afilate"
+                          : "Join the afilate program"}
                       </p>
                     </li>
                   )}
-                  {isAfilator ? null : (
+                  {/**  {isAfilator ? null : (
                     <li className="mb-2">
                       <Link
                         to="/login/afilate"
@@ -676,7 +702,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                           : "login as afilator"}
                       </Link>
                     </li>
-                  )}
+                  )} */}
                 </ul>
                 <div
                   className={`mx-auto  p-3  d-flex flex-column align-items-center gap-1 ${style.contactContainer}`}

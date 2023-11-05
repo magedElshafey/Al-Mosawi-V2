@@ -28,10 +28,7 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
     };
     return request({ url: "/user/my-profile", headers });
   };
-  const { isLoading, data } = useQuery("account-normal-user-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("account-normal-user-page", fetchData);
   return (
     <>
       {isLoading ? (

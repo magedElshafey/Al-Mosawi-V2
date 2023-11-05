@@ -11,9 +11,9 @@ const Wallet = () => {
     const headers = {
       userId: isLogin ? user : afilatorId,
     };
-    return request({ url: "/affiliate/links", headers });
+    return request({ url: "/affiliate/walletHistroy", headers });
   };
-  const { isLoading, data } = useQuery("affiliate dashboard-page", fetchData, {
+  const { isLoading, data } = useQuery("wallet-dashboard-page", fetchData, {
     cacheTime: 12000,
     staleTime: 12000,
   });
@@ -31,6 +31,7 @@ const Wallet = () => {
             isWallet={true}
             accountDetails={data.data.user}
             profit={data.data.profit}
+            wallet={data.data.data}
           />
         </div>
       )}

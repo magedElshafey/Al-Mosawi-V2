@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./walletDetails.module.css";
 import { useTranslation } from "react-i18next";
-const WalletDetails = ({ profit }) => {
+const WalletDetails = ({ profit, data }) => {
   const { i18n } = useTranslation();
   return (
     <div>
@@ -22,20 +22,20 @@ const WalletDetails = ({ profit }) => {
             {i18n.language === "ar" ? "حالة الطلب" : "order status"}
           </div>
           <div className="table-cell">
-            {i18n.language === "ar" ? "السعر الكلي" : "total price"}
+            {i18n.language === "ar" ? "ايداع" : "total price"}
           </div>
           <div className="table-cell">
-            {i18n.language === "ar" ? "العمولة" : "comession"}
+            {i18n.language === "ar" ? "سحب" : "comession"}
           </div>
           <div className="table-cell">
             {i18n.language === "ar" ? "سحب العمولة" : "withdraw comession"}
           </div>
         </div>
         <div className="table-row">
-          <div className="table-cell">1</div>
-          <div className="table-cell">معلق</div>
-          <div className="table-cell">200$</div>
-          <div className="table-cell">10$</div>
+          <div className="table-cell">{data.order_id}</div>
+          <div className="table-cell">{data.status}</div>
+          <div className="table-cell">{data.in}$</div>
+          <div className="table-cell">{data.out}$</div>
           <div className="table-cell">
             <button className="customBtn">سحب العمولة</button>
           </div>

@@ -14,6 +14,8 @@ const AfilateForm = ({ lang, setShowModal }) => {
   const [phone, setPhone] = useState("");
   const [tickMillUser, setTickmillUser] = useState(null);
   const [accountNum, setAccountNum] = useState("");
+  const [agree, setAgree] = useState("");
+  console.log("this is afree", agree);
   const handleRadioChange = (event) => {
     setTickmillUser(event.target.value);
   };
@@ -23,8 +25,8 @@ const AfilateForm = ({ lang, setShowModal }) => {
       email.trim() === "" ||
       name.trim() === "" ||
       phone.trim() === "" ||
-      !tickMillUser ||
-      accountNum.trim() === ""
+      accountNum.trim() === "" ||
+      !agree
     ) {
       toast.error(
         i18n.language === "ar" ? "جميع الحقول مطلوبة" : "all field are required"
@@ -42,25 +44,19 @@ const AfilateForm = ({ lang, setShowModal }) => {
             name,
             email,
             phone,
+            account_number: accountNum,
+            tikmill: tickMillUser,
           }),
         }
       );
       const data = await res.json();
       console.log("this is the data from afailate reqeuest", data);
       if (data.status) {
-        Swal.fire({
-          title: `${
-            i18n.language === "ar"
-              ? "تم ارسال طلبك بالنجاح و سوف يتم ارسال كلمة المرور علي البريد الالكتروني الذي قمت ب ادخالة"
-              : "your request has been sent successfully and the password will be sent to the email address you entered"
-          }`,
-          showClass: {
-            popup: "animate__animated animate__fadeInDown",
-          },
-          hideClass: {
-            popup: "animate__animated animate__fadeOutUp",
-          },
-        });
+        toast.success(
+          i18n.language === "ar"
+            ? "تم ارسال طلبك بنجاح"
+            : "your request sent succfully"
+        );
         dispatch(handleRequest());
         setAccountNum("");
         setName("");
@@ -133,7 +129,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
         </div>
         <div className="d-flex align-items-center justify-content-between">
           <div className="mb-3">
-            <label htmlFor="question" className={`shamel fs15 `}>
+            <label htmlFor="question" className={`shamel `}>
               {t("customer")}{" "}
               <span className={`red  fw-bold text-uppercase`}>tikmill</span>
             </label>
@@ -177,6 +173,8 @@ const AfilateForm = ({ lang, setShowModal }) => {
               <input
                 type="checkbox"
                 id="conditions"
+                value={agree}
+                onChange={() => setAgree(true)}
                 className={`p-0 m-0  ${style.checkBox}`}
               />
               <label htmlFor="yes" className={`p-0 my-0 mx-1 fw-bold  shamel`}>

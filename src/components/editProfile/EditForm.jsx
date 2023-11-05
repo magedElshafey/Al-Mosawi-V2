@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./editForm.module.css";
 import { useTranslation } from "react-i18next";
 import { MdKeyboardArrowRight, MdOutlineArrowBackIos } from "react-icons/md";
@@ -48,6 +48,7 @@ const EditForm = ({
       }
     );
     console.log("this is the res", res);
+    console.log("this is the form data", formDataToSend);
     if (res.data.status === "success") {
       toast.success(res.data.message);
       dispatch(gitName(res.data.data.name));

@@ -8,6 +8,8 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const handleClick = () => navigate("/edit");
+  const handleAfilatorDashboard = () => navigate("/afilator");
+  const handleWallet = () => navigate("/wallet");
   return (
     <div className={`p-4 mb-3  ${style.mainContainer}`}>
       <p className="fw-bolder shamel fs26 d-inline-block mx-0 mt-0 p-0  mb-1">
@@ -77,7 +79,7 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
           </Link>
         </div>
       ) : null}
-      <div className="mb-2 mt-4">
+      <div className="mb-2 mt-4 d-flex align-items-center gap-2 flex-wrap">
         <BTN
           action={handleClick}
           text={
@@ -88,6 +90,30 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
               : "تعديل الحساب"
           }
         />
+        {accountDetails.referral_code ? (
+          <>
+            <BTN
+              action={handleAfilatorDashboard}
+              text={
+                isTickmill
+                  ? t("editInfo")
+                  : i18n.language === "en"
+                  ? "afilator dashboard"
+                  : "لوحة تحكم afilator"
+              }
+            />
+            <BTN
+              action={handleWallet}
+              text={
+                isTickmill
+                  ? t("editInfo")
+                  : i18n.language === "en"
+                  ? "wallet details"
+                  : "تفاصيل المحفظة"
+              }
+            />
+          </>
+        ) : null}
       </div>
     </div>
   );

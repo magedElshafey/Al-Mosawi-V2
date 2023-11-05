@@ -15,11 +15,8 @@ const ForexForm = () => {
     : "ar";
   const { t, i18n } = useTranslation();
   const [id, setId] = useState(null);
-
   const [address, setAddress] = useState(null);
-
   const [passport, setPassport] = useState(null);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
