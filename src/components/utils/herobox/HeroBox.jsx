@@ -53,7 +53,7 @@ const HeroBox = ({
                     <img
                       alt="bitcoin/img"
                       loading="lazy"
-                      src={charts}
+                      src={dealsData.image}
                       className={` ${style.chartsImg}`}
                     />
                   </div>

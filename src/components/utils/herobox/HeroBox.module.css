@@ -26,9 +26,9 @@
 }
 .chartsImg {
   width: 95%;
-  height: 270px;
+  height: 200px;
   position: relative;
-  top: 80px;
+  top: -8px;
   left: 50px;
   object-fit: contain !important;
 }

@@ -95,7 +95,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
     }
   }, [pathname]);
   useEffect(() => {
-    if (pathname === "/recommendation-details") {
+    if (pathname === "/recommendation-details" || pathname === "/deals/:id?") {
       setShowMenu(false);
       setShowBack(true);
     } else {

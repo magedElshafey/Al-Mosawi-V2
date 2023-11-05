@@ -105,7 +105,7 @@ const LoginForm = () => {
         <Spinner />
       ) : (
         <div className="py-3 container">
-          <div className="mb-4">
+          <div className="mb-4 mx-auto">
             <label htmlFor="email" className="d-block fw-bold mb-1 shamel ">
               {t("emailTwo")}
             </label>
