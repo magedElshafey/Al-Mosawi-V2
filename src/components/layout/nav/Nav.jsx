@@ -160,7 +160,6 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
           return;
         }
 
-     
         navigate("/");
       } else {
         toast.error(
@@ -190,15 +189,15 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                     className={style.logo}
                   />
                 </Link>
-                <div className="dropdown">
+                <div className="dropdown ">
                   <button
-                    className={`${style.none} dropdown-toggle`}
+                    className={`${style.none} dropdown-toggle text-start`}
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     <BsGlobe size={30} className="pointer whiteGreen" />
                   </button>
-                  <ul className="dropdown-menu">
+                  <ul className="dropdown-menu start">
                     <li
                       onClick={() => {
                         window.location.reload();

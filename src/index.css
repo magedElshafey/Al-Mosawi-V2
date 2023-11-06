@@ -369,16 +369,20 @@ ul {
   text-transform: lowercase !important;
 }
 .customBtn {
-  padding: 7px;
+  width: 130px;
+  padding: 10px;
   background-color: white;
   border: 1px solid #00032b ;
   color: #00032b;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.dropdown-menu.show {
+  text-align: start !important;
 }

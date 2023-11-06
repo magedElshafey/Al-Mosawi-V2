@@ -167,7 +167,7 @@ const HeroBox = ({
             <>
               <div className="row">
                 <div className="col-12 col-md-3">
-                  <AccountDetails data={accountDetails} />
+                  <AccountDetails isAfilate={true} data={accountDetails} />
                 </div>
                 <div className="col-12 col-md-9">
                   <AfilatorDashboard
@@ -187,7 +187,7 @@ const HeroBox = ({
             <>
               <div className="row align-items-center">
                 <div className="col-12 col-md-3">
-                  <AccountDetails data={accountDetails} />
+                  <AccountDetails isWallet={true} data={accountDetails} />
                 </div>
                 <div className="col-12 col-md-9">
                   <WalletDetails data={wallet} profit={profit} />

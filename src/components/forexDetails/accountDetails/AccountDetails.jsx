@@ -16,9 +16,10 @@ import {
   removeUserId,
 } from "../../../Redux/auth";
 import toast from "react-hot-toast";
-const AccountDetails = ({ data, lang }) => {
+const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { profilePhoto } = useSelector((state) => state.authSlice);
   const userId = JSON.parse(localStorage.getItem("userId"));
   const { t, i18n } = useTranslation();
   const handleAfilate = async () => {
@@ -95,17 +96,13 @@ const AccountDetails = ({ data, lang }) => {
   const handleWallet = () => navigate("/wallet");
   return (
     <>
-      <div className="dropdown">
+      <div className="dropdown mb-3">
         <button
           className={`dropdown-toggle d-flex align-items-center gap-2 ${style.menuBtn}`}
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <img
-            alt="profile/img"
-            className={style.pp}
-            src={data.profile_photo}
-          />
+          <img alt="profile/img" className={style.pp} src={profilePhoto} />
           <p className="text-white m-0 p-0 fw-bolder">{data.name}</p>
           <IoIosArrowDown size={15} className="text-white" />
         </button>
@@ -127,10 +124,18 @@ const AccountDetails = ({ data, lang }) => {
               i18n.language === "ar" ? "" : "text-start"
             }`}
           >
-            <p className=" text-white mx-0 mt-0 mb-1 p-0 ">
+            <p
+              className={`text-white mx-0 mt-0 mb-1 p-0 ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
               {t("accountNum")}:{" "}
             </p>
-            <p className=" m-0 p-0 text-white fw-bold mb-2">
+            <p
+              className={`m-0 p-0 text-white fw-bold mb-1 ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
               {data.account_number}
             </p>
           </div>
@@ -141,11 +146,19 @@ const AccountDetails = ({ data, lang }) => {
               i18n.language === "ar" ? "" : "text-start"
             }`}
           >
-            <p className="text-white  mx-0 mt-0 mb-1 m-0 p-0 ">
+            <p
+              className={`text-white  mx-0 mt-0 mb-1 m-0 p-0 ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
               {" "}
               {t("investment")} :{" "}
             </p>
-            <p className="m-0 p-0 text-white fw-bold mb-2">
+            <p
+              className={`m-0 p-0 text-white mb-1 mx-2 ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
               {data.invest_amount}
             </p>
           </div>
@@ -157,8 +170,21 @@ const AccountDetails = ({ data, lang }) => {
             i18n.language === "ar" ? "" : "text-start"
           }`}
         >
-          <p className="text-white  mx-0 mt-0 mb-1 p-0 "> {t("phone")} :</p>
-          <p className="m-0 p-0 text-white fw-bold mb-2">{data.phone}</p>
+          <p
+            className={`text-white  mx-0 mt-0 mb-1 p-0 ${
+              isWallet || isAfilate ? "d-inline-block" : "d-block"
+            }`}
+          >
+            {" "}
+            {t("phone")} :
+          </p>
+          <p
+            className={`m-0 p-0 text-white mx-2 mb-1 mt-0 ${
+              isWallet || isAfilate ? "d-inline-block" : "d-block"
+            }`}
+          >
+            {data.phone}
+          </p>
         </div>
         {data.referral_code ? (
           <div
@@ -166,10 +192,18 @@ const AccountDetails = ({ data, lang }) => {
               i18n.language === "ar" ? "" : "text-start"
             }`}
           >
-            <p className="text-white  mx-0 mt-0 mb-1 p-0 ">
+            <p
+              className={`text-white  mx-0 mt-0 mb-1 p-0  ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
               {i18n.language === "ar" ? "كود afilator" : "afilator code"} :
             </p>
-            <p className="m-0 p-0 text-white fw-bold mb-2">
+            <p
+              className={`m-0 p-0 text-white mx-2  mb-1 ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
               {data.referral_code}
             </p>
           </div>
