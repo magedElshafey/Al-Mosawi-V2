@@ -47,6 +47,7 @@ const RegForm = ({ setShowModal }) => {
   const [email, setEmail] = useState("");
   const [country, setCountry] = useState("");
   const [tickMillUser, setTickmillUser] = useState(null);
+  const [agree, setAgree] = useState("");
   const handleNameChange = (e) => {
     const inputText = e.target.value;
 
@@ -115,8 +116,9 @@ const RegForm = ({ setShowModal }) => {
       fullName.trim() === "" ||
       mobileNumber.trim() === "" ||
       email.trim() === "" ||
-      country.trim() === "" ||
-      tickMillUser === null
+      !country ||
+      tickMillUser === null ||
+      !agree
     ) {
       toast.error(
         i18n.language === "ar" ? "جميع الحقول مطلوبة" : "all field are required"
@@ -189,14 +191,19 @@ const RegForm = ({ setShowModal }) => {
                 {t("country")}
               </label>
               <select
+                value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 className="inp"
                 id="city"
-                value={country}
               >
-                <option value="egypt">الكويت</option>
+                <option value="">
+                  {i18n.language === "ar"
+                    ? "اختر دلولتك"
+                    : "choose your country"}
+                </option>
+                <option value="kuwait">الكويت</option>
                 <option value="egypt">مصر</option>
-                <option value="egypt">الامارات</option>
+                <option value="unitedArab">الامارات</option>
               </select>
             </div>
           </div>
@@ -247,6 +254,8 @@ const RegForm = ({ setShowModal }) => {
               </p>
               <div>
                 <input
+                  value={agree}
+                  onChange={() => setAgree(true)}
                   type="checkbox"
                   id="conditions"
                   className={`p-0 m-0  ${style.checkBox}`}
