@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { toast } from "react-hot-toast";
 import { MdKeyboardArrowRight, MdOutlineArrowBackIos } from "react-icons/md";
-import Swal from "sweetalert2";
 import { handleRequest } from "../../../Redux/afilator";
 const AfilateForm = ({ lang, setShowModal }) => {
   const dispatch = useDispatch();
@@ -15,10 +14,10 @@ const AfilateForm = ({ lang, setShowModal }) => {
   const [tickMillUser, setTickmillUser] = useState(null);
   const [accountNum, setAccountNum] = useState("");
   const [agree, setAgree] = useState("");
-  console.log("this is afree", agree);
   const handleRadioChange = (event) => {
     setTickmillUser(event.target.value);
   };
+  console.log("tickmill value", tickMillUser);
   const handleClick = async (e) => {
     e.preventDefault();
     if (
@@ -114,19 +113,21 @@ const AfilateForm = ({ lang, setShowModal }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="number" className="d-block mb-1">
-            {i18n.language === "ar" ? "رقم حسابك" : "account number"}
-          </label>
-          <input
-            type="number"
-            id="number"
-            className="inp"
-            value={accountNum}
-            name="password"
-            onChange={(e) => setAccountNum(e.target.value)}
-          />
-        </div>
+        {+tickMillUser === 1 && (
+          <div className="mb-3">
+            <label htmlFor="number" className="d-block mb-1">
+              {i18n.language === "ar" ? "رقم حسابك" : "account number"}
+            </label>
+            <input
+              type="number"
+              id="number"
+              className="inp"
+              value={accountNum}
+              name="password"
+              onChange={(e) => setAccountNum(e.target.value)}
+            />
+          </div>
+        )}
         <div className="d-flex align-items-center justify-content-between">
           <div className="mb-3">
             <label htmlFor="question" className={`shamel `}>

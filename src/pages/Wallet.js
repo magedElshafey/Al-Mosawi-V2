@@ -13,10 +13,7 @@ const Wallet = () => {
     };
     return request({ url: "/affiliate/walletHistroy", headers });
   };
-  const { isLoading, data } = useQuery("wallet-dashboard-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("wallet-dashboard-page", fetchData);
   return (
     <>
       {isLoading ? (

@@ -8,7 +8,7 @@ const CourseTwo = ({ data }) => {
   return (
     <div>
       {data.map((item, index) => (
-        <div className={`${style.box} mx-0 my-4 p-3`}>
+        <div key={index} className={`${style.box} mx-0 my-4 p-3`}>
           <p className="mx-0 mt-0 mb-3 green fw-bold  shamel fs22 p-0">
             {index + 1} - {item.name}
           </p>

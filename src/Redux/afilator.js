@@ -16,6 +16,13 @@ const afilateSlice = createSlice({
         JSON.stringify(state.requestSent)
       );
     },
+    removeRequest: (state) => {
+      state.requestSent = true;
+      localStorage.setItem(
+        "isAfilateReqSent",
+        JSON.stringify(state.requestSent)
+      );
+    },
     handleAfilator: (state) => {
       state.isAfilator = true;
       localStorage.setItem("isAfilator", JSON.parse(state.isAfilator));
@@ -24,12 +31,22 @@ const afilateSlice = createSlice({
       state.code = action.payload;
       localStorage.setItem("afilatorCode", JSON.stringify(state.code));
     },
+    removeCode: (state) => {
+      state.code = null;
+      localStorage.removeItem("afilatorCode");
+    },
     handleAfilatorId: (state, action) => {
       state.afilatorId = action.payload;
       localStorage.setItem("afilatorId", JSON.stringify(state.afilatorId));
     },
   },
 });
-export const { handleRequest, handleAfilator, handleCode, handleAfilatorId } =
-  afilateSlice.actions;
+export const {
+  handleRequest,
+  handleAfilator,
+  handleCode,
+  handleAfilatorId,
+  removeCode,
+  removeRequest,
+} = afilateSlice.actions;
 export default afilateSlice.reducer;

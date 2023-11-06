@@ -25,6 +25,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { request } from "../../utils/axios";
 import { useMutation } from "react-query";
 import { toast } from "react-hot-toast";
+import { removeRequest } from "../../../Redux/afilator.js";
 import {
   logout,
   removePip,
@@ -139,6 +140,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
         dispatch(removeName());
         dispatch(removePip());
         dispatch(removeUserId());
+        dispatch(removeRequest());
         if (localStorage.getItem("accountType")) {
           window.localStorage.removeItem("accountType");
         } else {

@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../components/utils/hero/Hero";
 import heroImg from "../assets/hero.png";
 import { useTranslation } from "react-i18next";
 import OrderStatus from "../components/utils/orderStatus/OrderStatus";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../Redux/cart";
 const OrderSuccess = () => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const action = () => {
     navigate("/");
   };
+  const codeFromUser = localStorage.getItem("codeFromCourses")
+    ? JSON.parse(localStorage.getItem("codeFromCourses"))
+    : null;
+  useEffect(() => {
+    if (codeFromUser) {
+      localStorage.removeItem("codeFromCourses");
+    }
+    dispatch(clearCart());
+  }, []);
   return (
     <div>
       <Hero

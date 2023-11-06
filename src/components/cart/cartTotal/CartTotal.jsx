@@ -16,10 +16,12 @@ const CartTotal = ({ total, user }) => {
   const [coponValue, setCoponValue] = useState(0);
   const [coponSent, setCoponSent] = useState(false);
   const navigate = useNavigate();
-  const code = localStorage.getItem("codeFromCourses")
+  const codeFromUser = localStorage.getItem("codeFromCourses")
     ? JSON.parse(localStorage.getItem("codeFromCourses"))
     : null;
-
+  const afilatorCode = localStorage.getItem("afilatorCode")
+    ? JSON.parse(localStorage.getItem("afilatorCode"))
+    : null;
   const handleCopon = (data) => {
     const headers = {
       user,
@@ -75,8 +77,8 @@ const CartTotal = ({ total, user }) => {
     const headers = {
       user,
     };
-    if (code !== null) {
-      headers.code = code;
+    if (codeFromUser !== null) {
+      headers.code = codeFromUser;
       headers.payment_method = payment_method;
     }
     console.log("this is the yser", user);
@@ -90,7 +92,6 @@ const CartTotal = ({ total, user }) => {
     checkout,
     {
       onSuccess: (data) => {
-        console.log("checkout data", data);
         if (payment_method === "myfatoorah") {
           window.location.href = data.data.Data.invoiceURL;
         }
@@ -98,7 +99,7 @@ const CartTotal = ({ total, user }) => {
     }
   );
   const handleCheckout = async () => {
-    if (code && !payment_method) {
+    if (codeFromUser && afilatorCode && !payment_method) {
       toast.error(
         i18n.language === "ar"
           ? "يجب عليك اختيار طريقة الدفع"
@@ -169,26 +170,27 @@ const CartTotal = ({ total, user }) => {
           <p className="m-0 p-0 fw-bold shamel ">{t("netPrice")}</p>
           <p className="m-0 p-0 fw-bold shamel ">{total - coponValue}$</p>
         </div>
-        {code && (
-          <div className="mb-3">
-            <label htmlFor="payment">
-              {i18n.language === "ar" ? "طريقة الدفع" : "payment method"}
-            </label>
-            <select
-              onChange={(e) => setPaymentMethod(e.target.value)}
-              className="inp"
-              id="payment"
-            >
-              <option disabled={true} value="">
-                {i18n.language === "ar"
-                  ? "اختر طريقة الدفع"
-                  : "choose your payment method"}
-              </option>
-              <option value="myfatoorah">my fatora</option>
-              <option value="wallet">wallet</option>
-            </select>
-          </div>
-        )}
+        {codeFromUser ||
+          (afilatorCode && (
+            <div className="mb-3">
+              <label htmlFor="payment" className="fw-bold d-block mb-2">
+                {i18n.language === "ar" ? "طريقة الدفع" : "payment method"}
+              </label>
+              <select
+                onChange={(e) => setPaymentMethod(e.target.value)}
+                className="inp"
+                id="payment"
+              >
+                <option disabled={true} value="">
+                  {i18n.language === "ar"
+                    ? "اختر طريقة الدفع"
+                    : "choose your payment method"}
+                </option>
+                <option value="myfatoorah">my fatora</option>
+                <option value="wallet">wallet</option>
+              </select>
+            </div>
+          ))}
         <button
           onClick={handleCheckout}
           disabled={cartItems.length === 0}
