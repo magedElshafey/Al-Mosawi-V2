@@ -9,11 +9,11 @@ import { request } from "../utils/axios";
 import { useSelector } from "react-redux";
 const WalletDetails = ({ profit, data }) => {
   const { user } = useSelector((state) => state.authSlice);
-  console.log("this is the user", user);
   const { i18n } = useTranslation();
   const [showWithdrawForm, setShowWithdrawForm] = useState(false);
   const [amount, setAmount] = useState("");
   const [method, setMethod] = useState("");
+
   const handleShowWithdrawForm = () => setShowWithdrawForm(true);
   const handleWithdraw = (data) => {
     const headers = {
@@ -128,13 +128,11 @@ const WalletDetails = ({ profit, data }) => {
           <div className="table-row" key={index}>
             <div className="table-cell">{item.orderName}</div>
             <div className="table-cell">{item.status}</div>
-            <div className="table-cell">{item.in}$</div>
             <div className="table-cell">
-              {item.out === null
-                ? i18n.language === "ar"
-                  ? "لم يتم سحب العمولة"
-                  : "The commission has not been withdrawn"
-                : item.out + "$"}
+              {item.in === null ? null : item.in + "$"}
+            </div>
+            <div className="table-cell">
+              {item.out === null ? null : item.out + "$"}
             </div>
           </div>
         ))}

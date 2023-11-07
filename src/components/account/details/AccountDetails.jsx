@@ -14,8 +14,6 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const handleClick = () => navigate("/edit");
-  const handleAfilatorDashboard = () => navigate("/afilator");
- 
   const { isLogin, user } = useSelector((state) => state.authSlice);
   const { afilatorId } = useSelector((state) => state.afilator);
   const fetchData = async () => {
@@ -24,10 +22,7 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
     };
     return await request({ url: "/affiliate/links", headers });
   };
-  const { isLoading, data} = useQuery(
-    "affiliate dashboard-page",
-    fetchData
-  );
+  const { isLoading, data } = useQuery("affiliate dashboard-page", fetchData);
   // wallet details
   const fetchWallet = async () => {
     const headers = {
