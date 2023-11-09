@@ -75,6 +75,12 @@ const RegForm = ({ setShowModal }) => {
   const handleRadioChange = (event) => {
     setTickmillUser(event.target.value);
   };
+  const handleChangePhone = (event) => {
+    const input = event.target.value;
+    const cleanedInput = input.replace(/\D/g, "");
+    const isValidInput = /^[0-9]{10}$/.test(cleanedInput);
+    mobileNumber(cleanedInput);
+  };
   const handleRegster = (data) => {
     return request({ url: "/auth/register", method: "post", data });
   };
@@ -106,18 +112,21 @@ const RegForm = ({ setShowModal }) => {
         setMobileNumber("");
         setEmail("");
         setCountry("");
-        setTickmillUser("");
+        setTickmillUser(null);
+        setAgree("");
       }
     },
   });
   const handleClick = async (e) => {
+    console.log("this is agree", agree);
+    console.log("this is the tickmill user ", tickMillUser);
     e.preventDefault();
     if (
       fullName.trim() === "" ||
       mobileNumber.trim() === "" ||
       email.trim() === "" ||
       !country ||
-      tickMillUser === null ||
+      !tickMillUser ||
       !agree
     ) {
       toast.error(
@@ -140,7 +149,7 @@ const RegForm = ({ setShowModal }) => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <form className="py-5 container">
+        <form className="py-5 container px-md-5 mx-md-4">
           <div className="row mb-3">
             <div className="col-12 col-md-6 mb-3 mb-md-0">
               <label htmlFor="name" className={`d-block fw-bold shamel mb-1`}>
@@ -161,9 +170,9 @@ const RegForm = ({ setShowModal }) => {
                 {t("phone")}
               </label>
               <input
-                type="number"
+                type="text"
                 placeholder="Ex : 0102215"
-                id="number"
+                id="text"
                 className="inp"
                 min={0}
                 onChange={handleMobileNumberChange}
@@ -258,35 +267,35 @@ const RegForm = ({ setShowModal }) => {
                   onChange={() => setAgree(true)}
                   type="checkbox"
                   id="conditions"
-                  className={`p-0 m-0  ${style.checkBox}`}
+                  className={`p-0 m-0  ${style.checkBox} ${
+                    i18n.language === "ar" ? null : "mt-1"
+                  }`}
                 />
                 <label
                   htmlFor="yes"
-                  className={`p-0 my-0 mx-1 fw-bold  shamel`}
+                  className={`p-0 d-inline-block my-0 mx-1 fw-bold   `}
                 >
                   {t("agree")}
                 </label>
                 <span
                   onClick={() => setShowModal(true)}
-                  className={`pointer m-0 p-0 shamel  fw-bold ${style.condition}`}
+                  className={`pointer m-0 p-0   fw-bold ${style.condition}`}
                 >
                   {t("terms")}
                 </span>
               </div>
             </div>
           </div>
-          <button onClick={handleClick} className={`book mb-3 ${style.btn}`}>
+          <button onClick={handleClick} className={`mb-3 ${style.btn}`}>
             <MdOutlineArrowBackIos size={20} />
             <span>{t("next")}</span>
           </button>
 
-          <p className=" my-3 mx-0 p-0">
-            <span className={`tahoma ${style.haveAccount}`}>
-              {t("havAccount")}{" "}
-            </span>{" "}
+          <p className=" my-3 mx-0 p-0 text-center">
+            <span className={`${style.haveAccount}`}>{t("havAccount")} </span>{" "}
             <span
               onClick={() => navigate("/login")}
-              className={`pointer tahoma fw-bold ${style.reg}`}
+              className={`pointer  fw-bold ${style.reg}`}
             >
               {t("Authlogin")}
             </span>

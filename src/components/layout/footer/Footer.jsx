@@ -27,7 +27,10 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
       pathname === "/user/prochart" ||
       pathname === "/recommendations" ||
       pathname === "/afilator" ||
-      pathname === "/wallet"
+      pathname === "/wallet" ||
+      pathname === "/login" ||
+      pathname === "/reg" ||
+      pathname === "/forget"
     ) {
       setShowFooter(false);
     } else {

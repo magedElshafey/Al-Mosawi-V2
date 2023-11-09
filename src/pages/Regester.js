@@ -5,7 +5,7 @@ import RegForm from "../components/Reg/RegForm";
 import { useTranslation } from "react-i18next";
 import RegModal from "../components/Reg/regmodal/RegModal";
 const Regester = ({ phoneNum }) => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -18,14 +18,32 @@ const Regester = ({ phoneNum }) => {
             </div>
           </div>
           <div className="col-6">
-            <AuthImg phoneNum={phoneNum} showWelcome={true} desc="" desc2="" />
+            <AuthImg
+              phoneNum={phoneNum}
+              showWelcome={true}
+              desc={
+                i18n.language === "ar"
+                  ? "انشىء حسابك الأن واستمتع بالمميزات الغير محدودة نص تجريبي"
+                  : "Create your account now and enjoy unlimited features, trial text"
+              }
+              desc2=""
+            />
           </div>
         </div>
       </div>
       <div className="d-md-none">
         <div className="row m-0 p-0">
           <div className="col-12 mb-3  m-0 p-0">
-            <AuthImg phoneNum={phoneNum} showWelcome={true} desc="" desc2="" />
+            <AuthImg
+              phoneNum={phoneNum}
+              showWelcome={true}
+              desc={
+                i18n.language === "ar"
+                  ? "انشىء حسابك الأن واستمتع بالمميزات الغير محدودة نص تجريبي"
+                  : "Create your account now and enjoy unlimited features, trial text"
+              }
+              desc2=""
+            />
           </div>
           <div className="col-12">
             <AuthIntro title={t("reg")} desc={t("canReg")} />

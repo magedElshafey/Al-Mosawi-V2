@@ -4,21 +4,9 @@ import style from "./AuthIntro.module.css";
 // import { AiFillApple } from "react-icons/ai";
 const AuthIntro = ({ title, desc }) => {
   return (
-    <div className={`pt-3 pt-md-5 mt-0 mt-md-5 container`}>
+    <div className={`pt-3 pt-md-5 mt-0 mt-md-5 container px-md-5 mx-md-4 `}>
       <p className={`mt-2 mb-4 fw-bold  p-0 fs22 shamel`}>{title}</p>
       {desc ? <p className={`p-0 ${style.desc}`}>{desc}</p> : null}
-      {/**
-       <div
-        className={`pb-3  d-flex flex-wrap  align-items-center gap-4  ${style.mainDiv}`}
-      >
-        <button className={`${style.btn} ${style.google}`}>
-          <FcGoogle size={30} />
-        </button>
-        <button className={`${style.btn} ${style.apple}`}>
-          <AiFillApple size={30} />
-        </button>
-      </div>
-    */}
     </div>
   );
 };

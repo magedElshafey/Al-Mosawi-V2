@@ -33,7 +33,7 @@ const AuthImg = ({ desc, desc2, showWelcome, phoneNum }) => {
           )}
           <div className="mb-5 d-flex flex-column align-items-center gap-1">
             <p
-              className={` lh m-0 p-0 w-100  fw-bold shamel fs28  text-center text-white`}
+              className={` lh m-0 p-0 w-100  fw-bold shamel   text-center text-white ${style.desc}`}
             >
               {desc ? desc : null}
             </p>

@@ -65,8 +65,9 @@
   -ms-border-radius: 11px;
   -o-border-radius: 11px;
 }
-.desc2 {
+.desc2 , .desc {
   color: #acbcd8 !important;
+  opacity: 0.7;
 }
 .text36 {
   font-size: 36px;
