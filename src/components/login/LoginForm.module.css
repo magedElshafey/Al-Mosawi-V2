@@ -45,7 +45,8 @@
   }
 }
 .inpWidth {
-  width: 50% !important;
+  width: 80% !important;
+  margin: auto !important;
 }
 @media screen and (max-width: 767px) {
   .inpWidth {
@@ -53,7 +54,7 @@
   }
 }
 .btn {
-  width: 50% !important;
+  width: 80% !important;
   display: flex;
   justify-content: center;
   align-items: center;

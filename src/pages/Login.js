@@ -9,7 +9,7 @@ const Login = ({ phoneNum }) => {
     <>
       <div className="d-none d-md-block">
         <div className="row justify-content-center">
-          <div className="col-6 ">
+          <div className="col-6 justify-content-center ">
             <div className="container mx-5 px-4">
               <AuthIntro title={t("Authlogin")} />
               <LoginForm />

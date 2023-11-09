@@ -111,7 +111,10 @@ const LoginForm = () => {
         <div className="d-flex justify-content-center">
           <div className="py-3 container">
             <div className="mb-4">
-              <label htmlFor="email" className="d-block fw-bold mb-1 shamel ">
+              <label
+                htmlFor="email"
+                className="d-block fw-bold mb-1 shamel text-end "
+              >
                 {t("emailTwo")}
               </label>
               <input
@@ -154,7 +157,7 @@ const LoginForm = () => {
               <span>{i18n.language === "ar" ? "دخول" : "login"}</span>
             </button>
 
-            <p className=" my-2 mx-0 p-0 fw-bold">
+            <p className=" my-2 mx-0 p-0 fw-bold text-center">
               <span className={`tahoma fs2 ${style.haveAccount}`}>
                 {t("havAccount")}
               </span>{" "}
