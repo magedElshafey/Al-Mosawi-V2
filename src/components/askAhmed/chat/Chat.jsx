@@ -1,12 +1,11 @@
 import React from "react";
 import style from "./chat.module.css";
-import ContactDetails from "../../contact/contactDetails/ContactDetails";
 import BTN from "../../../../src/components/utils/btn/BTN";
 import { useTranslation } from "react-i18next";
-const Chat = ({ appointment, details, data, msg, setMsg, handleClick }) => {
+const Chat = ({ data, msg, setMsg, handleClick }) => {
   const [t] = useTranslation();
   return (
-    <div className={` p-4 ${style.mainContainer} ${style.scroll}`}>
+    <div className={` p-4 ${style.mainContainer}`}>
       <div className={`pb-3 ${style.border}`}>
         <h3 className={`fw-bolder d-inline-block fs22 shamel`}>
           {t("conversationWith")}

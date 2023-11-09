@@ -164,7 +164,7 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
                   profit={data.data.profit}
                 />
               </div>
-              <div>
+              <div className="mb-4">
                 <h4 className="mb-3">
                   {i18n.language === "ar" ? "تفاصيل المحفظة" : "wallet details"}
                 </h4>

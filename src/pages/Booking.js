@@ -10,14 +10,11 @@ const Booking = () => {
   const fetchData = () => {
     return request({ url: "/consultation" });
   };
-  const { isLoading, data } = useQuery("booking-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("booking-page", fetchData);
   const date = new Date();
   const day = date.getDate().toString().padStart(2, "0");
   const nextDay = +day + 1;
-  console.log(nextDay);
+
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
   const year = date.getFullYear();
   const today = `${year}-${month}-${day}`;

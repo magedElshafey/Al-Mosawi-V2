@@ -18,14 +18,9 @@ const AfilateForm = ({ lang, setShowModal }) => {
     setTickmillUser(event.target.value);
   };
   const handleClick = async (e) => {
+   
     e.preventDefault();
-    if (
-      email.trim() === "" ||
-      name.trim() === "" ||
-      phone.trim() === "" ||
-      accountNum.trim() === "" ||
-      !agree
-    ) {
+    if (!email.trim() || !name.trim() || !phone.trim() || !agree) {
       toast.error(
         i18n.language === "ar" ? "جميع الحقول مطلوبة" : "all field are required"
       );
@@ -60,6 +55,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
         setName("");
         setEmail("");
         setAgree("");
+        setTickmillUser(null);
       } else {
         toast.error(data.message);
       }

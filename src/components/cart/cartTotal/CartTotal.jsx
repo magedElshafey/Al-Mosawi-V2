@@ -81,7 +81,7 @@ const CartTotal = ({ total, user }) => {
       headers.code = codeFromUser;
       headers.payment_method = payment_method;
     }
-    console.log("this is the yser", user);
+
     return request({
       url: "/orders/create",
       headers,
@@ -170,27 +170,26 @@ const CartTotal = ({ total, user }) => {
           <p className="m-0 p-0 fw-bold shamel ">{t("netPrice")}</p>
           <p className="m-0 p-0 fw-bold shamel ">{total - coponValue}$</p>
         </div>
-        {codeFromUser ||
-          (afilatorCode && (
-            <div className="mb-3">
-              <label htmlFor="payment" className="fw-bold d-block mb-2">
-                {i18n.language === "ar" ? "طريقة الدفع" : "payment method"}
-              </label>
-              <select
-                onChange={(e) => setPaymentMethod(e.target.value)}
-                className="inp"
-                id="payment"
-              >
-                <option disabled={true} value="">
-                  {i18n.language === "ar"
-                    ? "اختر طريقة الدفع"
-                    : "choose your payment method"}
-                </option>
-                <option value="myfatoorah">my fatora</option>
-                <option value="wallet">wallet</option>
-              </select>
-            </div>
-          ))}
+        {codeFromUser || afilatorCode ? (
+          <div className="mb-3">
+            <label htmlFor="payment" className="fw-bold d-block mb-2">
+              {i18n.language === "ar" ? "طريقة الدفع" : "payment method"}
+            </label>
+            <select
+              onChange={(e) => setPaymentMethod(e.target.value)}
+              className="inp"
+              id="payment"
+            >
+              <option disabled={true} value="">
+                {i18n.language === "ar"
+                  ? "اختر طريقة الدفع"
+                  : "choose your payment method"}
+              </option>
+              <option value="myfatoorah">my fatora</option>
+              <option value="wallet">wallet</option>
+            </select>
+          </div>
+        ) : null}
         <button
           onClick={handleCheckout}
           disabled={cartItems.length === 0}

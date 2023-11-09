@@ -24,6 +24,7 @@ const About = () => {
       ) : (
         <div>
           <Hero
+            isStatic={true}
             img={data.data.data.headerImg}
             desc={data.data.data.headerDes}
             title={data.data.data.headerTitle}

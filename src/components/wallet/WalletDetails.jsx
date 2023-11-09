@@ -56,6 +56,7 @@ const WalletDetails = ({ profit, data }) => {
     <div>
       <div className="mb-4 d-flex align-items-center justify-content-center flex-wrap gap-3">
         <BTN
+          showArrow={false}
           disabled={true}
           text={`${i18n.language === "ar" ? "المحفظة" : "wallet"} : ${profit}$`}
         />

@@ -12,36 +12,46 @@ const JoinAfilate = ({ lang }) => {
   const { i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const fetchData = () => {
-    return request({ url: "/aboutUs" });
+    return request({ url: "/affiliate/term" });
   };
-  const { isLoading, data } = useQuery("about-page", fetchData);
+  const { isLoading, data } = useQuery("afilate-page", fetchData);
   return (
     <>
-      <div>
-        <Hero
-          isBigHero={false}
-          isSmallHero={true}
-          isMediumHero={false}
-          img={heroImg}
-          title={
-            i18n.language === "en"
-              ? "Welcome to our marketing team"
-              : "مرحبا بك في فريق التسويق الخاص بنا"
-          }
-          isStatic={true}
-        />
-        <div className="container py-5">
-          <div className="row align-items-center">
-            <div className="col-12 col-md-6 mb-3 mb-md-0">
-              <AfilateForm lang={lang} setShowModal={setShowModal} />
-            </div>
-            <div className="col-12 col-md-6 mb-3 mb-md-0">
-              <Img3D />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div>
+            <Hero
+              isBigHero={false}
+              isSmallHero={true}
+              isMediumHero={false}
+              img={heroImg}
+              title={
+                i18n.language === "en"
+                  ? "Welcome to our marketing team"
+                  : "مرحبا بك في فريق التسويق الخاص بنا"
+              }
+              isStatic={true}
+            />
+            <div className="container py-5">
+              <div className="row align-items-center">
+                <div className="col-12 col-md-6 mb-3 mb-md-0">
+                  <AfilateForm lang={lang} setShowModal={setShowModal} />
+                </div>
+                <div className="col-12 col-md-6 mb-3 mb-md-0">
+                  <Img3D />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <RegModal setShowModal={setShowModal} showModal={showModal} />
+          <RegModal
+            setShowModal={setShowModal}
+            showModal={showModal}
+            data={data.data.data.details}
+          />
+        </>
+      )}
     </>
   );
 };

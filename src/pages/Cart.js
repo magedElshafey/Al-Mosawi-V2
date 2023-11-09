@@ -9,9 +9,10 @@ import Spinner from "../components/utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useSelector, useDispatch } from "react-redux";
-import { addAllProductToCart } from "../Redux/cart";
+import { addAllProductToCart, addToCart } from "../Redux/cart";
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cartSlice);
+  console.log("this is cart items", cartItems);
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const user = localStorage.getItem("userId")
@@ -23,10 +24,10 @@ const Cart = () => {
     };
     return request({ url: "/cart/myCart", headers });
   };
-  const { isLoading, data, refetch } = useQuery("cart-page", fetchData, {
+  const { isLoading, refetch } = useQuery("cart-page", fetchData, {
     enabled: false,
     onSuccess: (data) => {
-      if (!data.data.data.id) {
+      if (!data?.data?.data?.id?.itemsDetails?.length) {
         return;
       } else {
         dispatch(addAllProductToCart(data.data.data.itemsDetails));
@@ -48,6 +49,7 @@ const Cart = () => {
   }, 0);
   return (
     <>
+      {" "}
       {isLoading ? (
         <Spinner />
       ) : (

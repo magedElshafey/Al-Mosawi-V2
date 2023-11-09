@@ -41,14 +41,13 @@ const EditForm = ({
       formDataToSend,
       {
         headers: {
-          "content-type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
           lang,
           user,
         },
       }
     );
-    console.log("this is the res", res);
-    console.log("this is the form data", formDataToSend);
+
     if (res.data.status === "success") {
       toast.success(res.data.message);
       dispatch(gitName(res.data.data.name));

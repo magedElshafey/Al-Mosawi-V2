@@ -17,7 +17,7 @@ const afilateSlice = createSlice({
       );
     },
     removeRequest: (state) => {
-      state.requestSent = true;
+      state.requestSent = false;
       localStorage.setItem(
         "isAfilateReqSent",
         JSON.stringify(state.requestSent)

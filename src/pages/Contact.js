@@ -16,6 +16,7 @@ const Contact = ({  appointment, contactDetails }) => {
         isBigHero={false}
         isSmallHero={false}
         isMediumHero={true}
+        isStatic={true}
       />
       <div className="container py-5">
         <div className="row gap-5">

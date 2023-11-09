@@ -6,7 +6,11 @@ import OrderStatus from "../components/utils/orderStatus/OrderStatus";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearCart } from "../Redux/cart";
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
 const OrderSuccess = () => {
+  const user = localStorage.getItem("userId");
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,12 +26,23 @@ const OrderSuccess = () => {
     }
     dispatch(clearCart());
   }, []);
+  const fetchData = () => {
+    const headers = {
+      user,
+    };
+    return request({ url: "/user/my-profile", headers });
+  };
+  const { isLoading, data } = useQuery("account-normal-user-page", fetchData, {
+    onSuccess: (data) =>
+      localStorage.setItem("accountType", data.data.data.type),
+  });
   return (
     <div>
       <Hero
         isBigHero={false}
         isSmallHero={true}
         isMediumHero={false}
+        isStatic={true}
         img={heroImg}
         title={i18n.language === "en" ? "order status" : "حالة الطلب"}
       />

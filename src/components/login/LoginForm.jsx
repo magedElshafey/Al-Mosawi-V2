@@ -50,7 +50,6 @@ const LoginForm = () => {
   };
   const { isLoading, mutate } = useMutation(handleSendMsg, {
     onSuccess: (data) => {
-      console.log("data from login", data);
       if (data.data.status === "faild") {
         toast.error(
           i18n.language === "en"
@@ -152,7 +151,7 @@ const LoginForm = () => {
             </div>
             <button onClick={handleClick} className={`book mb-3 ${style.btn}`}>
               <MdOutlineArrowBackIos size={20} />
-              <span>دخول</span>
+              <span>{i18n.language === "ar" ? "دخول" : "login"}</span>
             </button>
 
             <p className=" my-2 mx-0 p-0 fw-bold">

@@ -87,11 +87,11 @@ const RegForm = ({ setShowModal }) => {
   const { isLoading, mutate } = useMutation(handleRegster, {
     onSuccess: (data) => {
       if (data.data.status === "faild") {
-        toast.error(
-          i18n.language === "en"
-            ? "there is an error occurred , please try again"
-            : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
-        );
+        if (Object.keys(data.data.data).includes("email")) {
+          toast.error(data.data.data.email[0]);
+        } else {
+          toast.error(data.data.data.phone[0]);
+        }
       } else {
         Swal.fire({
           title: `${
@@ -118,8 +118,6 @@ const RegForm = ({ setShowModal }) => {
     },
   });
   const handleClick = async (e) => {
-    console.log("this is agree", agree);
-    console.log("this is the tickmill user ", tickMillUser);
     e.preventDefault();
     if (
       fullName.trim() === "" ||
@@ -207,7 +205,7 @@ const RegForm = ({ setShowModal }) => {
               >
                 <option value="">
                   {i18n.language === "ar"
-                    ? "اختر دلولتك"
+                    ? "اختر دولتك"
                     : "choose your country"}
                 </option>
                 <option value="kuwait">الكويت</option>
@@ -220,7 +218,7 @@ const RegForm = ({ setShowModal }) => {
             <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex flex-column gap-2">
               <label htmlFor="question" className={`shamel fs15 `}>
                 {t("customer")}{" "}
-                <span className={`red  fw-bold text-uppercase`}>tikmill</span>
+                <span className={`red  fw-bold text-uppercase`}>tickmill</span>
               </label>
               <div className="d-flex gap-5  align-items-center gap-3">
                 <div>
