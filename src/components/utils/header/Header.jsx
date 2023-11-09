@@ -11,8 +11,9 @@ const Header = ({ title }) => {
 
   const { i18n } = useTranslation();
   const isTickMill = JSON.parse(localStorage.getItem("tickmillUser"));
+  const type = JSON.parse(localStorage.getItem("accountType"));
   const handleNavigate = (item) => {
-    if (isTickMill) {
+    if (isTickMill || type === "prochart_user") {
       navigate(item.path);
     }
     if (

@@ -5,10 +5,16 @@ import RegModal from "../components/Reg/regmodal/RegModal";
 import { useTranslation } from "react-i18next";
 import AfilateForm from "../components/joinAfilate/form/AfilateForm";
 import Img3D from "../components/joinAfilate/Img3D";
+import { request } from "../components/utils/axios";
+import Spinner from "../components/utils/Spinner/Spinner";
+import { useQuery } from "react-query";
 const JoinAfilate = ({ lang }) => {
   const { i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-
+  const fetchData = () => {
+    return request({ url: "/aboutUs" });
+  };
+  const { isLoading, data } = useQuery("about-page", fetchData);
   return (
     <>
       <div>

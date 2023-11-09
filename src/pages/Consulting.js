@@ -25,10 +25,7 @@ const Consulting = ({ handleChangeTitle, phoneNum }) => {
     };
     return request({ url: "/consultation/show", headers });
   };
-  const { isLoading, data } = useQuery("consultation-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("consultation-page", fetchData);
   const cancelledAppointments = data?.data?.appointments?.filter(
     (item) => item.status === 0
   );

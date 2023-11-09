@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
 import secondImg from "../assets/prochartImg.png";
-import img from "../assets/hero.png";
 import Hero from "../components/utils/hero/Hero";
-import { whatOffer, quota } from "../fakers/data";
 import Advantage from "../components/Prochart/advantages/Advantage.jsx";
 import Maps from "../components/Prochart/Maps/Maps";
 import Success from "../components/Prochart/success/Success";

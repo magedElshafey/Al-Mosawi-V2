@@ -4,7 +4,7 @@
   border: 1px solid #dcdcdc;
   border-radius: 18px;
   height: 550px;
-  overflow-y: scroll;
+  
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   -ms-border-radius: 18px;
@@ -60,4 +60,5 @@
 }
 .disabled {
   opacity: 0.6;
+  
 }

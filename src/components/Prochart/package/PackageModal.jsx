@@ -11,7 +11,7 @@ import Spinner from "../../utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import cart, { addToCart } from "../../../Redux/cart";
+import { addToCart } from "../../../Redux/cart";
 const PackageModal = ({
   showModal,
   action,
@@ -191,8 +191,13 @@ const PackageModal = ({
                       <div className={`text-center my-4 ${style.text} `}>
                         <input type="checkbox" />
                         <label>
-                          أوافق علي{" "}
-                          <span className={style.title2}>الشروط و الأحكام</span>
+                          {i18n.language === "ar" ? "اوافق علي" : "agree with"}
+
+                          <span className={style.title2}>
+                            {i18n.language === "ar"
+                              ? "الشروط و الأحكام"
+                              : "terms and conditions"}
+                          </span>
                         </label>
                       </div>
                     </div>

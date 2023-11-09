@@ -1,7 +1,7 @@
 import React from "react";
 import NewPasswordForm from "../components/newPassword/NewPasswordForm";
 import AuthImg from "../components/utils/authImg/AuthImg";
-const NewPassword = () => {
+const NewPassword = ({ phoneNum }) => {
   return (
     <>
       <div className="d-none d-md-block">
@@ -10,14 +10,14 @@ const NewPassword = () => {
             <NewPasswordForm />
           </div>
           <div className="col-6">
-            <AuthImg showWelcome={true} desc="" desc2="" />
+            <AuthImg showWelcome={true} desc="" desc2="" phoneNum={phoneNum} />
           </div>
         </div>
       </div>
       <div className="d-md-none">
         <div className="row m-0 p-0">
           <div className="col-12 mb-3 m-0 p-0">
-            <AuthImg showWelcome={true} desc="" desc2="" />
+            <AuthImg showWelcome={true} desc="" desc2="" phoneNum={phoneNum} />
           </div>
           <div className="col-12 mb-3">
             <NewPasswordForm />

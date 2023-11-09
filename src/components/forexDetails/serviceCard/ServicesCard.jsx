@@ -5,9 +5,11 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 const ServicesCard = ({ data, isTickMill }) => {
   const { i18n } = useTranslation();
+  const type = JSON.parse(localStorage.getItem("accountType"));
+
   const navigate = useNavigate();
   const handleNavigate = (item) => {
-    if (isTickMill) {
+    if (isTickMill || type === "prochart_usersss") {
       navigate(item.path);
     }
     if (

@@ -194,7 +194,14 @@ const App = () => {
             </Routes>
             {/*done*/}
             <Routes>
-              <Route path="/forget" element={<ForgetPassword />} />
+              <Route
+                path="/forget"
+                element={
+                  <ForgetPassword
+                    phoneNum={settingsData.contactSettings.phone}
+                  />
+                }
+              />
             </Routes>
             {/*done*/}
             {/*done*/}
@@ -357,7 +364,12 @@ const App = () => {
               />
             </Routes>
             <Routes>
-              <Route path="/new-password" element={<NewPassword />} />
+              <Route
+                path="/new-password"
+                element={
+                  <NewPassword phoneNum={settingsData.contactSettings.phone} />
+                }
+              />
             </Routes>
             <Routes>
               <Route path="/account/:test" element={<MAX />} />

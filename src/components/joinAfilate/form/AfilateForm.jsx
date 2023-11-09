@@ -17,7 +17,6 @@ const AfilateForm = ({ lang, setShowModal }) => {
   const handleRadioChange = (event) => {
     setTickmillUser(event.target.value);
   };
-  console.log("tickmill value", tickMillUser);
   const handleClick = async (e) => {
     e.preventDefault();
     if (
@@ -49,7 +48,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
         }
       );
       const data = await res.json();
-      console.log("this is the data from afailate reqeuest", data);
+
       if (data.status) {
         toast.success(
           i18n.language === "ar"
@@ -60,6 +59,7 @@ const AfilateForm = ({ lang, setShowModal }) => {
         setAccountNum("");
         setName("");
         setEmail("");
+        setAgree("");
       } else {
         toast.error(data.message);
       }

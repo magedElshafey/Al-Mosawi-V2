@@ -81,13 +81,13 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   };
   const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
   const { cartItems } = useSelector((state) => state.cartSlice);
-  useEffect(() => {
-    if (pathname === "/forget" || pathname === "/new-password") {
-      setShowLogo(false);
-    } else {
-      setShowLogo(true);
-    }
-  }, [pathname]);
+  // useEffect(() => {
+  //   if (pathname === "/forget" || pathname === "/new-password") {
+  //     setShowLogo(false);
+  //   } else {
+  //     setShowLogo(true);
+  //   }
+  // }, [pathname]);
   useEffect(() => {
     if (pathname === "/forex-account/details") {
       setShowAsk(true);
@@ -556,12 +556,14 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                   </Link>
                   <Link
                     onClick={() => setShowSidebar(false)}
-                    to="/prochart"
+                    to="/contact"
                     className={`text-white d-flex align-items-center justify-content-center p-2 ${
                       style.porchartBox
                     } ${showProchart ? style.showBox : style.hideBox}`}
                   >
-                    <p className="lh m-0 p-0">تواصل معنا</p>
+                    <p className="lh m-0 p-0">
+                      {i18n.language === "ar" ? "تواصل معنا" : "contact us"}
+                    </p>
                   </Link>
                 </div>
               </div>
