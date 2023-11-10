@@ -214,30 +214,30 @@ const RegForm = ({ setShowModal }) => {
               </select>
             </div>
           </div>
-          <div className="row mt-5 mb-4 ">
-            <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex flex-column gap-2">
-              <label htmlFor="question" className={`shamel fs15 `}>
+          <div className="row mb-4 ">
+            <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex flex-column gap-2 align-items-center">
+              <label htmlFor="question" className={`fs15 `}>
                 {t("customer")}{" "}
                 <span className={`red  fw-bold text-uppercase`}>tickmill</span>
               </label>
-              <div className="d-flex gap-5  align-items-center gap-3">
-                <div>
+              <div className="d-flex  align-items-center gap-5 justify-content-center">
+                <div className="d-flex align-items-center">
                   <input
                     value={1}
                     onChange={handleRadioChange}
                     type="radio"
                     id="yes"
-                    className={`p-0 m-0  ${style.radio}`}
+                    className={`${style.radio}`}
                     name="ask"
                   />
                   <label
                     htmlFor="yes"
-                    className={`p-0 my-0 mx-1 fw-bold  shamel`}
+                    className={`d-inline-block  mx-1 fw-bold`}
                   >
                     {t("yes")}
                   </label>
                 </div>
-                <div>
+                <div className="d-flex align-items-center">
                   <input
                     type="radio"
                     id="no"
@@ -255,11 +255,11 @@ const RegForm = ({ setShowModal }) => {
                 </div>
               </div>
             </div>
-            <div className="col-12 col-md-6 mb-3 mb-md-0 d-flex flex-column gap-2">
+            <div className="col-12 col-md-6 mb-3 mb-md-0 d-flex flex-column gap-2 align-items-center">
               <p htmlFor="conditions" className={`m-0 p-0 fw-bold  shamel`}>
                 {t("terms")}
               </p>
-              <div>
+              <div className="d-flex align-items-center">
                 <input
                   value={agree}
                   onChange={() => setAgree(true)}

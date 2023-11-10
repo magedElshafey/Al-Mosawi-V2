@@ -135,7 +135,7 @@ const LoginForm = () => {
               />
             </div>
             <div className={`mb-4 align-items-center  mb-3 d-flex gap-5 `}>
-              <div>
+              <div className="d-flex align-items-center">
                 <input
                   type="checkbox"
                   id="rem"
