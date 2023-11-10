@@ -14,10 +14,7 @@ const ForexAccountDetails = () => {
     };
     return request({ url: "/prochart/panel", headers });
   };
-  const { isLoading, data } = useQuery("prochart dashboard-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("prochart dashboard-page", fetchData);
   return (
     <>
       {isLoading ? (

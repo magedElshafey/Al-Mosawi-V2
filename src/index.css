@@ -210,8 +210,13 @@ ul {
 .mt80 {
   margin-top: 70px;
 }
-.mt100 {
+.mt100 , .mt-100 {
   margin-top: 130px;
+}
+@media screen and (max-width : 767px) {
+  .mt-100 {
+    margin-top: 25px;
+  }
 }
 .mt101 {
   margin-top: 130px;

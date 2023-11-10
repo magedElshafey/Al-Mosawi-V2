@@ -241,8 +241,10 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                   <div className="position-relative">
                     <Link to="/ask" className={style.rec}>
                       <img src={chat} alt="chat/icon" className={style.chat} />
-                      <p className={`fs text-white m-0 p-0 book ${style.ask}`}>
-                        اسأل احمد الموسوي
+                      <p className={`fs text-white m-0 p-0 ${style.ask}`}>
+                        {i18n.language === "ar"
+                          ? "اسأل احمد الموسوي"
+                          : "ask ahmed al-mosawi"}
                       </p>
                     </Link>
                     <div className={style.circle}>
@@ -266,7 +268,6 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                       <span className={`${style.span} ${style.second}`}></span>
                       <span className={`${style.span} ${style.third}`}></span>
                     </div>
-                    <h3 className="text-white fs22 mt-3 book">القائمة</h3>
                   </div>
                 </div>
               ) : (
@@ -295,14 +296,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                       </button>
                       <ul className="dropdown-menu">
                         <li onClick={() => setShowSidebar(false)}>
-                          <Link
-                            className="dropdown-item"
-                            to={
-                              tickmillUser
-                                ? "/forex-account/details"
-                                : "/account"
-                            }
-                          >
+                          <Link className="dropdown-item" to={"/account"}>
                             {i18n.language === "ar" ? "حسابي" : "profile"}
                           </Link>
                         </li>
@@ -377,14 +371,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                       </button>
                       <ul className="dropdown-menu">
                         <li onClick={() => setShowSidebar(false)}>
-                          <Link
-                            className="dropdown-item"
-                            to={
-                              tickmillUser
-                                ? "/forex-account/details"
-                                : "/account"
-                            }
-                          >
+                          <Link className="dropdown-item" to={"/account"}>
                             {i18n.language === "ar" ? "حسابي" : "profile"}
                           </Link>
                         </li>

@@ -4,11 +4,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { handleRequest } from "../../../Redux/afilator";
 import { request } from "../../utils/axios";
 import { useMutation } from "react-query";
-import BTN from "../../utils/btn/BTN";
 import {
   logout,
   removeName,
@@ -54,6 +53,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
             ? "you are logout successfulyy"
             : "تم تسجيل خروجك بنجاح"
         );
+        navigate("/");
         dispatch(logout(false));
         dispatch(removeName());
         dispatch(removePip());
@@ -78,7 +78,6 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
         } else {
           return;
         }
-        navigate("/");
       } else {
         toast.error(
           i18n.language === "en"
@@ -92,8 +91,8 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
     const userData = {};
     await mutate(userData);
   };
-  const handleAfilatorDashboard = () => navigate("/afilator");
-  const handleWallet = () => navigate("/wallet");
+  // const handleAfilatorDashboard = () => navigate("/afilator");
+  // const handleWallet = () => navigate("/wallet");
   return (
     <>
       <div className="dropdown mb-3">
@@ -115,69 +114,44 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
           >
             {i18n.language === "ar" ? "تسجيل الخروج" : "logout"}
           </li>
+          <li className="dropdown-item pointer">
+            <Link className="dropdown-item" to={"/account"}>
+              {i18n.language === "ar" ? "حسابي" : "profile"}
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="row">
         {data.account_number ? (
           <div
-            className={`col-6 col-md-12 d-flex gap-2 d-md-block ${
+            className={`col-12 d-flex gap-2 d-md-block mb-1 ${
               i18n.language === "ar" ? "" : "text-start"
             }`}
           >
-            <p
-              className={`text-white mx-0 mt-0 mb-1 p-0 ${
-                isWallet || isAfilate ? "d-inline-block" : "d-block"
-              }`}
-            >
-              {t("accountNum")}:{" "}
-            </p>
-            <p
-              className={`m-0 p-0 text-white fw-bold mb-1 ${
-                isWallet || isAfilate ? "d-inline-block" : "d-block"
-              }`}
-            >
+            <p className={`text-white m-0 p-0`}>{t("accountNum")}: </p>
+            <p className={`m-0 p-0 text-white fw-bold`}>
               {data.account_number}
             </p>
           </div>
         ) : null}
         {data.invest_amount ? (
           <div
-            className={`col-6 col-md-12 d-flex gap-2 d-md-block ${
+            className={`col-12 d-flex gap-2 d-md-block mb-1 ${
               i18n.language === "ar" ? "" : "text-start"
             }`}
           >
-            <p
-              className={`text-white  mx-0 mt-0 mb-1 m-0 p-0 ${
-                isWallet || isAfilate ? "d-inline-block" : "d-block"
-              }`}
-            >
-              {" "}
-              {t("investment")} :{" "}
-            </p>
-            <p
-              className={`m-0 p-0 text-white mb-1 mx-2 ${
-                isWallet || isAfilate ? "d-inline-block" : "d-block"
-              }`}
-            >
-              {data.invest_amount}
-            </p>
+            <p className={`text-white m-0 p-0`}> {t("investment")} : </p>
+            <p className={`m-0 p-0 text-white`}>{data.invest_amount}</p>
           </div>
         ) : null}
       </div>
       <div className="row ">
         <div
-          className={`col-6 col-md-12 d-flex gap-2 d-md-block ${
+          className={`col-12 d-flex gap-2 d-md-block mb-1 ${
             i18n.language === "ar" ? "" : "text-start"
           }`}
         >
-          <p
-            className={`text-white  mx-0 mt-0 mb-1 p-0 ${
-              isWallet || isAfilate ? "d-inline-block" : "d-block"
-            }`}
-          >
-            {" "}
-            {t("phone")} :
-          </p>
+          <p className={`text-white  m-0 p-0`}> {t("phone")} :</p>
           <p
             className={`m-0 p-0 text-white mx-2 mb-1 mt-0 ${
               isWallet || isAfilate ? "d-inline-block" : "d-block"
@@ -188,36 +162,26 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
         </div>
         {data.referral_code ? (
           <div
-            className={`col-6 col-md-12 d-flex gap-2 d-md-block ${
+            className={`col-12 d-flex gap-2 mb-1 d-md-block ${
               i18n.language === "ar" ? "" : "text-start"
             }`}
           >
-            <p
-              className={`text-white  mx-0 mt-0 mb-1 p-0  ${
-                isWallet || isAfilate ? "d-inline-block" : "d-block"
-              }`}
-            >
+            <p className={`text-white  m-0 p-0 `}>
               {i18n.language === "ar" ? "كود afilator" : "afilator code"} :
             </p>
-            <p
-              className={`m-0 p-0 text-white mx-2  mb-1 ${
-                isWallet || isAfilate ? "d-inline-block" : "d-block"
-              }`}
-            >
-              {data.referral_code}
-            </p>
+            <p className={`m-0 p-0 text-white m-0`}>{data.referral_code}</p>
           </div>
         ) : null}
       </div>
       <div className="row">
         <div
-          className={`col-6 col-md-12 d-flex gap-2 d-md-block ${
+          className={`col-12  mb-0 ${
             i18n.language === "ar" ? "" : "text-start"
           }`}
         >
           <button
             onClick={() => navigate("/forex-account")}
-            className={`mt-2  ${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
+            className={`${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
           >
             <MdArrowBackIos size={20} />
             <p className="m-0 p-0 ">
@@ -239,7 +203,8 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
               </p>
             </button>
           )}
-          {data.referral_code ? (
+          {/**
+               *    {data.referral_code ? (
             <>
               <div className="my-3">
                 <BTN
@@ -259,34 +224,10 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
               />
             </>
           ) : null}
+               */}
         </div>
       </div>
     </>
   );
 };
-
 export default AccountDetails;
-/**
- *  <div className="d-flex align-items-center align-items-md-start flex-column  gap-2 mb-3">
-        {data.profile_photo ? (
-          <img
-            className={style.avImg}
-            loading="lazy"
-            alt="profilePhoto/img"
-            src={data.profile_photo}
-          />
-        ) : null}
-
-        <div className="d-flex flex-column gap-1">
-          <div className="d-flex align-items-center gap-1 text-white">
-            <p className="m-0 p-0 fw-bold shamel">{data.name}</p>
-            <IoMdArrowDropdown size={20} />
-          </div>
-          {data.account_type ? (
-            <p className="text-white m-0 p-0">
-              {t("accountKind")} : {data.account_type}
-            </p>
-          ) : null}
-        </div>
-      </div>
- */
