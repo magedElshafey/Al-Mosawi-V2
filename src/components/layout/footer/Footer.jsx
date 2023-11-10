@@ -45,7 +45,7 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
             <div className="row">
               {/*logo and social media*/}
               <div
-                className={`col-12 ${
+                className={`col-6 ${
                   footer2.length ? "col-md-3" : "col-md-4"
                 } mb-5 mb-md-0 d-flex  align-items-center `}
               >
@@ -188,7 +188,7 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                 </div>
               ) : null}
               <div
-                className={`col-12 ${
+                className={`col-6 ${
                   footer2.length ? "col-md-3" : "col-md-4"
                 } mb-md-0 d-flex flex-column align-items-center gap-3`}
               >
