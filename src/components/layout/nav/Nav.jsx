@@ -112,7 +112,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   // handle scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 200) {
+      if (window.scrollY >= 100) {
         setIsBg(true);
       } else {
         setIsBg(false);
@@ -182,7 +182,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
         <div className={`${style.navContainer} ${isBg ? style.bg : null}`}>
           <div className="container py-3 ">
             <div className="d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center ">
                 <Link className={`${showLogo ? "d-block" : "d-none"}`} to="/">
                   <img
                     alt="logo/img"
@@ -274,7 +274,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                   {!isLogin ? (
                     <button
                       onClick={() => navigate("/login")}
-                      className={`mx-3 ${style.btn}`}
+                      className={`mx-3 ${style.btn} d-none d-md-block`}
                     >
                       {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
                     </button>
