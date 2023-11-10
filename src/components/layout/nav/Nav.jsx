@@ -407,7 +407,9 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                         className={`${style.closeIcon} pointer`}
                         src={close}
                       />
-                      <p className="text-white m-0 p-0 book fs18">إغلاق</p>
+                      <p className="text-white m-0 p-0">
+                        {i18n.language === "ar" ? "إغلاق" : "close"}
+                      </p>
                     </div>
                   </div>
                 ) : (
@@ -419,7 +421,9 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                       className={`${style.closeIcon} pointer`}
                       src={close}
                     />
-                    <p className="text-white m-0 p-0 book fs18">إغلاق</p>
+                    <p className="text-white m-0 p-0">
+                      {i18n.language === "ar" ? "إغلاق" : "close"}
+                    </p>
                   </div>
                 )}
               </div>
