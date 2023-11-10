@@ -18,7 +18,7 @@ const NewPasswordForm = () => {
         </label>
         <input
           className={`inp ${style.inpWidth}`}
-          type="passowrd"
+          type="password"
           id="passowrd"
         />
       </div>
@@ -28,7 +28,7 @@ const NewPasswordForm = () => {
         </label>
         <input
           className={`inp ${style.inpWidth}`}
-          type="passowrd"
+          type="password"
           id="confirm"
         />
       </div>
