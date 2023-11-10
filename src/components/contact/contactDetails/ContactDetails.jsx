@@ -70,7 +70,9 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
                 item.value === "0" ? (
                   <div key={index} className="d-flex mb-2 ">
                     <p className={`m-0 p-0  ${style.day}`}>{item.day} : </p>
-                    <p className="red m-0 p-0 text-center ">مغلق</p>
+                    <p className="red m-0 p-0 text-center ">
+                      {i18n.language === "ar" ? "مغلق" : "closed"}
+                    </p>
                   </div>
                 ) : (
                   <div key={index} className="d-flex  mb-2  fs16 ">
