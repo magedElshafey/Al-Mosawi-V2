@@ -5,10 +5,8 @@ import style from "./AuthIntro.module.css";
 const AuthIntro = ({ title, desc }) => {
   return (
     <div className={`pt-3 pt-md-5 mt-0 mt-md-5 container`}>
-      <p className={`mt-2 mb-4 fw-bold text-center  p-0 fs22 shamel`}>
-        {title}
-      </p>
-      {desc ? <p className={`p-0 ${style.desc}`}>{desc}</p> : null}
+      <p className={`mt-2 mb-4 fw-bold text-center  p-0 fs20`}>{title}</p>
+      {desc ? <p className={`p-0 ${style.desc} text-center`}>{desc}</p> : null}
     </div>
   );
 };

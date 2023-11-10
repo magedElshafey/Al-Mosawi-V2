@@ -5,17 +5,22 @@ import {
   MdOutlineArrowBackIosNew,
   MdOutlineArrowBackIos,
 } from "react-icons/md";
-
+import { IoIosArrowForward } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 const ForgetDetails = () => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   const naviagte = useNavigate();
   const [email, setEmail] = useState("");
   const handleClick = () => {
     if (email.trim().length) {
       naviagte("/new-password");
     } else {
-      alert("email cannot be empty");
+      toast.error(
+        i18n.language === "ar"
+          ? "لا يمكن ترك البريد الالكتروني فارغا"
+          : "email can not be empty"
+      );
     }
   };
   return (
@@ -29,7 +34,11 @@ const ForgetDetails = () => {
           className=" book  d-none d-md-block pointer d-flex align-items-center gap-2"
         >
           <span className="mt-1">{t("back")}</span>
-          <MdOutlineArrowBackIosNew className="fs18" />
+          {i18n.language === "ar" ? (
+            <MdOutlineArrowBackIosNew className="fs18" />
+          ) : (
+            <IoIosArrowForward />
+          )}
         </div>
       </div>
       <p className={`mx-0 mt-0 mb-2`}>{t("typeMail")}</p>
