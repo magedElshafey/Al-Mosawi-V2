@@ -32,11 +32,9 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
   };
   const { isLoading: loadingWallets, data: wallets } = useQuery(
     "wallet-dashboard-page",
-    fetchWallet,
-    {
-      onSuccess: () => console.log("THIS IS THE WALLERS", wallets),
-    }
+    fetchWallet
   );
+
   return (
     <>
       {isLoading || loadingWallets ? (
@@ -164,15 +162,19 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
                   profit={data.data.profit}
                 />
               </div>
-              <div className="mb-4">
-                <h4 className="mb-3">
-                  {i18n.language === "ar" ? "تفاصيل المحفظة" : "wallet details"}
-                </h4>
-                <WalletDetails
-                  profit={wallets?.data?.profit}
-                  data={wallets?.data?.data}
-                />
-              </div>
+              {wallets.data.profit !== 0 && (
+                <div className="mb-4">
+                  <h4 className="mb-3">
+                    {i18n.language === "ar"
+                      ? "تفاصيل المحفظة"
+                      : "wallet details"}
+                  </h4>
+                  <WalletDetails
+                    profit={wallets?.data?.profit}
+                    data={wallets?.data?.data}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>

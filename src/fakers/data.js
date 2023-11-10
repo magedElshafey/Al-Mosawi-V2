@@ -26,21 +26,6 @@ import mob from "../assets/mob.png";
 import mob2 from "../assets/mob-01.png";
 import mob3 from "../assets/mob-02.png";
 
-export const aboutUs = [
-  {
-    title: "تواصل معنا",
-    path: "/contact",
-  },
-  {
-    title: "عن أحمد",
-    path: "/ahmed",
-  },
-  {
-    title: "اسم الرابط",
-    path: "/",
-  },
-];
-
 export const header = [
   {
     id: 1,
@@ -736,28 +721,28 @@ export const userProchart = [
     path: "/consulting",
   },
 ];
-export const blogsFilter = [
-  {
-    id: 1,
-    title: "جميع الأقسام",
-  },
-  {
-    id: 2,
-    title: "تحليلات و أخبار VIP",
-  },
-  {
-    id: 3,
-    title: "اسم القسم",
-  },
-  {
-    id: 4,
-    title: "اسم القسم",
-  },
-  {
-    id: 5,
-    title: "اسم القسم",
-  },
-];
+// export const blogsFilter = [
+//   {
+//     id: 1,
+//     title: "جميع الأقسام",
+//   },
+//   {
+//     id: 2,
+//     title: "تحليلات و أخبار VIP",
+//   },
+//   {
+//     id: 3,
+//     title: "اسم القسم",
+//   },
+//   {
+//     id: 4,
+//     title: "اسم القسم",
+//   },
+//   {
+//     id: 5,
+//     title: "اسم القسم",
+//   },
+// ];
 export const expertCourses = [
   {
     id: 1,
@@ -814,8 +799,12 @@ export const accountDetails = {
 };
 export const monthlyWithdraw = {
   title: "السحب الشهري",
+  enTitle: "Monthly withdrawal",
   desc: "يتم عمل سحب شهري لكل حسابات العملاءالتي تحتوى على 300 دولار للفوز بجائزة 600 دولار",
+  enDesc:
+    "A monthly draw is held for all customer accounts that contain $300 to win a $600 prize",
   winnerText: "الفائز بجائزة الشهر الحالي",
+  enWinnetText: "Current month's prize winner",
   winnerName: "سعيد عبدالله العامري",
 };
 export const recommendationHistory = {

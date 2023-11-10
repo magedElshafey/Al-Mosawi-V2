@@ -1,8 +1,7 @@
 .mainContainer {
   overflow: hidden;
   position: relative;
-  width: 350px;
-  background: linear-gradient(to right, #00032b, #13005a);
+ background: linear-gradient(to right, #00032b, #13005a);
   height: 400px;
 }
 .mainImg {

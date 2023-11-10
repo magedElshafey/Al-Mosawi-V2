@@ -1,12 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import style from "./afilatorDashboard.module.css";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { AiOutlineCopy } from "react-icons/ai";
 import toast from "react-hot-toast";
-import BTN from "../utils/btn/BTN";
-import { useNavigate } from "react-router-dom";
 const AfilatorDashboard = ({ prochart, courses, profit }) => {
   const { i18n } = useTranslation();
   const { code } = useSelector((state) => state.afilator);
@@ -33,15 +30,11 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
       i18n.language === "ar" ? "تم نسخ الرابط بنجاح" : "link copied succfully"
     );
   };
-  const navigate = useNavigate();
-  const handleWallet = () => navigate("/wallet");
   return (
     <div>
-      <BTN
-        disabled={true}
-        action={handleWallet}
-        text={`${i18n.language === "ar" ? "المحفظة" : "wallet"} : ${profit}$`}
-      />
+      <div className={style.walletContainer}>
+        {`${i18n.language === "ar" ? "المحفظة" : "wallet"} : ${profit}$`}
+      </div>
 
       <div className="custom-table my-4">
         <div className="table-header">

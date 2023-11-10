@@ -5,7 +5,9 @@ import { useTranslation } from "react-i18next";
 const BlogCard = ({ item }) => {
   const { i18n } = useTranslation();
   return (
-    <div className={`p-0 ${style.mainContainer}`}>
+    <div
+      className={` p-0   col-12 col-md-5  col-lg-4 mb-3 ${style.mainContainer}`}
+    >
       <Link to={`/blogs/${item.id}`}>
         <img
           src={item.thumbnail}

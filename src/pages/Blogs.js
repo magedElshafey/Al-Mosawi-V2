@@ -13,10 +13,7 @@ const Blogs = () => {
   const fetchData = () => {
     return request({ url: "/blog" });
   };
-  const { isLoading, data } = useQuery("blogs-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("blogs-page", fetchData);
   return (
     <>
       {isLoading ? (
@@ -34,7 +31,7 @@ const Blogs = () => {
           <Header title={i18n.language === "en" ? "blogs" : "المدونة"} />
           <FilterBlogs data={data.data.blogCategorylist} />
           <div className="container">
-            <div className="mt-3 d-flex align-items-center justify-content-center gap-4 flex-wrap">
+            <div className="mt-3  row">
               {data.data.data.map((blog, index) => (
                 <BlogCard key={index} item={blog} />
               ))}

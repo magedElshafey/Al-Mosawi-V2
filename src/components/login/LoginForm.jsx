@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./LoginForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -45,6 +45,19 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  // remember me functionality
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("rememberedEmail");
+    const storedPassword = localStorage.getItem("rememberedPassword");
+    const storedRememberMe = localStorage.getItem("rememberMe") === "true";
+    if (storedRememberMe && storedEmail && storedPassword) {
+      setAccount(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(storedRememberMe);
+    }
+  }, []);
   const handleSendMsg = (data) => {
     return request({ url: "/auth/login", method: "post", data });
   };
@@ -98,6 +111,15 @@ const LoginForm = () => {
     if (account.trim() === "" || password.trim() === "") {
       return false;
     } else {
+      if (rememberMe) {
+        localStorage.setItem("rememberedEmail", account);
+        localStorage.setItem("rememberedPassword", password);
+        localStorage.setItem("rememberMe", rememberMe);
+      } else {
+        localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("rememberedPassword");
+        localStorage.removeItem("rememberMe");
+      }
       const userData = { account, password };
       await mutate(userData);
     }
@@ -139,7 +161,9 @@ const LoginForm = () => {
                 <input
                   type="checkbox"
                   id="rem"
+                  checked={rememberMe}
                   className={`p-0 my-0 mx-2  ${style.checkBox}`}
+                  onChange={() => setRememberMe(!rememberMe)}
                 />
                 <label htmlFor="rem" className={` fw-bold  shamel `}>
                   {t("remember")}

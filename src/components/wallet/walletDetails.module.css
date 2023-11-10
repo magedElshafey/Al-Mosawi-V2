@@ -17,7 +17,7 @@
     rgba(1, 36, 86, 1) 100%
   ) !important;
 }
-.btn {
+.btn , .walletContainer {
   min-width: 150px;
   display: flex;
   justify-content: center;
@@ -34,3 +34,4 @@
   -ms-border-radius: 26px;
   -o-border-radius: 26px;
 }
+

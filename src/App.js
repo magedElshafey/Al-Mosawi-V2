@@ -396,7 +396,6 @@ const App = () => {
               footer1={settingsData.footer1}
               footer2={settingsData.footer2}
               phoneNum={settingsData.contactSettings.phone}
-              aboutUs={aboutUs}
               generalData={settingsData.generalSetting}
               socailData={settingsData.SocialMediaLinks}
             />

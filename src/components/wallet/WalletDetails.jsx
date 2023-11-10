@@ -7,14 +7,18 @@ import { MdKeyboardArrowRight, MdOutlineArrowBackIos } from "react-icons/md";
 import { useMutation } from "react-query";
 import { request } from "../utils/axios";
 import { useSelector } from "react-redux";
+import Spinner from "../utils/Spinner/Spinner";
 const WalletDetails = ({ profit, data }) => {
+  console.log("this is the profit", profit);
   const { user } = useSelector((state) => state.authSlice);
   const { i18n } = useTranslation();
   const [showWithdrawForm, setShowWithdrawForm] = useState(false);
   const [amount, setAmount] = useState("");
   const [method, setMethod] = useState("");
 
-  const handleShowWithdrawForm = () => setShowWithdrawForm(true);
+  const handleShowWithdrawForm = () => {
+    setShowWithdrawForm(true);
+  };
   const handleWithdraw = (data) => {
     const headers = {
       userId: user,
@@ -53,92 +57,101 @@ const WalletDetails = ({ profit, data }) => {
     }
   };
   return (
-    <div>
-      <div className="mb-4 d-flex align-items-center justify-content-center flex-wrap gap-3">
-        <BTN
-          showArrow={false}
-          disabled={true}
-          text={`${i18n.language === "ar" ? "المحفظة" : "wallet"} : ${profit}$`}
-        />
-        <BTN
-          action={handleShowWithdrawForm}
-          text={` ${
-            i18n.language === "ar" ? "سحب العمولة" : "withdraw comession"
-          }`}
-        />
-      </div>
-      {showWithdrawForm && (
-        <form className="my-4" onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="amount" className="d-block mb-1">
-              {i18n.language === "ar" ? "المبلغ" : "amount"}
-            </label>
-            <input
-              type="number"
-              className="inp"
-              id="amount"
-              min={0}
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-            />
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <div className="mb-4 d-flex align-items-center justify-content-center flex-wrap gap-3">
+            <div className={style.walletContainer}>
+              {`${i18n.language === "ar" ? "المحفظة" : "wallet"} : ${profit}$`}
+            </div>
+            {!showWithdrawForm ||
+              (!profit && (
+                <BTN
+                  action={handleShowWithdrawForm}
+                  text={` ${
+                    i18n.language === "ar"
+                      ? "سحب العمولة"
+                      : "withdraw comession"
+                  }`}
+                />
+              ))}
           </div>
-          <div className="mb-3">
-            <label htmlFor="way" className="d-block mb-1">
-              {i18n.language === "ar" ? "طريقة السحب" : "withdraw function"}
-            </label>
-            <select
-              className="inp"
-              value={method}
-              onChange={(e) => setMethod(e.target.value)}
-            >
-              <option value="">
-                {i18n.language === "ar"
-                  ? "اختر طريقة الدفع"
-                  : "choose your payment method"}
-              </option>
-              <option value="hyperpay">hyperpay</option>
-              <option value="technicalSupport">technical support</option>
-            </select>
-          </div>
-          <button className={` ${style.btn}`} type="submit">
-            {i18n.language === "en" ? (
-              <MdKeyboardArrowRight size={20} />
-            ) : (
-              <MdOutlineArrowBackIos size={20} />
-            )}
-            <span>{i18n.language === "ar" ? "اسحب" : "withdraw"}</span>
-          </button>
-        </form>
-      )}
-      <div className="custom-table">
-        <div className="table-header">
-          <div className="table-cell header">
-            {i18n.language === "ar" ? " الطلب" : "order"}
-          </div>
-          <div className="table-cell header">
-            {i18n.language === "ar" ? "حالة الطلب" : "order status"}
-          </div>
-          <div className="table-cell header">
-            {i18n.language === "ar" ? "ايداع" : "total price"}
-          </div>
-          <div className="table-cell header">
-            {i18n.language === "ar" ? "سحب" : "comession"}
+          {showWithdrawForm && (
+            <form className="my-4" onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="amount" className="d-block mb-1">
+                  {i18n.language === "ar" ? "المبلغ" : "amount"}
+                </label>
+                <input
+                  type="number"
+                  className="inp"
+                  id="amount"
+                  min={0}
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="way" className="d-block mb-1">
+                  {i18n.language === "ar" ? "طريقة السحب" : "withdraw function"}
+                </label>
+                <select
+                  className="inp"
+                  value={method}
+                  onChange={(e) => setMethod(e.target.value)}
+                >
+                  <option value="">
+                    {i18n.language === "ar"
+                      ? "اختر طريقة الدفع"
+                      : "choose your payment method"}
+                  </option>
+                  <option value="hyperpay">hyperpay</option>
+                  <option value="technicalSupport">technical support</option>
+                </select>
+              </div>
+              <button className={` ${style.btn}`} type="submit">
+                {i18n.language === "en" ? (
+                  <MdKeyboardArrowRight size={20} />
+                ) : (
+                  <MdOutlineArrowBackIos size={20} />
+                )}
+                <span>{i18n.language === "ar" ? "اسحب" : "withdraw"}</span>
+              </button>
+            </form>
+          )}
+          <div className="custom-table">
+            <div className="table-header">
+              <div className="table-cell header">
+                {i18n.language === "ar" ? " الطلب" : "order"}
+              </div>
+              <div className="table-cell header">
+                {i18n.language === "ar" ? "حالة الطلب" : "order status"}
+              </div>
+              <div className="table-cell header">
+                {i18n.language === "ar" ? "ايداع" : "total price"}
+              </div>
+              <div className="table-cell header">
+                {i18n.language === "ar" ? "سحب" : "comession"}
+              </div>
+            </div>
+            {data.map((item, index) => (
+              <div className="table-row" key={index}>
+                <div className="table-cell">{item.orderName}</div>
+                <div className="table-cell">{item.status}</div>
+                <div className="table-cell">
+                  {item.in === null ? null : item.in + "$"}
+                </div>
+                <div className="table-cell">
+                  {item.out === null ? null : item.out + "$"}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        {data.map((item, index) => (
-          <div className="table-row" key={index}>
-            <div className="table-cell">{item.orderName}</div>
-            <div className="table-cell">{item.status}</div>
-            <div className="table-cell">
-              {item.in === null ? null : item.in + "$"}
-            </div>
-            <div className="table-cell">
-              {item.out === null ? null : item.out + "$"}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
