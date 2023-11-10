@@ -111,10 +111,7 @@ const LoginForm = () => {
         <div className="d-flex justify-content-center">
           <div className="py-3 container">
             <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="d-block fw-bold mb-1 shamel text-end "
-              >
+              <label htmlFor="email" className="d-block fw-bold mb-1">
                 {t("emailTwo")}
               </label>
               <input
@@ -126,7 +123,7 @@ const LoginForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="password" className="d-block fw-bold mb-1 shamel">
+              <label htmlFor="password" className="d-block fw-bold mb-1">
                 {t("pass")}
               </label>
               <input
