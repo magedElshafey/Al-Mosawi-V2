@@ -9,42 +9,7 @@ import { removeFromCart, addAllProductToCart } from "../../../Redux/cart";
 const CartItems = ({ user, items }) => {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-
   const lang = i18n.language;
-  // const deleteFromApi = async (item) => {
-  //   const res = await fetch(
-  //     `https://almosawi.admin.technomasrsystems.com/api/cart/removeItem/${item.id}`,
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         user,
-  //         "Content-Type": "application/json",
-  //         lang,
-  //         type: item.product_type,
-  //       },
-  //     }
-  //   );
-  //   const data = await res.json();
-  //   if (data.status === "success") {
-  //     setCart(data.data.itemsDetails);
-  //     toast.success(`${item.title} deleted successfully`);
-  //   } else {
-  //     toast.error("try again");
-  //   }
-  //   console.log("data from delete", data.data);
-
-  //   return data;
-  // };
-
-  // const handleDeleteItems = (item) => {
-  //   if (user) {
-  //     deleteFromApi(item);
-  //   } else {
-  //     const updatedCart = items.filter((cartItem) => cartItem.id !== item.id);
-  //     setCart(updatedCart);
-  //     localStorage.setItem("cart", JSON.stringify(updatedCart));
-  //   }
-  // };
   const handleDeleteItems = async (product) => {
     if (user) {
       const res = await fetch(
@@ -87,7 +52,7 @@ const CartItems = ({ user, items }) => {
           {items.map((item, index) => (
             <div
               key={index}
-              className={`py-2 d-flex justify-content-between align-items-center flex-column flex-md-row gap-3 gap-md-0 mb-4 p-2 ${style.card}`}
+              className={`d-flex justify-content-center justify-content-md-between align-items-center flex-column flex-md-row  gap-md-0 mb-4 p-2 ${style.card}`}
             >
               <div className="d-flex align-items-center gap-3">
                 <img
@@ -96,7 +61,7 @@ const CartItems = ({ user, items }) => {
                   src={item.image ? item.image : secondImg}
                   className={style.img}
                 />
-                <p className={`m-0 p-0  fw-bold shamel `}>
+                <p className={`m-0 p-0  fw-bold `}>
                   {user ? item.name : item.title || item.name}
                 </p>
               </div>

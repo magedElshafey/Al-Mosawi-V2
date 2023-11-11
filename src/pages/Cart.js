@@ -9,10 +9,9 @@ import Spinner from "../components/utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { useSelector, useDispatch } from "react-redux";
-import { addAllProductToCart, addToCart } from "../Redux/cart";
+import { addAllProductToCart } from "../Redux/cart";
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cartSlice);
-  console.log("this is cart items", cartItems);
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const user = localStorage.getItem("userId")
@@ -24,21 +23,20 @@ const Cart = () => {
     };
     return request({ url: "/cart/myCart", headers });
   };
-  const { isLoading, refetch } = useQuery("cart-page", fetchData, {
-    enabled: false,
+  const { isLoading } = useQuery("cart-page", fetchData, {
     onSuccess: (data) => {
-      if (!data?.data?.data?.id?.itemsDetails?.length) {
+      if (!data?.data?.data?.itemsDetails?.length) {
         return;
       } else {
         dispatch(addAllProductToCart(data.data.data.itemsDetails));
       }
     },
   });
-  useEffect(() => {
-    if (user) {
-      refetch();
-    }
-  }, [user, refetch]);
+  // useEffect(() => {
+  //   if (user) {
+  //     refetch();
+  //   }
+  // }, [user, refetch]);
 
   // handle total price when the user not login
   const totalPrice = cartItems.reduce((acc, product) => {
@@ -49,7 +47,6 @@ const Cart = () => {
   }, 0);
   return (
     <>
-      {" "}
       {isLoading ? (
         <Spinner />
       ) : (
