@@ -24,7 +24,6 @@ const RecommendationHistory = () => {
         headers,
       });
 
-      console.log("this is the response", response.data.data);
       if (response.data.status === "success") {
         setData(response.data.data);
         setStatus(response.data.dealStatus);
@@ -32,7 +31,6 @@ const RecommendationHistory = () => {
         setIsLoading(false);
       }
     } catch (error) {
-      console.error("Error fetching data", error);
       setIsLoading(false);
     }
   };
@@ -44,23 +42,6 @@ const RecommendationHistory = () => {
     fetchData();
   }, []);
   const navigate = useNavigate();
-  // const fetchData = () => {
-  //   const headers = {
-  //     user,
-  //   };
-  //   return request({
-  //     url: `/deal/index?date=${date}&status=${dealStatus}&type=${dealType}`,
-  //     headers,
-  //   });
-  // };
-  // const { isLoading, data } = useQuery(
-  //   ["deals-page", date, dealType, dealStatus],
-  //   fetchData,
-  //   {
-  //     cacheTime: 12000,
-  //     staleTime: 12000,
-  //   }
-  // );
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -75,7 +56,6 @@ const RecommendationHistory = () => {
         <Spinner />
       ) : (
         <div>
-          {" "}
           <HeroBox
             isHistory={true}
             isVideo={false}

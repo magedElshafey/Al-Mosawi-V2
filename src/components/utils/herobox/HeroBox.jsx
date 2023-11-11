@@ -91,15 +91,19 @@ const HeroBox = ({
           !isAfilator &&
           !isWallet && (
             <div className=" mt-5 pt-4 pb-3">
-              <div className=" d-flex justify-content-between align-items-center flex-column flex-md-row gap-3 gap-md-0 mb-4">
+              <div className=" d-flex  justify-content-between align-items-center flex-column flex-md-row gap-3 gap-md-0 mb-4">
                 <p className="z-3  m-0 p-0 text-white fw-bolder fs20">
                   {i18n.language === "ar"
                     ? "تاريخ التوصيات"
                     : "History of recommendations"}
                 </p>
-                <div className="d-flex align-items-center flex-wrap gap-3">
-                  <select value={dealType} className={`${style.box2}`}>
-                    <option onChange={(e) => setDealType(e.target.value)}>
+                <div className="d-flex align-items-center justify-content-center flex-wrap gap-3">
+                  <select
+                    value={dealType}
+                    onChange={(e) => setDealType(e.target.value)}
+                    className={`${style.box2}`}
+                  >
+                    <option value="" disabled>
                       نوع الصفقة - الكل
                     </option>
                     <option value="buy">{type.buy}</option>

@@ -13,9 +13,9 @@ const HistoryDetails = ({ data }) => {
   return (
     <div>
       <div
-        className={`${style.mainContainer} mb-3 d-flex justify-content-center  justify-content-md-between align-items-center gap-3 gap-md-0 flex-wrap`}
+        className={`${style.mainContainer} mb-3 d-none d-md-flex   justify-content-between align-items-center gap-3 gap-md-0 flex-wrap`}
       >
-        <p className="m-0 p-0   ">
+        <p className="m-0 p-0">
           {i18n.language === "ar" ? "العملة" : "currency"}
         </p>
         <p className="m-0 p-0   ">
@@ -24,7 +24,7 @@ const HistoryDetails = ({ data }) => {
         <p className="m-0 p-0   ">
           {i18n.language === "ar" ? "نوع الصفقة" : "Transaction type"}
         </p>
-        <p className="m-0 p-0   ">
+        <p className="m-0 p-0 ">
           {i18n.language === "ar" ? "حالة الصفقة" : "Transaction status"}
         </p>
         <p className="m-0 p-0   ">
@@ -32,7 +32,7 @@ const HistoryDetails = ({ data }) => {
             ? "عدد النقاط المحققة"
             : "Number of points achieved"}
         </p>
-        <p className="m-0 p-0   ">
+        <p className="m-0 p-0 ">
           {i18n.language === "ar" ? "معاينة الصفقة" : "Preview deal"}
         </p>
       </div>
@@ -40,27 +40,51 @@ const HistoryDetails = ({ data }) => {
         return (
           <div
             key={index}
-            className={`${style.mainContainer} mb-3  d-flex justify-content-center justify-content-md-between align-items-center gap-3 gap-md-0 flex-wrap`}
+            className={`${style.mainContainer} mb-3  d-flex  justify-content-md-between align-items-center  gap-3 gap-md-0 flex-wrap`}
           >
-            <p className="m-0 p-0 ">{item.title}</p>
-            <p className={`m-0 p-0  ${style.date}`}>
-              {item?.Recommendation?.updated_at}
+            <p className="m-0 p-0 d-flex gap-1">
+              <p className="m-0 p-0 d-md-none">
+                {i18n.language === "ar" ? "العملة" : "currency"} :
+              </p>
+              <p className="m-0 p-0"> {item.title}</p>
+            </p>
+            <p className={`m-0 p-0  ${style.date} d-flex gap-1`}>
+              <p className="m-0 p-0 d-md-none">
+                {i18n.language === "ar"
+                  ? "تاريخ التوصية"
+                  : "Recommendation date"}{" "}
+                :
+              </p>
+              <p className="m-0 p-0">{item?.Recommendation?.updated_at}</p>
             </p>
             <p
-              className={`m-0 p-0 ${style.date} ${
+              className={`m-0 p-0 ${
+                style.date
+              } d-flex gap-1 align-items-center ${
                 item?.Recommendation?.type === "شراء"
                   ? `${style.title}`
                   : `${style.buy}`
               }   `}
             >
-              {item?.Recommendation?.type}
+              <p className="d-md-none m-0 p-0 text-white">
+                {i18n.language === "ar" ? "نوع الصفقة" : "Transaction type"} :{" "}
+              </p>
+              <p className="m-0 p-0"> {item?.Recommendation?.type}</p>
             </p>
-            <p className={`m-0 p-0 ${style.date}`}>
-              {item?.Recommendation?.status}
+            <p className={`m-0 p-0 ${style.date} d-flex gap-1`}>
+              <p className="m-0 p-0 d-md-none">
+                {i18n.language === "ar" ? "حالة الصفقة" : "Transaction status"}{" "}
+                :{" "}
+              </p>
+              <p className="m-0 p-0">{item?.Recommendation?.status}</p>
             </p>
-            <p className={`m-0 p-0 ${style.point} ${style.date}`}>
-              {item?.Recommendation?.point}
+            <p className={`m-0 p-0 d-md-none ${style.point} ${style.date}`}>
+              {i18n.language === "ar"
+                ? "عدد النقاط المحققة"
+                : "Number of points achieved"}{" "}
+              :
             </p>
+            <p className="m-0 p-0">{item?.Recommendation?.point}</p>
             <button
               onClick={() => navigate(`/deals/${item.id}`)}
               className={`${style.btn}`}
@@ -98,3 +122,6 @@ const HistoryDetails = ({ data }) => {
 };
 
 export default HistoryDetails;
+/**
+ *
+ */
