@@ -12,10 +12,7 @@ const ForexAccount = ({ phoneNum }) => {
   const fetchData = () => {
     return request({ url: "/forex" });
   };
-  const { isLoading, data } = useQuery("forex-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("forex-page", fetchData);
   return (
     <>
       {isLoading ? (

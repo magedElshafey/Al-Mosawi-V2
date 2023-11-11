@@ -10,7 +10,7 @@ const ReqPaper = ({ data }) => {
   return (
     <div>
       <p
-        className="pt-4  mx-0 p-0 "
+        className="pt-4  mx-0 p-0 m-0"
         dangerouslySetInnerHTML={{ __html: data.title }}
       />
 
