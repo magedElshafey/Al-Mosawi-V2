@@ -81,7 +81,7 @@ const Ask = ({ handleChangeTitle, details, appointment, contactDetails }) => {
 
   return (
     <>
-      {loadingMsg ? (
+      {loadingMsg || isLoading ? (
         <Spinner />
       ) : (
         <div>
@@ -95,7 +95,7 @@ const Ask = ({ handleChangeTitle, details, appointment, contactDetails }) => {
           />
           <Header handleChangeTitle={handleChangeTitle} />
           <div className="container py-4">
-            <div className="row">
+            <div className="row justify-content-center">
               <div className="col-12 col-md-7 mb-3 mb-md-0">
                 {data.data.data.length ? (
                   <Chat

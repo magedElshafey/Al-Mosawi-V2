@@ -3,12 +3,14 @@ import style from "./consultingAppoitmentCard.module.css";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import Spinner from "../Spinner/Spinner";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { request } from "../axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
+
 const ConsultingAppoitmentCard = ({ item, showButton }) => {
   const { t, i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const [disabledCanclle, setDisableCancle] = useState(false);
   const fetchData = (id) => {
     const headers = {
@@ -52,12 +54,11 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
     "canclle-consulting-page",
     () => canclleAppointment(item.id),
     {
-      cacheTime: 12000,
-      staleTime: 12000,
       enabled: false,
       onSuccess: (data) => {
         if (data.data.status === "success") {
           toast.success(data.data.message);
+          queryClient.invalidateQueries("consultation-page");
           setDisableCancle(true);
         } else {
           toast.error(

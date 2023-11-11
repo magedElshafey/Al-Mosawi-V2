@@ -1,17 +1,3 @@
-/* font sizes */
-/* @font-face {
-  font-family: 'Helvetica';
-  src: url('./fonts/Helvetica.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Helvetica';
-  src: url('./fonts/Helvetica-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-} */
 .fs {
   font-size: 10px;
 }
@@ -125,7 +111,7 @@
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   font-family: "Tajawal", sans-serif;
   text-transform: capitalize !important;
 }

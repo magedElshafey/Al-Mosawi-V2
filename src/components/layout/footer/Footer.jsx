@@ -56,7 +56,7 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                     src={generalData.logo}
                     className={style.logo}
                   />
-                  <div className="d-flex align-items-center gap-1">
+                  <div className="d-flex align-items-center gap-1 flex-wrap">
                     {socailData.facebook && (
                       <a
                         className={style.socialContainer}

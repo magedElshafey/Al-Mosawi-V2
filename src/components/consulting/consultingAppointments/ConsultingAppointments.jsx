@@ -40,14 +40,18 @@ const ConsultingAppointments = ({ nextAppointments, canclledAppointments }) => {
         </div>
         {showNext && (
           <div className="my-2">
-            {nextAppointments.map((item, index) => (
-              <ConsultingAppoitmentCard
-                key={index}
-                item={item}
-                showButton={true}
-                action={handleClick}
-              />
-            ))}
+            {nextAppointments.length
+              ? nextAppointments.map((item, index) => (
+                  <ConsultingAppoitmentCard
+                    key={index}
+                    item={item}
+                    showButton={true}
+                    action={handleClick}
+                  />
+                ))
+              : i18n.language === "ar"
+              ? "لا يوجد مواعيد قادمة"
+              : "no next appointment"}
           </div>
         )}
         {showCancled && (

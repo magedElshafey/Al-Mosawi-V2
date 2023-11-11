@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
 import ConsultingIntro from "../components/consulting/consultingIntro/ConsultingIntro";
@@ -11,6 +11,8 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 const Consulting = ({ handleChangeTitle, phoneNum }) => {
   const navigate = useNavigate();
+  const [cancelledAppointments, setCancclledAppointment] = useState([]);
+  const [commingAppointments, setCommingAppointments] = useState([]);
   const user = JSON.parse(localStorage.getItem("userId"));
   useEffect(() => {
     if (!user) {
@@ -25,10 +27,22 @@ const Consulting = ({ handleChangeTitle, phoneNum }) => {
     };
     return request({ url: "/consultation/show", headers });
   };
-  const { isLoading, data } = useQuery("consultation-page", fetchData);
-  const cancelledAppointments = data?.data?.appointments?.filter(
-    (item) => item.status === 0
-  );
+  const { isLoading, data } = useQuery("consultation-page", fetchData, {
+    onSuccess: (data) => {
+      const newAppointments = data?.data?.appointments?.filter(
+        (item) => item.status === 1
+      );
+      setCommingAppointments(newAppointments);
+      const newCanclled = data?.data?.appointments?.filter(
+        (item) => item.status === 0
+      );
+      setCancclledAppointment(newCanclled);
+    },
+  });
+  // const cancelledAppointments = data?.data?.appointments?.filter(
+  //   (item) => item.status === 0
+  // );
+
   return (
     <>
       {isLoading ? (
@@ -49,7 +63,7 @@ const Consulting = ({ handleChangeTitle, phoneNum }) => {
               <div className="col-12 col-md-8 mb-3 mb-md-0">
                 <ConsultingIntro />
                 <ConsultingAppointments
-                  nextAppointments={data.data.appointments}
+                  nextAppointments={commingAppointments}
                   canclledAppointments={cancelledAppointments}
                 />
               </div>

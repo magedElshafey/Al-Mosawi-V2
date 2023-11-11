@@ -7,10 +7,10 @@ const Chat = ({ data, msg, setMsg, handleClick }) => {
   return (
     <div className={` p-4 ${style.mainContainer}`}>
       <div className={`pb-3 ${style.border}`}>
-        <h3 className={`fw-bolder d-inline-block fs22 shamel`}>
+        <h3 className={`fw-bolder d-inline-block fs20 `}>
           {t("conversationWith")}
         </h3>
-        <h3 className={`green fw-bolder mx-1 d-inline-block fs22 shamel`}>
+        <h3 className={`green fw-bolder mx-2 d-inline-block fs20`}>
           {t("ahmed")}
         </h3>
       </div>
@@ -58,7 +58,7 @@ const Chat = ({ data, msg, setMsg, handleClick }) => {
         </div>
       ))}
       <div className="row mt-4">
-        <div className="col-12 col-md-8 pe-5">
+        <div className="col-12 col-md-8 px-5 mb-3 mb-md-0">
           <input
             value={msg}
             onChange={(e) => setMsg(e.target.value)}
@@ -66,7 +66,7 @@ const Chat = ({ data, msg, setMsg, handleClick }) => {
             type="text"
           />
         </div>
-        <div className="col-12 col-md-4">
+        <div className="col-12 col-md-4 px-5">
           <BTN action={handleClick} text={t("send")} />
         </div>
       </div>
