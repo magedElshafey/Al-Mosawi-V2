@@ -1,5 +1,4 @@
 import React from "react";
-import { dealsHeader } from "../../../fakers/data.js";
 import style from "./DealsHeader.module.css";
 import { useTranslation } from "react-i18next";
 
@@ -8,25 +7,22 @@ const DealsHeader = ({ data }) => {
   const { t, i18n } = useTranslation();
   return (
     <div
-      className={`z-3 ${style.mainContainer} p-2 d-flex justify-content-center align-items-center gap-5 flex-wrap`}
+      className={`z-3 ${style.mainContainer} p-2 d-flex justify-content-center align-items-center gap-3 gap-md-5 flex-wrap`}
     >
       {/**stop losing*/}
       <div className="z-3">
         <span className="text-white"> {t("stopLossing")} : </span>
         <span className="red  fs20">{data.Recommendation.stop}</span>
       </div>
-      <div className="z-3">
-        <span className="text-white   ">{t("goalThree")}</span>
-        <span className="green  fs20">{dealsHeader.goalThree}</span>
-      </div>
-      <div className="z-3">
-        <span className="text-white   ">{t("goalTwo")}</span>
-        <span className="green  fs20">{dealsHeader.goalTwo}</span>
-      </div>
-      <div className="z-3">
-        <span className="text-white  ">{t("goalOne")}</span>
-        <span className="green fs20">{dealsHeader.goalOne}</span>
-      </div>
+      {data.Recommendation.Goal.map((item, index) => (
+        <div key={index} className="z-3">
+          <span className="text-white">
+            {i18n.language === "ar" ? "الهدف" : "goal"} {++index} :
+          </span>
+          <span className="green fs20">{item.goal}</span>
+        </div>
+      ))}
+
       <div className="z-3">
         <span className={`text-white  `}>{t("buying")} </span>
         <span className="green  fs20">{data.Recommendation.enter}</span>

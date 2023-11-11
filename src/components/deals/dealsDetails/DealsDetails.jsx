@@ -23,7 +23,12 @@ const DealsDetails = ({ data }) => {
       <p className="mx-0 mt-0 p-0 mb-2 text-white">
         {data.Recommendation.details}
       </p>
-      <a className="fs-5 text-white fw-bold" target="_blank" href={data.link}>
+      <a
+        className="fw-bold dealsLink"
+        target="_blank"
+        href={data.link}
+        rel="noreferrer"
+      >
         link
       </a>
     </div>

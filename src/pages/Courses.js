@@ -9,7 +9,7 @@ import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-const Courses = ({ expertCourses, newCourses }) => {
+const Courses = () => {
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const user = localStorage.getItem("userId");
@@ -26,10 +26,7 @@ const Courses = ({ expertCourses, newCourses }) => {
     };
     return request({ url: "/paidCourses", headers });
   };
-  const { isLoading, data } = useQuery("paid-courses-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("paid-courses-page", fetchData);
   return (
     <>
       {isLoading ? (

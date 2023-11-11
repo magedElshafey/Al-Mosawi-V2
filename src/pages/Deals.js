@@ -10,13 +10,8 @@ const Deals = () => {
   const fetchData = (id) => {
     return request({ url: `/deal/show/${id}` });
   };
-  const { isLoading, data } = useQuery(
-    ["deals -details-page", params.id],
-    () => fetchData(params.id),
-    {
-      cacheTime: 12000,
-      staleTime: 12000,
-    }
+  const { isLoading, data } = useQuery(["deals -details-page", params.id], () =>
+    fetchData(params.id)
   );
   return (
     <>

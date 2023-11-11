@@ -16,9 +16,6 @@ import Regester from "./pages/Regester.js";
 import About from "./pages/About.js";
 import Contact from "./pages/Contact.js";
 import {
-  aboutUs,
-  expertCourses,
-  newCourses,
   accountDetails,
   monthlyWithdraw,
   recommendationDetails,
@@ -257,15 +254,7 @@ const App = () => {
 
             {/*done*/}
             <Routes>
-              <Route
-                path="/courses"
-                element={
-                  <Courses
-                    expertCourses={expertCourses}
-                    newCourses={newCourses}
-                  />
-                }
-              />
+              <Route path="/courses" element={<Courses />} />
             </Routes>
             {/*done*/}
             <Routes>

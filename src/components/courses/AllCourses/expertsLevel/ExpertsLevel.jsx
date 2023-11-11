@@ -5,7 +5,6 @@ import CourseRow from "../../../utils/courseRow/CourseRow";
 import { useTranslation } from "react-i18next";
 
 const ExpertsLevel = ({ expertCourses }) => {
-  const newCount = expertCourses.map((item) => Math.floor(item.ratio / 25));
   const { i18n, t } = useTranslation();
   return (
     <div className="py-3">
@@ -18,7 +17,7 @@ const ExpertsLevel = ({ expertCourses }) => {
             <div className="mb-2" key={index}>
               <div
                 dangerouslySetInnerHTML={{ __html: course.header_des }}
-                className={`${style.desc}`}
+                style={{ color: "black" }}
               />
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <div
@@ -40,7 +39,7 @@ const ExpertsLevel = ({ expertCourses }) => {
                 </button>
               </div>
               {course.CourseClasses.map((item, index) => (
-                <CourseRow item={item} key={index} newCount={newCount} />
+                <CourseRow item={item} key={index} />
               ))}
             </div>
           ))}

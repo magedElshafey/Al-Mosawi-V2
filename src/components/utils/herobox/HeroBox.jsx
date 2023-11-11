@@ -2,8 +2,6 @@ import React from "react";
 import style from "./HeroBox.module.css";
 import DealsHeader from "../../deals/dealsHeader/DealsHeader";
 import DealsDetails from "../../deals/dealsDetails/DealsDetails";
-import charts from "../../../assets/Candles1.png";
-
 import RecommendationCard from "../../recommendations/RecommendationCard";
 import { useTranslation } from "react-i18next";
 import HistoryDetails from "../../history/historyDetails/HistoryDetails";

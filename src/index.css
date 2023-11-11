@@ -376,3 +376,14 @@ ul {
 .dropdown-menu.show {
   text-align: start !important;
 }
+.dealsLink {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 15px;
+  border: 1px solid #00032b; 
+  color: #00032b;
+  width: fit-content;
+  cursor: pointer;
+}

@@ -328,7 +328,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                   {showBack && (
                     <div
                       onClick={() => navigate(-1)}
-                      className="d-flex align-items-center pointer "
+                      className="d-none d-md-flex align-items-center pointer "
                     >
                       <p className="m-0 p-0 text-white">
                         {i18n.language === "ar" ? "العودة" : "back"}

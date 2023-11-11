@@ -3,7 +3,7 @@ import style from "./courseRow.module.css";
 import { useTranslation } from "react-i18next";
 
 import eyeIcon from "../../../assets/eye.png";
-const CourseRow = ({ item, newCount }) => {
+const CourseRow = ({ item }) => {
   const [t] = useTranslation();
   return (
     <div

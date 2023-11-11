@@ -1,6 +1,6 @@
 .mainContainer {
   border-bottom: 1px solid gray;
-  /* height: 130px; */
+ 
 }
 .border::before {
   content: "";
@@ -10,4 +10,9 @@
   width: 1px;
   height: calc(100% + 10px);
   background-color: gray;
+}
+@media screen and (max-width : 767px) {
+  .border::before {
+    opacity: 0;
+  }
 }
