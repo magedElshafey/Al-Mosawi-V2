@@ -15,11 +15,7 @@ import Login from "./pages/Login.js";
 import Regester from "./pages/Regester.js";
 import About from "./pages/About.js";
 import Contact from "./pages/Contact.js";
-import {
-  accountDetails,
-  monthlyWithdraw,
-  recommendationDetails,
-} from "./fakers/data.js";
+import { monthlyWithdraw } from "./fakers/data.js";
 import Blogs from "./pages/Blogs.js";
 import Blog from "./pages/Blog.js";
 import ForexAccount from "./pages/ForexAccount.js";
@@ -270,7 +266,6 @@ const App = () => {
                 element={
                   <Account
                     phoneNum={settingsData.contactSettings.phone}
-                    accountDetails={accountDetails}
                     monthlyWithdraw={monthlyWithdraw}
                   />
                 }
@@ -349,7 +344,7 @@ const App = () => {
             <Routes>
               <Route
                 path="/recommendation-details"
-                element={<RecommendationHistory data={recommendationDetails} />}
+                element={<RecommendationHistory />}
               />
             </Routes>
             <Routes>

@@ -12,10 +12,7 @@ const MAX = () => {
   const fetchData = () => {
     return request({ url: "/forex" });
   };
-  const { isLoading, data } = useQuery("special-account-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("special-account-page", fetchData);
   return (
     <>
       {isLoading ? (

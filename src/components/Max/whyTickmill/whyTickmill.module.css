@@ -43,7 +43,8 @@
 }
 @media screen and (max-width: 767px) {
   .mediaContainer {
-    width: 50%;
+   
+    height: 300px !important;
   }
 }
 

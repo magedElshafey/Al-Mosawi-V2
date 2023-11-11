@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import style from "./whyTickmill.module.css";
 import check from "../../../assets/check.png";
-import { whyTickmill, media } from "../../../fakers/data";
-import buyImg from "../../../assets/buy-svgrepo-com.png";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 const WhyTickmill = ({ paper, faqs }) => {
-  const [showDetails, setShowDetails] = useState(false);
-  const [showHow, sewtShowHow] = useState(false);
-  const [showCopmany, setShowCompany] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(null);
   return (
     <div className="container py-4">
