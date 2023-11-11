@@ -11,7 +11,7 @@ const WHY = ({ data }) => {
           <div key={index}>
             <p
               onClick={() => setActiveId(index)}
-              className={` shamel fs18 pointer  mx-0 fw-bold    ${
+              className={` shamel ${style.whyTitle} pointer  mx-0 fw-bold    ${
                 index === activeId ? style.active : null
               }`}
             >

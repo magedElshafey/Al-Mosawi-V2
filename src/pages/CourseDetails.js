@@ -12,7 +12,7 @@ import { useQuery } from "react-query";
 const CourseDetails = ({ fixedContainer }) => {
   const params = useParams();
   const [currentUrl, setCurrentUrl] = useState(window.location.href);
-  console.log("this is the current url", currentUrl);
+
   useEffect(() => {
     const hasCode = currentUrl.includes("?r=");
     console.log("has the code ?", hasCode);
@@ -27,13 +27,8 @@ const CourseDetails = ({ fixedContainer }) => {
   const fetchData = (id) => {
     return request({ url: `course/${id}` });
   };
-  const { isLoading, data } = useQuery(
-    ["course details-page", params.id],
-    () => fetchData(params.id),
-    {
-      cacheTime: 12000,
-      staleTime: 12000,
-    }
+  const { isLoading, data } = useQuery(["course details-page", params.id], () =>
+    fetchData(params.id)
   );
   return (
     <>
