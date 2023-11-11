@@ -1,10 +1,5 @@
 import React from "react";
-import ReactPlayer from "react-player";
-
 import style from "./Hero.module.css";
-import videoPlayer from "../../../assets/Component 31 – 1.svg";
-import BTN from "../../utils/btn/BTN";
-import { AiOutlinePlayCircle } from "react-icons/ai";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import { useTranslation } from "react-i18next";
 const Hero = ({
@@ -12,22 +7,17 @@ const Hero = ({
   title,
   pageName,
   desc,
-  redTitle,
   btnText,
   isSmallHero,
   isMediumHero,
   isBigHero,
   isRow,
-  secondImg,
   intro,
-  bigDesc,
   isBtn,
-  video,
-  action,
   onClick,
   isStatic,
 }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   return (
     <div
       className={`${style.imgContainer} ${
@@ -40,7 +30,7 @@ const Hero = ({
       <div className={style.overlay}>
         <div className="container">
           {isRow ? (
-            <div className="pt-4 row align-items-center">
+            <div className="pt-3 row align-items-center">
               <div className="col-12 col-md-6 mb-3 mb-md-0">
                 {intro && (
                   <p
@@ -89,9 +79,8 @@ const Hero = ({
                   className={style.videoFrame}
                   allow="autoplay; fullscreen;"
                   allowFullScreen
+                  title="prochart video"
                 ></iframe>
-                {/**                <AiOutlinePlayCircle size={70} className={style.videoPlayer} />
-                 */}
               </div>
             </div>
           ) : (

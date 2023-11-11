@@ -69,21 +69,19 @@ const HeroBox = ({
           !isAfilator &&
           !isWallet && (
             <div className="p-0 m-0 z-3 row justify-content-center align-items-center">
-              <div className="p-0 m-0z-3 col-12 col-md-8 d-flex flex-column  align-items-center  position-relative">
+              <div className="p-0 m-0z-3 col-12 col-md-8 d-flex flex-column  align-items-center">
                 <div>
                   <div dangerouslySetInnerHTML={{ __html: data.mainTitle }} />
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: data.mainDes }} />
-                <div className={style.videoContainer}>
-                  <ReactPlayer
-                    url={data.link}
-                    playing={true}
-                    loop={true}
-                    muted={true}
-                    width="100%"
-                    height="100%"
-                  />
-                </div>
+
+                <ReactPlayer
+                  url={data.link}
+                  playing={true}
+                  loop={true}
+                  muted={true}
+                  width={340}
+                />
               </div>
             </div>
           )}
