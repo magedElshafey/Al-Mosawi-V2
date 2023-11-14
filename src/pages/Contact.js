@@ -4,14 +4,14 @@ import ContactForm from "../components/contact/contactForm/ContactForm";
 import ContactDetails from "../components/contact/contactDetails/ContactDetails";
 import Location from "../components/contact/Location/Location";
 import { useTranslation } from "react-i18next";
-const Contact = ({  appointment, contactDetails }) => {
+const Contact = ({ appointment, contactDetails }) => {
   const { i18n } = useTranslation();
   return (
     <div>
       <Hero
-        title={i18n.language === "en" ? "contact us" : "تواصل معنا"}
-        img={contactDetails.headerImg}
+        title={contactDetails.headerTitle}
         desc={contactDetails.headerDes}
+        img={contactDetails.headerImg}
         pageName={i18n.language === "en" ? "contact us" : "تواصل معنا"}
         isBigHero={false}
         isSmallHero={false}
@@ -21,7 +21,10 @@ const Contact = ({  appointment, contactDetails }) => {
       <div className="container py-5">
         <div className="row gap-5">
           <div className="col-12 col-md-7 mb-3 mb-md-0">
-            <ContactForm />
+            <ContactForm
+              title={contactDetails.formTitle}
+              desc={contactDetails.formDescription}
+            />
           </div>
           <div className="col-12 col-md-4">
             <ContactDetails

@@ -19,10 +19,13 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             className={style.icon}
           />
           <div>
-            <p className="p-0 m-0 mb-3 fw-bold">
+            <p className="p-0 m-0 mb-3 fw-bold ">
               {i18n.language === "en" ? "for contact" : "للاتصال"}
             </p>
-            <p dangerouslySetInnerHTML={{ __html: phone }}></p>
+            <p
+              className="green"
+              dangerouslySetInnerHTML={{ __html: phone }}
+            ></p>
           </div>
         </div>
         <div className="d-flex gap-2">
@@ -36,7 +39,10 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <p className="shamel p-0 m-0 fw-bold">
               {i18n.language === "en" ? "whatsapp" : "رقم خدمة العملاء واتساب"}
             </p>
-            <p dangerouslySetInnerHTML={{ __html: hotLine }}></p>
+            <p
+              className="green"
+              dangerouslySetInnerHTML={{ __html: hotLine }}
+            ></p>
           </div>
         </div>
         <div className="d-flex gap-2 ">
@@ -50,7 +56,10 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <p className=" p-0 m-0 fw-bold">
               {i18n.language === "en" ? "location" : "العنوان"}
             </p>
-            <p dangerouslySetInnerHTML={{ __html: address }}></p>
+            <p
+              className="green"
+              dangerouslySetInnerHTML={{ __html: address }}
+            ></p>
           </div>
         </div>
 

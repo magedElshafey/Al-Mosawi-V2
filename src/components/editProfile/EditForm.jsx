@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { gitName, gitPp } from "../../Redux/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { header } from "../../fakers/data";
 const EditForm = ({
   isTickmill,
   name,
@@ -31,11 +32,13 @@ const EditForm = ({
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formDataToSend = new FormData();
     formDataToSend.append("name", name);
     formDataToSend.append("password", password);
     formDataToSend.append("profile_photo", photo);
     formDataToSend.append("phone", phone);
+    console.log("photo", photo);
     const res = await axios.post(
       "https://almosawi.admin.technomasrsystems.com/api/user/update-my-profile",
       formDataToSend,
@@ -47,7 +50,7 @@ const EditForm = ({
         },
       }
     );
-
+    console.log("res", res);
     if (res.data.status === "success") {
       toast.success(res.data.message);
       dispatch(gitName(res.data.data.name));
@@ -57,43 +60,8 @@ const EditForm = ({
       } else {
         navigate("/account");
       }
-    } else {
-      toast.error(res.data.message);
     }
   };
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log("this is the user", user);
-  //   const formDataToSend = new FormData();
-  //
-  //
-  //
-  //
-  //
-
-  //   const res = await fetch(
-  //     "",
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         lang,
-  //         user,
-  //       },
-  //       body: JSON.stringify(formDataToSend),
-  //     }
-  //   );
-  //   const data = await res.json();
-  //   console.log("this is the data after submit", data.data);
-  //   if (data.status === "success") {
-  //
-  //
-  //
-  //   } else {
-  //
-  //   }
-  //   return data;
-  // };
   return (
     <div className="row justify-content-center">
       <h3 className="fw-bolder green text-center mb-3">
@@ -137,10 +105,10 @@ const EditForm = ({
               {i18n.language === "ar" ? "رقم الهاتف" : "phone"}
             </label>
             <input
+              value={phone}
               onChange={(e) => setPhone(e.target.value)}
               className="inp"
               type="text"
-              value={phone}
               name="phone"
               id="phone"
             />
@@ -152,9 +120,9 @@ const EditForm = ({
             <input
               className="inp"
               type="text"
+              onChange={(e) => setAddress(e.target.value)}
               value={address}
               name="address"
-              onChange={(e) => setAddress(e.target.value)}
               id="address"
             />
           </div>

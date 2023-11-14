@@ -6,7 +6,7 @@ import { useMutation } from "react-query";
 import { request } from "../../utils/axios.js";
 import Spinner from "../../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
-const ContactForm = () => {
+const ContactForm = ({ title, desc }) => {
   const { t, i18n } = useTranslation();
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
@@ -122,12 +122,8 @@ const ContactForm = () => {
   return (
     <>
       <div className={`p-4 ${style.mainContainer}`}>
-        <p className="fw-bolder mb-2 p-0 mx-0 shamel fs28">{t("glade")}</p>
-        <p className="mb-2 mx-0 p-0 w-75">
-          {i18n.language === "ar"
-            ? "إذا كان لديك أي استفسارات أو تعليقات، يرجى إرسالها إليناعبر نموذج الاتصال وسيتم الرد بأسرع وقت"
-            : "If you have any questions or comments, please send them to us via the contact form and we will respond as soon as possible"}
-        </p>
+        <p className="fw-bolder mb-2 p-0 mx-0 shamel fs28">{title}</p>
+        <p className="mb-2 mx-0 p-0 w-75">{desc}</p>
         <form>
           <div className="row my-4">
             <div className="col-12 col-md-6 mb-3 mb-md-0">

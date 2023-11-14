@@ -79,10 +79,12 @@ const LoginForm = () => {
         dispatch(gitName(data.data.data.name));
         dispatch(gitPp(data.data.data.photo));
         dispatch(gitUserId(data?.data?.data?.id));
+        localStorage.setItem("type", JSON.stringify(data.data.data.type));
         localStorage.setItem(
           "accountType",
-          JSON.stringify(data.data.data.type)
+          JSON.stringify(data.data.data.account_type)
         );
+
         sendCartItems(data?.data?.data?.id);
         setAccount("");
         setPassword("");

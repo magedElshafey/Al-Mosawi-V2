@@ -11,12 +11,12 @@ import { useQuery } from "react-query";
 import toast from "react-hot-toast";
 const EditProfile = ({ lang }) => {
   const isTickmill = JSON.parse(localStorage.getItem("tickmillUser"));
-  const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [photo, setPhoto] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [photo, setPhoto] = useState("");
   const navigate = useNavigate();
   const { isLogin, user } = useSelector((state) => state.authSlice);
   useEffect(() => {
@@ -33,14 +33,12 @@ const EditProfile = ({ lang }) => {
     return request({ url: "/user/my-profile", headers });
   };
   const { isLoading, data } = useQuery("edit-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
     onSuccess: (data) => {
       if (data?.data?.status === "success") {
         setName(data.data.data.name);
         setEmail(data.data.data.email);
         setPhone(data.data.data.phone);
-        setAddress(data.data.data.address);
+        setAddress(data.data.data.address ? data.data.data.address : "");
         setPhoto(data.data.data.photo);
       } else {
         toast.error(
@@ -76,6 +74,7 @@ const EditProfile = ({ lang }) => {
               email={email}
               address={address}
               photo={photo}
+              password={password}
               setPhoto={setPhoto}
               setName={setName}
               setPassword={setPassword}

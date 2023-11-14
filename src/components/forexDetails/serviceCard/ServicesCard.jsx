@@ -3,25 +3,37 @@ import style from "./serviceCard.module.css";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-const ServicesCard = ({ data, isTickMill }) => {
+const ServicesCard = ({ data }) => {
   const { i18n } = useTranslation();
   const type = JSON.parse(localStorage.getItem("accountType"));
-
+  const accountType = JSON.parse(localStorage.getItem("accountType"));
   const navigate = useNavigate();
+
   const handleNavigate = (item) => {
-    if (isTickMill || type === "prochart_usersss") {
-      navigate(item.path);
-    }
     if (
-      (!isTickMill && item.title === "حاسبة الفوركس") ||
-      (!isTickMill && item.title === "المدونة") ||
-      (!isTickMill && item.title === "التقويم الاقتصادي") ||
-      (!isTickMill && item.title === "قسم البروشارت")
+      (accountType === "pro_classic" || accountType === "pro_classic_max") &&
+      item.title === "الإستشارات"
     ) {
       toast.error(
         i18n.language === "ar"
-          ? "هذة الصفحة متاحة لعملاء tickmill فقط تحتاج الي الاشتراك اولا "
-          : "this page is available for tickmill client only you need to subscripe"
+          ? "قسم الاستشارات غير متاح لعملاء pro classic"
+          : "The consulting section is not available for Pro Classic customers"
+      );
+    } else if (
+      (type === "course_user" && item.title === "المدونة") ||
+      (type === "course_user" && item.title === "حاسبة الفوركس") ||
+      (type === "course_user" && item.title === "التقويم الاقتصادي")
+    ) {
+      toast.error(
+        i18n.language === "ar"
+          ? "هذا القسم غير متاح لعملاء الكورسات"
+          : "The blog is not available to course customers"
+      );
+    } else if (type === "prochart_user" && item.title === "التقويم الاقتصادي") {
+      toast.error(
+        i18n.language === "ar"
+          ? "هذا القسم غير متاح لعملاء البروشارت"
+          : "This section is not available to BroChart clients"
       );
     } else {
       navigate(item.path);
@@ -62,3 +74,22 @@ const ServicesCard = ({ data, isTickMill }) => {
 };
 
 export default ServicesCard;
+/**
+ *   if (isTickMill || type === "prochart_usersss") {
+      navigate(item.path);
+    }
+    if (
+      (!isTickMill && item.title === "حاسبة الفوركس") ||
+      (!isTickMill && item.title === "المدونة") ||
+      (!isTickMill && item.title === "التقويم الاقتصادي") ||
+      (!isTickMill && item.title === "قسم البروشارت")
+    ) {
+      toast.error(
+        i18n.language === "ar"
+          ? "هذة الصفحة متاحة لعملاء tickmill فقط تحتاج الي الاشتراك اولا "
+          : "this page is available for tickmill client only you need to subscripe"
+      );
+    } else {
+      navigate(item.path);
+    }
+ */
