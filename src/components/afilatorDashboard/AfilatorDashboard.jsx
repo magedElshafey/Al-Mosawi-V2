@@ -38,8 +38,12 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
 
       <div className="custom-table my-4">
         <div className="table-header">
-          <div className="table-cell header ">courses</div>
-          <div className="table-cell header">link</div>
+          <div className="table-cell header ">
+            {i18n.language === "ar" ? "كورسات" : "courses"}
+          </div>
+          <div className="table-cell header">
+            {i18n.language === "ar" ? "الروابط" : "link"}
+          </div>
         </div>
         {courses.map((course, index) => (
           <div className="table-row" key={index}>
@@ -63,8 +67,12 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
       </div>
       <div className="custom-table ">
         <div className="table-header">
-          <div className="table-cell header">procharts</div>
-          <div className="table-cell header">link</div>
+          <div className="table-cell header">
+            {i18n.language === "ar" ? "البروشارت" : "procharts"}
+          </div>
+          <div className="table-cell header">
+            {i18n.language === "ar" ? "الروابط" : "link"}
+          </div>
         </div>
         {prochart.map((prochart, index) => (
           <div className="table-row" key={index}>

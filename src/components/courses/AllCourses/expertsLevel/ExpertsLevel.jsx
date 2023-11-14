@@ -15,10 +15,7 @@ const ExpertsLevel = ({ expertCourses }) => {
         <div>
           {expertCourses.map((course, index) => (
             <div className="mb-2" key={index}>
-              <div
-                dangerouslySetInnerHTML={{ __html: course.header_des }}
-                style={{ color: "black" }}
-              />
+              <p className="text-black m-0 p-0 mb-2">{course.afterPay_des}</p>
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <div
                   className="green fw-bolder fs-5"

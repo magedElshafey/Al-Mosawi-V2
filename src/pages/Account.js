@@ -15,7 +15,8 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const user = localStorage.getItem("userId");
-  const type = JSON.parse(localStorage.getItem("accountType"));
+  const type = JSON.parse(localStorage.getItem("type"));
+  const accountType = JSON.parse(localStorage.getItem("accountType"));
   const isTickmill = JSON.parse(localStorage.getItem("tickmillUser"));
   useEffect(() => {
     if (!user) {
@@ -29,7 +30,7 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
     return request({ url: "/user/my-profile", headers });
   };
   const { isLoading, data } = useQuery("account-normal-user-page", fetchData);
- 
+
   return (
     <>
       {isLoading ? (
@@ -59,13 +60,19 @@ const Account = ({ monthlyWithdraw, phoneNum }) => {
                   accountDetails={data.data.data}
                   isTickmill={isTickmill}
                 />
-                {isTickmill ? (
-                  <Withdraw monthlyWithdraw={monthlyWithdraw} />
+                {accountType === "vip_max" ||
+                accountType === "pro_classic_max" ? (
+                  <Withdraw
+                    winnerName={data.data.winner}
+                    monthlyWithdraw={monthlyWithdraw}
+                  />
                 ) : null}
               </div>
               <div className="col-12   col-md-4 mx-auto">
-                {type === "vip_max" ||
-                  (type === "pro_classic_max" ? <DownloadPlane /> : null)}
+                {accountType === "vip_max" ||
+                accountType === "pro_classic_max" ? (
+                  <DownloadPlane link={data.data.data.capitalManagement} />
+                ) : null}
                 <ContactUs phoneNum={phoneNum} />
               </div>
             </div>

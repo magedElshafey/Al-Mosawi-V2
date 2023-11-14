@@ -4,24 +4,28 @@ import style from "./video.module.css";
 const Video = ({ data }) => {
   return (
     <div className={style.mainDiv}>
-      <div className="container">
-        <div className="py-2 row align-items-center justify-content-center gap-4">
-          <div className="col-12 col-md-6">
-            <div dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }} />
-            <div
-              className="mt-3"
-              dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
-            />
-          </div>
-          <div className="col-12 col-md-5">
-            <ReactPlayer
-              url="https://player.vimeo.com/video/867338027"
-              playing={true}
-              loop={true}
-              muted={true}
-              controls
-              width={400}
-            />
+      <div className={style.overlay}>
+        <div className="container">
+          <div
+            className={`py-2 row align-items-center justify-content-center gap-4 ${style.mainContainer}`}
+          >
+            <div className="col-12 col-md-6">
+              <div dangerouslySetInnerHTML={{ __html: data.adSectionTitle2 }} />
+              <div
+                className="mt-3"
+                dangerouslySetInnerHTML={{ __html: data.adSectionDes2 }}
+              />
+            </div>
+            <div className={`col-12 col-md-5`}>
+              <ReactPlayer
+                url="https://player.vimeo.com/video/867338027"
+                playing={true}
+                loop={true}
+                muted={true}
+                controls
+                width={340}
+              />
+            </div>
           </div>
         </div>
       </div>

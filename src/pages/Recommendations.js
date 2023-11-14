@@ -9,10 +9,7 @@ const Recommendations = () => {
   const fetchData = () => {
     return request({ url: "/deal/index" });
   };
-  const { isLoading, data } = useQuery("deals-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("deals-page", fetchData);
   return (
     <div>
       {isLoading ? (

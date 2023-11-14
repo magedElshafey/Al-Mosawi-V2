@@ -188,9 +188,15 @@ const ForexForm = () => {
               id="account"
               value={accountKind}
             >
-              <option value="">نوع الحساب</option>
-              <option value="max">حساب MAX</option>
-              <option value="main">الحسابات الأساسية</option>
+              <option value="">
+                {i18n.language === "ar" ? "account type" : "نوع الحساب"}
+              </option>
+              <option value="max">
+                {i18n.language === "ar" ? "حساب MAX" : "max account"}
+              </option>
+              <option value="main">
+                {i18n.language === "ar" ? "الحسابات الأساسية" : "basic account"}
+              </option>
             </select>
           </div>
           <div className="col-12 col-md-6 mb-2 mb-md-0">

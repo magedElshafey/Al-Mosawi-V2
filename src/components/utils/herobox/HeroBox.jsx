@@ -74,7 +74,6 @@ const HeroBox = ({
                   <div dangerouslySetInnerHTML={{ __html: data.mainTitle }} />
                 </div>
                 <div dangerouslySetInnerHTML={{ __html: data.mainDes }} />
-
                 <ReactPlayer
                   url={data.link}
                   playing={true}

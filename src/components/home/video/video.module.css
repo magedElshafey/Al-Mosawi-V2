@@ -1,11 +1,24 @@
 .mainDiv {
   width: 100vw;
-  height: 400px;
-  background-color: var(--gradientBackground);
+  height: 430px;
+  position: relative;
+  background-image: url("../../../assets/hhh.png");
   display: flex;
   align-items: center;
 }
-@media screen and (max-width : 767px) {
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 3, 43, 0.4) 20%,
+    rgba(19, 0, 90, 0.8) 100%
+  );
+}
+@media screen and (max-width: 767px) {
   .mainDiv {
     height: auto;
   }
@@ -20,8 +33,8 @@
 } */
 
 .overlay {
- position: absolute;
- background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

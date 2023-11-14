@@ -2,7 +2,7 @@ import React from "react";
 import style from "./withdraw.module.css";
 import gift from "../../../assets/gift.png";
 import { useTranslation } from "react-i18next";
-const Withdraw = ({ monthlyWithdraw }) => {
+const Withdraw = ({ monthlyWithdraw, winnerName }) => {
   const { i18n } = useTranslation();
   return (
     <div
@@ -38,9 +38,7 @@ const Withdraw = ({ monthlyWithdraw }) => {
               ? monthlyWithdraw.winnerText
               : monthlyWithdraw.enWinnerText}
           </p>
-          <p className="fs20 shamel m-0 p-0 fw-bold green">
-            {monthlyWithdraw.winnerName}
-          </p>
+          <p className="fs20 shamel m-0 p-0 fw-bold green">{winnerName}</p>
         </div>
       </div>
     </div>

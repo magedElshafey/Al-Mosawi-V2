@@ -12,20 +12,11 @@ import Spinner from "../utils/Spinner/Spinner";
 import { request } from "../utils/axios";
 import toast from "react-hot-toast";
 const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
-  // const [appointmentDay, setAppointmentDay] = useState({});
-  // const [dayId, setDayId] = useState(null);
-  // const [timeId, setTimeId] = useState(null);
-  // const [time, setTime] = useState(null);
   const { t, i18n } = useTranslation();
-  // const [day, setDay] = useState(null);
   const [activeDay, setActiveDay] = useState(null);
   const [activeDate, setActiveDate] = useState(null);
   const [activeTime, setActiveTime] = useState(null);
   const [status, setStatus] = useState(null);
-  console.log("active day is", activeDay);
-  console.log("active date is", activeDate);
-  console.log("active status is", status);
-  console.log("active time is", activeTime);
   const handleAppointmentClick = (appointment, status, time) => {
     setActiveDay(appointment.day);
     setActiveDate(appointment.date);
@@ -104,7 +95,7 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
         <Spinner />
       ) : (
         <div className="mt-5 row justify-content-center">
-          <div className={`col-12 col-md-8  ${style.mainDiv}`}>
+          <div className={`col-12 col-md-9  ${style.mainDiv}`}>
             <div className="my-2">
               <div className="d-flex flex-column align-items-center gap-1">
                 <p className="m-0 p-0 fw-bold fs24 shamel">{title}</p>

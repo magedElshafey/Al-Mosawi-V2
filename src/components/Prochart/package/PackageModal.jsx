@@ -47,53 +47,7 @@ const PackageModal = ({
   const [disabledBtn, setDisabledBtn] = useState(false);
   // handle add to cart
   const isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
-  // const addProchartToApi = (data) => {
-  //   const headers = {
-  //     type: "ProchartPlans",
-  //     user,
-  //   };
-  //   return request({ url: "/cart/add", method: "post", headers, data });
-  // };
-  // const { isLoading, mutate } = useMutation(addProchartToApi, {
-  //   onSuccess: (data) => {
-  //     toast.success(
-  //       i18n.language === "ar" ? ` تم اضافته للعربة بنجاح` : ` added to cart`
-  //     );
-  //     window.localStorage.setItem(
-  //       "cart",
-  //       JSON.stringify(data?.data?.data?.itemsDetails)
-  //     );
-  //     navigate("/cart");
-  //   },
-  //   onError: () => {
-  //     toast.error(
-  //       i18n.language === "en"
-  //         ? "there is an error occurred , please try again"
-  //         : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
-  //     );
-  //   },
-  // });
-  // const handleAddToCart = async (product) => {
-  //   console.log("this is the product", product);
-  //   const index = cartItems.findIndex((item) => item.id === product.id);
-  //   if (index >= 0) {
-  //     setDisabledBtn(true);
-  //     toast.error(
-  //       i18n.language === "en"
-  //         ? "this item already at the cart"
-  //         : "هذا المنتج موجود في العربة بالفعل"
-  //     );
-  //   } else {
-  //     if (isLogin) {
-  //       const courseDetails = { productId: product.id };
-  //       await mutate(courseDetails);
-  //       setShowModal(false);
-  //     } else {
-  //       setShowModal(false);
-  //       navigate("/login");
-  //     }
-  //   }
-  // };
+
 
   const handleAddToCart = async (product) => {
     if (isLogin) {
@@ -113,7 +67,7 @@ const PackageModal = ({
         }
       );
       const data = await res.json();
-      console.log("this is the data from adding prochart to the cart", data);
+   
 
       if (data.status === "faild") {
         toast.error(data.message);

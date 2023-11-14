@@ -14,7 +14,7 @@ const ForgetDetails = () => {
   const [email, setEmail] = useState("");
   const handleClick = () => {
     if (email.trim().length) {
-      naviagte("/new-password");
+      naviagte("/otp");
     } else {
       toast.error(
         i18n.language === "ar"

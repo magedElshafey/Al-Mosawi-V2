@@ -196,10 +196,11 @@ ul {
 .mt80 {
   margin-top: 70px;
 }
-.mt100 , .mt-100 {
+.mt100,
+.mt-100 {
   margin-top: 130px;
 }
-@media screen and (max-width : 767px) {
+@media screen and (max-width: 767px) {
   .mt-100 {
     margin-top: 25px;
   }
@@ -382,8 +383,22 @@ ul {
   justify-content: center;
   align-items: center;
   padding: 7px 15px;
-  border: 1px solid #00032b; 
+  border: 1px solid #00032b;
   color: #00032b;
   width: fit-content;
   cursor: pointer;
+}
+.otp-input {
+  width: 120px;
+  height: 40px;
+  font-size: 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin: 0 5px;
+  text-align: center;
+}
+/* Custom focus style for OTP input */
+.otp-input:focus {
+  outline: none;
+  border-color: #0ab46e; /* Change focus border color */
 }

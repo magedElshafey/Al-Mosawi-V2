@@ -50,6 +50,7 @@ import JoinAfilate from "./pages/JoinAfilate.js";
 import Afilator from "./pages/Afilator.js";
 import LoginAfilate from "./pages/LoginAfilate.js";
 import Wallet from "./pages/Wallet.js";
+import OTP from "./pages/OTP.js";
 
 const App = () => {
   // handle website settings data
@@ -305,6 +306,12 @@ const App = () => {
             {/*done*/}
             <Routes>
               <Route path="/booking" element={<Booking />} />
+            </Routes>
+            <Routes>
+              <Route
+                path="/otp"
+                element={<OTP phoneNum={settingsData.contactSettings.phone} />}
+              />
             </Routes>
             {/*done*/}
             <Routes>

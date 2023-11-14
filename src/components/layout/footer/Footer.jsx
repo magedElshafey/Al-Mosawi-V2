@@ -30,7 +30,8 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
       pathname === "/wallet" ||
       pathname === "/login" ||
       pathname === "/reg" ||
-      pathname === "/forget"
+      pathname === "/forget" ||
+      pathname === "/otp"
     ) {
       setShowFooter(false);
     } else {

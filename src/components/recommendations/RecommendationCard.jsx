@@ -26,15 +26,17 @@ const RecommendationCard = ({ data }) => {
           className={`col-6 mb-2 d-flex flex-column gap-2 mb-md-0 ${style.stopContainer}`}
         >
           <div className="d-flex gap-1">
-            <p className=" m-0 p-0 text-white  ">ايقاف</p>
+            <p className=" m-0 p-0 text-white">
+              {i18n.language === "ar" ? "ايقاف" : "stop"}
+            </p>
             <p className="m-0 p-0 text-white">: {data.Recommendation.stop}</p>
           </div>
           <div className="d-flex gap-1">
-            <p className="m-0 p-0 text-white roboto ">
+            <p className="m-0 p-0 text-white">
               {i18n.language === "ar" ? "دخول" : "entrance"} :
             </p>
             <p className="m-0 p-0 text-white roboto  mb-4">
-              : {data.Recommendation.enter}
+              {data.Recommendation.enter}
             </p>
           </div>
         </div>
@@ -57,9 +59,15 @@ const RecommendationCard = ({ data }) => {
           />
         </div>
       </div>
-      <div className={`${style.goalContainer}`}>
+      <div
+        className={`${style.goalContainer} ${
+          i18n.language === "ar"
+            ? style.goalContainerrtl
+            : style.goalContainerLtr
+        }`}
+      >
         <p className="my-0  p-0 roboto d-inline-block text-white p-2">
-          الهدف :{" "}
+          {i18n.language === "ar" ? "الهدف" : "goal"} :{" "}
         </p>
         <p className="my-0  p-0 roboto d-inline-block text-white">
           {data.Recommendation.Goal[0].goal}

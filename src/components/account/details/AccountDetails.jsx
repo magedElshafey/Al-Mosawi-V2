@@ -120,32 +120,7 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
                     : "تعديل الحساب"
                 }
               />
-              {/**
-                 {accountDetails.referral_code ? (
-              <>
-                <BTN
-                  action={handleAfilatorDashboard}
-                  text={
-                    isTickmill
-                      ? t("editInfo")
-                      : i18n.language === "en"
-                      ? "afilator dashboard"
-                      : "لوحة تحكم afilator"
-                  }
-                />
-                <BTN
-                  action={handleWallet}
-                  text={
-                    isTickmill
-                      ? t("editInfo")
-                      : i18n.language === "en"
-                      ? "wallet details"
-                      : "تفاصيل المحفظة"
-                  }
-                />
-              </>
-            ) : null}
-            */}
+            
             </div>
           </div>
           {accountDetails.referral_code && (
