@@ -189,7 +189,7 @@ const ForexForm = () => {
               value={accountKind}
             >
               <option value="">
-                {i18n.language === "ar" ? "account type" : "نوع الحساب"}
+                {i18n.language === "ar" ? "نوع الحساب" : "account type"}
               </option>
               <option value="max">
                 {i18n.language === "ar" ? "حساب MAX" : "max account"}

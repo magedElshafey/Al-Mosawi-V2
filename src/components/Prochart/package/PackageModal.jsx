@@ -30,6 +30,7 @@ const PackageModal = ({
   const handleCloseRef = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       action();
+      setShowModal(false);
     }
   };
 
@@ -47,7 +48,6 @@ const PackageModal = ({
   const [disabledBtn, setDisabledBtn] = useState(false);
   // handle add to cart
   const isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
-
 
   const handleAddToCart = async (product) => {
     if (isLogin) {
@@ -67,7 +67,6 @@ const PackageModal = ({
         }
       );
       const data = await res.json();
-   
 
       if (data.status === "faild") {
         toast.error(data.message);

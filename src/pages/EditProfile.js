@@ -9,7 +9,10 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { gitName, gitPp } from "../Redux/auth";
 const EditProfile = ({ lang }) => {
+  const dispatch = useDispatch();
   const isTickmill = JSON.parse(localStorage.getItem("tickmillUser"));
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,8 +41,10 @@ const EditProfile = ({ lang }) => {
         setName(data.data.data.name);
         setEmail(data.data.data.email);
         setPhone(data.data.data.phone);
+        dispatch(gitName(data.data.data.name));
         setAddress(data.data.data.address ? data.data.data.address : "");
         setPhoto(data.data.data.photo);
+        dispatch(gitPp(data.data.data.photo));
       } else {
         toast.error(
           i18n.language === "ar"

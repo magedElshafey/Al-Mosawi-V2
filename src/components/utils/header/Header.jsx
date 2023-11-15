@@ -23,28 +23,30 @@ const Header = ({ title }) => {
           : "The consulting section is not available for Pro Classic customers"
       );
     } else if (
-      (type === "course_user" && !accountType && item.title === "المدونة") ||
-      (type === "course_user" &&
-        !accountType &&
-        item.title === "حاسبة الفوركس") ||
-      (type === "course_user" &&
-        !accountType &&
-        item.title === "التقويم الاقتصادي")
+      (type === "course_user" && item.title === "المدونة") ||
+      (type === "course_user" && item.title === "حاسبة الفوركس") ||
+      (type === "course_user" && item.title === "التقويم الاقتصادي")
     ) {
       toast.error(
         i18n.language === "ar"
           ? "هذا القسم غير متاح لعملاء الكورسات"
           : "The blog is not available to course customers"
       );
-    } else if (
-      type === "prochart_user" &&
-      !accountType &&
-      item.title === "التقويم الاقتصادي"
-    ) {
+    } else if (type === "prochart_user" && item.title === "التقويم الاقتصادي") {
       toast.error(
         i18n.language === "ar"
           ? "هذا القسم غير متاح لعملاء البروشارت"
           : "This section is not available to BroChart clients"
+      );
+    } else if (
+      isTickMill &&
+      type !== "prochart_user" &&
+      item.title === "قسم البروشارت"
+    ) {
+      toast.error(
+        i18n.language === "ar"
+          ? "هذا القسم متاح لعملاء البروشارت فقط"
+          : "This section is available to BroChart clients only"
       );
     } else {
       navigate(item.path);

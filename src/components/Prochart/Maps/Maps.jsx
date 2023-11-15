@@ -3,16 +3,19 @@ import style from "./maps.module.css";
 import ProchartMapCard from "../../utils/prochartMapCard/ProchartMapCard";
 import { useTranslation } from "react-i18next";
 const Maps = ({ data, showModal, action }) => {
-  const [t] = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <div className={`py-2 ${style.main}`}>
       <div className="mb-2 text-center">
         <p className={`my-2 fw-bold  green  shamel  fs28`}>
-          خطط البروشارت / prochart
+          {i18n.language === "ar"
+            ? "خطط البروشارت / prochart"
+            : "prochart plans"}
         </p>
         <p className="mt-0 mb-3 p-0">
-          نوفر لك خطط متميزة تناسب احتياجاتك.. اختر خطتك الان وابدا بتجربة صفقات
-          متميزة معنا
+          {i18n.language === "ar"
+            ? "نوفر لك خطط متميزة تناسب احتياجاتك.. اختر خطتك الان وابدا بتجربة صفقات"
+            : "We provide you with distinct plans that suit your needs. Choose your plan now and start trying out deals Distinguished with us"}
         </p>
       </div>
       <div
@@ -20,7 +23,7 @@ const Maps = ({ data, showModal, action }) => {
       >
         {data.map((item, index) => (
           <ProchartMapCard
-            action={() => action(item.id)}
+            action={action}
             showModal={showModal}
             text={t("subscribe ")}
             key={index}

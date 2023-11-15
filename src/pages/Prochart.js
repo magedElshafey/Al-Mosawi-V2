@@ -18,11 +18,7 @@ const Prochart = ({ phoneNum }) => {
   };
   const { isLoading: loadingProchart, data } = useQuery(
     "prochart-page",
-    fetchData,
-    {
-      cacheTime: 12000,
-      staleTime: 12000,
-    }
+    fetchData
   );
   const sectionRef = useRef(null);
   const scrollToNextSection = () => {

@@ -8,7 +8,7 @@ const ServicesCard = ({ data }) => {
   const type = JSON.parse(localStorage.getItem("accountType"));
   const accountType = JSON.parse(localStorage.getItem("accountType"));
   const navigate = useNavigate();
-
+  const isTickmill = JSON.parse(localStorage.getItem("tickmillUser"));
   const handleNavigate = (item) => {
     if (
       (accountType === "pro_classic" || accountType === "pro_classic_max") &&
@@ -34,6 +34,16 @@ const ServicesCard = ({ data }) => {
         i18n.language === "ar"
           ? "هذا القسم غير متاح لعملاء البروشارت"
           : "This section is not available to BroChart clients"
+      );
+    } else if (
+      isTickmill &&
+      type !== "prochart_user" &&
+      item.title === "قسم البروشارت"
+    ) {
+      toast.error(
+        i18n.language === "ar"
+          ? "هذا القسم متاح لعملاء البروشارت فقط"
+          : "This section is available to BroChart clients only"
       );
     } else {
       navigate(item.path);

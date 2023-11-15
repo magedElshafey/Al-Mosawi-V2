@@ -61,7 +61,14 @@ const Reviews = ({ data }) => {
                 <p className="m-0 p-0 ">{item.position}</p>
               </div>
             </div>
-            <img alt="comma" src={coma} loading="lazy" className={style.coma} />
+            <img
+              alt="comma"
+              src={coma}
+              loading="lazy"
+              className={`${style.coma} ${
+                i18n.language === "ar" ? style.rtl : style.ltr
+              }`}
+            />
 
             <p
               className={`lh p-0 m-0 mt-3 ${

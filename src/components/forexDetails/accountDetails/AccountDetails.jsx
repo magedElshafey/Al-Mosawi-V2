@@ -20,6 +20,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
   const navigate = useNavigate();
   const { profilePhoto } = useSelector((state) => state.authSlice);
   const userId = JSON.parse(localStorage.getItem("userId"));
+  const isTickmill = JSON.parse(localStorage.getItem("tickmillUser"));
   const { t, i18n } = useTranslation();
   const handleAfilate = async () => {
     const res = await fetch(
@@ -91,8 +92,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
     const userData = {};
     await mutate(userData);
   };
-  // const handleAfilatorDashboard = () => navigate("/afilator");
-  // const handleWallet = () => navigate("/wallet");
+
   return (
     <>
       <div className="dropdown mb-3">
@@ -179,17 +179,19 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
             i18n.language === "ar" ? "" : "text-start"
           }`}
         >
-          <button
-            onClick={() => navigate("/forex-account")}
-            className={`${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
-          >
-            <MdArrowBackIos size={20} />
-            <p className="m-0 p-0 ">
-              {i18n.language === "ar"
-                ? "طلب فتح حساب تداول"
-                : "Request to open a trading account"}
-            </p>
-          </button>
+          {!isTickmill && (
+            <button
+              onClick={() => navigate("/forex-account")}
+              className={`${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
+            >
+              <MdArrowBackIos size={20} />
+              <p className="m-0 p-0 ">
+                {i18n.language === "ar"
+                  ? "طلب فتح حساب تداول"
+                  : "Request to open a trading account"}
+              </p>
+            </button>
+          )}
           {!data.referral_code && (
             <button
               onClick={handleAfilate}
@@ -203,28 +205,6 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
               </p>
             </button>
           )}
-          {/**
-               *    {data.referral_code ? (
-            <>
-              <div className="my-3">
-                <BTN
-                  action={handleAfilatorDashboard}
-                  text={
-                    i18n.language === "en"
-                      ? "afilator dashboard"
-                      : "لوحة تحكم afilator"
-                  }
-                />
-              </div>
-              <BTN
-                action={handleWallet}
-                text={
-                  i18n.language === "en" ? "wallet details" : "تفاصيل المحفظة"
-                }
-              />
-            </>
-          ) : null}
-               */}
         </div>
       </div>
     </>

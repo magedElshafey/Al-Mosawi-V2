@@ -7,7 +7,20 @@ const ForexCalcDetails = () => {
     <div className={`py-3 col-12`}>
       <p className="fw-bold mx-0 mt-0 p-0 mb-2 fs-5">{t("forexCalc")}</p>
       <p className="mx-0 mt-0 p-0 mb-2">{t("forexCalcDesc")}</p>
-      <div className="row mt-2">
+      <iframe
+        title="External Page"
+        src="https://www.tickmill.com/tools/forex-calculators"
+        width="100%"
+        height="600px"
+        frameBorder="0"
+      />
+    </div>
+  );
+};
+
+export default ForexCalcDetails;
+/**
+ *   <div className="row mt-2">
         <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-0">
           <label className="d-block  mb-1" htmlFor="cuurancy">
             {t("currency")}
@@ -102,8 +115,4 @@ const ForexCalcDetails = () => {
           <p className="m-0 p-0 fw-bold fs-5">0.00</p>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default ForexCalcDetails;
+ */

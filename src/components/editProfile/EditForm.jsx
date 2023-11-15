@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 import { gitName, gitPp } from "../../Redux/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { header } from "../../fakers/data";
 const EditForm = ({
   isTickmill,
   name,
@@ -38,7 +37,7 @@ const EditForm = ({
     formDataToSend.append("password", password);
     formDataToSend.append("profile_photo", photo);
     formDataToSend.append("phone", phone);
-    console.log("photo", photo);
+   
     const res = await axios.post(
       "https://almosawi.admin.technomasrsystems.com/api/user/update-my-profile",
       formDataToSend,

@@ -3,12 +3,8 @@ import style from "./HeroCourse.module.css";
 import timer from "../../../assets/timer.svg";
 import levels from "../../../assets/levels.svg";
 import eye from "../../../assets/eye.svg";
-import {
-  AiOutlineEye,
-  AiOutlineClockCircle,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { FaLevelUpAlt } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
 import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";

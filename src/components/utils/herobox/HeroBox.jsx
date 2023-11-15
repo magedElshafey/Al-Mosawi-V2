@@ -103,7 +103,9 @@ const HeroBox = ({
                     className={`${style.box2}`}
                   >
                     <option value="" disabled>
-                      نوع الصفقة - الكل
+                      {i18n.language === "ar"
+                        ? "نوع الصفقة - الكل"
+                        : "Transaction Type - All"}
                     </option>
                     <option value="buy">{type.buy}</option>
                     <option value="sell">{type.sell}</option>
@@ -113,7 +115,11 @@ const HeroBox = ({
                     onChange={(e) => setDealStatus(e.target.value)}
                     className={`${style.box2}`}
                   >
-                    <option value="">حالة الصفقة</option>
+                    <option value="">
+                      {i18n.language === "ar"
+                        ? " حالة الصفقة"
+                        : "Transaction status"}
+                    </option>
                     <option value="active">{status.active}</option>
                     <option value="unactive">{status.unactive}</option>
                     <option value="expired">{status.expired}</option>

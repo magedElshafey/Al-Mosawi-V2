@@ -120,7 +120,7 @@ const Management = ({ data }) => {
                 <div className="col-12 col-md-7">
                   <div className="mb-3">
                     <label htmlFor="name" className="d-block mb-2">
-                      الاسم
+                      {i18n.language === "ar" ? "الاسم" : "name"}
                     </label>
                     <input
                       onChange={(e) => setName(e.target.value)}
@@ -132,7 +132,9 @@ const Management = ({ data }) => {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="phone" className="d-block mb-2">
-                      رقم الهاتف واتساب
+                      {i18n.language === "ar"
+                        ? " رقم الهاتف واتساب"
+                        : "whatsapp"}
                     </label>
                     <input
                       className={`inp ${style.w90}`}
@@ -144,7 +146,7 @@ const Management = ({ data }) => {
                   </div>
                   <div className=" mb-3">
                     <label htmlFor="email" className="d-block mb-2">
-                      البريد الالكتروني
+                      {i18n.language === "ar" ? " البريد الالكتروني" : "email"}
                     </label>
                     <input
                       onChange={(e) => setEmail(e.target.value)}
@@ -156,7 +158,9 @@ const Management = ({ data }) => {
                   </div>
                   <div className="mb-3">
                     <label className="d-block mb-2" htmlFor="const">
-                      مبلغ الاستثمار
+                      {i18n.language === "ar"
+                        ? "مبلغ الاستثمار"
+                        : "Investment amount"}
                     </label>
                     <input
                       className={`inp ${style.w90}`}

@@ -21,11 +21,17 @@
 .coma {
   position: absolute;
   top: -80px;
-  left: 15px;
+
   width: 51px;
   height: 130px;
   object-fit: contain;
   vertical-align: baseline;
+}
+.rtl {
+  left: 15px;
+}
+.ltr {
+  right: 15px;
 }
 .arrow {
   position: absolute;

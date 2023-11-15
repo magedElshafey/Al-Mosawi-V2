@@ -15,7 +15,11 @@ const ForexCalc = () => {
         isStatic={true}
         img={heroImg}
         title={i18n.language === "ar" ? "حاسبة الفوركس" : "Forex calculator"}
-        desc="اجعل عملية تداولك أسهل عبر استخدام آلاتنا الحاسبة الرائعة. مما يوفر عليك الوقت الذي ستحتاجه للتركيز على اتخاذ قرارات التداول"
+        desc={
+          i18n.language === "ar"
+            ? "اجعل عملية تداولك أسهل عبر استخدام آلاتنا الحاسبة الرائعة. مما يوفر عليك الوقت الذي ستحتاجه للتركيز على اتخاذ قرارات التداول"
+            : "Make your trading easier by using our amazing calculators. This saves you the time you need to focus on making trading decisions"
+        }
       />
       <Header
         title={i18n.language === "ar" ? "حاسبة الفوركس" : "Forex calculator"}

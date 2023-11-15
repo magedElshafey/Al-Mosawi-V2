@@ -15,7 +15,7 @@ const CourseDetails = ({ fixedContainer }) => {
 
   useEffect(() => {
     const hasCode = currentUrl.includes("?r=");
-    console.log("has the code ?", hasCode);
+   
     if (hasCode) {
       const rQueryParamIndex = currentUrl.indexOf("?r=");
       const valueStartIndex = rQueryParamIndex + 3;
