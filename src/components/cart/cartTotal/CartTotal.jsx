@@ -127,7 +127,9 @@ const CartTotal = ({ total, user }) => {
         {!coponSent && (
           <input
             disabled={!isLogin}
-            className="inp book"
+            className={`inp d-inline-block ${
+              i18n.language === "en" ? "ps-5 ms-4" : null
+            }`}
             type="text"
             placeholder={t("addCopon")}
             value={copon}

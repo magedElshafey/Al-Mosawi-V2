@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./FilterBlogs.module.css";
 const FilterBlogs = ({ data }) => {
+  console.log("this is the data from blog filter", data);
   const [activeId, setActiveId] = useState(null);
   const handleClick = (id) => setActiveId(id);
   return (

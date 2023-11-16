@@ -3,7 +3,7 @@ const initialState = {
   isLogin: JSON.parse(localStorage.getItem("isLogin")) || false,
   user: JSON.parse(localStorage.getItem("userId")) || null,
   name: JSON.parse(localStorage.getItem("userName")) || "",
-  profilePhoto: JSON.parse(localStorage.getItem("pp")) || null,
+  profilePhoto: "",
 };
 const authSlice = createSlice({
   initialState,
@@ -23,7 +23,7 @@ const authSlice = createSlice({
     },
     gitPp: (state, action) => {
       state.profilePhoto = action.payload;
-      localStorage.setItem("pp", JSON.stringify(state.profilePhoto));
+      localStorage.setItem("userProfilePicture", action.payload);
     },
     removePip: (state) => {
       state.profilePhoto = null;

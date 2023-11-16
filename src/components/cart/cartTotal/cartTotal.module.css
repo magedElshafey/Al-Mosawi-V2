@@ -3,6 +3,7 @@
   border: 1px solid #dcdcdc;
   box-shadow: 0px 17px 20px #00000012;
   border-radius: 18px;
+  overflow: hidden !important;
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   -ms-border-radius: 18px;
@@ -16,7 +17,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 120px;
+  width: fit-content;
   background-color: #003684;
   padding: 7px;
   color: white;

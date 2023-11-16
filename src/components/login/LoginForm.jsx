@@ -49,15 +49,39 @@ const LoginForm = () => {
 
   // remember me functionality
   useEffect(() => {
-    const storedEmail = localStorage.getItem("rememberedEmail");
-    const storedPassword = localStorage.getItem("rememberedPassword");
-    const storedRememberMe = localStorage.getItem("rememberMe") === "true";
-    if (storedRememberMe && storedEmail && storedPassword) {
-      setAccount(storedEmail);
-      setPassword(storedPassword);
-      setRememberMe(storedRememberMe);
+    const rememberedEmail = getCookie("rememberedEmail");
+    const rememberedPassword = getCookie("rememberedPassword");
+
+    if (rememberedEmail && rememberedPassword) {
+      setAccount(rememberedEmail);
+      setPassword(rememberedPassword);
+      setRememberMe(true);
     }
   }, []);
+  const setCookie = (name, value, days) => {
+    const expirationDate = new Date();
+    expirationDate.setTime(
+      expirationDate.getTime() + days * 24 * 60 * 60 * 1000
+    );
+    const expires = `expires=${expirationDate.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/`;
+  };
+  const getCookie = (name) => {
+    const cookieName = `${name}=`;
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(";");
+
+    for (let i = 0; i < cookieArray.length; i++) {
+      let cookie = cookieArray[i];
+      while (cookie.charAt(0) === " ") {
+        cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(cookieName) === 0) {
+        return cookie.substring(cookieName.length, cookie.length);
+      }
+    }
+    return "";
+  };
   const handleSendMsg = (data) => {
     return request({ url: "/auth/login", method: "post", data });
   };
@@ -110,18 +134,18 @@ const LoginForm = () => {
   });
   const handleClick = async (e) => {
     e.preventDefault();
+
+    if (rememberMe) {
+      setCookie("rememberedEmail", account, 30);
+      setCookie("rememberedPassword", password, 30);
+    } else {
+      setCookie("rememberedEmail", "", -1); // Delete cookie by setting expiration date to the past
+      setCookie("rememberedPassword", "", -1); // Delete cookie by setting expiration date to the past
+    }
+
     if (account.trim() === "" || password.trim() === "") {
       return false;
     } else {
-      if (rememberMe) {
-        localStorage.setItem("rememberedEmail", account);
-        localStorage.setItem("rememberedPassword", password);
-        localStorage.setItem("rememberMe", rememberMe);
-      } else {
-        localStorage.removeItem("rememberedEmail");
-        localStorage.removeItem("rememberedPassword");
-        localStorage.removeItem("rememberMe");
-      }
       const userData = { account, password };
       await mutate(userData);
     }

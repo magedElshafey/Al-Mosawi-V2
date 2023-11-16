@@ -2,7 +2,7 @@ import React from "react";
 import style from "./maps.module.css";
 import ProchartMapCard from "../../utils/prochartMapCard/ProchartMapCard";
 import { useTranslation } from "react-i18next";
-const Maps = ({ data, showModal, action }) => {
+const Maps = ({ data, showModal, action, setShowModal }) => {
   const { t, i18n } = useTranslation();
   return (
     <div className={`py-2 ${style.main}`}>

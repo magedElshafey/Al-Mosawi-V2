@@ -85,8 +85,6 @@ const PackageModal = ({
   };
   return (
     <>
-      <Spinner />
-
       <div
         className={`${style.mainContainer} ${
           showModal ? style.show : style.hide

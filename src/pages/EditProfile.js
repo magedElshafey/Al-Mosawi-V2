@@ -38,13 +38,13 @@ const EditProfile = ({ lang }) => {
   const { isLoading, data } = useQuery("edit-page", fetchData, {
     onSuccess: (data) => {
       if (data?.data?.status === "success") {
-        setName(data.data.data.name);
+        // setName(data.data.data.name);
         setEmail(data.data.data.email);
-        setPhone(data.data.data.phone);
-        dispatch(gitName(data.data.data.name));
+        // setPhone(data.data.data.phone);
+        // dispatch(gitName(data.data.data.name));
         setAddress(data.data.data.address ? data.data.data.address : "");
-        setPhoto(data.data.data.photo);
-        dispatch(gitPp(data.data.data.photo));
+        // setPhoto(data.data.data.photo);
+        // dispatch(gitPp(data.data.data.photo));
       } else {
         toast.error(
           i18n.language === "ar"

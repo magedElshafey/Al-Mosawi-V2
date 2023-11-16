@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Hero from "../components/utils/hero/Hero";
 import Header from "../components/utils/header/Header";
 import BlogCard from "../components/utils/blogCard/BlogCard";
@@ -9,7 +9,9 @@ import { useQuery } from "react-query";
 import { useTranslation } from "react-i18next";
 
 const Blogs = () => {
+  const [activeId, setActiveId] = useState(null);
   const { i18n } = useTranslation();
+
   const fetchData = () => {
     return request({ url: "/blog" });
   };
@@ -31,7 +33,7 @@ const Blogs = () => {
           <Header title={i18n.language === "en" ? "blogs" : "المدونة"} />
           <FilterBlogs data={data.data.blogCategorylist} />
           <div className="container">
-            <div className="mt-3  row">
+            <div className="mt-3 d-flex flex-wrap align-items-center gap-3">
               {data.data.data.map((blog, index) => (
                 <BlogCard key={index} item={blog} />
               ))}
