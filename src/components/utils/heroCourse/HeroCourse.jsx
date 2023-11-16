@@ -29,6 +29,7 @@ const HeroCourse = ({
   const nvigate = useNavigate();
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartSlice);
+  console.log("this is the cart items", cartItems);
   // handle window resize
   useEffect(() => {
     const handleResize = () => {
@@ -55,7 +56,6 @@ const HeroCourse = ({
   const handleAddToCart = async (product) => {
     const index = cartItems.findIndex((item) => item.id === product.id);
     if (index >= 0) {
-      setDisabledBtn(true);
       toast.error(
         i18n.language === "ar"
           ? "هذا المنتج موجود بالفعل في العربة"
@@ -89,7 +89,6 @@ const HeroCourse = ({
         dispatch(addToCart(product));
         nvigate("/cart");
       }
-      nvigate("/cart");
     }
   };
   return (
@@ -188,10 +187,7 @@ const HeroCourse = ({
               </button>
               <button
                 onClick={() => handleAddToCart(product)}
-                disabled={disabledBtn ? true : false}
-                className={`mt-4  book ${style.cartBtn} ${
-                  disabledBtn ? style.disabled : null
-                } `}
+                className={`mt-4  book ${style.cartBtn}`}
               >
                 <AiOutlineShoppingCart className="text-white" size={20} />
                 <p className="text-white m-0 mt-1 p-0 fw-bold">

@@ -9,7 +9,6 @@ import { request } from "../utils/axios";
 import { useSelector } from "react-redux";
 import Spinner from "../utils/Spinner/Spinner";
 const WalletDetails = ({ profit, data }) => {
-  console.log("this is the profit", profit);
   const { user } = useSelector((state) => state.authSlice);
   const { i18n } = useTranslation();
   const [showWithdrawForm, setShowWithdrawForm] = useState(false);

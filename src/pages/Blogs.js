@@ -33,7 +33,7 @@ const Blogs = () => {
           <Header title={i18n.language === "en" ? "blogs" : "المدونة"} />
           <FilterBlogs data={data.data.blogCategorylist} />
           <div className="container">
-            <div className="mt-3 d-flex flex-wrap align-items-center gap-3">
+            <div className="mt-3 d-flex flex-wrap align-items-center gap-3 justify-content-center justify-content-md-start">
               {data.data.data.map((blog, index) => (
                 <BlogCard key={index} item={blog} />
               ))}
