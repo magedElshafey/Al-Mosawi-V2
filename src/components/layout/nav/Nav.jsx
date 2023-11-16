@@ -81,13 +81,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   };
   const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
   const { cartItems } = useSelector((state) => state.cartSlice);
-  // useEffect(() => {
-  //   if (pathname === "/forget" || pathname === "/new-password") {
-  //     setShowLogo(false);
-  //   } else {
-  //     setShowLogo(true);
-  //   }
-  // }, [pathname]);
+
   useEffect(() => {
     if (pathname === "/forex-account/details") {
       setShowAsk(true);
@@ -112,7 +106,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   // handle scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 100) {
+      if (window.scrollY >= 60) {
         setIsBg(true);
       } else {
         setIsBg(false);

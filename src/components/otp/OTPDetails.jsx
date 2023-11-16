@@ -11,6 +11,10 @@ const OTPDetails = () => {
   const { i18n } = useTranslation();
   const naviagte = useNavigate();
   const [otp, setOtp] = useState("");
+  const isArabic = (text) => {
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text);
+  };
   const account = JSON.parse(localStorage.getItem("forgetEmail"));
   const handleCode = (data) => {
     return request({ url: "/auth/check/code", method: "POST", data });
@@ -46,14 +50,24 @@ const OTPDetails = () => {
             <h2>
               {i18n.language === "ar" ? "التحقق من OTP" : "OTP Verification"}
             </h2>
-            <OtpInput
-              inputStyle="otp-input"
-              value={otp}
-              onChange={setOtp}
-              numInputs={6}
-              renderSeparator={<span>-</span>}
-              renderInput={(props) => <input {...props} />}
-            />
+            <div dir="ltr">
+              <OtpInput
+                inputStyle="otp-input"
+                value={otp}
+                onChange={setOtp}
+                numInputs={6}
+                renderSeparator={<span>-</span>}
+                renderInput={(props, index) => (
+                  <input
+                    {...props}
+                    key={index}
+                    style={{
+                      direction: "ltr", // Force LTR for numbers
+                    }}
+                  />
+                )}
+              />
+            </div>
             <button onClick={handleClick} className={style.btn}>
               {i18n.language === "ar" ? "ارسال الكود" : "Verify OTP"}
             </button>

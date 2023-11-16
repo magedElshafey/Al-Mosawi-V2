@@ -97,46 +97,7 @@ const HeroMax = ({
           className="m-0 p-0"
           dangerouslySetInnerHTML={{ __html: headerTitle }}
         />
-        {/**
-          <p className="mx-0  fw-bold d-inline-block text-white fs36 shamel">
-          الحسابات
-        </p>
-        <p
-          className={`mx-1 fw-bold  p-0 d-inline-block whiteGreen shamel fs48 ${style.greenWord}`}
-        >
-          {showArabicMax || showEnglishMax ? "MAX" : null}
-        </p>
-        <p
-          className={`mx-1 fw-bold  p-0 d-inline-block whiteGreen shamel fs48 ${style.greenWord}`}
-        >
-          {showArabicMain && "الأساسية"}
-        </p>
-        <p
-          className={`mx-1 fw-bold  p-0 d-inline-block whiteGreen shamel fs48 ${style.greenWord}`}
-        >
-          {showEnglishMain && "the basic"}
-        </p>
-      */}
-        {/**
-         <div className={`mt-2 book text-white fs20 ${style.desc}`}>
-          غير نظرتك في التداول .. و تداول بالحسابات{" "}
-          <span className="fw-bold shamel whiteGreen">
-            {showArabicMax || showEnglishMax ? "MAX" : null}
-          </span>
-          <span className="fw-bold shamel whiteGreen">
-            {showArabicMain && "الأساسية"}
-          </span>
-          <span className="fw-bold shamel whiteGreen">
-            {showEnglishMain && "the basic"}
-          </span>
-          <span className="mx-2 fw-bold shamel whiteGreen">
-            ذات النظام المميز
-          </span>
-          <p className="">
-            حسابات صممت خصيصا لتوفر لك نص تجريبي يستبدل بالنص الأصل
-          </p>
-        </div>
-      */}
+
         <p
           className={`fw-bolder m-0 p-0 ${style.desc}`}
           dangerouslySetInnerHTML={{ __html: headerDesc }}
@@ -167,11 +128,6 @@ const HeroMax = ({
             />
           </button>
         </div>
-        <p className={`m-0 p-0 z-3 ${style.pageName}`}>
-          {showArabicMax || showEnglishMax ? "MAX" : null}
-          {showArabicMain && "الأساسية"}
-          {showEnglishMain && "the basic"}
-        </p>
       </div>
     </div>
   );

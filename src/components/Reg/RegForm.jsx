@@ -48,6 +48,7 @@ const RegForm = ({ setShowModal }) => {
   const [country, setCountry] = useState("");
   const [tickMillUser, setTickmillUser] = useState(null);
   const [agree, setAgree] = useState("");
+  const [accountNum, setAccountNum] = useState("");
   const handleNameChange = (e) => {
     const inputText = e.target.value;
 
@@ -214,6 +215,26 @@ const RegForm = ({ setShowModal }) => {
               </select>
             </div>
           </div>
+          {+tickMillUser === 1 && (
+            <div className="row mb-2">
+              <div className="mb-3 col-12 col-md-6">
+                <label
+                  htmlFor="number"
+                  className={`d-block fw-bold  shamel mb-1`}
+                >
+                  {i18n.language === "ar" ? "رقم حسابك" : "account number"}
+                </label>
+                <input
+                  type="number"
+                  id="number"
+                  className="inp"
+                  value={accountNum}
+                  name="password"
+                  onChange={(e) => setAccountNum(e.target.value)}
+                />
+              </div>
+            </div>
+          )}
           <div className="row mb-4 ">
             <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex flex-column gap-2 align-items-center">
               <label htmlFor="question" className={`fs15 `}>
@@ -284,6 +305,7 @@ const RegForm = ({ setShowModal }) => {
               </div>
             </div>
           </div>
+
           <button onClick={handleClick} className={`mb-3 ${style.btn}`}>
             <MdOutlineArrowBackIos size={20} />
             <span>{t("next")}</span>

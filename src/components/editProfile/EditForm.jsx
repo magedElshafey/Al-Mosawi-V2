@@ -31,33 +31,43 @@ const EditForm = ({
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formDataToSend = new FormData();
-    formDataToSend.append("name", name);
-    formDataToSend.append("password", password);
-    formDataToSend.append("profile_photo", photo);
-    formDataToSend.append("phone", phone);
-   
-    const res = await axios.post(
-      "https://almosawi.admin.technomasrsystems.com/api/user/update-my-profile",
-      formDataToSend,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          lang,
-          user,
-        },
-      }
-    );
-    console.log("res", res);
-    if (res.data.status === "success") {
-      toast.success(res.data.message);
-      dispatch(gitName(res.data.data.name));
-      dispatch(gitPp(res.data.data.photo));
-      if (isTickmill) {
-        navigate("/user/prochart");
-      } else {
-        navigate("/account");
+    if (name) formDataToSend.append("name", name);
+    if (password) formDataToSend.append("password", password);
+    if (photo) formDataToSend.append("profile_photo", photo);
+    if (phone) formDataToSend.append("phone", phone);
+    // formDataToSend.append("name", name);
+    // formDataToSend.append("password", password);
+    // formDataToSend.append("profile_photo", photo);
+    // formDataToSend.append("phone", phone);
+    if (!name && !password && !photo && !phone) {
+      toast.error(
+        i18n.language === "ar"
+          ? "يجب ان تقوم بملئ احد الحقول علي الاقل"
+          : "You must fill out at least one of the fields"
+      );
+    } else {
+      const res = await axios.post(
+        "https://almosawi.admin.technomasrsystems.com/api/user/update-my-profile",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            lang,
+            user,
+          },
+        }
+      );
+      console.log("res", res);
+      if (res.data.status === "success") {
+        toast.success(res.data.message);
+        dispatch(gitName(res.data.data.name));
+        dispatch(gitPp(res.data.data.photo));
+        if (isTickmill) {
+          navigate("/user/prochart");
+        } else {
+          navigate("/account");
+        }
       }
     }
   };

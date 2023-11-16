@@ -150,7 +150,7 @@ const App = () => {
               menus={settingsData.header}
               lang={lang}
             />
-            <FixedBtn />
+            <FixedBtn num={settingsData.contactSettings.whatsapp} />
             {/*done*/}
             {/*done*/}
             <Routes>

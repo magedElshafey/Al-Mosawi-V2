@@ -59,17 +59,6 @@ const Hero = ({
                     </button>
                   </div>
                 )}
-                {pageName ? (
-                  <p
-                    className={`z-3 ${
-                      i18n.language === "ar"
-                        ? style.pageNamear
-                        : style.pageNameen
-                    } `}
-                  >
-                    {pageName}
-                  </p>
-                ) : null}
               </div>
               <div
                 className={`${style.secondImgContainer} col-12 col-md-6 mb-3 mb-md-0`}
@@ -94,22 +83,12 @@ const Hero = ({
                 <p dangerouslySetInnerHTML={{ __html: title }} />
               ) : null}
               {title && isStatic ? (
-                <p className="fw-bolder whiteGreen fs18">{title}</p>
+                <p className="fw-bolder whiteGreen fs30">{title}</p>
               ) : null}
               <div
                 className={`text-white ${style.desc}`}
                 dangerouslySetInnerHTML={{ __html: desc }}
               />
-
-              {pageName ? (
-                <p
-                  className={`z-3 ${
-                    i18n.language === "ar" ? style.pageNamear : style.pageNameen
-                  } `}
-                >
-                  {pageName}
-                </p>
-              ) : null}
             </div>
           )}
         </div>

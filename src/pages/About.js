@@ -13,10 +13,7 @@ const About = () => {
   const fetchData = () => {
     return request({ url: "/aboutUs" });
   };
-  const { isLoading, data } = useQuery("about-page", fetchData, {
-    cacheTime: 12000,
-    staleTime: 12000,
-  });
+  const { isLoading, data } = useQuery("about-page", fetchData);
   return (
     <>
       {isLoading ? (

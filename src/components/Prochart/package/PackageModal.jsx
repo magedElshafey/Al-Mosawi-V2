@@ -4,14 +4,14 @@ import close from "../../../assets/cross.png";
 import { purchasDetails } from "../../../fakers/data.js";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
-import { AiOutlineClose } from "react-icons/ai";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import { AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
+import { MdArrowBackIos } from "react-icons/md";
 import { toast } from "react-hot-toast";
-import Spinner from "../../utils/Spinner/Spinner";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/cart";
+
 const PackageModal = ({
   showModal,
   action,
@@ -21,11 +21,11 @@ const PackageModal = ({
   packages,
 }) => {
   const navigate = useNavigate();
-  const { cartItems } = useSelector((state) => state.cartSlice);
-  console.log("this is items in the cart", cartItems);
+
   const dispatch = useDispatch();
   const data = packages.filter((item) => item.id === modalId);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
+  const [agree, setAgree] = useState(false);
   const modalRef = useRef();
   const handleCloseRef = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -45,42 +45,49 @@ const PackageModal = ({
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
 
-  const [disabledBtn, setDisabledBtn] = useState(false);
   // handle add to cart
   const isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
 
   const handleAddToCart = async (product) => {
-    if (isLogin) {
-      const res = await fetch(
-        "https://almosawi.admin.technomasrsystems.com/api/cart/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            lang: i18n.language,
-            user,
-            type: "ProchartPlans",
-          },
-          body: JSON.stringify({
-            productId: product.id,
-          }),
-        }
-      );
-      const data = await res.json();
-
-      if (data.status === "faild") {
-        toast.error(data.message);
-      } else {
-        dispatch(addToCart(product));
-        navigate("/cart");
-      }
-    } else {
+    if (!agree) {
       toast.error(
         i18n.language === "ar"
-          ? "تحتاج الي تسجيل الدخول اولا لتقوم ب اضافة باقة البروشارات الي العربة"
-          : "you need to login first before adding prochart to the cart"
+          ? "برجاء الموافقة علي الشروط و الاحكام"
+          : "Please agree to the terms and conditions"
       );
-      navigate("/login");
+    } else {
+      if (isLogin) {
+        const res = await fetch(
+          "https://almosawi.admin.technomasrsystems.com/api/cart/add",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              lang: i18n.language,
+              user,
+              type: "ProchartPlans",
+            },
+            body: JSON.stringify({
+              productId: product.id,
+            }),
+          }
+        );
+        const data = await res.json();
+
+        if (data.status === "faild") {
+          toast.error(data.message);
+        } else {
+          dispatch(addToCart(product));
+          navigate("/cart");
+        }
+      } else {
+        toast.error(
+          i18n.language === "ar"
+            ? "تحتاج الي تسجيل الدخول اولا لتقوم ب اضافة باقة البروشارات الي العربة"
+            : "you need to login first before adding prochart to the cart"
+        );
+        navigate("/login");
+      }
     }
   };
   return (
@@ -140,7 +147,11 @@ const PackageModal = ({
                         </div>
                       ))}
                       <div className={`text-center my-4 ${style.text} `}>
-                        <input type="checkbox" />
+                        <input
+                          type="checkbox"
+                          value={agree}
+                          onChange={() => setAgree(true)}
+                        />
                         <label>
                           {i18n.language === "ar" ? "اوافق علي" : "agree with"}
 
@@ -153,7 +164,7 @@ const PackageModal = ({
                       </div>
                     </div>
                   </div>
-                  <div className="p-5 d-flex justify-content-center align-items-center gap-2">
+                  <div className=" mt-3 d-flex justify-content-center align-items-center gap-2">
                     <div>
                       <p
                         className={`p-0 m-0 fs22  ${style.price} d-inline-block`}
@@ -175,15 +186,31 @@ const PackageModal = ({
                       {data[0].price} $
                     </p>
                   </div>
-                  <div className="d-flex justify-content-center ">
+                  <div className="d-flex justify-content-center align-items-center gap-3 ">
                     <button
-                      className={`book ${style.btn}`}
                       onClick={() => handleAddToCart(data[0])}
+                      className={` mt-4 ${style.buyBtn}`}
                     >
-                      <MdOutlineArrowBackIos size={20} />
-                      <span className="mt-1">
-                        {i18n.language === "ar" ? "اضف للعربة" : "add to cart"}
+                      <div className="fw-bold d-flex align-items-center gap-2">
+                        <MdArrowBackIos size={15} />
+                        <p className="m-0 p-0 fw-bold">{t("buyNow")}</p>
+                      </div>
+                      <span className={`${style.origineal}`}>
+                        (
+                        {data[0].discount_price
+                          ? data[0].price - data[0].discount_price
+                          : data[0].price}{" "}
+                        $)
                       </span>
+                    </button>
+                    <button
+                      onClick={() => handleAddToCart(data[0])}
+                      className={`mt-4  book ${style.cartBtn}`}
+                    >
+                      <AiOutlineShoppingCart className="text-white" size={20} />
+                      <p className="text-white m-0 mt-1 p-0 fw-bold">
+                        {t("addToCart")}
+                      </p>
                     </button>
                   </div>
                 </div>

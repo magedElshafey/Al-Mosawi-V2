@@ -9,6 +9,9 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
   const { code } = useSelector((state) => state.afilator);
   const courseLink = "https://almosawi.technomasrsystems.com/course";
   const prochartLink = "https://almosawi.technomasrsystems.com/prochart";
+  const specialAccount =
+    "https://almosawi.technomasrsystems.com/account/special";
+  const maxAccount = "https://almosawi.technomasrsystems.com/account/max";
   const copyToClipboard = (link) => {
     // Create a temporary input element
     const tempInput = document.createElement("input");
@@ -39,7 +42,7 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
       <div className="custom-table my-4">
         <div className="table-header">
           <div className="table-cell header ">
-            {i18n.language === "ar" ? "كورسات" : "courses"}
+            {i18n.language === "ar" ? "الدورات التدريبية" : "courses"}
           </div>
           <div className="table-cell header">
             {i18n.language === "ar" ? "الروابط" : "link"}
@@ -65,7 +68,7 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
           </div>
         ))}
       </div>
-      <div className="custom-table ">
+      <div className="custom-table my-4 ">
         <div className="table-header">
           <div className="table-cell header">
             {i18n.language === "ar" ? "البروشارت" : "procharts"}
@@ -96,6 +99,43 @@ const AfilatorDashboard = ({ prochart, courses, profit }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="custom-table ">
+        <div className="table-header">
+          <div className="table-cell header">
+            {i18n.language === "ar" ? "الحسابات" : "accounts"}
+          </div>
+          <div className="table-cell header">
+            {i18n.language === "ar" ? "الروابط" : "link"}
+          </div>
+        </div>
+
+        <div className="table-row">
+          <div className="table-cell">
+            {i18n.language === "ar" ? "حسابات MAX" : "max account"}
+          </div>
+          <div className="table-cell d-flex align-items-center gap-1  align-items-center">
+            <AiOutlineCopy
+              className="pointer"
+              size={15}
+              onClick={() => copyToClipboard(`${maxAccount}?r=${code}`)}
+            />
+            <p className="m-0 p-0  customLink">{`${maxAccount}?r=${code}`}</p>
+          </div>
+        </div>
+        <div className="table-row">
+          <div className="table-cell">
+            {i18n.language === "ar" ? "الحسابات الأساية" : "basic account"}
+          </div>
+          <div className="table-cell d-flex align-items-center gap-1  align-items-center">
+            <AiOutlineCopy
+              className="pointer"
+              size={15}
+              onClick={() => copyToClipboard(`${specialAccount}?r=${code}`)}
+            />
+            <p className="m-0 p-0  customLink">{`${specialAccount}?r=${code}`}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

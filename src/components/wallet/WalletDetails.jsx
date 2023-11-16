@@ -31,6 +31,7 @@ const WalletDetails = ({ profit, data }) => {
   };
   const { isLoading, mutate } = useMutation(handleWithdraw, {
     onSuccess: (data) => {
+      console.log("this is the data", data);
       if (data.data.status) {
         toast.success(data.data.message);
       } else {
@@ -65,17 +66,14 @@ const WalletDetails = ({ profit, data }) => {
             <div className={style.walletContainer}>
               {`${i18n.language === "ar" ? "المحفظة" : "wallet"} : ${profit}$`}
             </div>
-            {!showWithdrawForm ||
-              (!profit && (
-                <BTN
-                  action={handleShowWithdrawForm}
-                  text={` ${
-                    i18n.language === "ar"
-                      ? "سحب العمولة"
-                      : "withdraw comession"
-                  }`}
-                />
-              ))}
+            {profit && (
+              <BTN
+                action={handleShowWithdrawForm}
+                text={` ${
+                  i18n.language === "ar" ? "سحب العمولة" : "withdraw comession"
+                }`}
+              />
+            )}
           </div>
           {showWithdrawForm && (
             <form className="my-4" onSubmit={handleSubmit}>

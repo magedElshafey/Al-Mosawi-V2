@@ -47,7 +47,6 @@ const HeroCourse = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  const [disabledBtn, setDisabledBtn] = useState(false);
 
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
@@ -100,7 +99,7 @@ const HeroCourse = ({
               <p className={`text-white mx-0 book   mb-1 p-0 ${style.intro}`}>
                 {i18n.language === "ar" ? "الدورات التدريبية" : "courses"}
               </p>
-              <p className={`mx-0 mb-2 p-0 shamel fs28 whiteGreen fw-bolder`}>
+              <p className={`mx-0 mb-2 p-0 shamel fs48 whiteGreen fw-bolder`}>
                 {title}
               </p>
               <div className={style.imgContainer}>
@@ -176,7 +175,10 @@ const HeroCourse = ({
                   </div>
                 </div>
               </div>
-              <button className={` book ${style.buyBtn}`}>
+              <button
+                onClick={() => handleAddToCart(product)}
+                className={` book ${style.buyBtn}`}
+              >
                 <div className="fw-bold d-flex align-items-center gap-2">
                   <MdArrowBackIos size={15} />
                   <p className="m-0 p-0 fw-bold">{t("buyNow")}</p>

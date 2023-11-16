@@ -3,7 +3,7 @@ import style from "./tadwal.module.css";
 import { useTranslation } from "react-i18next";
 const Tadawl = ({ tadwal }) => {
   const { i18n } = useTranslation();
-  console.log("hiii this is the language", i18n.language);
+
   return (
     <div className={`pt-3 ${style.mainDiv}`}>
       <div className="d-md-none">
