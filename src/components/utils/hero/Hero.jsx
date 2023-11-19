@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Hero.module.css";
 import { MdOutlineArrowBackIos } from "react-icons/md";
-import { useTranslation } from "react-i18next";
 const Hero = ({
   img,
   title,
@@ -17,7 +16,6 @@ const Hero = ({
   onClick,
   isStatic,
 }) => {
-  const { i18n } = useTranslation();
   return (
     <div
       className={`${style.imgContainer} ${

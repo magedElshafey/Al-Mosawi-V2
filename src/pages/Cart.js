@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Hero from "../components/utils/hero/Hero";
 import heroImg from "../assets/hero.png";
 import CartItems from "../components/cart/cartItems/CartItems";
@@ -32,11 +32,6 @@ const Cart = () => {
       }
     },
   });
-  // useEffect(() => {
-  //   if (user) {
-  //     refetch();
-  //   }
-  // }, [user, refetch]);
 
   // handle total price when the user not login
   const totalPrice = cartItems.reduce((acc, product) => {

@@ -5,7 +5,12 @@ import { useTranslation } from "react-i18next";
 const DownloadPlane = ({ link }) => {
   const [t] = useTranslation();
   return (
-    <a href={link} target="_blank" className={`mx-auto ${style.btn} mb-5`}>
+    <a
+      href={link}
+      target="_blank"
+      rel="noreferrer"
+      className={`mx-auto ${style.btn} mb-5`}
+    >
       <img alt="pdf/icon" className={style.img} loading="lazy" src={pdf} />
       <p className={`text-white fw-bold mx-0 mb-0 mt-1 p-0 shamel`}>
         {t("download")}

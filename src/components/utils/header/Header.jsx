@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 const Header = ({ title }) => {
   const navigate = useNavigate();
-
   const { i18n } = useTranslation();
   const isTickMill = JSON.parse(localStorage.getItem("tickmillUser"));
   const type = JSON.parse(localStorage.getItem("type"));

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "./accountDetails.module.css";
 import { Link } from "react-router-dom";
 import BTN from "../../utils/btn/BTN";

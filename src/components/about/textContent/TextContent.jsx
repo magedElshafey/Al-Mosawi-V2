@@ -1,9 +1,7 @@
 import React from "react";
 import MainBtn from "../../utils/mainBtn/MainBtn";
 import { useTranslation } from "react-i18next";
-
 import { useNavigate } from "react-router-dom";
-
 const TextContent = ({ text }) => {
   const [t] = useTranslation();
   const navigate = useNavigate();

@@ -10,7 +10,6 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
 import ContactDetails from "../components/contact/contactDetails/ContactDetails";
-
 const Ask = ({ handleChangeTitle, details, appointment, contactDetails }) => {
   const [msg, setMsg] = useState("");
   const { i18n } = useTranslation();

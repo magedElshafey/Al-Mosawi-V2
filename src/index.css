@@ -316,7 +316,6 @@ ul {
 .otp-input {
   width: 60px;
   height: 40px;
-  font-size: 20px;
   border: 2px solid #ccc;
   border-radius: 8px;
   margin: 0 5px;
@@ -341,7 +340,6 @@ ul {
 .swiper-pagination-bullet {
   width: 15px;
   height: 15px;
-
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;

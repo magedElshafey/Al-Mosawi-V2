@@ -32,7 +32,7 @@ const OrderSuccess = () => {
     };
     return request({ url: "/user/my-profile", headers });
   };
-  const { isLoading, data } = useQuery("account-normal-user-page", fetchData, {
+  const { isLoading} = useQuery("account-normal-user-page", fetchData, {
     onSuccess: (data) =>
       localStorage.setItem("type", JSON.stringify(data.data.data.type)),
   });
