@@ -23,7 +23,7 @@ const Takweem = () => {
         }
       />
       <div className="container py-5">
-        <h3 className="fw-bolder m-0 p-0 text-center mb-4">
+        <h3 className="fw-bolder m-0 p-0 text-center mb-4 fs-1">
           {i18n.language === "ar" ? "التقويم الاقتصادي" : "Economic calendar"}
         </h3>
         <div className="d-flex justify-content-center">

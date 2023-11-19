@@ -33,7 +33,7 @@ const ProchartVideo = () => {
             isAfilator={false}
             isHistory={false}
             isWallet={false}
-            data={data.data.data.video}
+            videoData={data.data.data.video}
           />
         </div>
       )}

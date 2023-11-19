@@ -76,6 +76,22 @@ const Header = ({ title }) => {
             {i18n.language === "ar" ? item.title : item.enTitle}
           </p>
         ))}
+        {isTickMill ? (
+          <p
+            onClick={() => navigate("/forex-account/details")}
+            className={`m-0  pointer ${style.link} `}
+          >
+            {i18n.language === "ar" ? "لوحة التحكم" : "dashboard"}
+          </p>
+        ) : null}
+        {type === "prochart_user" ? (
+          <p
+            onClick={() => navigate("/user/prochart")}
+            className={`m-0  pointer ${style.link} `}
+          >
+            {i18n.language === "ar" ? "لوحة التحكم" : "dashboard"}
+          </p>
+        ) : null}
       </div>
     </>
   );

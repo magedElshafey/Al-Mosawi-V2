@@ -29,7 +29,7 @@ const DealsDetails = ({ data }) => {
         href={data.link}
         rel="noreferrer"
       >
-        link
+        {i18n.language === "ar" ? "اذهب الي شارت" : "go to chart"}
       </a>
     </div>
   );

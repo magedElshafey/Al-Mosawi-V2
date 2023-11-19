@@ -62,7 +62,7 @@ const RecommendationHistory = () => {
             isRecommendations={false}
             isAfilator={false}
             isWallet={false}
-            data={data}
+            historyData={data}
             date={date}
             setDate={setDate}
             dealType={dealType}
