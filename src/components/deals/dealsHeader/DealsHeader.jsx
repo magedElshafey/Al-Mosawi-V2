@@ -7,7 +7,7 @@ const DealsHeader = ({ data }) => {
   const { t, i18n } = useTranslation();
   return (
     <div
-      className={`z-3 ${style.mainContainer} p-2 d-flex justify-content-center align-items-center gap-3 gap-md-5 flex-wrap`}
+      className={`z-3 ${style.mainContainer} p-2 d-flex  align-items-center gap-3 gap-md-5 flex-wrap`}
     >
       {/**stop losing*/}
       <div className="z-3">
@@ -29,7 +29,9 @@ const DealsHeader = ({ data }) => {
       </div>
 
       <div
-        className={`p-0 m-0 d-flex flex-column gap-2 align-items-center text-white  ${style.border} position-relative`}
+        className={`p-0 m-0 d-flex flex-column gap-2 align-items-center text-white  ${
+          style.border
+        } ${i18n.language === "ar" ? style.rtl : style.ltr} position-relative`}
       >
         <h4 className="m-0 p-0 fw-bolder  shamel fs22 text-uppercase">
           {data.title}

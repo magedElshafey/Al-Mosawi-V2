@@ -2,7 +2,7 @@ import React from "react";
 import AuthImg from "../components/utils/authImg/AuthImg";
 import { useTranslation } from "react-i18next";
 import OTPDetails from "../components/otp/OTPDetails";
-const OTP = ({ phoneNum }) => {
+const OTP = ({ phoneNum, logo }) => {
   const [t] = useTranslation();
   return (
     <div>
@@ -17,6 +17,7 @@ const OTP = ({ phoneNum }) => {
               desc={t("resetPass")}
               desc2={t("receiveMail")}
               phoneNum={phoneNum}
+              logo={logo}
             />
           </div>
         </div>

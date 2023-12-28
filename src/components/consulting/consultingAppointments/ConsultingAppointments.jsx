@@ -50,8 +50,8 @@ const ConsultingAppointments = ({ nextAppointments, canclledAppointments }) => {
                   />
                 ))
               : i18n.language === "ar"
-              ? "لا يوجد مواعيد قادمة"
-              : "no next appointment"}
+              ? "ليس لديك اشتراك حاليا"
+              : "no consultation booked now"}
           </div>
         )}
         {showCancled && (

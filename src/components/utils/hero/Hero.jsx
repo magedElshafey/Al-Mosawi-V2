@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./Hero.module.css";
 import { MdOutlineArrowBackIos } from "react-icons/md";
+import ReactPlayer from "react-player";
+import { useMediaQuery } from "react-responsive";
 const Hero = ({
   img,
   title,
@@ -16,6 +18,7 @@ const Hero = ({
   onClick,
   isStatic,
 }) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   return (
     <div
       className={`${style.imgContainer} ${
@@ -26,7 +29,7 @@ const Hero = ({
     >
       <img loading="lazy" alt="hero/img" src={img} className={style.mainImg} />
       <div className={style.overlay}>
-        <div className="container">
+        <div className="container mt-5">
           {isRow ? (
             <div className="pt-3 row align-items-center">
               <div className="col-12 col-md-6 mb-3 mb-md-0">
@@ -61,13 +64,14 @@ const Hero = ({
               <div
                 className={`${style.secondImgContainer} col-12 col-md-6 mb-3 mb-md-0`}
               >
-                <iframe
-                  src="https://player.vimeo.com/video/867338027"
-                  className={style.videoFrame}
-                  allow="autoplay; fullscreen;"
-                  allowFullScreen
-                  title="prochart video"
-                ></iframe>
+                <ReactPlayer
+                  url="https://player.vimeo.com/video/867338027"
+                  playing={true}
+                  loop={true}
+                  muted={true}
+                  controls
+                  width={isMobile ? "100%" : 600}
+                />
               </div>
             </div>
           ) : (

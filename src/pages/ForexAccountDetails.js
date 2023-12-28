@@ -22,6 +22,7 @@ const ForexAccountDetails = () => {
       ) : (
         <div>
           <HeroForex
+            prochartPlans={data.data.data.plan}
             isProchart={false}
             data={forexAccDetails}
             accountDetails={data.data.data.UserData}

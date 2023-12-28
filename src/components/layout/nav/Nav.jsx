@@ -11,9 +11,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import callIcon from "../../../assets/help-desk-log-svgrepo-com.svg";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { AiFillUnlock, AiFillEdit } from "react-icons/ai";
-import pyramids from "../../../assets/aboutCourses/pyramidsDefault.png";
-import energy from "../../../assets/aboutCourses/energyDefault.png";
-import person from "../../../assets/aboutCourses/personDefault.png";
 import { useTranslation } from "react-i18next";
 import ahmed from "../../../assets/a7medAv.png";
 import chat from "../../../assets/chat-bubble-check-svgrepo-com.png";
@@ -26,6 +23,7 @@ import { request } from "../../utils/axios";
 import { useMutation } from "react-query";
 import { toast } from "react-hot-toast";
 import { removeRequest } from "../../../Redux/afilator.js";
+import { clearCart } from "../../../Redux/cart.js";
 import {
   logout,
   removePip,
@@ -33,7 +31,24 @@ import {
   removeUserId,
 } from "../../../Redux/auth.js";
 import { handleRequest } from "../../../Redux/afilator.js";
-const Nav = ({ data, phoneNum, menus, lang }) => {
+const Nav = ({
+  data,
+  phoneNum,
+  menus,
+  lang,
+  courses,
+  maxTitle,
+  maxLink,
+  mainTitle,
+  mainLink,
+}) => {
+  const sanitizeHTML = (htmlString) => {
+    const parser = new DOMParser();
+    const parsedHtml = parser.parseFromString(htmlString, "text/html");
+    return parsedHtml.body.textContent;
+  };
+  const titleMax = sanitizeHTML(maxTitle);
+  const titleMain = sanitizeHTML(mainTitle);
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const [isBg, setIsBg] = useState(false);
@@ -49,11 +64,11 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
   const { isLogin, name, profilePhoto } = useSelector(
     (state) => state.authSlice
   );
-  const { requestSent, isAfilator } = useSelector((state) => state.afilator);
+  const { requestSent} = useSelector((state) => state.afilator);
   const userId = JSON.parse(localStorage.getItem("userId"));
   // handle afilate
   const handleAfilate = async () => {
-    if (isLogin) {
+    if (isLogin && !requestSent) {
       const res = await fetch(
         "https://almosawi.admin.technomasrsystems.com/api/affiliate/store",
         {
@@ -67,21 +82,25 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
         }
       );
       const data = await res.json();
-      console.log("this is the data from afilate", data);
+
       if (data.status) {
         toast.success(data.message);
         dispatch(handleRequest());
       } else {
         toast.error(data.message);
       }
+    } else if (isLogin && requestSent) {
+      toast.error(
+        i18n.language === "ar"
+          ? "تم ارسال طلب الانضمام الي برنامج afilate من قبل يرجي انتظار الرد "
+          : "A request to join the afilate program has been sent before. Please wait for a response"
+      );
     } else {
       navigate("/join/afilate");
     }
     setShowSidebar(false);
   };
-  const tickmillUser = JSON.parse(localStorage.getItem("tickmillUser"));
   const { cartItems } = useSelector((state) => state.cartSlice);
-
   useEffect(() => {
     if (pathname === "/forex-account/details") {
       setShowAsk(true);
@@ -135,6 +154,7 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
         dispatch(removePip());
         dispatch(removeUserId());
         dispatch(removeRequest());
+        dispatch(clearCart());
         if (localStorage.getItem("accountType")) {
           window.localStorage.removeItem("accountType");
         } else {
@@ -185,50 +205,6 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                     className={style.logo}
                   />
                 </Link>
-                <div className="dropdown ">
-                  <button
-                    className={`${style.none} dropdown-toggle text-start`}
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <BsGlobe size={30} className="pointer whiteGreen" />
-                  </button>
-                  <ul className="dropdown-menu start">
-                    <li
-                      onClick={() => {
-                        window.location.reload();
-                        i18n.changeLanguage("ar");
-                        window.localStorage.setItem(
-                          "lang",
-                          JSON.stringify("ar")
-                        );
-                      }}
-                      className="dropdown-item pointer"
-                    >
-                      ar
-                    </li>
-                    <li
-                      onClick={() => {
-                        window.location.reload();
-                        i18n.changeLanguage("en");
-                        window.localStorage.setItem(
-                          "lang",
-                          JSON.stringify("en")
-                        );
-                      }}
-                      className="dropdown-item pointer"
-                    >
-                      EN
-                    </li>
-                  </ul>
-                </div>
-                <Link
-                  to="/cart"
-                  className="position-relative d-inline-block mx-3 "
-                >
-                  <BsFillCartCheckFill size={30} className="whiteGreen" />
-                  <p className={style.length}>{cartItems.length}</p>
-                </Link>
               </div>
               {showAsk ? (
                 <div className="d-flex align-items-center gap10">
@@ -265,11 +241,11 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                   </div>
                 </div>
               ) : (
-                <div className="d-flex align-items-center gap-3">
+                <div className="d-flex align-items-center gap-1">
                   {!isLogin ? (
                     <button
                       onClick={() => navigate("/login")}
-                      className={`mx-3 ${style.btn} d-none d-md-block`}
+                      className={`mx-3 ${style.btn} `}
                     >
                       {i18n.language === "ar" ? "تسجيل الدخول" : "login"}
                     </button>
@@ -330,6 +306,52 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                       <img alt="back" src={back} className={style.back} />
                     </div>
                   )}
+                  <Link
+                    to="/cart"
+                    className="position-relative d-inline-block mx-3 "
+                  >
+                    <BsFillCartCheckFill size={20} className="whiteGreen" />
+                    {cartItems.length ? (
+                      <p className={style.length}>{cartItems.length}</p>
+                    ) : null}
+                  </Link>
+                  <div className="dropdown ">
+                    <button
+                      className={`${style.none} dropdown-toggle text-start`}
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <BsGlobe size={20} className="pointer whiteGreen" />
+                    </button>
+                    <ul className="dropdown-menu start">
+                      <li
+                        onClick={() => {
+                          window.location.reload();
+                          i18n.changeLanguage("ar");
+                          window.localStorage.setItem(
+                            "lang",
+                            JSON.stringify("ar")
+                          );
+                        }}
+                        className="dropdown-item pointer"
+                      >
+                        ar
+                      </li>
+                      <li
+                        onClick={() => {
+                          window.location.reload();
+                          i18n.changeLanguage("en");
+                          window.localStorage.setItem(
+                            "lang",
+                            JSON.stringify("en")
+                          );
+                        }}
+                        className="dropdown-item pointer"
+                      >
+                        EN
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               )}
             </div>
@@ -423,45 +445,22 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                     className={style.imgTwo}
                   />
                   <p className={style.contentThree}>{t("creativity")}</p>
-                  <Link
-                    onClick={() => setShowSidebar(false)}
-                    to="/course/1"
-                    className={`d-block book  text-white p-1 ${style.border} ${style.link}`}
-                  >
-                    <img
-                      className={style.imgIcon}
-                      loading="lazy"
-                      src={pyramids}
-                      alt="levels/img"
-                    />
-                    <span>{t("marketLevel")}</span>
-                  </Link>
-                  <Link
-                    onClick={() => setShowSidebar(false)}
-                    to="/course/2"
-                    className={`d-block   text-white p-1 book ${style.border} ${style.link}`}
-                  >
-                    <img
-                      className={style.imgIcon}
-                      loading="lazy"
-                      src={person}
-                      alt="levels/img"
-                    />
-                    <span>{t("ProfessionalLevel")}</span>
-                  </Link>
-                  <Link
-                    onClick={() => setShowSidebar(false)}
-                    to="/course/3"
-                    className={`d-block  text-white p-1 book ${style.link}`}
-                  >
-                    <img
-                      className={style.imgIcon}
-                      loading="lazy"
-                      src={energy}
-                      alt="levels/img"
-                    />
-                    <span>{t("ExpertLevel")}</span>
-                  </Link>
+                  {courses.levels.map((item, index) => (
+                    <Link
+                      key={index}
+                      onClick={() => setShowSidebar(false)}
+                      to={`/course/${item.id}`}
+                      className={`d-block book  text-white p-1 ${style.border} ${style.link}`}
+                    >
+                      <img
+                        className={style.imgIcon}
+                        loading="lazy"
+                        src={item.default_icon}
+                        alt="levels/img"
+                      />
+                      <span>{item.title}</span>
+                    </Link>
+                  ))}
                 </div>
                 <div className={`position-relative mt-3 ${style.box}`}>
                   <Link
@@ -505,19 +504,19 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                   <p className={style.contentTwo}>{t("tadwl")}</p>
                   <Link
                     onClick={() => setShowSidebar(false)}
-                    to="/account/special"
+                    to={`/account/${mainLink}`}
                     className={`book d-block  text-white p-1 ${style.border} ${style.link}`}
                   >
                     <MdKeyboardArrowLeft size={30} className="green" />
-                    {t("specialAccounts")}
+                    {titleMain}
                   </Link>
                   <Link
                     onClick={() => setShowSidebar(false)}
-                    to="/account/max"
+                    to={`/account/${maxLink}`}
                     className={`book d-block text-white p-1 ${style.link} `}
                   >
                     <MdKeyboardArrowLeft size={30} className="green" />
-                    {t("safeAccount")}
+                    {titleMax}
                   </Link>
                 </div>
                 <div
@@ -658,22 +657,22 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
                         </li>
                       ))
                     : null}
-                  {requestSent ? null : (
-                    <li className="mb-2">
-                      <p
-                        onClick={handleAfilate}
-                        className={`pointer m-0 p-0 text-white ${style.link}`}
-                      >
-                        <MdKeyboardArrowLeft
-                          className="green d-inline-block mx-1 "
-                          size={25}
-                        />
-                        {i18n.language === "ar"
-                          ? "انضم الي برنامج afilate"
-                          : "Join the afilate program"}
-                      </p>
-                    </li>
-                  )}
+
+                  <li className="mb-2">
+                    <p
+                      onClick={handleAfilate}
+                      className={`pointer m-0 p-0 text-white ${style.link}`}
+                    >
+                      <MdKeyboardArrowLeft
+                        className="green d-inline-block mx-1 "
+                        size={25}
+                      />
+                      {i18n.language === "ar"
+                        ? "انضم الي برنامج afilate"
+                        : "Join the afilate program"}
+                    </p>
+                  </li>
+
                   {/**  {isAfilator ? null : (
                     <li className="mb-2">
                       <Link
@@ -723,9 +722,3 @@ const Nav = ({ data, phoneNum, menus, lang }) => {
 };
 
 export default Nav;
-/*
-  <select onChange={handleChangeLanguage} className="py-5">
-            <option></option>
-            <option>en</option>
-          </select>
-*/

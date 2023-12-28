@@ -95,7 +95,7 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
         <Spinner />
       ) : (
         <div className="mt-5 row justify-content-center">
-          <div className={`col-12 col-md-9  ${style.mainDiv}`}>
+          <div className={`col-11 col-md-9  ${style.mainDiv}`}>
             <div className="my-2">
               <div className="d-flex flex-column align-items-center gap-1">
                 <p className="m-0 p-0 fw-bold fs24 shamel">{title}</p>

@@ -39,9 +39,7 @@ const Consulting = ({ handleChangeTitle, phoneNum }) => {
       setCancclledAppointment(newCanclled);
     },
   });
-  // const cancelledAppointments = data?.data?.appointments?.filter(
-  //   (item) => item.status === 0
-  // );
+  
 
   return (
     <>

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import style from "./whyTickmill.module.css";
 import check from "../../../assets/check.png";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import media from "../../../assets/media.png";
 const WhyTickmill = ({ paper, faqs }) => {
   const [selectedIndex, setSelectedIndex] = useState(null);
   return (
     <div className="container py-4">
-      <div className="row gap-5">
+      <div className="row gap-5 ">
         <div className="col-12 col-md-7">
           {faqs.map((item, index) => (
             <div key={index} className={`mb-4 ${style.main} p-2`}>
@@ -43,30 +44,44 @@ const WhyTickmill = ({ paper, faqs }) => {
             </div>
           ))}
         </div>
-        <div className={`px-5 py-3 col-12 col-md-4 ${style.mediaContainer}`}>
-          <p
-            className="m-0 p-0"
-            dangerouslySetInnerHTML={{ __html: paper.title }}
+        <div className={`p-0 m-0 col-12 col-md-4 ${style.mediaContainer}`}>
+          <img
+            loading="lazy"
+            alt="media-img"
+            src={media}
+            className={style.img}
           />
-          {paper.depositMethod.map((item, index) => (
-            <div className="mb-3 d-flex align-items-center gap-2" key={index}>
-              <img
-                alt="check/img"
-                loading="lazy"
-                className={style.check}
-                src={check}
+          <div className={style.over}>
+            <div>
+              <p
+                className="m-0 p-0"
+                dangerouslySetInnerHTML={{ __html: paper.title }}
               />
-              <p className="m-0 p-0 text-white fw-bold shamel">{item.item}</p>
+              {paper.depositMethod.map((item, index) => (
+                <div
+                  className="mb-3 d-flex align-items-center gap-2"
+                  key={index}
+                >
+                  <img
+                    alt="check/img"
+                    loading="lazy"
+                    className={style.check}
+                    src={check}
+                  />
+                  <p className="m-0 p-0 text-white fw-bold shamel">
+                    {item.item}
+                  </p>
+                </div>
+              ))}
+              <div className="d-flex justify-content-center pt-3 pb-2">
+                <img
+                  loading="lazy"
+                  className={style.buyImg}
+                  src={paper.Image}
+                  alt="buy / img"
+                />
+              </div>
             </div>
-          ))}
-
-          <div className="d-flex justify-content-center pt-3 pb-2">
-            <img
-              loading="lazy"
-              className={style.buyImg}
-              src={paper.Image}
-              alt="buy / img"
-            />
           </div>
         </div>
       </div>
@@ -75,6 +90,9 @@ const WhyTickmill = ({ paper, faqs }) => {
 };
 
 export default WhyTickmill;
+/**
+ *
+ */
 
 /**
  * 

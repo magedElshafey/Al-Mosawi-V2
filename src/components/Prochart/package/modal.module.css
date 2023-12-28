@@ -65,7 +65,8 @@
   margin: auto !important;
 }
 .hero {
-  height: 450px;
+  background-color: #f4f7fc !important;
+  /* height: 450px; */
   position: relative;
   border-radius: 26px;
   -webkit-border-radius: 26px;
@@ -97,7 +98,7 @@
 }
 .main {
   width: 92%;
-  height: 250px;
+  /* height: 250px; */
   border: 1px solid #dfdfdf;
   border-radius: 26px;
   margin: auto !important;
@@ -140,7 +141,7 @@
   z-index: 100;
 }
 .hero:hover .price {
-  color: white;
+  color: white !important;
   z-index: 100;
 }
 .btn {

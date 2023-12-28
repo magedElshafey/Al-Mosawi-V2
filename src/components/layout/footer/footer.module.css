@@ -1,5 +1,6 @@
 .firstContainer {
   border: 1px solid #dbdbdb;
+  overflow-x: hidden !important;
 }
 @media screen and (max-width: 700px) {
   .firstContainer {
@@ -114,4 +115,7 @@
 }
 .socialContainer:hover .tiktok {
   color: #404040;
+}
+.whats {
+  color: var(--darkGreen) !important;
 }

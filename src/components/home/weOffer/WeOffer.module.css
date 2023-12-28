@@ -1,8 +1,12 @@
-
 .imgContainer {
   width: 100vw;
-  position: relative;
   height: 100vh;
+  position: relative;
+}
+@media screen and (max-width: 767px) {
+  .imgContainer {
+    height: 120vh;
+  }
 }
 .mainImg {
   width: 100%;
@@ -46,7 +50,6 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
- 
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
@@ -82,17 +85,15 @@
   margin-left: 8px;
 }
 .mob {
-  position: absolute;
-  bottom: -25px;
-  width: 420px;
+  width: 100%;
   height: auto;
   object-fit: cover;
 }
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .mob {
     position: relative;
     bottom: 0;
     width: 320px;
     height: 300px;
   }
-}
+} */

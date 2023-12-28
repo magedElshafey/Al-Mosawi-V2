@@ -5,30 +5,42 @@ import whatsImg from "../../../assets/contactPage/whats.png";
 import addressImg from "../../../assets/contactPage/location.png";
 import { useTranslation } from "react-i18next";
 import clock from "../../../assets/contactPage/clock.png";
+import enPhone from "../../../assets/enPhone.png";
 const ContactDetails = ({ appointment, phone, hotLine, address }) => {
   const { i18n } = useTranslation();
   return (
     <div className={`px-3 py-2 ${style.mainContainer}`}>
-      <div>
+      <div className="row">
         {/*phone*/}
-        <div className="d-flex gap-2 ">
-          <img
-            src={phoneImg}
-            alt="contact_icon/img"
-            loading="lazy"
-            className={style.icon}
-          />
+        <div className="col-6 col-md-12 d-flex gap-2 ">
+          {i18n.language === "ar" ? (
+            <img
+              src={phoneImg}
+              alt="contact_icon/img"
+              loading="lazy"
+              className={style.icon}
+            />
+          ) : (
+            <img
+              src={enPhone}
+              alt="contact_icon/img"
+              loading="lazy"
+              className={style.icon}
+            />
+          )}
+
           <div>
-            <p className="p-0 m-0 mb-3 fw-bold ">
+            <p className="p-0 m-0  fw-bold ">
               {i18n.language === "en" ? "for contact" : "للاتصال"}
             </p>
-            <p
+            <a
+              href={`tel:${phone}`}
               className="green"
               dangerouslySetInnerHTML={{ __html: phone }}
-            ></p>
+            ></a>
           </div>
         </div>
-        <div className="d-flex gap-2">
+        <div className="col-6 col-md-12 d-flex gap-2">
           <img
             src={whatsImg}
             alt="contact_icon/img"
@@ -39,13 +51,14 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
             <p className="shamel p-0 m-0 fw-bold">
               {i18n.language === "en" ? "whatsapp" : "رقم خدمة العملاء واتساب"}
             </p>
-            <p
+            <a
+              href={`https://wa.me/${hotLine}`}
               className="green"
               dangerouslySetInnerHTML={{ __html: hotLine }}
-            ></p>
+            ></a>
           </div>
         </div>
-        <div className="d-flex gap-2 ">
+        <div className="col-6 col-md-12 d-flex gap-2 ">
           <img
             src={addressImg}
             alt="contact_icon/img"
@@ -63,7 +76,7 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
           </div>
         </div>
 
-        <div className="d-flex gap-2 ">
+        <div className="col-12 d-flex gap-2 ">
           <img
             alt="appointment_icon / img"
             loading="lazy"

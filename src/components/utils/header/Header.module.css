@@ -5,7 +5,7 @@
   text-decoration: none;
   font-size: 15px;
   margin-top: 4px;
- 
+
   transition: 0.4s;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
@@ -21,17 +21,8 @@
   position: relative !important;
   font-weight: bold;
   border-bottom: 1px solid #003684;
-  
 }
-/* .active::before {
-  content: "";
-  position: absolute;
-  bottom: -18px;
-  left: 0;
-  height: 3px;
-  background-color: #003684;
-  width: 100%;
-} */
+
 .menu {
   background-color: #f4f7fc;
   text-align: center;
@@ -45,8 +36,8 @@
   height: 3px; /* You can adjust the width as needed */
 }
 .menu::-webkit-scrollbar-thumb {
-  background-color: var(--darkGreen); /* Change the color to your preference */
-  border-radius: 6px; /* Adjust the border radius for rounded corners */
+  background-color: var(--darkGreen);
+  border-radius: 6px;
 }
 .menu::-webkit-scrollbar-track:hover {
   background-color: #ddd; /* Change the hover background color */

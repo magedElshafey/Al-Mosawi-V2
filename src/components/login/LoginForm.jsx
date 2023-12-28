@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import style from "./LoginForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { MdOutlineArrowBackIos } from "react-icons/md";
+import {
+  MdOutlineArrowBackIos,
+  MdOutlineVisibility,
+  MdOutlineVisibilityOff,
+} from "react-icons/md";
 import { useTranslation } from "react-i18next";
 import { useMutation } from "react-query";
 import { request } from "../../components/utils/axios";
@@ -11,6 +15,10 @@ import toast from "react-hot-toast";
 import { login, gitName, gitPp, gitUserId } from "../../Redux/auth";
 import { handleCode, handleRequest } from "../../Redux/afilator";
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword); // Toggle show/hide password
+  };
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const cartItems = localStorage.getItem("cart")
@@ -108,7 +116,7 @@ const LoginForm = () => {
           "accountType",
           JSON.stringify(data.data.data.account_type)
         );
-
+        localStorage.setItem("plan", JSON.stringify(data.data.data.plan));
         sendCartItems(data?.data?.data?.id);
         setAccount("");
         setPassword("");
@@ -158,7 +166,7 @@ const LoginForm = () => {
       ) : (
         <div className="d-flex justify-content-center">
           <div className="py-3 container">
-            <div className="mb-4">
+            <div className={`mb-4 position-relative ${style.inpWidth}`}>
               <label htmlFor="email" className="d-block fw-bold mb-1">
                 {t("emailTwo")}
               </label>
@@ -170,25 +178,40 @@ const LoginForm = () => {
                 id="email"
               />
             </div>
-            <div className="mb-4">
+            <div className={`mb-4 position-relative ${style.inpWidth}`}>
               <label htmlFor="password" className="d-block fw-bold mb-1">
                 {t("pass")}
               </label>
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className={`inp ${style.inpWidth}`}
-                type="password"
+                className={`inp ${style.inpWidth} `}
+                type={showPassword ? "text" : "password"}
                 id="password"
               />
+              <button
+                className={`eye-icon-btn ${
+                  i18n.language === "ar" ? "left" : "right"
+                }`}
+                type="button"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? (
+                  <MdOutlineVisibilityOff size={20} />
+                ) : (
+                  <MdOutlineVisibility size={20} />
+                )}
+              </button>
             </div>
-            <div className={`mb-4 align-items-center  mb-3 d-flex gap-5 `}>
-              <div className="d-flex align-items-center">
+            <div
+              className={` align-items-center  mb-3 d-flex gap-5 ${style.inpWidth} `}
+            >
+              <div className="d-flex align-items-center my-3">
                 <input
                   type="checkbox"
                   id="rem"
                   checked={rememberMe}
-                  className={`p-0 my-0 mx-2  ${style.checkBox}`}
+                  className={`p-0 my-0  ${style.checkBox}`}
                   onChange={() => setRememberMe(!rememberMe)}
                 />
                 <label htmlFor="rem" className={` fw-bold  shamel `}>
@@ -199,22 +222,28 @@ const LoginForm = () => {
                 {t("resetPass")}
               </Link>
             </div>
-            <button onClick={handleClick} className={`book mb-3 ${style.btn}`}>
-              <MdOutlineArrowBackIos size={20} />
-              <span>{i18n.language === "ar" ? "دخول" : "login"}</span>
-            </button>
-
-            <p className=" my-2 mx-0 p-0 fw-bold text-center">
-              <span className={`tahoma fs2 ${style.haveAccount}`}>
-                {t("havAccount")}
-              </span>{" "}
-              <span
-                onClick={() => navigate("/reg")}
-                className={`tahoma pointer fs2 ${style.reg}`}
+            <div className={style.inpWidth}>
+              <button
+                onClick={handleClick}
+                className={`book my-3 ${style.btn} ${style.inpWidth}`}
               >
-                {t("createAccount")}
-              </span>
-            </p>
+                <MdOutlineArrowBackIos size={20} />
+                <span>{i18n.language === "ar" ? "دخول" : "login"}</span>
+              </button>
+            </div>
+            <div className={style.inpWidth}>
+              <p className=" my-2 mx-0 p-0 fw-bold text-center">
+                <span className={`tahoma fs2 ${style.haveAccount}`}>
+                  {t("havAccount")}
+                </span>{" "}
+                <span
+                  onClick={() => navigate("/reg")}
+                  className={`tahoma pointer fs2 ${style.reg}`}
+                >
+                  {t("createAccount")}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       )}

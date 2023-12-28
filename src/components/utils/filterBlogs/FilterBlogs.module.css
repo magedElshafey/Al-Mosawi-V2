@@ -1,4 +1,5 @@
 .btn {
+  text-transform: capitalize;
   padding: 7px 15px;
   background-color: white;
   display: flex;
@@ -7,7 +8,6 @@
   font-size: 13px;
   width: 206px;
   height: 40px;
-
   border: 1px solid #9f9f9f;
   border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -17,7 +17,7 @@
 }
 @media screen and (max-width: 500px) {
   .btn {
-    width: 150px;
+    width: fit-content;
   }
 }
 .btn.active {

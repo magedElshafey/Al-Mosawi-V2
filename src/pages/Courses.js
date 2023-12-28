@@ -44,8 +44,8 @@ const Courses = () => {
           <Header
             title={i18n.language === "ar" ? "الدورات التعليمية" : "courses"}
           />
-          <div className="container">
-            <div className="row py-3 ">
+          <div className="container mb-4">
+            <div className="row">
               <div className="col-12 col-md-8">
                 <AllCoursers expertCourses={data.data.data} />
               </div>

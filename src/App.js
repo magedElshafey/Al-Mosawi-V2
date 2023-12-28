@@ -47,7 +47,6 @@ import OrderFaild from "./pages/OrderFaild.js";
 import Takweem from "./pages/Takweem.js";
 import EditProfile from "./pages/EditProfile.js";
 import JoinAfilate from "./pages/JoinAfilate.js";
-import Afilator from "./pages/Afilator.js";
 import LoginAfilate from "./pages/LoginAfilate.js";
 import Wallet from "./pages/Wallet.js";
 import OTP from "./pages/OTP.js";
@@ -59,12 +58,13 @@ const App = () => {
     : "ar";
   const [loading, setLoading] = useState(true);
   const [settingsData, setSettingsData] = useState({});
-  // add cart to local storage
+
   useEffect(() => {
     if (!localStorage.getItem("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
     }
   }, []);
+  // website settings and home page
   useEffect(() => {
     axios
       .get("https://almosawi.admin.technomasrsystems.com/api/settings", {
@@ -148,6 +148,11 @@ const App = () => {
               data={settingsData.generalSetting}
               phoneNum={settingsData.contactSettings.phone}
               menus={settingsData.header}
+              courses={settingsData.courses}
+              maxTitle={settingsData.accounts.maxTitle}
+              maxLink={settingsData.accounts.maxLink}
+              mainTitle={settingsData.accounts.mainTitle}
+              mainLink={settingsData.accounts.mainLink}
               lang={lang}
             />
             <FixedBtn num={settingsData.contactSettings.whatsapp} />
@@ -173,7 +178,10 @@ const App = () => {
               <Route
                 path="/login"
                 element={
-                  <Login phoneNum={settingsData.contactSettings.phone} />
+                  <Login
+                    phoneNum={settingsData.contactSettings.phone}
+                    logo={settingsData.generalSetting.logo}
+                  />
                 }
               />
             </Routes>
@@ -182,7 +190,10 @@ const App = () => {
               <Route
                 path="/reg"
                 element={
-                  <Regester phoneNum={settingsData.contactSettings.phone} />
+                  <Regester
+                    logo={settingsData.generalSetting.logo}
+                    phoneNum={settingsData.contactSettings.phone}
+                  />
                 }
               />
             </Routes>
@@ -192,6 +203,7 @@ const App = () => {
                 path="/forget"
                 element={
                   <ForgetPassword
+                    logo={settingsData.generalSetting.logo}
                     phoneNum={settingsData.contactSettings.phone}
                   />
                 }
@@ -310,7 +322,12 @@ const App = () => {
             <Routes>
               <Route
                 path="/otp"
-                element={<OTP phoneNum={settingsData.contactSettings.phone} />}
+                element={
+                  <OTP
+                    phoneNum={settingsData.contactSettings.phone}
+                    logo={settingsData.generalSetting.logo}
+                  />
+                }
               />
             </Routes>
             {/*done*/}
@@ -377,9 +394,9 @@ const App = () => {
                 element={<LoginAfilate lang={lang} />}
               />
             </Routes>
-            <Routes>
+            {/** <Routes>
               <Route path="/afilator" element={<Afilator />} />
-            </Routes>
+            </Routes> */}
             <Routes>
               <Route path="/wallet" element={<Wallet />} />
             </Routes>

@@ -4,18 +4,24 @@ import { Link } from "react-router-dom";
 import BTN from "../../utils/btn/BTN";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useQuery } from "react-query";
 import { request } from "../../utils/axios";
 import Spinner from "../../utils/Spinner/Spinner";
 import AfilatorDashboard from "../../afilatorDashboard/AfilatorDashboard";
 import WalletDetails from "../../wallet/WalletDetails";
+import { handleRequest } from "../../../Redux/afilator";
+import toast from "react-hot-toast";
 const AccountDetails = ({ accountDetails, type, isTickmill }) => {
   const { t, i18n } = useTranslation();
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handleOpenAccount = () => navigate("/forex-account");
   const handleClick = () => navigate("/edit");
   const { isLogin, user } = useSelector((state) => state.authSlice);
-  const { afilatorId } = useSelector((state) => state.afilator);
+  const { afilatorId, requestSent } = useSelector((state) => state.afilator);
+  const accountType = JSON.parse(localStorage.getItem("accountType"));
   const fetchData = async () => {
     const headers = {
       userId: isLogin ? user : afilatorId,
@@ -34,6 +40,28 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
     "wallet-dashboard-page",
     fetchWallet
   );
+  const handleAfilate = async () => {
+    const res = await fetch(
+      "https://almosawi.admin.technomasrsystems.com/api/affiliate/store",
+      {
+        method: "POST",
+        headers: {
+          userId: user,
+          lang: i18n.language,
+          "Content-Type": "application/json",
+        },
+        body: "",
+      }
+    );
+    const data = await res.json();
+    console.log("data from afilate", data);
+    if (data.status) {
+      toast.success(data.message);
+      dispatch(handleRequest());
+    } else {
+      toast.error(data.message);
+    }
+  };
 
   return (
     <>
@@ -77,6 +105,7 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
                 </div>
               </div>
             </div>
+
             {isTickmill ? (
               <div className="row mb-2">
                 <div className="col-12 col-md-6 mb-3 mb-md-0">
@@ -120,7 +149,29 @@ const AccountDetails = ({ accountDetails, type, isTickmill }) => {
                     : "تعديل الحساب"
                 }
               />
-            
+              {!isTickmill &&
+                accountType === null &&
+                type === null &&
+                !requestSent && (
+                  <BTN
+                    action={handleAfilate}
+                    text={
+                      i18n.language === "ar"
+                        ? "انضم الي برنامج ال afilate"
+                        : "join afilate"
+                    }
+                  />
+                )}
+              {!isTickmill && accountType === null && type === null && (
+                <BTN
+                  action={handleOpenAccount}
+                  text={
+                    i18n.language === "ar"
+                      ? "طلب فتح حساب تداول"
+                      : "Request to open a trading account"
+                  }
+                />
+              )}
             </div>
           </div>
           {accountDetails.referral_code && (

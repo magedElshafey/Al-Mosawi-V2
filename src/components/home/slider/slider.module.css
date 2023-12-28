@@ -1,6 +1,6 @@
 .mainContainer {
   width: 100vw;
-  min-height: 100vh;
+
   background-color: #00032b;
   display: flex;
   align-items: center;
@@ -13,13 +13,17 @@
   position: relative;
   z-index: 2;
 }
-
 .mainImg {
   width: 100%;
-  height: 70vh;
-  object-fit: cover;
+  max-height: 500px;
+  height: auto;
   z-index: 2;
-  opacity: 0.6;
+  opacity: 1;
+}
+@media screen and (max-width: 767px) {
+  .mainImg {
+    height: 330px;
+  }
 }
 .overlay {
   position: absolute;
@@ -28,12 +32,6 @@
   height: 100%;
   transform: translateY(-50%);
   width: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(0, 3, 43, 0.6),
-    rgba(19, 0, 90, 0.6)
-  );
-
   z-index: 1;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);

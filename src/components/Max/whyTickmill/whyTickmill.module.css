@@ -30,23 +30,18 @@
 .mediaContainer {
   width: 100%;
   height: 530px !important;
-  background: linear-gradient(
-    to bottom right,
-    rgba(9, 16, 104, 0.8) 30%,
-    rgba(19, 0, 90, 0.9) 100%
-  );
-  border-radius: 26px;
-  -webkit-border-radius: 26px;
-  -moz-border-radius: 26px;
-  -ms-border-radius: 26px;
-  -o-border-radius: 26px;
+  position: relative;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .mediaContainer {
-   
     height: 300px !important;
   }
-}
+} */
 
 .buyImg {
   width: 70px;
@@ -58,4 +53,30 @@
 }
 .hide {
   display: none;
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+.over {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }

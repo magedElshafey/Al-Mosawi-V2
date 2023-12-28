@@ -116,7 +116,7 @@ const ContactForm = ({ title, desc }) => {
     } else {
       const contactData = { name, phone, country: city, content: msg, email };
       mutate(contactData);
-      console.log("this is data from contact form", contactData);
+    
     }
   };
   return (
@@ -125,7 +125,7 @@ const ContactForm = ({ title, desc }) => {
         <p className="fw-bolder mb-2 p-0 mx-0 shamel fs28">{title}</p>
         <p className="mb-2 mx-0 p-0 w-75">{desc}</p>
         <form>
-          <div className="row my-4">
+          <div className="row my-2">
             <div className="col-12 col-md-6 mb-3 mb-md-0">
               <label htmlFor="name" className="fw-bolder shamel  d-block mb-1 ">
                 {t("name")}
@@ -158,7 +158,7 @@ const ContactForm = ({ title, desc }) => {
               )}
             </div>
           </div>
-          <div className="row mb-4">
+          <div className="row mb-2">
             <div className="col-12 col-md-6 mb-3 mb-md-0">
               <label htmlFor="num" className="shamel fw-bolder d-block mb-1 ">
                 {t("phone")}

@@ -11,7 +11,8 @@ const RecommendationCard = ({ data }) => {
     <div
       style={{
         backgroundImage:
-          data.Recommendation.status === "sell"
+          data.Recommendation.type === "sell" ||
+          data.Recommendation.type === "بيع"
             ? "linear-gradient(to right  , rgba(126, 0, 0, 1) 40% , rgba(126, 0, 0, 0.3) 100%)"
             : "linear-gradient(to left, rgba(0, 135, 79, 1) 30% , rgba(0, 135, 79, 0.3)100%) ",
         zIndex: 9,
@@ -40,7 +41,7 @@ const RecommendationCard = ({ data }) => {
             </p>
           </div>
         </div>
-        <div className="col-6 mb-2 d-flex flex-column gap-2  mb-2 mb-md-0">
+        <div className="col-6 mb-2 d-flex flex-column   mb-2 mb-md-0">
           <div className="d-flex gap-1">
             <p className=" m-0 p-0 text-white  ">
               {i18n.language === "ar" ? "الثقة" : "trust"} :
@@ -54,7 +55,7 @@ const RecommendationCard = ({ data }) => {
           <img
             loading="lazy"
             alt="candels"
-            src={img}
+            src={data.image}
             className={style.mainImg}
           />
         </div>
@@ -64,6 +65,8 @@ const RecommendationCard = ({ data }) => {
           i18n.language === "ar"
             ? style.goalContainerrtl
             : style.goalContainerLtr
+        } 
+            
         }`}
       >
         <p className="my-0  p-0 roboto d-inline-block text-white p-2">
@@ -76,23 +79,10 @@ const RecommendationCard = ({ data }) => {
       <div className={`p-2 ${style.btnContainer}`}>
         <button
           onClick={() => navigate(`/deals/${data.id}`)}
-          className={style.btn}
+          className={`${style.btn} ${style.blue}`}
         >
           <MdKeyboardArrowLeft size={20} className="text-white m-0 p-0" />
-          <p className="m-0 p-0">
-            {data.Recommendation.status === "sell" && i18n.language === "ar"
-              ? "بيع"
-              : null}
-            {data.Recommendation.status === "sell" && i18n.language === "en"
-              ? "sell"
-              : null}
-            {data.Recommendation.status !== "sell" && i18n.language === "ar"
-              ? "شراء"
-              : null}
-            {data.Recommendation.status !== "sell" && i18n.language === "en"
-              ? "buy"
-              : null}
-          </p>
+          <p className="m-0 p-0">{data.Recommendation.type}</p>
         </button>
       </div>
     </div>

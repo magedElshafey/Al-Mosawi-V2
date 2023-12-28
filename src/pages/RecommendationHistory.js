@@ -80,7 +80,3 @@ const RecommendationHistory = () => {
 };
 
 export default RecommendationHistory;
-/**
- * 
-            type={data?.dealType}
- */

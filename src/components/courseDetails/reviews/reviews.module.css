@@ -2,6 +2,9 @@
   background-color: #fbfbfb;
   padding: 14px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 7px;
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
@@ -11,7 +14,6 @@
 .avImg {
   width: 65px;
   height: 65px;
-  object-fit: c;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -19,13 +21,9 @@
   -o-border-radius: 50%;
 }
 .coma {
-  position: absolute;
-  top: -80px;
-
   width: 51px;
-  height: 130px;
+  margin-bottom: 140px;
   object-fit: contain;
-  vertical-align: baseline;
 }
 .rtl {
   left: 15px;
@@ -37,11 +35,15 @@
   position: absolute;
   right: 0;
   right: 0px;
-
   top: 30%;
   transform: translateY(-30%);
   -webkit-transform: translateY(-30%);
   -moz-transform: translateY(-30%);
   -ms-transform: translateY(-30%);
   -o-transform: translateY(-30%);
+}
+@media screen and (max-width: 767px) {
+  .rev {
+    flex-direction: row-reverse;
+  }
 }

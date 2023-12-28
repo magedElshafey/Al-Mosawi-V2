@@ -1,13 +1,11 @@
 import React from "react";
 import style from "./authImg.module.css";
 import heroImg from "../../../assets/hhh.png";
-import logo from "../../../assets/Logo.svg";
-import { MdOutlineCallToAction } from "react-icons/md";
 import { AiOutlinePhone } from "react-icons/ai";
 import phone from "../../../assets/phoneCall.png";
 import { useTranslation } from "react-i18next";
 import helpDesc from "../../../assets/help-desk-log-svgrepo-com.svg";
-const AuthImg = ({ desc, desc2, showWelcome, phoneNum }) => {
+const AuthImg = ({ desc, desc2, showWelcome, phoneNum, logo }) => {
   const { i18n, t } = useTranslation();
 
   return (

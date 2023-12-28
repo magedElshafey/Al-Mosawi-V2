@@ -29,6 +29,7 @@ const UserProchart = ({ lang }) => {
             isProchart={true}
             data={userProchart}
             accountDetails={data.data.data.UserData}
+            prochartPlans={data.data.data.plan}
           />
         </div>
       )}

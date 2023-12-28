@@ -24,7 +24,7 @@ const DealsDetails = ({ data }) => {
         {data.Recommendation.details}
       </p>
       <a
-        className="fw-bold dealsLink"
+        className="fw-bold dealsLink mb-1"
         target="_blank"
         href={data.link}
         rel="noreferrer"

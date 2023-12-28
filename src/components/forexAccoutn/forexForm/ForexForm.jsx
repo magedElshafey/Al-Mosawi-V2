@@ -92,7 +92,7 @@ const ForexForm = () => {
         toast.success(
           i18n.language === "en"
             ? "your message sent succfully"
-            : "تم ارسال رسالتك بنجاح"
+            : "تم ارسال بياناتك بنجاح"
         );
         setFirstName("");
         setLastName("");
@@ -103,6 +103,9 @@ const ForexForm = () => {
         setId("");
         setAddress("");
         setPassport("");
+        setSuccessMessageID("");
+        setSuccessMsgPassport("");
+        setSuccessPassport("");
       } else {
         toast.error(
           i18n.language === "en"
@@ -187,6 +190,7 @@ const ForexForm = () => {
               className="inp"
               id="account"
               value={accountKind}
+              style={{ backgroundColor: "transparent" }}
             >
               <option value="">
                 {i18n.language === "ar" ? "نوع الحساب" : "account type"}
@@ -230,14 +234,14 @@ const ForexForm = () => {
             action={handleAddressChange}
             label={t("address")}
             id="add"
-            successMsgPassport={successMsgPassport}
+            successMsgPassport={successMsgAddrress}
           />
           <Upload
             name="passport"
             action={handlePassportChange}
             label={t("passport")}
             id="passport"
-            successMsgAddrress={successMsgAddrress}
+            successMsgAddrress={successMsgPassport}
           />
           <button type="submit" className={style.btn}>
             <MdOutlineArrowBackIosNew size={20} />

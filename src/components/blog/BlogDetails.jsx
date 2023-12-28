@@ -4,7 +4,7 @@ const BlogDetails = ({ data }) => {
   return (
     <div>
       <div className="row justify-content-center py-4">
-        <div className={`col-12 col-md-8 ${style.imgContainer}`}>
+        <div className={`col-12 col-md-10`}>
           <p
             className={`mx-0 mt-0 mb-4 p-0 shamel fs26 ${style.title}  fw-bold`}
           >

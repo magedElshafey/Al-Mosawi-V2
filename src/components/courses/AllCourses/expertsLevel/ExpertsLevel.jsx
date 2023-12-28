@@ -14,13 +14,13 @@ const ExpertsLevel = ({ expertCourses }) => {
       {expertCourses.length ? (
         <div>
           {expertCourses.map((course, index) => (
-            <div className="mb-2" key={index}>
-              <p className="text-black m-0 p-0 mb-2">{course.afterPay_des}</p>
-              <div className="d-flex justify-content-between align-items-center mb-4">
+            <div className="mb-3" key={index}>
+              <div className="d-flex justify-content-between align-items-center mb-1 flex-column flex-md-row gap-1 gap-md-0">
                 <div
                   className="green fw-bolder fs-5"
                   dangerouslySetInnerHTML={{ __html: course.title }}
                 />
+
                 <button className={`book ${style.btn}`}>
                   <img
                     alt="pdf/icon"
@@ -35,6 +35,7 @@ const ExpertsLevel = ({ expertCourses }) => {
                   </p>
                 </button>
               </div>
+              <p className="text-black m-0 p-0 mb-2">{course.afterPay_des}</p>
               {course.CourseClasses.map((item, index) => (
                 <CourseRow item={item} key={index} />
               ))}
@@ -44,8 +45,8 @@ const ExpertsLevel = ({ expertCourses }) => {
       ) : (
         <h4>
           {i18n.language === "ar"
-            ? "لم تقم ب شراء اي دورات تدريبية من قبل"
-            : "there is no courses buy before"}
+            ? "ليس لديك دورات متاحة الان"
+            : "no courses available now"}
         </h4>
       )}
     </div>

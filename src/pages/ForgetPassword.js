@@ -2,7 +2,7 @@ import React from "react";
 import AuthImg from "../components/utils/authImg/AuthImg";
 import ForgetDetails from "../components/forget/ForgetDetails";
 import { useTranslation } from "react-i18next";
-const ForgetPassword = ({ phoneNum }) => {
+const ForgetPassword = ({ phoneNum, logo }) => {
   const [t] = useTranslation();
   return (
     <>
@@ -17,6 +17,7 @@ const ForgetPassword = ({ phoneNum }) => {
               desc={t("resetPass")}
               desc2={t("receiveMail")}
               phoneNum={phoneNum}
+              logo={logo}
             />
           </div>
         </div>
@@ -29,6 +30,7 @@ const ForgetPassword = ({ phoneNum }) => {
               desc={t("resetPass")}
               desc2={t("receiveMail")}
               phoneNum={phoneNum}
+              logo={logo}
             />
           </div>
           <div className="col-12 mb-3">

@@ -15,12 +15,11 @@ const CourseDetails = ({ fixedContainer }) => {
 
   useEffect(() => {
     const hasCode = currentUrl.includes("?r=");
-   
+
     if (hasCode) {
       const rQueryParamIndex = currentUrl.indexOf("?r=");
       const valueStartIndex = rQueryParamIndex + 3;
       const value = currentUrl.substring(valueStartIndex);
-      console.log("this is the value code", value);
       window.localStorage.setItem("codeFromCourses", JSON.stringify(value));
     }
   }, []);
@@ -40,6 +39,7 @@ const CourseDetails = ({ fixedContainer }) => {
             product={data.data.data}
             title={data.data.data.title}
             desc={data.data.data.header_des}
+            video={data.data.data.header_video}
             img={data.data.data.header_img}
             price={data.data.data.price}
             afterDisscount={data.data.data.price_after_discount}

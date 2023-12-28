@@ -79,7 +79,7 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
         <Spinner />
       ) : (
         <div
-          className={`${style.mainDiv} px-2 py-2 mb-4 d-flex justify-content-between align-items-center`}
+          className={`${style.mainDiv} px-2 py-2 mb-4 d-flex justify-content-between align-items-center flex-column flex-md-row gap-2 gap-md-0`}
         >
           <p className="m-0 p-0">
             {item.day} {i18n.language === "ar" ? "الموافق" : "on"} {item.date}{" "}
@@ -95,7 +95,7 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
                 }`}
               >
                 <MdArrowBackIosNew />
-                <span className="mt-1">
+                <span>
                   {!item.pay
                     ? i18n.language === "ar"
                       ? "ادفع"
@@ -112,7 +112,7 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
                   }`}
                 >
                   <MdArrowBackIosNew />
-                  <span className="mt-1">
+                  <span>
                     {!item.pay
                       ? i18n.language === "ar"
                         ? "الغاء المعاد"

@@ -66,7 +66,7 @@ const Chat = ({ data, msg, setMsg, handleClick }) => {
             type="text"
           />
         </div>
-        <div className="col-12 col-md-4 px-5">
+        <div className="col-12 col-md-4 px-3">
           <BTN action={handleClick} text={t("send")} />
         </div>
       </div>

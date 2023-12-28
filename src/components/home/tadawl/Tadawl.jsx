@@ -6,7 +6,7 @@ const Tadawl = ({ tadwal }) => {
 
   return (
     <div className={`pt-3 ${style.mainDiv}`}>
-      <div className="d-md-none">
+      <div className="d-md-none ">
         <div className="container">
           <div className="row gap-5 align-items-center">
             <div className={`col-12  position-relative ${style.imgContainer}`}>

@@ -4,7 +4,7 @@ import AuthIntro from "../components/utils/authIntro/AuthIntro";
 import RegForm from "../components/Reg/RegForm";
 import { useTranslation } from "react-i18next";
 import RegModal from "../components/Reg/regmodal/RegModal";
-const Regester = ({ phoneNum }) => {
+const Regester = ({ phoneNum, logo }) => {
   const { t, i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   return (
@@ -21,6 +21,7 @@ const Regester = ({ phoneNum }) => {
             <AuthImg
               phoneNum={phoneNum}
               showWelcome={true}
+              logo={logo}
               desc={
                 i18n.language === "ar"
                   ? "انشىء حسابك الأن واستمتع بالمميزات الغير محدودة نص تجريبي"
@@ -35,6 +36,7 @@ const Regester = ({ phoneNum }) => {
         <div className="row m-0 p-0">
           <div className="col-12 mb-3  m-0 p-0">
             <AuthImg
+              logo={logo}
               phoneNum={phoneNum}
               showWelcome={true}
               desc={

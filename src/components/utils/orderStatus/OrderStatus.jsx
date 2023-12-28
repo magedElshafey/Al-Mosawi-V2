@@ -12,7 +12,7 @@ const OrderStatus = ({
   return (
     <div className="row justify-content-center">
       <div
-        className={`${style.mainContainer} col-12  m-0 p-0 d-flex align-items-center gap-4`}
+        className={`${style.mainContainer}  m-0 p-0 d-flex align-items-center flex-column flex-md-row gap-4`}
       >
         <div className={style.imgContainer}>
           <img

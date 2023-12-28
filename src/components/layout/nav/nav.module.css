@@ -1,13 +1,12 @@
 .navContainer {
-   position: fixed;
-  
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   z-index: 1000000;
 }
 .bg {
-   background-color: #003684 ;
+  background-color: #003684;
 }
 .logo {
   width: 87px;
@@ -337,6 +336,19 @@
   -moz-border-radius: 18px;
   -ms-border-radius: 18px;
   -o-border-radius: 18px;
+}
+@media screen and (max-width: 662px) {
+  .btn {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: var(--whiteGreen);
+    border-radius: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    -ms-border-radius: none;
+    -o-border-radius: none;
+  }
 }
 .back,
 .down {

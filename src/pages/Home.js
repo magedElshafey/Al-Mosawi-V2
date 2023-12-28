@@ -10,7 +10,7 @@ import Stats from "../components/home/stats/Stats";
 const Home = ({ courses, slider, tadwal, weOffer, video, partner }) => {
   return (
     <>
-      <div>
+      <div className="flow">
         <Slider slider={slider} />
         <Stats />
         <Tadawl tadwal={tadwal} />

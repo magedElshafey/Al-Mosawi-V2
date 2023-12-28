@@ -55,16 +55,18 @@ const Slider = ({ slider }) => {
             src={slider[currentSlide].image}
             className={style.mainImg}
           />
+
           <div className={style.overlay}>
             <div
-              className={`d-flex flex-column text-white justify-content-center mt300  pb-4 ${
+              className={`d-flex flex-column text-white justify-content-center mt300  pb-0 pb-md-4 ${
                 i18n.language === "ar" ? "pr" : "pl"
               }`}
             >
-              <p className="text-white d-inline-block m-0 p-0 fw-bold shamel  fs28">
+              <p className="green d-inline-block m-0 p-0 fw-bold   sliderTitle">
                 {slider[currentSlide].title}
               </p>
               <div
+                className="fs2 m-0 p-0 "
                 dangerouslySetInnerHTML={{ __html: slider[currentSlide].des }}
               />
               {slider[currentSlide].buttonType === "solid" ? (
@@ -73,7 +75,7 @@ const Slider = ({ slider }) => {
                   text={slider[currentSlide].buttonTitle}
                 />
               ) : (
-                <button className={`book mt-3 ${style.videoBtn}`}>
+                <button className={`book mt-1  ${style.videoBtn}`}>
                   <div className={style.videoContainer}>
                     <TbPlayerPlay className={style.videoIcon} />
                   </div>
@@ -142,101 +144,3 @@ const Slider = ({ slider }) => {
   );
 };
 export default Slider;
-/**
- *  <div className={style.mainContainer}>
-      <div className="container pt-4 mt-4">
-        <div
-          data-aos="zoom-in"
-          data-aos-delay="800"
-          className={` ${style.imgContainer}`}
-        >
-          <img
-            alt="slider/img"
-            loading="lazy"
-            src={slider[currentSlide].image}
-            className={style.mainImg}
-          />
-          <div className={style.overlay}>
-            <div
-              className={`d-flex flex-column text-white justify-content-center mt300  pb-4 ${
-                i18n.language === "ar" ? "pr" : "pl"
-              }`}
-            >
-              {slider[currentSlide].greenTitle === "Prochart" ? (
-                <div className="d-flex flex-column">
-                  <p className="m-0 p-0 fw-bold shamel  fs28">
-                    {slider[currentSlide].title}
-                  </p>
-                  <p className="m-0 p-0 fw-bold text-uppercase whiteGreen fs60">
-                    {slider[currentSlide].greenTitle}
-                  </p>
-                </div>
-              ) : (
-                <div
-                  className={` d-flex flex-wrap align-items-center gap-2 ${style.textContainer}`}
-                >
-                  <p className="mx-0 mt-2 mb-0  p-0 fw-bold fs28 shamel">
-                    {slider[currentSlide].title}
-                  </p>
-                  {slider[currentSlide].greenTitle === "(مثلث التداول)" ? (
-                    <p className="mx-0 mb-0 mt-2 p-0 shamel fw-bold whiteGreen  fs36">
-                      {slider[currentSlide].greenTitle}
-                    </p>
-                  ) : slider[currentSlide].greenTitle === "MAX" ? (
-                    <p className="mx-0 mt-0 mb-2 mb-md-4 p-0  fw-bolder  whiteGreen  fs60">
-                      {slider[currentSlide].greenTitle}
-                    </p>
-                  ) : (
-                    <p className="m-0  p-0 shamel  fw-bolder  whiteGreen  fs36">
-                      {slider[currentSlide].greenTitle}
-                    </p>
-                  )}
-                </div>
-              )}
-              <p className={`m-0 p-0 book  ${style.desc}`}>
-                {slider[currentSlide].desc}
-              </p>
-              <div>
-                {slider[currentSlide].desc2 ? (
-                  <p className="text-white book d-inline-block mx-2">
-                    {slider[currentSlide].desc2}
-                  </p>
-                ) : null}
-                {slider[currentSlide].greenTitleTwo ? (
-                  <p className="whiteGreen text-uppercase d-inline-block mx-1 book">
-                    {slider[currentSlide].greenTitleTwo}
-                  </p>
-                ) : null}
-                {slider[currentSlide].desc2 &&
-                  slider[currentSlide].greenTitleTwo && (
-                    <p className="book d-inline-block text-white mx-1 my-0 p-0">
-                      لا يفوتك صفقاتنا
-                    </p>
-                  )}
-              </div>
-              {slider[currentSlide].normalBtn &&
-                (slider[currentSlide].btnText === "افتح حساب MAX" ? (
-                  <button
-                    className={`book mt-3 gap-2 py-1  px-4 ${style.maxBtn}`}
-                  >
-                    <div className={style.arrowContainer}>
-                      <MdArrowBackIos className="ms-1" size={20} />
-                    </div>
-                    <span className="d-inline-block">
-                      افتح حساب <span className={style.text}>MAX</span>
-                    </span>
-                  </button>
-                ) : (
-                  <NormalBtn text={slider[currentSlide].btnText} />
-                ))}
-              {!slider[currentSlide].normalBtn && (
-              
-              )}
-            </div>
-          </div>
-        </div>
-
-       
-      </div>
-    </div>
- */

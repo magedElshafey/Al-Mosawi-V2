@@ -8,10 +8,11 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+import ReactPlayer from "react-player";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../Redux/cart.js";
+import { useMediaQuery } from "react-responsive";
 const HeroCourse = ({
   title,
   desc,
@@ -20,6 +21,7 @@ const HeroCourse = ({
   afterDisscount,
   hours,
   level,
+  video,
   duration,
   fixedContainer,
   product,
@@ -29,7 +31,7 @@ const HeroCourse = ({
   const nvigate = useNavigate();
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cartSlice);
-  console.log("this is the cart items", cartItems);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   // handle window resize
   useEffect(() => {
     const handleResize = () => {
@@ -52,38 +54,81 @@ const HeroCourse = ({
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
   // handle add product to cart
+  // const handleAddToCart = async (product) => {
+  //   const index = cartItems.findIndex((item) => item.id === product.id);
+  //   if (index >= 0) {
+  //     toast.error(
+  //       i18n.language === "ar"
+  //         ? "هذا المنتج موجود بالفعل في العربة"
+  //         : "this item is already on the cart"
+  //     );
+  //   } else {
+  //     if (user) {
+  //       const res = await fetch(
+  //         "https://almosawi.admin.technomasrsystems.com/api/cart/add",
+  //         {
+  //           method: "POST",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             lang: i18n.language,
+  //             user,
+  //             type: "course",
+  //           },
+  //           body: JSON.stringify({
+  //             productId: product.id,
+  //           }),
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       if (data.status === "faild") {
+  //         toast.error(data.message);
+  //       } else {
+  //         dispatch(addToCart(product));
+  //         nvigate("/cart");
+  //       }
+  //     } else {
+  //       dispatch(addToCart(product));
+  //       nvigate("/cart");
+  //     }
+  //   }
+  // };
   const handleAddToCart = async (product) => {
     const index = cartItems.findIndex((item) => item.id === product.id);
-    if (index >= 0) {
+    if (!user && index < 0) {
+      dispatch(addToCart(product));
+      nvigate("/cart");
+    } else if (!user && index >= 0) {
       toast.error(
         i18n.language === "ar"
           ? "هذا المنتج موجود بالفعل في العربة"
           : "this item is already on the cart"
       );
-    } else {
-      if (user) {
-        const res = await fetch(
-          "https://almosawi.admin.technomasrsystems.com/api/cart/add",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              lang: i18n.language,
-              user,
-              type: "course",
-            },
-            body: JSON.stringify({
-              productId: product.id,
-            }),
-          }
-        );
-        const data = await res.json();
-        if (data.status === "faild") {
-          toast.error(data.message);
-        } else {
-          dispatch(addToCart(product));
-          nvigate("/cart");
+    } else if (user && index >= 0) {
+      toast.error(
+        i18n.language === "ar"
+          ? "هذا المنتج موجود بالفعل في العربة"
+          : "this item is already on the cart"
+      );
+    } else if (user && index < 0) {
+      const res = await fetch(
+        "https://almosawi.admin.technomasrsystems.com/api/cart/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            lang: i18n.language,
+            user,
+            type: "course",
+          },
+          body: JSON.stringify({
+            productId: product.id,
+          }),
         }
+      );
+      const data = await res.json();
+      console.log("data from cart", data);
+      if (data.status === "faild") {
+        toast.error(data.message);
       } else {
         dispatch(addToCart(product));
         nvigate("/cart");
@@ -92,7 +137,10 @@ const HeroCourse = ({
   };
   return (
     <>
-      <div className={style.mainContainer}>
+      <div
+        style={{ backgroundImage: `url(${img})` }}
+        className={style.mainContainer}
+      >
         <div className="z-3 container mt80 py-5">
           <div className="row align-items-center justify-content-center justify-content-md-start ">
             <div className="col-12 col-md-9 mb-2 mb-md-0">
@@ -103,15 +151,22 @@ const HeroCourse = ({
                 {title}
               </p>
               <div className={style.imgContainer}>
-                <img
-                  className={`rounded ${style.challengeImg}`}
-                  alt="challenger/img"
-                  loading="lazy"
-                  src={img}
+                <ReactPlayer
+                  url={video}
+                  playing={true}
+                  loop={true}
+                  muted={true}
+                  controls
+                  width={isMobile ? "100%" : 700}
                 />
+                {/**
+                 *  <video className={`rounded ${style.challengeImg}`} controls>
+                  <source type="video/mp4" src={video} />
+                </video>
+                 */}
               </div>
               <p
-                className=" m-0 p-0 "
+                className=" m-0 p-0 mt-3 "
                 dangerouslySetInnerHTML={{ __html: desc }}
               />
             </div>

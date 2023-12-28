@@ -20,10 +20,7 @@ const ProchartMapCard = ({ data, text, action, showModal }) => {
         </div>
         <div className={style.detailsContainer}>
           {data.plansFeatures.map((item, index) => (
-            <div
-              key={index}
-              className="mb-2 d-flex justify-content-center align-items-centr gap-2"
-            >
+            <div key={index} className="mb-2 d-flex  align-items-centr gap-2">
               {item.feature_type === "true" ? (
                 <IoCheckmarkCircleSharp className="green" size={20} />
               ) : (
@@ -43,10 +40,7 @@ const ProchartMapCard = ({ data, text, action, showModal }) => {
           <p
             className={`fw-bolder fs22 mx-1 p-0 m-0 ${style.price}   d-inline-block`}
           >
-            {data.discount_price
-              ? data.price - data.discount_price
-              : data.price}{" "}
-            $
+            {data.discount_price ? data.discount_price : data.price} $
           </p>
         </div>
         <p className={`fs22  p-0 m-0 ${style.original}`}>{data.price} $</p>

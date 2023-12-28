@@ -62,7 +62,7 @@ const CartItems = ({ user, items }) => {
                   className={style.img}
                 />
                 <p className={`m-0 p-0  fw-bold `}>
-                  {user ? item.name : item.title || item.name}
+                  {user ? item.name : item.title}
                 </p>
               </div>
               <div className="d-flex align-items-center gap-3">

@@ -43,11 +43,18 @@
   height: 30px;
   border: none;
   width: 100%;
+  text-transform: capitalize;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
+}
+@media screen and (max-width: 600px) {
+  .btn {
+    width: 70%;
+    margin: auto !important;
+  }
 }
 .greenBorder {
   border: 2px solid #0ea564;

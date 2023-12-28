@@ -54,7 +54,7 @@
   }
 }
 .btn {
-  width: 80% !important;
+  /* width: 80% !important; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +64,7 @@
   border-radius: 26px;
   color: white;
   border: none;
-  width: fit-content;
+  width: 50% !important;
   -webkit-border-radius: 26px;
   -moz-border-radius: 26px;
   -ms-border-radius: 26px;

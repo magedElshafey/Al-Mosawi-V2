@@ -53,8 +53,14 @@ export const header = [
   },
 ];
 export const purchasDetails = [
-  "نقوم بإرسال رابط الدفع",
-  "يتم تفعيل الاشتراك فورا",
+  {
+    title: "نقوم بإرسال رابط الدفع",
+    enTitle: "We send the payment link",
+  },
+  {
+    title: "يتم تفعيل الاشتراك فورا",
+    enTitle: "The subscription is activated immediately",
+  },
 ];
 export const forexAccDetails = [
   {
@@ -76,6 +82,7 @@ export const forexAccDetails = [
     title: "التقويم الاقتصادي",
     img: top,
     enTitle: "Economic calendar",
+    path: "/takweem",
   },
   {
     id: 4,
@@ -123,10 +130,10 @@ export const userProchart = [
   },
   {
     id: 4,
-    title: "التحليل الاقتصادي",
+    title: "التقويم الاقتصادي",
     enTitle: "Economic analysis",
     img: book,
-    path: "/blogs",
+    path: "/takweem",
   },
   {
     id: 5,

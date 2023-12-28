@@ -92,7 +92,7 @@ const HeroMax = ({
       style={{ backgroundImage: `url(${img})` }}
       className={`mb-5 ${style.mainContainer}`}
     >
-      <div className="w-100 z-3 container">
+      <div className="w-100 z-3 container ">
         <p
           className="m-0 p-0"
           dangerouslySetInnerHTML={{ __html: headerTitle }}

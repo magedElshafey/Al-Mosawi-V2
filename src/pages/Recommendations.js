@@ -3,9 +3,7 @@ import HeroBox from "../components/utils/herobox/HeroBox";
 import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
-import { useTranslation } from "react-i18next";
 const Recommendations = () => {
-  const { i18n } = useTranslation();
   const fetchData = () => {
     return request({ url: "/deal/index" });
   };
@@ -21,7 +19,7 @@ const Recommendations = () => {
           isRecommendations={true}
           isWallet={false}
           isAfilator={false}
-          data={data.data.data}
+          historyData={data?.data?.data}
         />
       )}
     </div>

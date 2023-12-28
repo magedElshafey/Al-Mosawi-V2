@@ -15,7 +15,8 @@ import {
   removeUserId,
 } from "../../../Redux/auth";
 import toast from "react-hot-toast";
-const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
+const AccountDetails = ({ data, lang, isWallet, isAfilate, prochartPlans }) => {
+  console.log("data from data", data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { profilePhoto } = useSelector((state) => state.authSlice);
@@ -121,7 +122,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
           </li>
         </ul>
       </div>
-      <div className="row">
+      <div className="row mb-3">
         {data.account_number ? (
           <div
             className={`col-12 d-flex gap-2 d-md-block mb-1 ${
@@ -145,7 +146,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
           </div>
         ) : null}
       </div>
-      <div className="row ">
+      <div className="row mb-3 ">
         <div
           className={`col-12 d-flex gap-2 d-md-block mb-1 ${
             i18n.language === "ar" ? "" : "text-start"
@@ -153,7 +154,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
         >
           <p className={`text-white  m-0 p-0`}> {t("phone")} :</p>
           <p
-            className={`m-0 p-0 text-white mx-2 mb-1 mt-0 ${
+            className={`m-0 p-0 text-white mx-2 mb-1 mt-0 fw-bold ${
               isWallet || isAfilate ? "d-inline-block" : "d-block"
             }`}
           >
@@ -169,11 +170,89 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
             <p className={`text-white  m-0 p-0 `}>
               {i18n.language === "ar" ? "كود afilator" : "afilator code"} :
             </p>
-            <p className={`m-0 p-0 text-white m-0`}>{data.referral_code}</p>
+            <p className={`m-0 p-0 text-white m-0 fw-bold`}>
+              {data.referral_code}
+            </p>
           </div>
         ) : null}
       </div>
-      <div className="row">
+      <div className="row mb-3 ">
+        {data.account_type ? (
+          <div
+            className={`col-12 d-flex gap-2 d-md-block mb-1 ${
+              i18n.language === "ar" ? "" : "text-start"
+            }`}
+          >
+            <p className={`text-white  m-0 p-0`}>
+              {" "}
+              {i18n.language === "ar" ? "نوع الحساب" : "account type"} :
+            </p>
+            <p
+              className={`m-0 p-0 text-white mx-2 mb-1 mt-0 fw-bold ${
+                isWallet || isAfilate ? "d-inline-block" : "d-block"
+              }`}
+            >
+              {data.account_type}
+            </p>
+          </div>
+        ) : null}
+
+        {data.email ? (
+          <div
+            className={`col-12 d-flex gap-2 mb-1 d-md-block ${
+              i18n.language === "ar" ? "" : "text-start"
+            }`}
+          >
+            <p className={`text-white  m-0 p-0 `}>
+              {i18n.language === "ar" ? "البريد الإلكتروني" : "email"} :
+            </p>
+            <p className={`m-0 p-0 text-white m-0 fw-bold`}>{data.email}</p>
+          </div>
+        ) : null}
+      </div>
+      <div className="row mb-3 ">
+        {prochartPlans[0] ? (
+          <div
+            className={`col-12 d-flex gap-2 mb-1 d-md-block ${
+              i18n.language === "ar" ? "" : "text-start"
+            }`}
+          >
+            <p className={`text-white  m-0 p-0 `}>
+              {i18n.language === "ar" ? "الخطة " : "plan"} :
+            </p>
+            <p className={`m-0 p-0 text-white m-0 fw-bold`}>
+              {prochartPlans[0]}
+            </p>
+          </div>
+        ) : null}
+        {prochartPlans[1] ? (
+          <div
+            className={`col-12 d-flex gap-2 mb-1 d-md-block ${
+              i18n.language === "ar" ? "" : "text-start"
+            }`}
+          >
+            <p className={`text-white  m-0 p-0 `}>
+              {i18n.language === "ar" ? "تاريخ الإشتراك" : "start date"} :
+            </p>
+            <p className={`m-0 p-0 text-white m-0 fw-bold`}>
+              {prochartPlans[1]}
+            </p>
+          </div>
+        ) : null}
+        {prochartPlans[2] ? (
+          <div
+            className={`col-12 d-flex gap-2 mb-1 d-md-block ${
+              i18n.language === "ar" ? "" : "text-start"
+            }`}
+          >
+            <p className={`text-white  m-0 p-0 `}>
+              {i18n.language === "ar" ? "تاريخ الإنتهاء" : "end date"} :
+            </p>
+            <p className={`m-0 p-0 text-white m-0 fw-bold`}>{prochartPlans[2]}</p>
+          </div>
+        ) : null}
+      </div>
+      <div className="row mb-3">
         <div
           className={`col-12  mb-0 ${
             i18n.language === "ar" ? "" : "text-start"
@@ -182,7 +261,7 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
           {!isTickmill && (
             <button
               onClick={() => navigate("/forex-account")}
-              className={`${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
+              className={`${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white mb-3`}
             >
               <MdArrowBackIos size={20} />
               <p className="m-0 p-0 ">
@@ -202,6 +281,27 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate }) => {
                 {i18n.language === "ar"
                   ? "انضم الي برنامج afilate"
                   : "Join the afilate program"}
+              </p>
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="row mb-3">
+        <div
+          className={`col-12  mb-0 ${
+            i18n.language === "ar" ? "" : "text-start"
+          }`}
+        >
+          {isTickmill && (
+            <button
+              onClick={() => navigate("/edit")}
+              className={`mt-2  ${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
+            >
+              <MdArrowBackIos size={20} />
+              <p className="m-0 p-0 ">
+                {i18n.language === "ar"
+                  ? "طلب تعديل البيانات"
+                  : "Request for editting Account Details"}
               </p>
             </button>
           )}

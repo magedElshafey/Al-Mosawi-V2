@@ -1,13 +1,10 @@
 import React from "react";
 import style from "./advantage.module.css";
-import { useTranslation } from "react-i18next";
 import WHY from "../why/WHY";
-
 const Advantages = ({ img, title, desc, why }) => {
-  const [t] = useTranslation();
   return (
-    <div>
-      <div className={`position-relative ${style.imgContainer}`}>
+    <div className={`p-0 m-0 ${style.mainBox}`}>
+      <div className={`p-0 m-0 ${style.imgContainer}`}>
         <img
           loading="lazy"
           src={img}
@@ -22,12 +19,13 @@ const Advantages = ({ img, title, desc, why }) => {
             <p className="m-0 p-0" dangerouslySetInnerHTML={{ __html: desc }} />
           </div>
         </div>
-        <div className="mt-3 p-3">
-          <WHY data={why} />
-        </div>
+      </div>
+      <div className="mt-3 px-2">
+        <WHY data={why} />
       </div>
     </div>
   );
 };
 
 export default Advantages;
+

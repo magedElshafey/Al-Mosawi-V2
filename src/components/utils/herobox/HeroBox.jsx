@@ -51,10 +51,12 @@ const HeroBox = ({
             !isAfilator &&
             !isWallet && (
               <div className="m-0 p-0">
-                <div className={`p-2 pb-0 m-0 ${style.dealsBox}`}>
+                <div className={`p-2 pb-0 m-0 pb-5 ${style.dealsBox}`}>
                   <DealsHeader data={dealsData} />
-                  <div className={`pt-2 my-4 z-3 row align-items-center `}>
-                    <div className="z-3  position-relative col-12 col-md-6  mb-md-0">
+                  <div
+                    className={`pt-2 my-4 z-3 row align-items-center gap-5 `}
+                  >
+                    <div className="z-3  position-relative col-12 col-md-7  mb-md-0">
                       <img
                         onClick={() => setShowImgModal(true)}
                         alt="bitcoin/img"
@@ -63,7 +65,7 @@ const HeroBox = ({
                         className={` pointer ${style.chartsImg}`}
                       />
                     </div>
-                    <div className="z-3 col-12 col-md-6  mb-md-0">
+                    <div className="z-3 col-12 col-md-4  mb-md-0">
                       <DealsDetails data={dealsData} />
                     </div>
                   </div>
@@ -226,11 +228,13 @@ const HeroBox = ({
             )}
         </div>
       </div>
-      <ImgModal
-        showImgModal={showImgModal}
-        img={dealsData?.image}
-        setShowImgModal={setShowImgModal}
-      />
+      {showImgModal ? (
+        <ImgModal
+          showImgModal={showImgModal}
+          img={dealsData?.image}
+          setShowImgModal={setShowImgModal}
+        />
+      ) : null}
     </>
   );
 };

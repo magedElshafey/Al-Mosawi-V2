@@ -53,7 +53,7 @@ const Blogs = () => {
           />
           <div className="container">
             {data.data.data.length ? (
-              <div className="mt-3 d-flex flex-wrap align-items-center gap-3 justify-content-center ">
+              <div className="mt-3 row">
                 {data.data.data.map((blog, index) => (
                   <BlogCard key={index} item={blog} />
                 ))}

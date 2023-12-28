@@ -16,9 +16,10 @@ import "./index.css";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
-    <Toaster position="top-center" reverseOrder={false} />
+    <Toaster position="bottom-center" reverseOrder={false} />
     <Provider store={store}>
       <App />
     </Provider>

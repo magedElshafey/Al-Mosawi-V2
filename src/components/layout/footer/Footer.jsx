@@ -13,6 +13,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
+
 import { GrInstagram } from "react-icons/gr";
 const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
   const { t, i18n } = useTranslation();
@@ -180,9 +181,9 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                         className="d-flex fs18 align-items-center gap-1"
                       >
                         <img alt="arrow/img" src={leftArrow} loading="lazy" />
-                        <Link className="m-0 p-0" to={item.path}>
+                        <a className="m-0 p-0" href={item.link}>
                           {item.title}
-                        </Link>
+                        </a>
                       </div>
                     ))}
                   </div>
@@ -199,11 +200,19 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                   </h3>
                 </div>
                 <div className="d-flex align-items-center gap-1">
-                  <p className={`fw-bold shamel fs22 green`}>{phoneNum}</p>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href={`https://wa.me/${phoneNum}`}
+                    className={`fw-bold shamel fs22  ${style.whats}`}
+                  >
+                    {phoneNum}
+                  </a>
+
                   {i18n.language === "en" ? (
-                    <AiFillPhone size={20} className="green mb-3" />
+                    <AiFillPhone size={20} className="green " />
                   ) : (
-                    <BsFillTelephoneFill size={20} className="green mb-3" />
+                    <BsFillTelephoneFill size={20} className="green" />
                   )}
                 </div>
               </div>
