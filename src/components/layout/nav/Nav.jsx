@@ -31,6 +31,8 @@ import {
   removeUserId,
 } from "../../../Redux/auth.js";
 import { handleRequest } from "../../../Redux/afilator.js";
+import { IoIosArrowForward } from "react-icons/io";
+
 const Nav = ({
   data,
   phoneNum,
@@ -64,7 +66,7 @@ const Nav = ({
   const { isLogin, name, profilePhoto } = useSelector(
     (state) => state.authSlice
   );
-  const { requestSent} = useSelector((state) => state.afilator);
+  const { requestSent } = useSelector((state) => state.afilator);
   const userId = JSON.parse(localStorage.getItem("userId"));
   // handle afilate
   const handleAfilate = async () => {
@@ -483,10 +485,15 @@ const Nav = ({
                   <Link
                     onClick={() => setShowSidebar(false)}
                     to="/about"
-                    className={`book d-block text-white p-1 ${style.link}`}
+                    className={`book d-block d-flex align-items-center gap-1 text-white p-1 ${style.link}`}
                   >
-                    <MdKeyboardArrowLeft size={30} className="green" />
-                    {t("aboutCompany")}
+                    {i18n.language === "ar" ? (
+                      <MdKeyboardArrowLeft size={20} className="green" />
+                    ) : (
+                      <IoIosArrowForward size={20} className="green" />
+                    )}
+
+                    <span>{t("aboutCompany")}</span>
                   </Link>
                 </div>
               </div>
@@ -505,18 +512,26 @@ const Nav = ({
                   <Link
                     onClick={() => setShowSidebar(false)}
                     to={`/account/${mainLink}`}
-                    className={`book d-block  text-white p-1 ${style.border} ${style.link}`}
+                    className={`book d-block d-flex align-items-center gap-1  text-white p-1 ${style.border} ${style.link}`}
                   >
-                    <MdKeyboardArrowLeft size={30} className="green" />
-                    {titleMain}
+                    {i18n.language === "ar" ? (
+                      <MdKeyboardArrowLeft size={20} className="green" />
+                    ) : (
+                      <IoIosArrowForward size={20} className="green" />
+                    )}
+                    <span>{titleMain}</span>
                   </Link>
                   <Link
                     onClick={() => setShowSidebar(false)}
                     to={`/account/${maxLink}`}
-                    className={`book d-block text-white p-1 ${style.link} `}
+                    className={`book d-block d-flex align-items-center gap-1 text-white p-1 ${style.link} `}
                   >
-                    <MdKeyboardArrowLeft size={30} className="green" />
-                    {titleMax}
+                    {i18n.language === "ar" ? (
+                      <MdKeyboardArrowLeft size={20} className="green" />
+                    ) : (
+                      <IoIosArrowForward size={20} className="green" />
+                    )}
+                    <span>{titleMax}</span>
                   </Link>
                 </div>
                 <div
@@ -533,10 +548,14 @@ const Nav = ({
                   <Link
                     onClick={() => setShowSidebar(false)}
                     to="/contact"
-                    className={`book d-block  text-white p-1 ${style.link}`}
+                    className={`book d-block d-flex align-items-center gap-1  text-white p-1 ${style.link}`}
                   >
-                    <MdKeyboardArrowLeft size={30} className="green" />
-                    {t("sendMsg")}
+                    {i18n.language === "ar" ? (
+                      <MdKeyboardArrowLeft size={20} className="green" />
+                    ) : (
+                      <IoIosArrowForward size={20} className="green" />
+                    )}
+                    <span>{t("sendMsg")}</span>
                   </Link>
                   <Link
                     onClick={() => setShowSidebar(false)}
@@ -567,10 +586,14 @@ const Nav = ({
                   <Link
                     onClick={() => setShowSidebar(false)}
                     to="/prochart"
-                    className={`book d-block  text-white p-1 ${style.link}`}
+                    className={`book d-block  d-flex align-items-center gap-1 text-white p-1 ${style.link}`}
                   >
-                    <MdKeyboardArrowLeft size={30} className="green" />
-                    {t("prochart")}
+                    {i18n.language === "ar" ? (
+                      <MdKeyboardArrowLeft size={20} className="green" />
+                    ) : (
+                      <IoIosArrowForward size={20} className="green" />
+                    )}
+                    <span> {t("prochart")}</span>
                   </Link>
                 </div>
               </div>
@@ -648,10 +671,18 @@ const Nav = ({
                             className={`text-white ${style.link}`}
                             to={item.link}
                           >
-                            <MdKeyboardArrowLeft
-                              className="green d-inline-block mx-1 "
-                              size={25}
-                            />
+                            {i18n.language === "ar" ? (
+                              <MdKeyboardArrowLeft
+                                className="green d-inline-block mx-1 "
+                                size={25}
+                              />
+                            ) : (
+                              <IoIosArrowForward
+                                className="green d-inline-block mx-1 "
+                                size={25}
+                              />
+                            )}
+
                             {item.title}
                           </Link>
                         </li>
@@ -663,10 +694,17 @@ const Nav = ({
                       onClick={handleAfilate}
                       className={`pointer m-0 p-0 text-white ${style.link}`}
                     >
-                      <MdKeyboardArrowLeft
-                        className="green d-inline-block mx-1 "
-                        size={25}
-                      />
+                      {i18n.language === "ar" ? (
+                        <MdKeyboardArrowLeft
+                          className="green d-inline-block mx-1 "
+                          size={25}
+                        />
+                      ) : (
+                        <IoIosArrowForward
+                          className="green d-inline-block mx-1 "
+                          size={25}
+                        />
+                      )}
                       {i18n.language === "ar"
                         ? "انضم الي برنامج afilate"
                         : "Join the afilate program"}

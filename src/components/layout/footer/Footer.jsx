@@ -13,7 +13,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-
+import { IoIosArrowForward } from "react-icons/io";
 import { GrInstagram } from "react-icons/gr";
 const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
   const { t, i18n } = useTranslation();
@@ -157,7 +157,12 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                       key={index}
                       className="d-flex fs18 align-items-center gap-1"
                     >
-                      <img alt="arrow/img" src={leftArrow} loading="lazy" />
+                      {i18n.language === "ar" ? (
+                        <img alt="arrow/img" src={leftArrow} loading="lazy" />
+                      ) : (
+                        <IoIosArrowForward size={20} className={style.arrow} />
+                      )}
+
                       <Link className="m-0 p-0" to={item.link}>
                         {item.title}
                       </Link>
@@ -180,7 +185,14 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                         key={index}
                         className="d-flex fs18 align-items-center gap-1"
                       >
-                        <img alt="arrow/img" src={leftArrow} loading="lazy" />
+                        {i18n.language === "ar" ? (
+                          <img alt="arrow/img" src={leftArrow} loading="lazy" />
+                        ) : (
+                          <IoIosArrowForward
+                            size={20}
+                            className={style.arrow}
+                          />
+                        )}
                         <a className="m-0 p-0" href={item.link}>
                           {item.title}
                         </a>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import style from "./HistoryDetails.module.css";
-import { MdOutlineArrowBackIosNew, MdKeyboardArrowDown } from "react-icons/md";
+import { MdOutlineArrowBackIos, MdKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { IoIosArrowForward } from "react-icons/io";
+
 const HistoryDetails = ({ data }) => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
@@ -121,7 +123,11 @@ const HistoryDetails = ({ data }) => {
                   onClick={() => navigate(`/deals/${item.id}`)}
                   className={`${style.btn} `}
                 >
-                  <MdOutlineArrowBackIosNew />
+                  {i18n.language === "ar" ? (
+                    <MdOutlineArrowBackIos size={20} />
+                  ) : (
+                    <IoIosArrowForward size={20} />
+                  )}
                   <span>
                     {i18n.language === "ar" ? "عرض الصفقة" : "View deal"}
                   </span>

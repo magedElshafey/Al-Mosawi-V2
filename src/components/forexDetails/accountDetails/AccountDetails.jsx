@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { handleRequest } from "../../../Redux/afilator";
+import { IoIosArrowForward } from "react-icons/io";
 import { request } from "../../utils/axios";
 import { useMutation } from "react-query";
 import {
@@ -248,7 +249,9 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate, prochartPlans }) => {
             <p className={`text-white  m-0 p-0 `}>
               {i18n.language === "ar" ? "تاريخ الإنتهاء" : "end date"} :
             </p>
-            <p className={`m-0 p-0 text-white m-0 fw-bold`}>{prochartPlans[2]}</p>
+            <p className={`m-0 p-0 text-white m-0 fw-bold`}>
+              {prochartPlans[2]}
+            </p>
           </div>
         ) : null}
       </div>
@@ -263,7 +266,12 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate, prochartPlans }) => {
               onClick={() => navigate("/forex-account")}
               className={`${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white mb-3`}
             >
-              <MdArrowBackIos size={20} />
+              {i18n.language === "ar" ? (
+                <MdArrowBackIos size={20} />
+              ) : (
+                <IoIosArrowForward size={20} />
+              )}
+
               <p className="m-0 p-0 ">
                 {i18n.language === "ar"
                   ? "طلب فتح حساب تداول"
@@ -276,7 +284,11 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate, prochartPlans }) => {
               onClick={handleAfilate}
               className={`mt-2  ${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
             >
-              <MdArrowBackIos size={20} />
+              {i18n.language === "ar" ? (
+                <MdArrowBackIos size={20} />
+              ) : (
+                <IoIosArrowForward size={20} />
+              )}
               <p className="m-0 p-0 ">
                 {i18n.language === "ar"
                   ? "انضم الي برنامج afilate"
@@ -297,7 +309,11 @@ const AccountDetails = ({ data, lang, isWallet, isAfilate, prochartPlans }) => {
               onClick={() => navigate("/edit")}
               className={`mt-2  ${style.btn} d-flex justify-content-center align-items-center  gap-1 text-white`}
             >
-              <MdArrowBackIos size={20} />
+              {i18n.language === "ar" ? (
+                <MdArrowBackIos size={20} />
+              ) : (
+                <IoIosArrowForward size={20} />
+              )}
               <p className="m-0 p-0 ">
                 {i18n.language === "ar"
                   ? "طلب تعديل البيانات"

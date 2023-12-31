@@ -54,12 +54,12 @@ const WhyTickmill = ({ paper, faqs }) => {
           <div className={style.over}>
             <div>
               <p
-                className="m-0 p-0"
+                className="m-0 p-0 px-2 text-center"
                 dangerouslySetInnerHTML={{ __html: paper.title }}
               />
               {paper.depositMethod.map((item, index) => (
                 <div
-                  className="mb-3 d-flex align-items-center gap-2"
+                  className="mb-3 px-2 d-flex align-items-center gap-2"
                   key={index}
                 >
                   <img

@@ -7,7 +7,7 @@ import { useQuery, useQueryClient } from "react-query";
 import { request } from "../axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
-
+import { IoIosArrowForward } from "react-icons/io";
 const ConsultingAppoitmentCard = ({ item, showButton }) => {
   const { t, i18n } = useTranslation();
   const queryClient = useQueryClient();
@@ -94,7 +94,12 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
                   item.disabled ? style.disapled : null
                 }`}
               >
-                <MdArrowBackIosNew />
+                {i18n.language === "ar" ? (
+                  <MdArrowBackIosNew />
+                ) : (
+                  <IoIosArrowForward />
+                )}
+
                 <span>
                   {!item.pay
                     ? i18n.language === "ar"
@@ -111,7 +116,11 @@ const ConsultingAppoitmentCard = ({ item, showButton }) => {
                     item.disabled ? style.disapled : null
                   }`}
                 >
-                  <MdArrowBackIosNew />
+                  {i18n.language === "ar" ? (
+                    <MdArrowBackIosNew />
+                  ) : (
+                    <IoIosArrowForward />
+                  )}
                   <span>
                     {!item.pay
                       ? i18n.language === "ar"

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import { MdOutlineArrowBackIos } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
 const ProchartMapCard = ({ data, text, action, showModal }) => {
   const { i18n } = useTranslation();
   return (
@@ -49,7 +50,11 @@ const ProchartMapCard = ({ data, text, action, showModal }) => {
         onClick={() => action(data.id)}
         className={`pb-4 d-flex justify-content-center align-items-center mx-auto gap-1 p-4 ${style.btn}`}
       >
-        <MdOutlineArrowBackIos size={20} />
+        {i18n.language === "ar" ? (
+          <MdOutlineArrowBackIos size={20} />
+        ) : (
+          <IoIosArrowForward size={20} />
+        )}
         <p className="m-0 p-0">{text}</p>
       </button>
     </div>

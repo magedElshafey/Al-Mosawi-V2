@@ -2,7 +2,10 @@ import React from "react";
 import style from "./WeOffer.module.css";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 const WeOffer = ({ weOffer }) => {
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const handleClick = () => navigate("/account/special");
   return (
@@ -29,7 +32,11 @@ const WeOffer = ({ weOffer }) => {
                   <div
                     className={`d-flex justify-content-center align-items-center p-2 ${style.arrowContainer}`}
                   >
-                    <MdArrowBackIosNew size={20} />
+                    {i18n.language === "ar" ? (
+                      <MdArrowBackIosNew size={20} />
+                    ) : (
+                      <IoIosArrowForward size={20} />
+                    )}
                   </div>
 
                   <span className={`text-white ${style.text}`}>

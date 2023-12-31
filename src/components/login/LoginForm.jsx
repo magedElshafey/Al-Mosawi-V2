@@ -14,6 +14,7 @@ import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { login, gitName, gitPp, gitUserId } from "../../Redux/auth";
 import { handleCode, handleRequest } from "../../Redux/afilator";
+import {IoIosArrowForward} from "react-icons/io"
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -227,7 +228,12 @@ const LoginForm = () => {
                 onClick={handleClick}
                 className={`book my-3 ${style.btn} ${style.inpWidth}`}
               >
-                <MdOutlineArrowBackIos size={20} />
+                {i18n.language === "ar" ? (
+                  <MdOutlineArrowBackIos size={20} />
+                ) : (
+                  <IoIosArrowForward size={20} />
+                )}
+
                 <span>{i18n.language === "ar" ? "دخول" : "login"}</span>
               </button>
             </div>

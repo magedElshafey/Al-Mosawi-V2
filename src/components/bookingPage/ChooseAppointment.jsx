@@ -11,6 +11,7 @@ import { useMutation } from "react-query";
 import Spinner from "../utils/Spinner/Spinner";
 import { request } from "../utils/axios";
 import toast from "react-hot-toast";
+import { IoIosArrowForward } from "react-icons/io";
 const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
   const { t, i18n } = useTranslation();
   const [activeDay, setActiveDay] = useState(null);
@@ -148,7 +149,12 @@ const ChooseAppointment = ({ data, title, desc, today, tomorrow }) => {
                       onClick={handleClick}
                       className={`${style.btn}`}
                     >
-                      <MdArrowBackIosNew size={20} />
+                      {i18n.language === "ar" ? (
+                        <MdArrowBackIosNew size={20} />
+                      ) : (
+                        <IoIosArrowForward size={20} />
+                      )}
+
                       <span>{t("book")}</span>
                     </button>
                   </SwiperSlide>

@@ -8,6 +8,7 @@ import { request } from "../../components/utils/axios";
 import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { IoIosArrowForward } from "react-icons/io";
 const RegForm = ({ setShowModal }) => {
   const { t, i18n } = useTranslation();
   const cartItems = localStorage.getItem("cart")
@@ -307,7 +308,11 @@ const RegForm = ({ setShowModal }) => {
           </div>
 
           <button onClick={handleClick} className={`mb-3 ${style.btn}`}>
-            <MdOutlineArrowBackIos size={20} />
+            {i18n.language === "ar" ? (
+              <MdOutlineArrowBackIos size={20} />
+            ) : (
+              <IoIosArrowForward size={20} />
+            )}
             <span>{t("next")}</span>
           </button>
 

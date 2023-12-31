@@ -4,7 +4,7 @@ import timer from "../../../assets/timer.svg";
 import levels from "../../../assets/levels.svg";
 import eye from "../../../assets/eye.svg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-
+import { IoIosArrowForward } from "react-icons/io";
 import { MdArrowBackIos } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -235,7 +235,12 @@ const HeroCourse = ({
                 className={` book ${style.buyBtn}`}
               >
                 <div className="fw-bold d-flex align-items-center gap-2">
-                  <MdArrowBackIos size={15} />
+                  {i18n.language === "ar" ? (
+                    <MdArrowBackIos size={15} />
+                  ) : (
+                    <IoIosArrowForward size={15} />
+                  )}
+
                   <p className="m-0 p-0 fw-bold">{t("buyNow")}</p>
                 </div>
                 <span className={`mt-1 ${style.origineal}`}>

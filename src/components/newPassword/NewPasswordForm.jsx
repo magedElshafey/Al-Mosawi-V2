@@ -7,6 +7,7 @@ import { request } from "../utils/axios";
 import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
 const NewPasswordForm = () => {
   const { i18n, t } = useTranslation();
   const naviagte = useNavigate();
@@ -81,7 +82,11 @@ const NewPasswordForm = () => {
             />
           </div>
           <button onClick={handleClick} className={`book ${style.btn}`}>
-            <MdOutlineArrowBackIos size={20} />
+            {i18n.language === "ar" ? (
+              <MdOutlineArrowBackIos size={20} />
+            ) : (
+              <IoIosArrowForward size={20} />
+            )}
             <span className="mt-1">{t("createNewPass")}</span>
           </button>
 

@@ -7,6 +7,7 @@ import { useMutation, useQuery } from "react-query";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { IoIosArrowForward } from "react-icons/io";
 const CartTotal = ({ total, user }) => {
   const [payment_method, setPaymentMethod] = useState("myfatoorah");
   const cartItems = JSON.parse(window.localStorage.getItem("cart"));
@@ -197,7 +198,12 @@ const CartTotal = ({ total, user }) => {
           disabled={cartItems.length === 0}
           className={`mt-5 book ${style.btnTwo}`}
         >
-          <MdOutlineArrowBackIos size={20} />
+          {i18n.language === "ar" ? (
+            <MdOutlineArrowBackIos size={20} />
+          ) : (
+            <IoIosArrowForward size={20} />
+          )}
+
           <span>{t("checkOut")}</span>
         </button>
       </div>

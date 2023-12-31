@@ -3,6 +3,8 @@ import style from "./Hero.module.css";
 import { MdOutlineArrowBackIos } from "react-icons/md";
 import ReactPlayer from "react-player";
 import { useMediaQuery } from "react-responsive";
+import { IoIosArrowForward } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 const Hero = ({
   img,
   title,
@@ -19,6 +21,7 @@ const Hero = ({
   isStatic,
 }) => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
+  const { i18n } = useTranslation();
   return (
     <div
       className={`${style.imgContainer} ${
@@ -55,7 +58,11 @@ const Hero = ({
                       className={`book ${style.btnTwo}`}
                       onClick={onClick}
                     >
-                      <MdOutlineArrowBackIos size={20} />
+                      {i18n.language === "ar" ? (
+                        <MdOutlineArrowBackIos size={20} />
+                      ) : (
+                        <IoIosArrowForward size={20} />
+                      )}
                       <span className="mt-1">{btnText}</span>
                     </button>
                   </div>

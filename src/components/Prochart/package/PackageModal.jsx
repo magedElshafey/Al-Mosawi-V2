@@ -5,13 +5,13 @@ import { purchasDetails } from "../../../fakers/data.js";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import { AiOutlineClose, AiOutlineShoppingCart } from "react-icons/ai";
-import { MdArrowBackIos } from "react-icons/md";
+import { MdOutlineArrowBackIos } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/cart";
-
+import { IoIosArrowForward } from "react-icons/io";
 const PackageModal = ({
   showModal,
   action,
@@ -189,13 +189,17 @@ const PackageModal = ({
                       {data[0].price} $
                     </p>
                   </div>
-                  <div className="d-flex justify-content-center align-items-center gap-3 ">
+                  <div className="d-flex justify-content-center align-items-center gap-3 flex-column flex-md-row ">
                     <button
                       onClick={() => handleAddToCart(data[0])}
                       className={` mt-4 ${style.buyBtn}`}
                     >
                       <div className="fw-bold d-flex align-items-center gap-2">
-                        <MdArrowBackIos size={15} />
+                        {i18n.language === "ar" ? (
+                          <MdOutlineArrowBackIos size={15} />
+                        ) : (
+                          <IoIosArrowForward size={15} />
+                        )}
                         <p className="m-0 p-0 fw-bold">{t("buyNow")}</p>
                       </div>
                       <span className={`${style.origineal}`}>

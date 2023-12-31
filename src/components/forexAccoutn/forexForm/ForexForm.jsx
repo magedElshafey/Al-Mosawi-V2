@@ -9,6 +9,7 @@ import Spinner from "../../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
 const ForexForm = () => {
   const lang = window.localStorage.getItem("lang")
     ? JSON.parse(window.localStorage.getItem("lang"))
@@ -244,7 +245,12 @@ const ForexForm = () => {
             successMsgAddrress={successMsgPassport}
           />
           <button type="submit" className={style.btn}>
-            <MdOutlineArrowBackIosNew size={20} />
+            {i18n.language === "ar" ? (
+              <MdOutlineArrowBackIosNew size={20} />
+            ) : (
+              <IoIosArrowForward size={20} />
+            )}
+
             <span className="mt-1">{t("sendNow")}</span>
           </button>
         </div>

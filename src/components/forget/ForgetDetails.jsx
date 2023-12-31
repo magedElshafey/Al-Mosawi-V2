@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { useMutation } from "react-query";
 import { request } from "../utils/axios";
 import Spinner from "../utils/Spinner/Spinner";
+
 const ForgetDetails = () => {
   const { t, i18n } = useTranslation();
   const naviagte = useNavigate();
@@ -85,7 +86,11 @@ const ForgetDetails = () => {
                 onClick={handleClick}
                 className={`book mb-3 ${style.btn}`}
               >
-                <MdOutlineArrowBackIos />
+                {i18n.language === "ar" ? (
+                  <MdOutlineArrowBackIos size={20} />
+                ) : (
+                  <IoIosArrowForward size={20} />
+                )}
                 <span>{t("send")} </span>
               </button>
 

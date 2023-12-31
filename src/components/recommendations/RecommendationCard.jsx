@@ -3,7 +3,9 @@ import style from "./recommendationCard.module.css";
 import img from "../../assets/Candles1.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MdKeyboardArrowLeft } from "react-icons/md";
+import { MdOutlineArrowBackIos } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
+
 const RecommendationCard = ({ data }) => {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
@@ -81,7 +83,11 @@ const RecommendationCard = ({ data }) => {
           onClick={() => navigate(`/deals/${data.id}`)}
           className={`${style.btn} ${style.blue}`}
         >
-          <MdKeyboardArrowLeft size={20} className="text-white m-0 p-0" />
+          {i18n.language === "ar" ? (
+            <MdOutlineArrowBackIos size={20} />
+          ) : (
+            <IoIosArrowForward size={20} />
+          )}
           <p className="m-0 p-0">{data.Recommendation.type}</p>
         </button>
       </div>

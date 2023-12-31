@@ -119,3 +119,6 @@
 .whats {
   color: var(--darkGreen) !important;
 }
+.arrow {
+  color: var(--gradientBackground);
+}

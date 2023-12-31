@@ -26,12 +26,8 @@
 }
 .chartsImg {
   width: 100%;
-  /* height: 200px; */
-  position: relative;
-  top: -20px;
   top: 0;
   right: 0;
-  /* object-fit: contain !important; */
 }
 .text {
   z-index: 22 !important;
