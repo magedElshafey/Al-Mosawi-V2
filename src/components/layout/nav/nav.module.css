@@ -3,7 +3,8 @@
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 1000000;
+  height: 70px;
+  z-index: 9000 !important;
 }
 .bg {
   background-color: #003684;
@@ -60,7 +61,6 @@
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
-
   top: 0;
   background: linear-gradient(to right, #00032b, #13005a);
   transition: 0.4s;

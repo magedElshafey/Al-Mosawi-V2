@@ -15,7 +15,12 @@ const ContactUs = ({ phoneNum }) => {
       </p>
       <p className="fw-bold m-0 p-0 whiteGreen shamel fs22">{t("help")}</p>
       <div className="d-flex align-items-center gap-2 whiteGreen fw-bold ">
-        <p className="mx-0 mb-0 mt-1 p-0 shamel fs18">{phoneNum}</p>
+        <a
+          href={`https://wa.me/${phoneNum}`}
+          className="mx-0 mb-0 mt-1 p-0 shamel fs18 green"
+        >
+          {phoneNum}
+        </a>
         {i18n.language === "ar" ? (
           <BsFillTelephoneFill className="shamel fs18" />
         ) : (

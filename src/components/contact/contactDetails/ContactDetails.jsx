@@ -98,7 +98,13 @@ const ContactDetails = ({ appointment, phone, hotLine, address }) => {
                   </div>
                 ) : (
                   <div key={index} className="d-flex  mb-2  fs16 ">
-                    <p className={`m-0 p-0  ${style.day}`}>{item.day} : </p>
+                    <p
+                      className={`m-0 p-0  ${style.day} ${
+                        i18n.language === "ar" ? style.rtl : style.ltr
+                      }`}
+                    >
+                      {item.day} :{" "}
+                    </p>
                     <p className="green m-0 p-0">{item.Start}</p>
                     <p className="m-0 p-0 mx-1 ">
                       {i18n.language === "en" ? "Am" : "ص"}

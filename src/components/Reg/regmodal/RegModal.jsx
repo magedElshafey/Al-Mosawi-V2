@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import style from "./regModal.module.css";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { reqPaper } from "../../../fakers/data";
+import { useTranslation } from "react-i18next";
 const RegModal = ({ setShowModal, showModal, data }) => {
   const modalRef = useRef(null);
-
+  const { i18n } = useTranslation();
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setShowModal(false);
@@ -23,7 +22,11 @@ const RegModal = ({ setShowModal, showModal, data }) => {
       >
         <div className="row justify-content-center">
           <div ref={modalRef} className={`${style.modal} col-12 text-center`}>
-            <p className="m-0 p-0 shamel fs20">الشروط و الاحكام</p>
+            <p className="m-0 p-0 shamel fs20">
+              {i18n.language === "ar"
+                ? "الشروط و الاحكام"
+                : "terms and conditions"}
+            </p>
             <div dangerouslySetInnerHTML={{ __html: data }} />
           </div>
         </div>

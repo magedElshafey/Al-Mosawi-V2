@@ -50,7 +50,7 @@ const OrderSuccess = () => {
             img={heroImg}
             title={i18n.language === "en" ? "order status" : "حالة الطلب"}
           />
-          <div className="container py-5">
+          <div className="container py-5 overflow-x-hidden mb-4">
             <OrderStatus
               btnText={
                 i18n.language === "ar"

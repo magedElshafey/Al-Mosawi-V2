@@ -14,7 +14,7 @@ import Spinner from "../utils/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { login, gitName, gitPp, gitUserId } from "../../Redux/auth";
 import { handleCode, handleRequest } from "../../Redux/afilator";
-import {IoIosArrowForward} from "react-icons/io"
+import { IoIosArrowForward } from "react-icons/io";
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -99,8 +99,8 @@ const LoginForm = () => {
       if (data.data.status === "faild") {
         toast.error(
           i18n.language === "en"
-            ? "there is an error occurred , please try again"
-            : "حدث خطأ عند ارسال البيانات حاول مرة اخري"
+            ? "incorrect passwod"
+            : "كلمة المرور حطأ حاول مرة اخري"
         );
       } else {
         toast.success(

@@ -66,3 +66,31 @@
 .disabled {
   opacity: 0.6;
 }
+.card {
+  width: 85% !important;
+  margin: 0 15px !important;
+}
+.nextBtnContainer,
+.revBtnContainer {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #003684;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.ltr {
+  left: -15px;
+}
+.rtl {
+  right: -15px;
+}

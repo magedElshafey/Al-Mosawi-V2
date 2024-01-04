@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/cart";
 import { IoIosArrowForward } from "react-icons/io";
+import Swal from "sweetalert2";
 const PackageModal = ({
   showModal,
   action,
@@ -45,23 +46,24 @@ const PackageModal = ({
   const user = localStorage.getItem("userId")
     ? JSON.parse(localStorage.getItem("userId"))
     : null;
-  const options = {
-    position: "top-center", // Custom position
-    duration: 3000, // Time until the toast message automatically closes (in milliseconds)
-    style: {
-      zIndex: 2222221, // Custom z-index
-    },
-  };
+
   // handle add to cart
   const isLogin = JSON.parse(window.localStorage.getItem("isLogin"));
-
   const handleAddToCart = async (product) => {
     if (!agree) {
-      toast.error(
-        i18n.language === "ar"
-          ? "برجاء الموافقة علي الشروط و الاحكام"
-          : "Please agree to the terms and conditions"
-      );
+      Swal.fire({
+        icon: "error",
+        position: "center-center",
+        title:
+          i18n.language === "ar"
+            ? "برجاء الموافقة علي الشروط و الاحكام"
+            : "Please agree to the terms and conditions",
+        customClass: {
+          popup: "my-custom-popup-class",
+          backdrop: "my-custom-backdrop-class",
+          content: "custom-swal-content-class",
+        },
+      });
     } else {
       if (isLogin && agree) {
         const res = await fetch(
@@ -82,7 +84,11 @@ const PackageModal = ({
         const data = await res.json();
 
         if (data.status === "faild") {
-          toast.error(data.message, options);
+          Swal.fire({
+            icon: "error",
+            position: "center-center",
+            title: data.message,
+          });
         } else {
           dispatch(addToCart(product));
           navigate("/cart");
@@ -107,11 +113,11 @@ const PackageModal = ({
         <div className="container">
           <div
             ref={modalRef}
-            className={`p-3 ${style.modal} ${
+            className={`p-3 ${style.modal}  ${
               showModal ? style.showModal : style.hideModal
             }`}
           >
-            <p className="text-md-center fs18 shamel p-0 mx-0  fw-bold">
+            <p className="text-md-center fs18 shamel p-0 mx-0  fw-bold mt-4 mt-md-0">
               {i18n.language === "ar"
                 ? "يمكنك إرسال الطلب أو التواصل مع خدمة العملاء"
                 : "You can submit the request or contact customer service"}

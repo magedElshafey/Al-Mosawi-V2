@@ -24,7 +24,7 @@ const OrderStatus = ({
         </div>
         <div className="d-flex flex-column align-items-center gap-3">
           <p className="m-0 p-0 fw-bold">{title}</p>
-          <div className="d-flex align-items-center gap-2">
+          <div className="d-flex align-items-center gap-2 mb-3">
             <BTN text={btnText} action={action} />
             {btnText2 && <BTN text={btnText2} action={action2} />}
           </div>

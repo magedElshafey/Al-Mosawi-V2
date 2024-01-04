@@ -32,7 +32,7 @@ const Cart = () => {
     };
     return request({ url: "/cart/myCart", headers });
   };
-  const { isLoading } = useQuery("cart-page", fetchData, {
+  const { isLoading, data } = useQuery("cart-page", fetchData, {
     enabled: fetch,
     onSuccess: (data) => {
       if (data.data.status) {
@@ -71,7 +71,7 @@ const Cart = () => {
                   <CartItems user={user} items={cartItems} />
                 </div>
                 <div className="col-12 col-md-4 mb-3 mb-md-0">
-                  <CartTotal user={user} total={totalPrice} />
+                  <CartTotal user={user} total={data?.data?.data?.total} />
                 </div>
               </div>
             ) : null}

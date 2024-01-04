@@ -423,3 +423,18 @@ ul {
   -ms-border-radius: 18px;
   -o-border-radius: 18px;
 }
+.my-custom-popup-class {
+  z-index: 3000; /* Your desired z-index value */
+}
+
+.my-custom-backdrop-class {
+  z-index: 4000; /* Your desired z-index value for the backdrop */
+}
+.swal2-popup {
+  width: 250px !important;
+  height: 270px !important;
+}
+.swal2-title {
+  font-size: 16px !important;
+}
+

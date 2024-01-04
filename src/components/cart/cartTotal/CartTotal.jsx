@@ -36,6 +36,7 @@ const CartTotal = ({ total, user }) => {
   };
   const { isLoading, mutate } = useMutation(handleCopon, {
     onSuccess: (data) => {
+      console.log("copon", data.data);
       toast.success(
         i18n.language === "ar"
           ? "تم تفعيل الكوبون بنجاح"

@@ -4,7 +4,7 @@ import AuthIntro from "../components/utils/authIntro/AuthIntro";
 import RegForm from "../components/Reg/RegForm";
 import { useTranslation } from "react-i18next";
 import RegModal from "../components/Reg/regmodal/RegModal";
-const Regester = ({ phoneNum, logo }) => {
+const Regester = ({ phoneNum, logo, terms }) => {
   const { t, i18n } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   return (
@@ -53,7 +53,11 @@ const Regester = ({ phoneNum, logo }) => {
           </div>
         </div>
       </div>
-      <RegModal setShowModal={setShowModal} showModal={showModal} />
+      <RegModal
+        setShowModal={setShowModal}
+        showModal={showModal}
+        data={terms}
+      />
     </>
   );
 };

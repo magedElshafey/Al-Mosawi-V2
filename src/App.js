@@ -58,7 +58,7 @@ const App = () => {
     : "ar";
   const [loading, setLoading] = useState(true);
   const [settingsData, setSettingsData] = useState({});
-
+  const [terms, setTerms] = useState("");
   useEffect(() => {
     if (!localStorage.getItem("cart")) {
       localStorage.setItem("cart", JSON.stringify([]));
@@ -75,6 +75,7 @@ const App = () => {
       .then((res) => {
         if (res.status === 200) {
           setSettingsData(res.data.data);
+          setTerms(res.data.data.generalSetting.privacy);
           setLoading(false);
         } else {
           setLoading(true);
@@ -193,6 +194,7 @@ const App = () => {
                   <Regester
                     logo={settingsData.generalSetting.logo}
                     phoneNum={settingsData.contactSettings.phone}
+                    terms={terms}
                   />
                 }
               />

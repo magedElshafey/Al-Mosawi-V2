@@ -3,7 +3,7 @@ import style from "./success.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { useTranslation } from "react-i18next";
 const Success = ({ data }) => {
   const { i18n } = useTranslation();
@@ -11,7 +11,7 @@ const Success = ({ data }) => {
     loop: true,
     centeredSlides: true,
     spaceBetween: 10,
-    navigation: true,
+    // navigation: true,
     autoplay: true,
     pagination: {
       clickable: true,
@@ -32,11 +32,11 @@ const Success = ({ data }) => {
     },
   };
   return (
-    <div className="py-5">
+    <div className={`py-5 mt-5 ${style.main}`}>
       <Swiper
         {...swiperOptions}
         className="mySwiper w-100 text-center"
-        modules={[Autoplay, Navigation, Pagination]}
+        modules={[Autoplay, Pagination]}
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="row justify-content-center">

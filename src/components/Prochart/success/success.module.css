@@ -1,3 +1,7 @@
+  .main {
+  border: 1px solid #c8c8c8;
+  border-radius: 29px;
+}
 .textContainer {
   background-color: #e8fff3;
   box-shadow: 1px 5px 9px #0000001a;

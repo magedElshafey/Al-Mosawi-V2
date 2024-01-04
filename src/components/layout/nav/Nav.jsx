@@ -32,7 +32,11 @@ import {
 } from "../../../Redux/auth.js";
 import { handleRequest } from "../../../Redux/afilator.js";
 import { IoIosArrowForward } from "react-icons/io";
-
+import contact from "../../../assets/contact-nav.png";
+import about from "../../../assets/about-nav.png";
+import prochart from "../../../assets/prochart-nav.png";
+import courses from "../../../assets/courses-nav.png";
+import account from "../../../assets/account-nav.png";
 const Nav = ({
   data,
   phoneNum,
@@ -84,7 +88,7 @@ const Nav = ({
         }
       );
       const data = await res.json();
-
+      console.log("data from afilate", data);
       if (data.status) {
         toast.success(data.message);
         dispatch(handleRequest());
@@ -123,6 +127,18 @@ const Nav = ({
       setShowBack(false);
     }
   }, [pathname]);
+  // handle show logo
+  useEffect(() => {
+    if (
+      pathname === "/login" ||
+      pathname === "/forget" ||
+      pathname === "/reg"
+    ) {
+      setShowLogo(false);
+    } else {
+      setShowLogo(true);
+    }
+  }, [pathname]);
 
   // handle scroll
   useEffect(() => {
@@ -157,6 +173,7 @@ const Nav = ({
         dispatch(removeUserId());
         dispatch(removeRequest());
         dispatch(clearCart());
+        navigate("/");
         if (localStorage.getItem("accountType")) {
           window.localStorage.removeItem("accountType");
         } else {
@@ -479,7 +496,7 @@ const Nav = ({
                     onMouseLeave={() => setShowAbout(false)}
                     alt="prochart/img"
                     loading="lazy"
-                    src="https://images.pexels.com/photos/2422294/pexels-photo-2422294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    src={about}
                     className={style.imgTwo}
                   />
                   <Link
@@ -505,7 +522,7 @@ const Nav = ({
                   <img
                     alt="prochart/img"
                     loading="lazy"
-                    src="https://images.pexels.com/photos/6770610/pexels-photo-6770610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    src={account}
                     className={style.imgimg}
                   />
                   <p className={style.contentTwo}>{t("tadwl")}</p>
@@ -542,7 +559,7 @@ const Nav = ({
                   <img
                     alt="prochart/img"
                     loading="lazy"
-                    src="https://images.pexels.com/photos/6347729/pexels-photo-6347729.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    src={contact}
                     className={style.imgTwo}
                   />
                   <Link
@@ -578,7 +595,7 @@ const Nav = ({
                   <img
                     alt="prochart/img"
                     loading="lazy"
-                    src="https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    src={prochart}
                     className={style.mainImg}
                   />
 
@@ -744,9 +761,12 @@ const Nav = ({
                     {t("help")}
                   </p>
                   <p className="green m-0 p-0 d-flex gap-1 align-items-center">
-                    <span className="fw-bold shamel fs22 mt-1 ">
+                    <a
+                      href={`https://wa.me/${phoneNum}`}
+                      className="fw-bold shamel fs22  green "
+                    >
                       {phoneNum}
-                    </span>
+                    </a>
                     <BsFillTelephoneFill size={20} />{" "}
                   </p>
                 </div>

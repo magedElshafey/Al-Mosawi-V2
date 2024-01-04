@@ -51,7 +51,27 @@ const ForexForm = () => {
     );
   };
   const [accountKind, setAccountKind] = useState("");
+  const handlePhoneChange = (e) => {
+    const numericValue = e.target.value.replace(/\D/g, ""); // Using regular expression to allow only digits
 
+    setPhoneNum(numericValue);
+  };
+  const handleFirstNameChange = (e) => {
+    const userInput = e.target.value;
+    const onlyTextRegex = /^[A-Za-z\s]+$/;
+
+    if (onlyTextRegex.test(userInput) || userInput === "") {
+      setFirstName(userInput);
+    }
+  };
+  const handleLastNameChange = (e) => {
+    const userInput = e.target.value;
+    const onlyTextRegex = /^[A-Za-z\s]+$/;
+
+    if (onlyTextRegex.test(userInput) || userInput === "") {
+      setLastName(userInput);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -131,12 +151,12 @@ const ForexForm = () => {
               {t("fn")}
             </label>
             <input
-              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+              onChange={handleFirstNameChange}
               className="inp"
               type="text"
               id="fs"
               name="first_name"
-              value={firstName}
             />
           </div>
           <div className="col-12 col-md-6 mb-2 mb-md-0">
@@ -148,8 +168,8 @@ const ForexForm = () => {
               type="text"
               id="ln"
               name="family_name"
-              onChange={(e) => setLastName(e.target.value)}
               value={lastName}
+              onChange={handleLastNameChange}
             />
           </div>
         </div>
@@ -162,8 +182,8 @@ const ForexForm = () => {
               name="phone"
               type="text"
               className="inp"
-              onChange={(e) => setPhoneNum(e.target.value)}
               value={phoneNum}
+              onChange={handlePhoneChange}
             />
           </div>
           <div className="col-12 col-md-6 mb-2 mb-md-0">

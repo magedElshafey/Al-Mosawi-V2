@@ -9,7 +9,7 @@ import { request } from "../components/utils/axios";
 import Spinner from "../components/utils/Spinner/Spinner";
 import { useQuery } from "react-query";
 const JoinAfilate = ({ lang }) => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const fetchData = () => {
     return request({ url: "/affiliate/term" });
@@ -27,11 +27,8 @@ const JoinAfilate = ({ lang }) => {
               isSmallHero={true}
               isMediumHero={false}
               img={heroImg}
-              title={
-                i18n.language === "en"
-                  ? "Welcome to our marketing team"
-                  : "مرحبا بك في فريق التسويق الخاص بنا"
-              }
+              title={t("afTitle")}
+              desc={t("afDesc")}
               isStatic={true}
             />
             <div className="container py-5">

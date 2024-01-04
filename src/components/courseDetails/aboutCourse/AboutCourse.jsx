@@ -1,7 +1,7 @@
 import React from "react";
 const AboutCourse = ({ title, desc }) => {
   return (
-    <div className="pb-3 pt-5 overflow-hidden">
+    <div className="py-3 overflow-hidden">
       <div className="row ">
         <div className="col-12">
           <p

@@ -72,7 +72,9 @@ const Prochart = ({ phoneNum }) => {
               data={data.data.data.prochart_plans}
             />
             <Success data={data.data.data.slider} />
-            <Management data={data.data.data.wallet} />
+            {/**
+             *   <Management data={data.data.data.wallet} />
+             */}
             <TextContent data={data.data.data.wallet.finalWord} />
             {modalId && (
               <PackageModal

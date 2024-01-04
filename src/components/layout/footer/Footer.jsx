@@ -55,7 +55,7 @@ const Footer = ({ generalData, socailData, phoneNum, footer1, footer2 }) => {
                   <img
                     loading="lazy"
                     alt="logo/img"
-                    src={generalData.logo}
+                    src={generalData.logoFooter}
                     className={style.logo}
                   />
                   <div className="d-flex align-items-center gap-1 flex-wrap">

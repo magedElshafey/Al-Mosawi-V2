@@ -29,6 +29,10 @@ const EditForm = ({
   const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const handlePhoneChange = (e) => {
+    const numericValue = e.target.value.replace(/\D/g, "");
+    setPhone(numericValue);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -114,29 +118,14 @@ const EditForm = ({
               {i18n.language === "ar" ? "رقم الهاتف" : "phone"}
             </label>
             <input
+              onChange={handlePhoneChange}
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
               className="inp"
               type="text"
               name="phone"
               id="phone"
             />
           </div>
-          <div className="col-12 col-md-6 mb-3 mb-md-0">
-            <label htmlFor="address" className="d-block mb-1">
-              {i18n.language === "ar" ? "العنوان" : "address"}
-            </label>
-            <input
-              className="inp"
-              type="text"
-              onChange={(e) => setAddress(e.target.value)}
-              value={address}
-              name="address"
-              id="address"
-            />
-          </div>
-        </div>
-        <div className="row mb-3">
           <div className="col-12 col-md-6 mb-3 mb-md-0">
             <label htmlFor="profilePhoto" className="d-block mb-1">
               {i18n.language === "ar" ? "الصورة الشخصية" : "profile photo"}
@@ -148,7 +137,22 @@ const EditForm = ({
               id="profilePhoto"
               onChange={(e) => setPhoto(e.target.files[0])}
             />
+            {/**
+               * <label htmlFor="address" className="d-block mb-1">
+              {i18n.language === "ar" ? "العنوان" : "address"}
+            </label>
+            <input
+              className="inp"
+              type="text"
+              onChange={(e) => setAddress(e.target.value)}
+              value={address}
+              name="address"
+              id="address"
+            />
+               */}
           </div>
+        </div>
+        <div className="row mb-3">
           <div className="col-12 col-md-6 mb-3 mb-md-0">
             <label htmlFor="password" className="d-block mb-1">
               {i18n.language === "ar" ? "كلمة المرور" : "password"}
@@ -162,6 +166,20 @@ const EditForm = ({
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {isTickmill ? (
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
+              <label htmlFor="accountType">
+                {i18n.language === "ar" ? "نوع الحساب" : "account type"}
+              </label>
+              <input
+                type="text"
+                value={accountType}
+                id="accountType"
+                name="accountType"
+                className="inp"
+              />
+            </div>
+          ) : null}
         </div>
         {isTickmill ? (
           <div className="row mb-3">
@@ -193,20 +211,7 @@ const EditForm = ({
             </div>
           </div>
         ) : null}
-        {isTickmill ? (
-          <div className="mb-3">
-            <label htmlFor="accountType">
-              {i18n.language === "ar" ? "نوع الحساب" : "account type"}
-            </label>
-            <input
-              type="text"
-              value={accountType}
-              id="accountType"
-              name="accountType"
-              className="inp"
-            />
-          </div>
-        ) : null}
+
         <div className="d-flex justify-content-center mb-3">
           <button
             type="submit"
